@@ -2,12 +2,12 @@
 
 Use Discovar
 
-set SET=$1
-set LANE=$2
-set STR=$3
-set REGION=$4
+SET=$1
+LANE=$2
+STR=$3
+REGION=$4
 
-set NAME=${SET}_${STR}_${LANE}
+NAME=${SET}_${STR}_${LANE}
 
 mkdir $NAME
 cd $NAME
