@@ -39,6 +39,12 @@ blastall -p blastn -d ../../refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
 -> greenhouse_primer_locations.txt
 
 
+## wrote script to pull out STRs from MREPs file, that are within greenhouse regions
+perl getTargetsInStrs.pl \
+  STRfiles/greenhouse_primer_locations.txt STRfiles/STRs_mreps_Pf3D7.txt \
+  | cut -f 1-12 > STRfiles/greenhouse_mreps.txt
 
+
+Discovar READS=${DISCODATA}/1/SM-7LV8S/H2MGCBCXX.1.aligned.duplicates_marked.bam
 
 
