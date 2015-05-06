@@ -1,0 +1,7 @@
+./data/
+./cache/
+./idx/
+./bin/
+*~
+*ld.gz
+*ped
