@@ -1,0 +1,32 @@
+
+#installed Discovar (takes ages)
+'use Discovar' to use
+
+
+# installed STR finders
+ #mreps
+  wget http://mreps.univ-mlv.fr/mreps-2.6.tar
+
+#get Pf3D7 ref
+  wget http://plasmodb.org/common/downloads/Current_Release/Pfalciparum3D7/fasta/data/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
+
+
+#use initial set of STRs from [Greenhouse '06 AJTMH]
+STRfiles/greenhouse_linked.fa
+# use BLAST top find locations
+
+formatdb -p F -i PlasmoDB-24_Pfalciparum3D7_Genome.fasta
+blastall -p blastn -d ../../refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
+	 -i greenhouse_linked.fa -m 8 -e 0.01 \
+	 > greenhouse_blastout.txt
+-> greenhouse_primer_locations.txt
+
+
+for FASTA in `ls ../../refs/ | grep pf | perl -pe 's/.fasta//' `;
+do
+  mreps/mreps -fasta ../../refs/${FASTA}.fasta \
+     | perl -lane "print join(\"\t\",${FASTA},@F) unless 1..15" \
+     | grep -e '->' 
+done  \
+> STRs_mreps_Pf3D7.txt
+
