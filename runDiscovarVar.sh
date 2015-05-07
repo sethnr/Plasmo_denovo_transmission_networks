@@ -22,3 +22,8 @@ Discovar READS=${FILE} \
 rm -r tmp
 
 dot -Tpng -o ${NAME}.final.png ${NAME}.final.dot
+
+bgzip ${NAME}.final.variant.filtered.vcf
+tabix ${NAME}.final.variant.filtered.vcf.gz
+
+
