@@ -15,7 +15,7 @@ mkdir tmp
 FILE=`ls ${DISCODATA}/${LANE}/${SET}/*bam`
 
 ln -s $FILE ${NAME}.bam
-samtools faidx ${NAME}.bam
+samtools index ${NAME}.bam
 
 Discovar READS=${NAME}.bam \
 	 REGIONS=${REGION} \
