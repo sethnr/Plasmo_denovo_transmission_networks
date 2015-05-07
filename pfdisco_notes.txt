@@ -47,19 +47,35 @@ perl getTargetsInStrs.pl \
 
 #do test run:
 Discovar READS=${DISCODATA}/1/SM-7LV8S/H2MGCBCXX.1.aligned.duplicates_marked.bam \
-	 REGIONS=Pf3D7_10_v3:1322568-1322834 \
+	 REGIONS=Pf3D7_10_v3:1322568-1322834, \
 	 OUT_HEAD=SM-7LV8S_TA40 \
 	 TMP=./tmp
 	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
 
 #write wrapper script
 cd /seq/plasmodium/sredmond/pfdisco/discovar
+$DISCO1/runDiscovarVar.sh   DATASET  LANE  SUFFIX REGION
+
+#get broad locations for Discovar (with commas):
+perl -lane 'BEGIN{use POSIX; $round=2000}; $F[2] = (floor($F[2]/$round)*$round); $F[3] = (ceil($F[2]/$round+1)*$round); print $F[1],":",$F[2],"-",$F[3]' STRfiles/greenhouse_primer_locations.txt
+export BROADLOCS=Pf3D7_10_v3:1322000-1324000,Pf3D7_13_v3:2588000-2590000,Pf3D7_05_v3:1214000-1216000,Pf3D7_06_v3:374000-376000,Pf3D7_12_v3:1610000-1612000,Pf3D7_04_v3:532000-534000
+
+
+#get fine locations for vcf-merge (with spaces, for tabix):
+perl -lane 'print $F[1],":",$F[2],"-",$F[3]' STRfiles/greenhouse_primer_locations.txt
+export FINELOCS='Pf3D7_10_v3:1322568-1322834  Pf3D7_13_v3:2588612-2588932  Pf3D7_05_v3:1214274-1214450  Pf3D7_06_v3:374731-374946  Pf3D7_12_v3:1611148-1611391  Pf3D7_04_v3:532167-532320
 
 for SET in S T U V R O P Q
 do
 echo SM-7LV8${SET}
-../runDiscovarVar.sh SM-7LV8${SET} 1 TA40 Pf3D7_10_v3:1321500-1323500
+$DISCO1/runDiscovarVar.sh SM-7LV8${SET} 1 TA40 Pf3D7_10_v3:1321500-1323500,Pf3D7_12_v3:1610500-1612500
 done
 
 
+for SET in S T U V R O P Q
+do
+echo SM-7LV8${SET}
+$DISCO1/runDiscovarVar.sh SM-7LV8${SET} 1 GRH $BROADLOCS
+$DISCO1/runDiscovarVar.sh SM-7LV8${SET} 2 GRH $BROADLOCS
+done
 
