@@ -1,7 +1,5 @@
 #!/bin/bash
 
-Use Discovar
-
 SET=$1
 LANE=$2
 STR=$3
@@ -18,7 +16,7 @@ FILE=`ls ${DISCODATA}/${LANE}/${SET}/*bam`
 Discovar READS=${FILE} \
 	 REGIONS=${REGION} \
 	 OUT_HEAD=${NAME} \
-	 TMP=./tmp
+	 TMP=./tmp \
 	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
 
 rm -r tmp
