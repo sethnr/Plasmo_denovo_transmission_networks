@@ -75,12 +75,46 @@ done
 for SET in S T U V R O P Q
 do
 echo SM-7LV8${SET}
-$DISCO1/runDiscovarVar.sh SM-7LV8${SET} 1 GRH $BROADLOCS
-$DISCO1/runDiscovarVar.sh SM-7LV8${SET} 2 GRH $BROADLOCS
+bsub -e out/SM-7LV8${SET}_1.e  -o out/SM-7LV8${SET}_1.o -J SM-7LV8${SET}_1  -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+  $DISCO1/runDiscovarVar.sh SM-7LV8${SET} 1 GRH $BROADLOCS
+bsub -e out/SM-7LV8${SET}_2.e  -o out/SM-7LV8${SET}_2.o -J SM-7LV8${SET}_2  -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+  $DISCO1/runDiscovarVar.sh SM-7LV8${SET} 2 GRH $BROADLOCS
 done
 
 #MERGE ALL VCFS
 vcf-merge */*filtered.vcf.gz > merge_3d7dd2.vcf
-bgzip merge_3d7dd2.vcf; tabix -pvcf merge_3d7dd2.vcf.gz
+vcftools --keep-only-indels --vcf merge_3d7dd2.vcf --recode --out merge_3d7dd2_indels
+mv merge_3d7dd2_indels.recode.vcf merge_3d7dd2_indels.vcf
+bgzip merge_3d7dd2_indels.vcf
+tabix -pvcf merge_3d7dd2_indels.vcf.gz
+tabix -h merge_3d7dd2_indels.vcf.gz $FINELOCS >  merge_3d7dd2_fine.vcf
+rm merge_3d7dd2.vcf \
+   merge_3d7dd2.vcf.vcfidx \
+   merge_3d7dd2_indels.log \
+   merge_3d7dd2_indels.vcf.gz \
+   merge_3d7dd2_indels.vcf.gz.tbi
 
-tabix -h merge_3d7dd2.vcf.gz $FINELOCS
+
+cd HFGR
+for SET in {E..N}
+    do
+    for LANE in 1 2
+    	do
+    	bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
+     	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     	     $DISCO1/runDiscovarVar.sh SM-7LV8${SET} ${LANE} GRH $BROADLOCS
+     done
+done
+
+cd Thies
+for SET in {1..9} {A..D} {V..Z}
+    do
+    for LANE in 1 2
+    	do
+    	bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
+     	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     	     $DISCO1/runDiscovarVar.sh SM-7LV8${SET} ${LANE} GRH $BROADLOCS
+     done
+done
+
+
