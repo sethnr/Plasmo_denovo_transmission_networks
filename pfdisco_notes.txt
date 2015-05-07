@@ -45,6 +45,21 @@ perl getTargetsInStrs.pl \
   | cut -f 1-12 > STRfiles/greenhouse_mreps.txt
 
 
-Discovar READS=${DISCODATA}/1/SM-7LV8S/H2MGCBCXX.1.aligned.duplicates_marked.bam
+#do test run:
+Discovar READS=${DISCODATA}/1/SM-7LV8S/H2MGCBCXX.1.aligned.duplicates_marked.bam \
+	 REGIONS=Pf3D7_10_v3:1322568-1322834 \
+	 OUT_HEAD=SM-7LV8S_TA40 \
+	 TMP=./tmp
+	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
+
+#write wrapper script
+cd /seq/plasmodium/sredmond/pfdisco/discovar
+
+for SET in S T U V R O P Q
+do
+echo SM-7LV8${SET}
+../runDiscovarVar.sh SM-7LV8${SET} 1 TA40 Pf3D7_10_v3:1321500-1323500
+done
+
 
 
