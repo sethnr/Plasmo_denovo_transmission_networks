@@ -14,17 +14,20 @@ mkdir tmp
 
 FILE=`ls ${DISCODATA}/${LANE}/${SET}/*bam`
 
-Discovar READS=${FILE} \
+ln -s $FILE ${NAME}.bam
+
+Discovar READS=${NAME}.bam \
 	 REGIONS=${REGION} \
 	 OUT_HEAD=${NAME} \
 	 TMP=./tmp \
 	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
 
+echo "DISCOVAR COMPLETE"
 rm -r tmp
 
 dot -Tpng -o ${NAME}.final.png ${NAME}.final.dot
 
-perl -i -pe "s/${SET}$/${NAME}/gi";
+perl -i -pe "s/${SET}$/${NAME}/gi" ${NAME}.final.variant.filtered.vcf
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz
 

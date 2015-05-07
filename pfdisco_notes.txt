@@ -79,3 +79,8 @@ $DISCO1/runDiscovarVar.sh SM-7LV8${SET} 1 GRH $BROADLOCS
 $DISCO1/runDiscovarVar.sh SM-7LV8${SET} 2 GRH $BROADLOCS
 done
 
+#MERGE ALL VCFS
+vcf-merge */*filtered.vcf.gz > merge_3d7dd2.vcf
+bgzip merge_3d7dd2.vcf; tabix -pvcf merge_3d7dd2.vcf.gz
+
+tabix -h merge_3d7dd2.vcf.gz $FINELOCS
