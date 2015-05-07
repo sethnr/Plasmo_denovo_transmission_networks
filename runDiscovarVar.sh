@@ -13,7 +13,7 @@ mkdir $NAME
 cd $NAME
 mkdir tmp
 
-set FILE=`ls ${DISCODATA}/${LANE}/${SET}/*bam`
+FILE=`ls ${DISCODATA}/${LANE}/${SET}/*bam`
 
 Discovar READS=${FILE} \
 	 REGIONS=${REGION} \
