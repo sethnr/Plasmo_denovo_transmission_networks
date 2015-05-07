@@ -1,6 +1,6 @@
 #!/bin/bash
 
-OUT=$
+OUT=$1
 shift
 
 vcf-merge $@ > merge.vcf
