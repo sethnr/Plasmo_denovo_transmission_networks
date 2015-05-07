@@ -107,14 +107,27 @@ for SET in {E..N}
 done
 
 cd Thies
-for SET in {1..9} {A..D} {V..Z}
+for LANE in 1 2
     do
-    for LANE in 1 2
-    	do
-    	bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
+    for SET in {1..9} {A..D}
+    do
+    bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
      	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
      	     $DISCO1/runDiscovarVar.sh SM-7LV8${SET} ${LANE} GRH $BROADLOCS
      done
+    for SET in {V..Z}
+    do
+    bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
+     	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     	     $DISCO1/runDiscovarVar.sh SM-7LV7${SET} ${LANE} GRH $BROADLOCS
+     done
+
 done
 
+
+#TEST:
+    bsub -e out/TEST.e  -o out/TEST.o -J TEST_discovar \
+     	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     	     $DISCO1/runDiscovarVar.sh SM-7LV8Z 1 GRH $BROADLOCS
+ 
 
