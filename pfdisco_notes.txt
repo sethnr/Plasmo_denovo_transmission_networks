@@ -147,15 +147,22 @@ cd /seq/plasmodium/sredmond/pfdisco/discovar
 ##########
 # get depths from BAM files
 ##########
-#get broad locations for Discovar (with -R region tags):
-perl -lane 'BEGIN{use POSIX; $round=2000}; $F[2] = (floor($F[2]/$round)*$round); $F[3] = (ceil($F[2]/$round+1)*$round); print "-r ",$F[1],":",$F[2],"-",$F[3]' STRfiles/greenhouse_primer_locations.txt
-export BROADLOCSR="-r Pf3D7_10_v3:1322000-1324000 -r Pf3D7_13_v3:2588000-2590000 -r Pf3D7_05_v3:1214000-1216000 -r Pf3D7_06_v3:374000-376000 -r Pf3D7_12_v3:1610000-1612000 -r Pf3D7_04_v3:532000-534000"
+#get broad locations for Discovar:
+export BROADLOCS="Pf3D7_10_v3:1322000-1324000 Pf3D7_13_v3:2588000-2590000 Pf3D7_05_v3:1214000-1216000 Pf3D7_06_v3:374000-376000 Pf3D7_12_v3:1610000-1612000 Pf3D7_04_v3:532000-534000"
 
 for SET in HFGR 3D7DD2 Thies
  do
-   samtools depth $BROADLOCSR ${SET}/*/*bam > ${SET}_greenhouse.depth
+   for LOC in $BROADLOCS
+   do
+   samtools depth -r $LOC ${SET}/*/*bam > ${SET}_${LOC}_greenhouse.depth
+ done
+ cat ${SET}_*_greenhouse.depth > ${SET}_greenhouse.depth
+ for LOC in $BROADLOCS
+ do
+   rm ${SET}_${LOC}_greenhouse.depth
  done
 
+done
 ####
 # write STR length parser
 ###
@@ -168,4 +175,5 @@ cd $DISCO1/disco_greenhouse/
 for SET in HFGR 3D7DD2 Thies
  do
  python ../getSTRlengthFromVCF.py -v ${SET}_greenhouse.vcf > ${SET}_greenhouse.calls
+ grep \#CHROM ${SET}_greenhouse.vcf | cut -f10- > ${SET}_greenhouse.samples
 done
