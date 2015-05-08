@@ -12,12 +12,10 @@ parser.add_argument('-i','--defaultSize', action="store", dest='defSize', type=i
 
 
 args = parser.parse_args()
-print args.vcfFile
+print >>sys.setderr, args.vcfFile
 
 vcfFile = open(args.vcfFile,'r')
-print vcfFile
 reader=vcf.Reader(vcfFile)
-print reader
 
 for record in reader:
     refAllele = record.alleles[0]
