@@ -1,0 +1,57 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster5 {
+color=white;
+11 -> 10 [minlen=4,color=red,label="7 (1.9 kb)"];
+12 -> 11 [minlen=1,color=gray,label="8"];
+13 -> 11 [minlen=1,color=gray,label="11"];
+13 -> 12 [minlen=1,color=gray,label="9"];
+14 -> 12 [minlen=1,color=gray,label="10"];
+14 -> 13 [minlen=1,color=gray,label="12"];
+15 -> 14 [minlen=2,color=black,label="13",taillabel="contig 5",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster4 {
+color=white;
+9 -> 8 [minlen=4,color=red,label="18 (2.4 kb)",taillabel="contig 4",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster3 {
+color=white;
+7 -> 6 [minlen=4,color=red,label="4 (2.4 kb)",taillabel="contig 3",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster2 {
+color=white;
+5 -> 4 [minlen=4,color=red,label="3 (2.4 kb)",taillabel="contig 2",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster1 {
+color=white;
+3 -> 2 [minlen=4,color=red,label="2 (2.4 kb)",taillabel="contig 1",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster0 {
+color=white;
+0 -> 1 [minlen=2,color=black,label="1"];
+16 -> 17 [minlen=4,color=red,label="17 (1.8 kb)",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+17 -> 18 [minlen=1,color=gray,label="5"];
+17 -> 18 [minlen=1,color=gray,label="14"];
+18 -> 0 [minlen=1,color=gray,label="19"];
+18 -> 18 [minlen=1,color=gray,label="6 (1)"];
+18 -> 19 [minlen=1,color=gray,label="15"];
+19 -> 20 [minlen=1,color=gray,label="16"];
+20 -> 0 [minlen=1,color=gray,label="0"];
+20 -> 0 [minlen=1,color=gray,label="20"];
+20 -> 19 [minlen=1,color=gray,label="21"];
+}
+
+}
+#done

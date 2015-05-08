@@ -1,0 +1,96 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster5 {
+color=white;
+11 -> 13 [minlen=1,color=gray,label="58"];
+11 -> 13 [minlen=1,color=gray,label="59"];
+12 -> 11 [minlen=2,color=black,label="4",taillabel="contig 5",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+13 -> 10 [minlen=4,color=red,label="60 (2.1 kb)"];
+}
+
+subgraph cluster4 {
+color=white;
+8 -> 9 [minlen=4,color=red,label="3 (2.4 kb)",taillabel="contig 4",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster3 {
+color=white;
+7 -> 6 [minlen=4,color=red,label="5 (2.1 kb)",taillabel="contig 3",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+7 -> 6 [minlen=4,color=red,label="6 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="7 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="8 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="9 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="10 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="11 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="12 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="13 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="14 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="15 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="16 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="17 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="18 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="19 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="20 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="21 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="22 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="23 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="24 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="25 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="26 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="27 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="28 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="29 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="30 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="31 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="32 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="33 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="34 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="35 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="36 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="37 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="38 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="39 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="40 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="41 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="42 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="43 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="44 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="45 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="46 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="47 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="48 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="49 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="50 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="51 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="52 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="53 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="54 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="55 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="56 (2.1 kb)"];
+7 -> 6 [minlen=4,color=red,label="57 (2.1 kb)"];
+}
+
+subgraph cluster2 {
+color=white;
+4 -> 5 [minlen=4,color=red,label="2 (2.4 kb)",taillabel="contig 2",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster1 {
+color=white;
+2 -> 3 [minlen=4,color=red,label="1 (2.4 kb)",taillabel="contig 1",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster0 {
+color=white;
+1 -> 0 [minlen=4,color=red,label="0 (2.4 kb)",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+}
+#done

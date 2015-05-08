@@ -1,0 +1,106 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster5 {
+color=white;
+13 -> 12 [minlen=4,color=red,label="6 (1.2 kb)"];
+14 -> 13 [minlen=1,color=gray,label="7"];
+14 -> 13 [minlen=1,color=gray,label="8"];
+15 -> 14 [minlen=4,color=red,label="9 (1.1 kb)",taillabel="contig 5",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster4 {
+color=white;
+8 -> 9 [minlen=4,color=red,label="4 (2.4 kb)",taillabel="contig 4",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster3 {
+color=white;
+7 -> 6 [minlen=4,color=red,label="3 (2.4 kb)",taillabel="contig 3",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster2 {
+color=white;
+10 -> 11 [minlen=4,color=red,label="5 (1.5 kb)",taillabel="contig 2",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+11 -> 4 [minlen=2,color=black,label="10"];
+11 -> 4 [minlen=2,color=black,label="11"];
+11 -> 4 [minlen=2,color=black,label="12"];
+11 -> 4 [minlen=2,color=black,label="13"];
+11 -> 4 [minlen=2,color=black,label="14"];
+11 -> 4 [minlen=2,color=black,label="15"];
+11 -> 4 [minlen=2,color=black,label="16"];
+11 -> 4 [minlen=2,color=black,label="17"];
+11 -> 4 [minlen=2,color=black,label="18"];
+11 -> 4 [minlen=2,color=black,label="19"];
+11 -> 4 [minlen=2,color=black,label="20"];
+11 -> 4 [minlen=2,color=black,label="21"];
+11 -> 4 [minlen=2,color=black,label="22"];
+11 -> 4 [minlen=2,color=black,label="23"];
+11 -> 4 [minlen=2,color=black,label="24"];
+11 -> 4 [minlen=2,color=black,label="25"];
+11 -> 4 [minlen=2,color=black,label="26"];
+11 -> 4 [minlen=2,color=black,label="27"];
+11 -> 4 [minlen=2,color=black,label="28"];
+11 -> 4 [minlen=2,color=black,label="29"];
+11 -> 4 [minlen=2,color=black,label="30"];
+11 -> 4 [minlen=2,color=black,label="31"];
+11 -> 4 [minlen=2,color=black,label="32"];
+11 -> 4 [minlen=2,color=black,label="33"];
+11 -> 4 [minlen=2,color=black,label="34"];
+11 -> 4 [minlen=2,color=black,label="35"];
+11 -> 4 [minlen=2,color=black,label="36"];
+11 -> 4 [minlen=2,color=black,label="37"];
+11 -> 4 [minlen=2,color=black,label="38"];
+11 -> 4 [minlen=2,color=black,label="39"];
+11 -> 4 [minlen=2,color=black,label="40"];
+11 -> 4 [minlen=2,color=black,label="41"];
+11 -> 4 [minlen=2,color=black,label="42"];
+11 -> 4 [minlen=2,color=black,label="43"];
+11 -> 4 [minlen=2,color=black,label="44"];
+11 -> 4 [minlen=2,color=black,label="45"];
+11 -> 4 [minlen=2,color=black,label="46"];
+11 -> 4 [minlen=2,color=black,label="47"];
+11 -> 4 [minlen=2,color=black,label="48"];
+11 -> 4 [minlen=2,color=black,label="49"];
+11 -> 4 [minlen=2,color=black,label="50"];
+11 -> 4 [minlen=2,color=black,label="51"];
+11 -> 4 [minlen=2,color=black,label="52"];
+11 -> 4 [minlen=2,color=black,label="53"];
+11 -> 4 [minlen=2,color=black,label="54"];
+11 -> 4 [minlen=2,color=black,label="55"];
+11 -> 4 [minlen=2,color=black,label="56"];
+11 -> 4 [minlen=2,color=black,label="57"];
+11 -> 4 [minlen=2,color=black,label="58"];
+11 -> 4 [minlen=2,color=black,label="59"];
+11 -> 4 [minlen=2,color=black,label="60"];
+11 -> 4 [minlen=2,color=black,label="61"];
+11 -> 4 [minlen=2,color=black,label="62"];
+11 -> 4 [minlen=2,color=black,label="63"];
+11 -> 4 [minlen=2,color=black,label="64"];
+11 -> 4 [minlen=2,color=black,label="65"];
+11 -> 4 [minlen=2,color=black,label="66"];
+11 -> 4 [minlen=2,color=black,label="67"];
+11 -> 4 [minlen=2,color=black,label="68"];
+11 -> 4 [minlen=2,color=black,label="69"];
+11 -> 4 [minlen=2,color=black,label="70"];
+11 -> 5 [minlen=2,color=black,label="2"];
+}
+
+subgraph cluster1 {
+color=white;
+3 -> 2 [minlen=4,color=red,label="1 (2.4 kb)",taillabel="contig 1",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster0 {
+color=white;
+1 -> 0 [minlen=4,color=red,label="0 (2.4 kb)",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+}
+#done

@@ -1,0 +1,54 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster5 {
+color=white;
+17 -> 18 [minlen=4,color=red,label="5 (2.4 kb)",taillabel="contig 5",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster4 {
+color=white;
+15 -> 16 [minlen=4,color=red,label="4 (2.4 kb)",taillabel="contig 4",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster3 {
+color=white;
+5 -> 4 [minlen=4,color=red,label="1 (2.4 kb)",taillabel="contig 3",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster2 {
+color=white;
+2 -> 3 [minlen=4,color=red,label="0 (2.4 kb)",taillabel="contig 2",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster1 {
+color=white;
+1 -> 7 [minlen=4,color=red,label="8 (1.8 kb)",taillabel="contig 1",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+7 -> 6 [minlen=2,color=black,label="9"];
+7 -> 7 [minlen=1,color=gray,label="2 (1)"];
+7 -> 7 [minlen=2,color=black,label="10"];
+}
+
+subgraph cluster0 {
+color=white;
+0 -> 14 [minlen=2,color=black,label="12",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+9 -> 8 [minlen=4,color=red,label="3 (1.9 kb)"];
+10 -> 11 [minlen=1,color=gray,label="6"];
+11 -> 9 [minlen=1,color=gray,label="16"];
+11 -> 9 [minlen=1,color=gray,label="17"];
+11 -> 9 [minlen=1,color=gray,label="18"];
+12 -> 9 [minlen=1,color=gray,label="14"];
+13 -> 9 [minlen=1,color=gray,label="15"];
+13 -> 12 [minlen=1,color=gray,label="7"];
+14 -> 12 [minlen=1,color=gray,label="13"];
+14 -> 13 [minlen=1,color=gray,label="11"];
+}
+
+}
+#done

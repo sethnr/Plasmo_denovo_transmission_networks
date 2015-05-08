@@ -1,0 +1,110 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster5 {
+color=white;
+19 -> 18 [minlen=4,color=red,label="74 (2.4 kb)",taillabel="contig 5",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster4 {
+color=white;
+14 -> 15 [minlen=4,color=red,label="9 (1.1 kb)",taillabel="contig 4",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+15 -> 16 [minlen=1,color=gray,label="11"];
+15 -> 16 [minlen=1,color=gray,label="72"];
+16 -> 17 [minlen=4,color=red,label="73 (1.2 kb)"];
+}
+
+subgraph cluster3 {
+color=white;
+12 -> 13 [minlen=4,color=red,label="8 (2.5 kb)",taillabel="contig 3",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster2 {
+color=white;
+4 -> 8 [minlen=1,color=gray,label="5"];
+4 -> 11 [minlen=2,color=black,label="16"];
+4 -> 11 [minlen=2,color=black,label="17"];
+4 -> 11 [minlen=2,color=black,label="18"];
+4 -> 11 [minlen=2,color=black,label="19"];
+4 -> 11 [minlen=2,color=black,label="20"];
+4 -> 11 [minlen=2,color=black,label="21"];
+4 -> 11 [minlen=2,color=black,label="22"];
+4 -> 11 [minlen=2,color=black,label="23"];
+4 -> 11 [minlen=2,color=black,label="24"];
+4 -> 11 [minlen=2,color=black,label="25"];
+4 -> 11 [minlen=2,color=black,label="26"];
+4 -> 11 [minlen=2,color=black,label="27"];
+4 -> 11 [minlen=2,color=black,label="28"];
+4 -> 11 [minlen=2,color=black,label="29"];
+4 -> 11 [minlen=2,color=black,label="30"];
+4 -> 11 [minlen=2,color=black,label="31"];
+4 -> 11 [minlen=2,color=black,label="32"];
+4 -> 11 [minlen=2,color=black,label="33"];
+4 -> 11 [minlen=2,color=black,label="34"];
+4 -> 11 [minlen=2,color=black,label="35"];
+4 -> 11 [minlen=2,color=black,label="36"];
+4 -> 11 [minlen=2,color=black,label="37"];
+4 -> 11 [minlen=2,color=black,label="38"];
+4 -> 11 [minlen=2,color=black,label="39"];
+4 -> 11 [minlen=2,color=black,label="40"];
+4 -> 11 [minlen=2,color=black,label="41"];
+4 -> 11 [minlen=2,color=black,label="42"];
+4 -> 11 [minlen=2,color=black,label="43"];
+4 -> 11 [minlen=2,color=black,label="44"];
+4 -> 11 [minlen=2,color=black,label="45"];
+4 -> 11 [minlen=2,color=black,label="46"];
+4 -> 11 [minlen=2,color=black,label="47"];
+4 -> 11 [minlen=2,color=black,label="48"];
+4 -> 11 [minlen=2,color=black,label="49"];
+4 -> 11 [minlen=2,color=black,label="50"];
+4 -> 11 [minlen=2,color=black,label="51"];
+4 -> 11 [minlen=2,color=black,label="52"];
+4 -> 11 [minlen=2,color=black,label="53"];
+4 -> 11 [minlen=2,color=black,label="54"];
+4 -> 11 [minlen=2,color=black,label="55"];
+4 -> 11 [minlen=2,color=black,label="56"];
+4 -> 11 [minlen=2,color=black,label="57"];
+4 -> 11 [minlen=2,color=black,label="58"];
+4 -> 11 [minlen=2,color=black,label="59"];
+4 -> 11 [minlen=2,color=black,label="60"];
+4 -> 11 [minlen=2,color=black,label="61"];
+4 -> 11 [minlen=2,color=black,label="62"];
+4 -> 11 [minlen=2,color=black,label="63"];
+4 -> 11 [minlen=2,color=black,label="64"];
+4 -> 11 [minlen=2,color=black,label="65"];
+4 -> 11 [minlen=2,color=black,label="66"];
+4 -> 11 [minlen=2,color=black,label="67"];
+4 -> 11 [minlen=2,color=black,label="68"];
+4 -> 11 [minlen=2,color=black,label="69"];
+4 -> 11 [minlen=2,color=black,label="70"];
+5 -> 4 [minlen=4,color=red,label="2 (1.7 kb)",taillabel="contig 2",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+7 -> 10 [minlen=2,color=black,label="12"];
+7 -> 10 [minlen=2,color=black,label="13"];
+7 -> 10 [minlen=2,color=black,label="14"];
+7 -> 10 [minlen=2,color=black,label="15"];
+8 -> 7 [minlen=1,color=gray,label="4"];
+8 -> 7 [minlen=1,color=gray,label="10"];
+9 -> 6 [minlen=2,color=black,label="71"];
+10 -> 9 [minlen=1,color=gray,label="6"];
+11 -> 9 [minlen=1,color=gray,label="3"];
+11 -> 10 [minlen=1,color=gray,label="7"];
+}
+
+subgraph cluster1 {
+color=white;
+2 -> 3 [minlen=4,color=red,label="1 (2.4 kb)",taillabel="contig 1",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster0 {
+color=white;
+0 -> 1 [minlen=4,color=red,label="0 (2.4 kb)",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+}
+#done

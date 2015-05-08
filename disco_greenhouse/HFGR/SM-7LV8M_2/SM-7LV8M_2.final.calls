@@ -1,0 +1,117 @@
+BLOCK	1	6+
+VAR	1	Pf3D7_10_v3:1322022	G	A	+
+BLOCK	2	22+|7+
+VAR	2	Pf3D7_10_v3:1322613	T	A	-+
+VAR	3	Pf3D7_10_v3:1322668	TAAAAAA	T	++
+VAR	4	Pf3D7_10_v3:1322681	A	G	++
+BLOCK	3	20+|2+|20+|4+|20+|3+|4+|20+|3+|3+|4+|20+|3+|3+|3+|4+|20+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|20+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|2+|20+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|9+|21+|2+|8+|9+|21+|4+|8+|9+|21+|3+|4+|8+|9+|21+|3+|3+|4+|8+|9+|21+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|9+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|2+|8+|9+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|25+|21+|2+|8+|25+|21+|4+|8+|25+|21+|3+|4+|8+|25+|21+|3+|3+|4+|8+|25+|21+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+|8+|25+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|2+|8+|25+|21+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|3+|4+
+VAR	5	Pf3D7_10_v3:1323517	TTAACGTTATTTATGAAATATTTTATTCTTTTACATATCTATTATTATATATATATAATTATTTATTCCTATCCATTTTTATTTATGTATA	T	----------------------------++++++++++++++
+VAR	6	Pf3D7_10_v3:1323517	TTAACGTTATTTATGAAATATTTTATTCTTTTACATATCTATTATTATATATATATAATTATTTATTCCTATCCATTTTTATTTATGTATAG	T	--------------++++++++++++++--------------
+VAR	7	Pf3D7_10_v3:1323608	G	A	----------------------------++++++++++++++
+VAR	8	Pf3D7_10_v3:1323640	C	A	++++++++++++++++++++++++++++++++++++++++++
+VAR	9	Pf3D7_10_v3:1323642	C	A	++++++++++++++++++++++++++++++++++++++++++
+VAR	10	Pf3D7_10_v3:1323645	A	C	--------------++++++++++++++++++++++++++++
+VAR	11	Pf3D7_10_v3:1323647	C	A	++++++++++++++----------------------------
+VAR	12	Pf3D7_10_v3:1323650	AACACAACACAACACAAC	A	+-----------------------------------------
+VAR	13	Pf3D7_10_v3:1323651	ACACAACACAACACAACACAACAC	A	--------+-+-------------------------------
+VAR	14	Pf3D7_10_v3:1323651	ACACAACACAACACAACACAACACAACAC	A	---+-+------------------------------------
+VAR	15	Pf3D7_10_v3:1323652	C	A	-++-+-++-+-+++----------------------------
+VAR	16	Pf3D7_10_v3:1323654	C	A	-++-+-++-+-+++++++++++++++++++++++++++++++
+VAR	17	Pf3D7_10_v3:1323657	C	A	-++-+-++-+-+++----------------------------
+VAR	18	Pf3D7_10_v3:1323659	C	A	-++-+-++-+-+++----------------------------
+VAR	19	Pf3D7_10_v3:1323661	ACACAACACAACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATAT	A	-+----------------------------------------
+VAR	20	Pf3D7_10_v3:1323662	C	A	--+-+-++-+-+++----------------------------
+VAR	21	Pf3D7_10_v3:1323664	C	A	--+-+-++-+-+++----------------------------
+VAR	22	Pf3D7_10_v3:1323666	ACACAACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATAT	A	------+-----------------------------------
+VAR	23	Pf3D7_10_v3:1323666	ACACAACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATAT	A	----+-------------------------------------
+VAR	24	Pf3D7_10_v3:1323666	ACACAACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATATAT	A	--+---------------------------------------
+VAR	25	Pf3D7_10_v3:1323667	C	A	-------+-+-+++----------------------------
+VAR	26	Pf3D7_10_v3:1323669	C	A	+------+-+-+++----------------------------
+VAR	27	Pf3D7_10_v3:1323671	ACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATAT	A	-----------+------------------------------
+VAR	28	Pf3D7_10_v3:1323671	ACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATAT	A	---------+--------------------------------
+VAR	29	Pf3D7_10_v3:1323671	ACACAACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATATAT	A	-------+----------------------------------
+VAR	30	Pf3D7_10_v3:1323672	C	A	+-----------++----------------------------
+VAR	31	Pf3D7_10_v3:1323674	C	A	+-----------++----------------------------
+VAR	32	Pf3D7_10_v3:1323676	ACACAACAAAACAAAACAAATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATATAT	A	-------------+----------------------------
+VAR	33	Pf3D7_10_v3:1323677	C	A	+-------+-+-+-----------------------------
+VAR	34	Pf3D7_10_v3:1323679	C	A	+-------+-+-+-----------------------------
+VAR	35	Pf3D7_10_v3:1323682	C	A	+--+-+--+-+-+-----------------------------
+VAR	36	Pf3D7_10_v3:1323687	C	A	+--+-+--+-+-+-----------------------------
+VAR	37	Pf3D7_10_v3:1323692	C	A	+--+-+--+-+-+-----------------------------
+VAR	38	Pf3D7_10_v3:1323695	ATATATC	A	------------+-----------------------------
+VAR	39	Pf3D7_10_v3:1323695	ATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATAT	A	-----+----+-------------------------------
+VAR	40	Pf3D7_10_v3:1323695	ATATATCAAATTATCTCTCATAAAAACAATAAAATTTATTCATATATATAT	A	---+----+---------------------------------
+VAR	41	Pf3D7_10_v3:1323696	T	A	+-----------------------------------------
+VAR	42	Pf3D7_10_v3:1323698	T	A	+-----------------------------------------
+VAR	43	Pf3D7_10_v3:1323700	T	A	+-----------------------------------------
+VAR	44	Pf3D7_10_v3:1323701	C	A	+-----------------------------------------
+VAR	45	Pf3D7_10_v3:1323709	C	T	+-----------+-----------------------------
+VAR	46	Pf3D7_10_v3:1323710	T	A	+-----------+-----------------------------
+VAR	47	Pf3D7_10_v3:1323711	C	A	+-----------+-----------------------------
+VAR	48	Pf3D7_10_v3:1323712	T	A	+-----------+-----------------------------
+VAR	49	Pf3D7_10_v3:1323713	C	A	+-----------+-----------------------------
+VAR	50	Pf3D7_10_v3:1323715	T	A	+-----------+-----------------------------
+VAR	51	Pf3D7_10_v3:1323721	C	A	+-----------+-----------------------------
+VAR	52	Pf3D7_10_v3:1323724	T	A	+-----------+-----------------------------
+VAR	53	Pf3D7_10_v3:1323728	ATTTATTCATATATATAT	A	+-----------+-----------------------------
+VAR	54	Pf3D7_10_v3:1323743	T	A	-+----+----+------------------------------
+VAR	55	Pf3D7_10_v3:1323745	T	A	-+--+++--+++------------------------------
+VAR	56	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	---------------+-------------+------------
+VAR	57	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	----------------+-------------+-----------
+VAR	58	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	-----------------+-------------+----------
+VAR	59	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	------------------+-------------+---------
+VAR	60	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	-------------------+-------------+--------
+VAR	61	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	--------------------+-------------+-------
+VAR	62	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	---------------------+-------------+------
+VAR	63	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	----------------------+-------------+-----
+VAR	64	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	-----------------------+-------------+----
+VAR	65	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	------------------------+-------------+---
+VAR	66	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	-------------------------+-------------+--
+VAR	67	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA	---------------------------+-------------+
+VAR	68	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTATTAAAAAAAAAAAAAAAAAAA	--------------------------+-------------+-
+VAR	69	Pf3D7_10_v3:1323745	T	TAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATTATTAAAAAAAAAAAAAAAAAAA	--------------+-------------+-------------
+BLOCK	4	13+|15+
+VAR	70	Pf3D7_13_v3:2588427	T	A	+
+VAR	71	Pf3D7_13_v3:2588714	GTAA	G	+
+VAR	72	Pf3D7_13_v3:2588751	T	C	+
+VAR	73	Pf3D7_13_v3:2589027	G	A	+
+VAR	74	Pf3D7_13_v3:2589213	A	G	+
+VAR	75	Pf3D7_13_v3:2589298	C	A	+
+VAR	76	Pf3D7_13_v3:2589385	G	GATAATGATAATGATAATAAAAATGATAATGATAATGATAATA	+
+VAR	77	Pf3D7_13_v3:2589709	T	A	+
+VAR	78	Pf3D7_13_v3:2589765	T	C	+
+BLOCK	5	17+
+VAR	79	Pf3D7_05_v3:1214361	C	CATA	+
+BLOCK	6	18+|30+|31+
+VAR	80	Pf3D7_05_v3:1214944	T	TA	+--
+VAR	81	Pf3D7_05_v3:1214945	T	A	-++
+VAR	82	Pf3D7_05_v3:1214954	T	A	+--
+VAR	83	Pf3D7_05_v3:1214959	A	T	-++
+VAR	84	Pf3D7_05_v3:1214960	T	A	--+
+VAR	85	Pf3D7_05_v3:1214964	A	T	-++
+VAR	86	Pf3D7_05_v3:1214969	A	T	-++
+VAR	87	Pf3D7_05_v3:1214974	A	T	-++
+VAR	88	Pf3D7_05_v3:1214978	TA	T	+--
+VAR	89	Pf3D7_05_v3:1214979	A	T	-++
+BLOCK	7	0+
+VAR	90	Pf3D7_06_v3:374787	C	CAATAATAATAAT	+
+VAR	91	Pf3D7_06_v3:374886	C	CATGAACAGTAGT	+
+VAR	92	Pf3D7_06_v3:375333	T	TGATGATGAAGATGATAAC	+
+VAR	93	Pf3D7_06_v3:375680	ATAC	A	+
+VAR	94	Pf3D7_06_v3:375973	G	T	+
+BLOCK	8	24+|11+|29+|11+|27+
+VAR	95	Pf3D7_12_v3:1610045	C	A	-++
+VAR	96	Pf3D7_12_v3:1610055	C	T	-+-
+VAR	97	Pf3D7_12_v3:1610070	C	T	--+
+VAR	98	Pf3D7_12_v3:1610093	A	AATAT	+++
+BLOCK	9	12+
+VAR	99	Pf3D7_12_v3:1610175	AATATATAT	A	+
+VAR	100	Pf3D7_12_v3:1610187	T	A	+
+VAR	101	Pf3D7_12_v3:1610188	A	T	+
+VAR	102	Pf3D7_12_v3:1610189	T	A	+
+VAR	103	Pf3D7_12_v3:1611243	CTAATAATAA	C	+
+VAR	104	Pf3D7_12_v3:1611278	A	T	+
+BLOCK	10	1+
+VAR	105	Pf3D7_04_v3:532212	C	CTATTATTATTATTATTATTATTATTATTATTATTATTATTAT	+
+VAR	106	Pf3D7_04_v3:532460	T	A	+
+VAR	107	Pf3D7_04_v3:533530	AATT	A	+

@@ -1,0 +1,98 @@
+#BLOCK ID PATHS
+#VAR   ID LOCATION            REF        ALT        PHASE                                                                                                 INFO
+BLOCK  1  2+
+PATH_QSUM 0|ref=0
+VAR    1  Pf3D7_10_v3:1322022 G          A          +                                                                                                          PROB= 0/1
+VAR    2  Pf3D7_10_v3:1322668 TAAAAAA    T          +                                                                                                          PROB= 0/1
+VAR    3  Pf3D7_10_v3:1322681 A          G          +                                                                                                          PROB= 0/1
+
+BLOCK  2  16+,7+,6+|16+,3+|57+,7+,6+|57+,3+|44+,7+,6+|44+,3+|45+,7+,6+|45+,3+|46+,7+,6+|46+,3+|47+,7+,6+|47+,3+|48+,7+,6+|48+,3+|49+,7+,6+|49+,3+|50+,7+,6+|50+,3+|51+,7+,6+|51+,3+|52+,7+,6+|52+,3+|53+,7+,6+|53+,3+|54+,7+,6+|54+,3+|55+,7+,6+|55+,3+|56+,7+,6+|56+,3+|43+,7+,6+|43+,3+|58+,7+,6+|58+,3+|59+,7+,6+|59+,3+|60+,7+,6+|60+,3+|61+,7+,6+|61+,3+|62+,7+,6+|62+,3+|63+,7+,6+|63+,3+|64+,7+,6+|64+,3+|65+,7+,6+|65+,3+|66+,7+,6+|66+,3+|67+,7+,6+
+PATH_QSUM 0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|ref=0
+VAR    4  Pf3D7_10_v3:1323640 C          A          +|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+      PROB= 0/0
+VAR    5  Pf3D7_10_v3:1323642 C          A          +|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+      PROB= 0/0
+VAR    6  Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    7  Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    8  Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    9  Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    10 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    11 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    12 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    13 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    14 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    15 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    16 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    17 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    18 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    19 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    20 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    21 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    22 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    23 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    24 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    25 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    26 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0.5 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    27 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    28 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0.5 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    29 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    30 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ -|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|+|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    31 Pf3D7_10_v3:1323645 A          AAAAAAAAA+ +|+|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-      PROB= 0/0.5 REF=A;ALT=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAC
+VAR    32 Pf3D7_10_v3:1323654 C          A          +|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+|+      PROB= 0/1
+VAR    33 Pf3D7_10_v3:1323745 T          TAAAAAAAA+ -|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-      PROB= 0/0 REF=T;ALT=TAAAAAAAAAAAAAAAAAAAAAAAA
+VAR    34 Pf3D7_10_v3:1323745 T          TAAAAAAAA+ +|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+|-|+      PROB= 0/1 REF=T;ALT=TAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+BLOCK  3  8+
+PATH_QSUM 0|ref=0
+VAR    35 Pf3D7_13_v3:2588427 T          A          +                                                                                                          PROB= 0/1
+VAR    36 Pf3D7_13_v3:2588714 GTAA       G          +                                                                                                          PROB= 0/1
+VAR    37 Pf3D7_13_v3:2588751 T          C          +                                                                                                          PROB= 0/1
+VAR    38 Pf3D7_13_v3:2589027 G          A          +                                                                                                          PROB= 0/1
+VAR    39 Pf3D7_13_v3:2589213 A          G          +                                                                                                          PROB= 0/1
+VAR    40 Pf3D7_13_v3:2589298 C          A          +                                                                                                          PROB= 0/1
+VAR    41 Pf3D7_13_v3:2589385 G          GATAATGAT+ +                                                                                                          PROB= 0/1 REF=G;ALT=GATAATGATAATGATAATAAAAATGATAATGATAATGATAATA
+VAR    42 Pf3D7_13_v3:2589709 T          A          +                                                                                                          PROB= 0/1
+VAR    43 Pf3D7_13_v3:2589765 T          C          +                                                                                                          PROB= 0/1
+
+BLOCK  4  9+
+PATH_QSUM 0|ref=0
+VAR    44 Pf3D7_05_v3:1214361 C          CATA       +                                                                                                          PROB= 0/1
+
+BLOCK  5  72+|11+
+PATH_QSUM 0|0|ref=0
+VAR    45 Pf3D7_05_v3:1214944 T          TA         +|-                                                                                                        PROB= 1/1
+VAR    46 Pf3D7_05_v3:1214945 T          A          -|+                                                                                                        PROB= 1/1
+VAR    47 Pf3D7_05_v3:1214954 T          A          +|-                                                                                                        PROB= 1/1
+VAR    48 Pf3D7_05_v3:1214955 T          A          -|+                                                                                                        PROB= 1/1
+VAR    49 Pf3D7_05_v3:1214959 A          T          -|+                                                                                                        PROB= 1/1
+VAR    50 Pf3D7_05_v3:1214960 T          A          -|+                                                                                                        PROB= 1/1
+VAR    51 Pf3D7_05_v3:1214964 A          T          -|+                                                                                                        PROB= 1/1
+VAR    52 Pf3D7_05_v3:1214965 T          A          -|+                                                                                                        PROB= 1/1
+VAR    53 Pf3D7_05_v3:1214969 A          T          -|+                                                                                                        PROB= 1/1
+VAR    54 Pf3D7_05_v3:1214970 T          A          -|+                                                                                                        PROB= 1/1
+VAR    55 Pf3D7_05_v3:1214974 A          T          -|+                                                                                                        PROB= 1/1
+VAR    56 Pf3D7_05_v3:1214978 TA         T          +|-                                                                                                        PROB= 0/1
+VAR    57 Pf3D7_05_v3:1214979 A          T          -|+                                                                                                        PROB= 0/1
+
+BLOCK  6  0+
+PATH_QSUM 0|ref=0
+VAR    58 Pf3D7_06_v3:374787  C          CAATAATAA+ +                                                                                                          PROB= 0/1 REF=C;ALT=CAATAATAATAAT
+VAR    59 Pf3D7_06_v3:374886  C          CATGAACAG+ +                                                                                                          PROB= 0/1 REF=C;ALT=CATGAACAGTAGT
+VAR    60 Pf3D7_06_v3:375333  T          TGATGATGA+ +                                                                                                          PROB= 0/1 REF=T;ALT=TGATGATGAAGATGATAAC
+VAR    61 Pf3D7_06_v3:375680  ATAC       A          +                                                                                                          PROB= 0/1
+VAR    62 Pf3D7_06_v3:375973  G          T          +                                                                                                          PROB= 0/1
+
+BLOCK  7  74+
+PATH_QSUM 0|ref=0
+VAR    63 Pf3D7_12_v3:1610093 A          AATAT      +                                                                                                          PROB= 0/1
+VAR    64 Pf3D7_12_v3:1610175 AATATATAT  A          +                                                                                                          PROB= 0/1
+VAR    65 Pf3D7_12_v3:1610187 T          A          +                                                                                                          PROB= 0/1
+VAR    66 Pf3D7_12_v3:1610188 A          T          +                                                                                                          PROB= 0/1
+VAR    67 Pf3D7_12_v3:1610189 T          A          +                                                                                                          PROB= 0/1
+VAR    68 Pf3D7_12_v3:1611243 CTAATAATAA C          +                                                                                                          PROB= 0/1
+VAR    69 Pf3D7_12_v3:1611278 A          T          +                                                                                                          PROB= 0/1
+
+BLOCK  8  1+
+PATH_QSUM 0|ref=0
+VAR    70 Pf3D7_04_v3:532212  C          CTATTATTA+ +                                                                                                          PROB= 0/1 REF=C;ALT=CTATTATTATTATTATTATTATTATTATTATTATTATTATTAT
+VAR    71 Pf3D7_04_v3:532460  T          A          +                                                                                                          PROB= 0/1
+VAR    72 Pf3D7_04_v3:533530  AATT       A          +                                                                                                          PROB= 0/1
+

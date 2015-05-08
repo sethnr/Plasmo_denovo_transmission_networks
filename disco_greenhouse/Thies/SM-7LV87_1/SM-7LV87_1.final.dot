@@ -1,0 +1,92 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster5 {
+color=white;
+22 -> 21 [minlen=4,color=red,label="12 (1.4 kb)"];
+23 -> 22 [minlen=1,color=gray,label="13"];
+23 -> 22 [minlen=1,color=gray,label="14"];
+24 -> 23 [minlen=2,color=black,label="15",taillabel="contig 5",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster4 {
+color=white;
+18 -> 17 [minlen=4,color=red,label="8 (2.1 kb)"];
+19 -> 20 [minlen=2,color=black,label="11",taillabel="contig 4",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+20 -> 18 [minlen=1,color=gray,label="9"];
+20 -> 18 [minlen=1,color=gray,label="10"];
+}
+
+subgraph cluster3 {
+color=white;
+16 -> 15 [minlen=4,color=red,label="7 (2.4 kb)",taillabel="contig 3",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster2 {
+color=white;
+4 -> 3 [minlen=4,color=red,label="1 (2.4 kb)",taillabel="contig 2",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster1 {
+color=white;
+2 -> 1 [minlen=4,color=red,label="0 (2.4 kb)",taillabel="contig 1",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+}
+
+subgraph cluster0 {
+color=white;
+0 -> 14 [minlen=4,color=red,label="46 (1.7 kb)",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+6 -> 5 [minlen=2,color=black,label="2"];
+7 -> 6 [minlen=2,color=black,label="17"];
+7 -> 6 [minlen=2,color=black,label="18"];
+7 -> 6 [minlen=2,color=black,label="19"];
+7 -> 6 [minlen=2,color=black,label="20"];
+7 -> 6 [minlen=2,color=black,label="21"];
+7 -> 6 [minlen=2,color=black,label="22"];
+7 -> 6 [minlen=2,color=black,label="23"];
+7 -> 6 [minlen=2,color=black,label="24"];
+7 -> 6 [minlen=2,color=black,label="25"];
+7 -> 6 [minlen=2,color=black,label="26"];
+7 -> 6 [minlen=2,color=black,label="27"];
+7 -> 6 [minlen=2,color=black,label="28"];
+7 -> 6 [minlen=2,color=black,label="29"];
+7 -> 6 [minlen=2,color=black,label="30"];
+7 -> 6 [minlen=2,color=black,label="31"];
+7 -> 6 [minlen=2,color=black,label="32"];
+7 -> 6 [minlen=2,color=black,label="33"];
+7 -> 6 [minlen=2,color=black,label="34"];
+7 -> 6 [minlen=2,color=black,label="35"];
+7 -> 6 [minlen=2,color=black,label="36"];
+7 -> 6 [minlen=2,color=black,label="37"];
+7 -> 6 [minlen=2,color=black,label="38"];
+7 -> 6 [minlen=2,color=black,label="39"];
+7 -> 6 [minlen=2,color=black,label="40"];
+7 -> 6 [minlen=2,color=black,label="41"];
+7 -> 6 [minlen=2,color=black,label="42"];
+7 -> 6 [minlen=2,color=black,label="43"];
+7 -> 6 [minlen=2,color=black,label="44"];
+7 -> 6 [minlen=2,color=black,label="45"];
+8 -> 10 [minlen=1,color=gray,label="50"];
+9 -> 8 [minlen=1,color=gray,label="3"];
+9 -> 8 [minlen=1,color=gray,label="48"];
+9 -> 8 [minlen=1,color=gray,label="49"];
+10 -> 6 [minlen=1,color=gray,label="54"];
+11 -> 9 [minlen=1,color=gray,label="51"];
+11 -> 10 [minlen=1,color=gray,label="4"];
+11 -> 10 [minlen=1,color=gray,label="52"];
+12 -> 6 [minlen=1,color=gray,label="53"];
+12 -> 6 [minlen=1,color=gray,label="55"];
+12 -> 11 [minlen=1,color=gray,label="56"];
+13 -> 6 [minlen=1,color=gray,label="47"];
+13 -> 12 [minlen=1,color=gray,label="5"];
+14 -> 7 [minlen=1,color=gray,label="16"];
+14 -> 13 [minlen=2,color=black,label="6"];
+}
+
+}
+#done

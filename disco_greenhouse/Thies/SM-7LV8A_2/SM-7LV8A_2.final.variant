@@ -1,0 +1,77 @@
+#BLOCK ID PATHS
+#VAR   ID LOCATION            REF        ALT        PHASE INFO
+BLOCK  1  9+
+PATH_QSUM 0|ref=0
+VAR    1  Pf3D7_10_v3:1322623 AAATAATAA+ A          +          PROB= 0/1 REF=AAATAATAATAAAAAAAATAATAATAATAAAAAAAAT;ALT=A
+VAR    2  Pf3D7_10_v3:1322705 G          A          +          PROB= 0/1
+VAR    3  Pf3D7_10_v3:1322708 A          G          +          PROB= 0/1
+VAR    4  Pf3D7_10_v3:1322720 GATA       G          +          PROB= 0/1
+VAR    5  Pf3D7_10_v3:1323398 CATATATAT+ C          +          PROB= 0/1 REF=CATATATATATATAT;ALT=C
+VAR    6  Pf3D7_10_v3:1323640 C          A          +          PROB= 0/1
+VAR    7  Pf3D7_10_v3:1323642 C          A          +          PROB= 0/1
+VAR    8  Pf3D7_10_v3:1323647 C          A          +          PROB= 0/1
+VAR    9  Pf3D7_10_v3:1323652 C          A          +          PROB= 0/1
+VAR    10 Pf3D7_10_v3:1323654 C          A          +          PROB= 0/1
+VAR    11 Pf3D7_10_v3:1323657 C          A          +          PROB= 0/1
+VAR    12 Pf3D7_10_v3:1323659 C          A          +          PROB= 0/1
+VAR    13 Pf3D7_10_v3:1323662 C          A          +          PROB= 0/1
+VAR    14 Pf3D7_10_v3:1323664 C          A          +          PROB= 0/1
+VAR    15 Pf3D7_10_v3:1323667 C          A          +          PROB= 0/1
+VAR    16 Pf3D7_10_v3:1323669 C          A          +          PROB= 0/1
+VAR    17 Pf3D7_10_v3:1323672 C          A          +          PROB= 0/1
+VAR    18 Pf3D7_10_v3:1323674 C          A          +          PROB= 0/1
+VAR    19 Pf3D7_10_v3:1323677 C          A          +          PROB= 0/1
+VAR    20 Pf3D7_10_v3:1323679 C          A          +          PROB= 0/1
+VAR    21 Pf3D7_10_v3:1323682 C          A          +          PROB= 0/1
+VAR    22 Pf3D7_10_v3:1323687 C          A          +          PROB= 0/1
+
+BLOCK  2  2+
+PATH_QSUM 0|ref=0
+VAR    23 Pf3D7_13_v3:2588427 T          A          +          PROB= 0/1
+VAR    24 Pf3D7_13_v3:2588714 GTAA       G          +          PROB= 0/1
+VAR    25 Pf3D7_13_v3:2588751 T          C          +          PROB= 0/1
+VAR    26 Pf3D7_13_v3:2588763 AAAT       A          +          PROB= 0/1
+VAR    27 Pf3D7_13_v3:2589027 G          A          +          PROB= 0/1
+VAR    28 Pf3D7_13_v3:2589213 A          G          +          PROB= 0/1
+VAR    29 Pf3D7_13_v3:2589298 C          A          +          PROB= 0/1
+VAR    30 Pf3D7_13_v3:2589363 T          TAATGATAA+ +          PROB= 0/1 REF=T;ALT=TAATGATAATGATAATAAA
+VAR    31 Pf3D7_13_v3:2589765 T          C          +          PROB= 0/1
+
+BLOCK  3  7+|6+
+PATH_QSUM 0|0|ref=0
+VAR    32 Pf3D7_05_v3:1214954 T          A          +|+        PROB= 0/1
+VAR    33 Pf3D7_05_v3:1214973 TATTTTA    T          +|+        PROB= 0/1
+VAR    34 Pf3D7_05_v3:1214997 C          T          -|+        PROB= 1/0
+
+BLOCK  4  8+
+PATH_QSUM 0|ref=0
+VAR    35 Pf3D7_05_v3:1215239 T          C          +          PROB= 0/1
+
+BLOCK  5  1+
+PATH_QSUM 0|ref=0
+VAR    36 Pf3D7_06_v3:374784  C          CAATAATAA+ +          PROB= 0/1 REF=C;ALT=CAATAATAATAAT
+VAR    37 Pf3D7_06_v3:374787  C          T          +          PROB= 0/1
+VAR    38 Pf3D7_06_v3:374812  G          A          +          PROB= 0/1
+VAR    39 Pf3D7_06_v3:374886  C          CATGAACAG+ +          PROB= 0/1 REF=C;ALT=CATGAACAGTAGT
+VAR    40 Pf3D7_06_v3:375680  ATAC       A          +          PROB= 0/1
+
+BLOCK  6  11+|10+|12+
+PATH_QSUM 0|0|0|ref=0
+VAR    41 Pf3D7_12_v3:1610175 AATATATAT  A          +|+|+      PROB= 0/1
+VAR    42 Pf3D7_12_v3:1610187 T          A          +|+|+      PROB= 0/1
+VAR    43 Pf3D7_12_v3:1610188 A          T          +|+|+      PROB= 0/1
+VAR    44 Pf3D7_12_v3:1610189 T          A          +|+|+      PROB= 0/1
+VAR    45 Pf3D7_12_v3:1610235 C          T          -|+|+      PROB= 0.5/0.5
+VAR    46 Pf3D7_12_v3:1610243 C          T          -|+|-      PROB= 0.5/0.5
+
+BLOCK  7  4+
+PATH_QSUM 0|ref=0
+VAR    47 Pf3D7_12_v3:1611268 T          TAATAATAA+ +          PROB= 0/1 REF=T;ALT=TAATAATAATAATAGTAATAAC
+VAR    48 Pf3D7_12_v3:1611279 G          A          +          PROB= 0/1
+
+BLOCK  8  0+
+PATH_QSUM 0|ref=0
+VAR    49 Pf3D7_04_v3:532244  A          ATTATTATT+ +          PROB= 0/1 REF=A;ALT=ATTATTATTATTATTG
+VAR    50 Pf3D7_04_v3:532247  G          A          +          PROB= 0/1
+VAR    51 Pf3D7_04_v3:532739  T          A          +          PROB= 0/1
+
