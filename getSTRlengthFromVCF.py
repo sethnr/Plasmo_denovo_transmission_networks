@@ -12,11 +12,14 @@ parser.add_argument('-i','--defaultSize', action="store", dest='defSize', type=i
 
 
 args = parser.parse_args()
-print >>sys.setderr, args.vcfFile
+print >>sys.stderr, args.vcfFile
 
 vcfFile = open(args.vcfFile,'r')
 reader=vcf.Reader(vcfFile)
 
+print "\t".join(["#CHROM","POS"]),
+print "\t".join(reader.samples)
+    
 for record in reader:
     refAllele = record.alleles[0]
     STRlens = dict()

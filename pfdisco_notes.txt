@@ -156,3 +156,16 @@ for SET in HFGR 3D7DD2 Thies
    samtools depth $BROADLOCSR ${SET}/*/*bam > ${SET}_greenhouse.depth
  done
 
+####
+# write STR length parser
+###
+chokes on header line, remove offending lines (must be ##something=something)
+perl -i -ne 'print $_ unless $_ =~ m/DiscovarRegion/gi' disco_greenhouse/*.vcf
+
+#call STR lengths
+cd $DISCO1/disco_greenhouse/
+
+for SET in HFGR 3D7DD2 Thies
+ do
+ python ../getSTRlengthFromVCF.py -v ${SET}_greenhouse.vcf > ${SET}_greenhouse.calls
+done
