@@ -65,14 +65,7 @@ export BROADLOCS=Pf3D7_10_v3:1322000-1324000,Pf3D7_13_v3:2588000-2590000,Pf3D7_0
 perl -lane 'print $F[1],":",$F[2],"-",$F[3]' STRfiles/greenhouse_primer_locations.txt
 export FINELOCS='Pf3D7_10_v3:1322568-1322834  Pf3D7_13_v3:2588612-2588932  Pf3D7_05_v3:1214274-1214450  Pf3D7_06_v3:374731-374946  Pf3D7_12_v3:1611148-1611391  Pf3D7_04_v3:532167-532320
 
-for SET in S T U V R O P Q
-do
-echo SM-7LV8${SET}
-$DISCO1/runDiscovarVar.sh SM-7LV8${SET} 1 TA40 Pf3D7_10_v3:1321500-1323500,Pf3D7_12_v3:1610500-1612500
-done
-
-
-for SET in S T U V R O P Q
+for SET in {O..V}
 do
 echo SM-7LV8${SET}
 bsub -e out/SM-7LV8${SET}_1.e  -o out/SM-7LV8${SET}_1.o -J SM-7LV8${SET}_1  -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
@@ -128,6 +121,38 @@ done
 #TEST:
     bsub -e out/TEST.e  -o out/TEST.o -J TEST_discovar \
      	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
-     	     $DISCO1/runDiscovarVar.sh SM-7LV8Z 1 GRH $BROADLOCS
+     	     $DISCO1/runDiscovarVar.sh SM-7LV7Z 1 GRH $BROADLOCS
  
+
+tidying up not-run samples:
+cd ../HFGR
+$DISCO1/runDiscovarVar.sh SM-7LV8G 1 GRH $BROADLOCS
+cd ../Pf3D7_DD2
+$DISCO1/runDiscovarVar.sh SM-7LV8U 2 GRH $BROADLOCS
+cd ../Thies
+$DISCO1/runDiscovarVar.sh SM-7LV87 2 GRH $BROADLOCS
+
+####!!!!!!
+# SM-7LV8G_1 not running - possibly sample with two inputs??
+
+#merge all VCFs, via merge script
+cd /seq/plasmodium/sredmond/pfdisco/discovar
+../mergeVcfIndels.sh Pf3D7_DD2_greenhouse  Pf3D7_DD2/*/*filtered.vcf.gz
+../mergeVcfIndels.sh HFGR_greenhouse  HFGR/*/*filtered.vcf.gz
+../mergeVcfIndels.sh Thies_greenhouse  Thies/*/*filtered.vcf.gz
+ 
+
+
+
+##########
+# get depths from BAM files
+##########
+#get broad locations for Discovar (with -R region tags):
+perl -lane 'BEGIN{use POSIX; $round=2000}; $F[2] = (floor($F[2]/$round)*$round); $F[3] = (ceil($F[2]/$round+1)*$round); print "-r ",$F[1],":",$F[2],"-",$F[3]' STRfiles/greenhouse_primer_locations.txt
+export BROADLOCSR="-r Pf3D7_10_v3:1322000-1324000 -r Pf3D7_13_v3:2588000-2590000 -r Pf3D7_05_v3:1214000-1216000 -r Pf3D7_06_v3:374000-376000 -r Pf3D7_12_v3:1610000-1612000 -r Pf3D7_04_v3:532000-534000"
+
+for SET in HFGR 3D7DD2 Thies
+ do
+   samtools depth $BROADLOCSR ${SET}/*/*bam > ${SET}_greenhouse.depth
+ done
 

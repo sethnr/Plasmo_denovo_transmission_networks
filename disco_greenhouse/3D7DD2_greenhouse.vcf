@@ -6,12 +6,6 @@
 ##SAMPLE=<ID=SM-7LV8S,Description="unphased representation of DISCOVAR variant ouput for dataset SM-7LV8S">
 ##SAMPLE=<ID=SM-7LV8T,Description="unphased representation of DISCOVAR variant ouput for dataset SM-7LV8T">
 ##SAMPLE=<ID=SM-7LV8U,Description="unphased representation of DISCOVAR variant ouput for dataset SM-7LV8U">
-##DiscovarRegion=
-##DiscovarRegion=
-##DiscovarRegion=
-##DiscovarRegion=
-##DiscovarRegion=
-##DiscovarRegion=
 ##INFO=<ID=BL,Number=1,Type=Integer,Description="Discovar variant block">
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
 ##FORMAT=<ID=GP,Number=G,Type=Float,Description="phred-scaled genotype posterior probabilities">
