@@ -2,7 +2,7 @@
 
 SET=$1
 LANE=$2
-STR=$3
+DATA=$3
 REGION=$4
 
 #NAME=${SET}_${STR}_${LANE}
@@ -14,8 +14,8 @@ cd $NAME
 mkdir tmp
 
 echo "LINK/INDEX BAM..."
-FILE=`ls ${DISCODATA}/${LANE}/${SET}/*bam`
-ln -s $FILE ${NAME}.bam
+FILE=`ls ${DATA}/${LANE}/${SET}/*bam`
+ln -s $BAMFILE ${NAME}.bam
 samtools index ${NAME}.bam
 
 echo "DISCOVAR"

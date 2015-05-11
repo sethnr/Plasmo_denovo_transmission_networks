@@ -27,7 +27,7 @@ done  \
 > STRs_mreps_Pf3D7.txt
 
 # get set of polymorphic STRs positions from Greenhouse et al
-#use initial set of STRs from [Greenhouse '06 AJTMH]
+#use initial set of STRs from Greenhouse '06 AJTMH [[http://www.ajtmh.org/content/75/5/836.full]]
 STRfiles/greenhouse_linked.fa
 # use BLAST top find locations
 
@@ -150,19 +150,24 @@ cd /seq/plasmodium/sredmond/pfdisco/discovar
 #get broad locations for Discovar:
 export BROADLOCS="Pf3D7_10_v3:1322000-1324000 Pf3D7_13_v3:2588000-2590000 Pf3D7_05_v3:1214000-1216000 Pf3D7_06_v3:374000-376000 Pf3D7_12_v3:1610000-1612000 Pf3D7_04_v3:532000-534000"
 
-for SET in HFGR 3D7DD2 Thies
- do
-   for LOC in $BROADLOCS
-   do
-   samtools depth -r $LOC ${SET}/*/*bam > ${SET}_${LOC}_greenhouse.depth
- done
- cat ${SET}_*_greenhouse.depth > ${SET}_greenhouse.depth
- for LOC in $BROADLOCS
- do
-   rm ${SET}_${LOC}_greenhouse.depth
- done
 
+perl -lane 'BEGIN{use POSIX; $round=2000}; $F[2] = (floor($F[2]/$round)*$round); $F[3] = (ceil($F[2]/$round+1)*$round); print $F[1],"\t",$F[2],"\t",$F[3]' ../STRfiles/greenhouse_primer_locations.txt > greenhouse_primer_locations.broad.bed
+perl -lane 'BEGIN{use POSIX; $round=2000}; print $F[1],"\t",$F[2],"\t",$F[3]' ../STRfiles/greenhouse_primer_locations.txt > greenhouse_primer_locations.fine.bed
+
+
+for SET in HFGR 3D7DD2 Thies
+do
+  for LOC in $BROADLOCS
+  do
+    samtools depth -r $LOC ${SET}/*/*bam > ${SET}_${LOC}_greenhouse.depth
+  done
+  cat ${SET}_*_greenhouse.depth > ${SET}_greenhouse.depth
+  for LOC in $BROADLOCS
+  do
+    rm ${SET}_${LOC}_greenhouse.depth
+  done
 done
+
 ####
 # write STR length parser
 ###
