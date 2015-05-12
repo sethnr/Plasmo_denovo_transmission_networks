@@ -88,7 +88,7 @@ def _waitdone(jobs):
         bjobs_return = """JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
     3789887 engreit DONE  hour       node1383    node1371    *uccessful May 11 17:12
     3789899 sredmon WAIT  bhour      tin         node1373    test       May 11 17:12"""
-        if not args.dryrun:
+        if not args.dryrun and alldone > 0:
             bjobs_return = subprocess.check_output(bjobs_command)
         #    print >>sys.stderr, bjobs_return
             for l in bjobs_return.split("\n"):
@@ -196,8 +196,9 @@ for thisdataset in datasets:
     for (seqid, lane, dataset) in samplesInDataset:
         command = " ".join([RUNDISCO, seqid, lane, DATADIR, regions])
         name = seqid+"_"+lane
-        jobNo = _subjob(command, name )
-        jobs += [jobNo]
+        if not args.nobsub:
+            jobNo = _subjob(command, name )
+            jobs += [jobNo]
         print seqid, lane, name, dataset, jobNo
 
     os.chdir("../")
