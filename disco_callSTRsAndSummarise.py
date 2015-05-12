@@ -214,11 +214,12 @@ _waitdone(jobs)
 
 for dataset in datasets:
     print >>sys.stderr, "getting bam depths ",dataset
-    for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
-        os.system('samtools depth -r '+loc+' '+dataset+'/*/*bam > '+dataset+'_'+loc+'.depth'
-    os.system('cat '+dataset+'_*.depth > '+dataset+'.depth')
-    for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
-        os.system('rm '+dataset+'_'+loc+'.depth'
+    if not args.dryrun:
+        for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
+            os.system('samtools depth -r '+loc+' '+dataset+'/*/*bam > '+dataset+'_'+loc+'.depth')
+        os.system('cat '+dataset+'_*.depth > '+dataset+'.depth')
+        for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
+            os.system('rm '+dataset+'_'+loc+'.depth')
 
         
 # parse bed file SNPs
