@@ -107,25 +107,27 @@ STRs = []
 locs = []
 
 # parse bed file SNPs
-for line in open(args.snpLocs,'r'):
-    F = line.strip().split("\t")
-    [chrom, pos] = F[:2]
-    pos = int(pos)
-    st = (pos-flank); en = (pos+flank)
+if args.snpLocs is not None:
+    for line in open(args.snpLocs,'r'):
+        F = line.strip().split("\t")
+        [chrom, pos] = F[:2]
+        pos = int(pos)
+        st = (pos-flank); en = (pos+flank)
 
-    SNPs += [(chrom,pos)]
-    locs += [(chrom,st,en)]
-    
+        SNPs += [(chrom,pos)]
+        locs += [(chrom,st,en)]
+
 # parse bed file STRs
-for line in open(args.snpLocs,'r'):
-    F = line.strip().split("\t")
-    [chrom, start, end] = F[:3]
-    start = int(start)
-    end = int(end)
-    st = (start-flank); en = (end+flank)
+if args.strLocs is not None:
+    for line in open(args.snpLocs,'r'):
+        F = line.strip().split("\t")
+        [chrom, start, end] = F[:3]
+        start = int(start)
+        end = int(end)
+        st = (start-flank); en = (end+flank)
 
-    STRs += [(chrom,start,end)]
-    locs += [(chrom,st,en)]
+        STRs += [(chrom,start,end)]
+        locs += [(chrom,st,en)]
 
 #for (chrom1, st1, en1) in locs:
 #    for (chrom2, st2, en2) in locs:
