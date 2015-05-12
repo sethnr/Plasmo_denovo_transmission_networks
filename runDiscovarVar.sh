@@ -19,7 +19,7 @@ echo "DATA " $DATA
 echo "REGION " $REGION
 
 echo "LINK/INDEX BAM..."
-FILE=`ls ${DATA}/${LANE}/${SET}/*bam`
+BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
 
 ln -s $BAMFILE ${NAME}.bam
 samtools index ${NAME}.bam
