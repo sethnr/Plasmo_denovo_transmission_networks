@@ -27,7 +27,7 @@ parser.add_argument('-d','--dir', action="store", dest='datadir', type=str, help
 #VARS
 parser.add_argument('-z','--discosize', action="store", dest='discoSize', type=int, help='default size for expanded region for STR calling', nargs='?', default=5000)
 parser.add_argument('-i','--defaultSize', action="store", dest='defSize', type=int, help='default size for STRs', nargs='?', default=0)
-parser.add_argument('--dryrun', action="store_true", dest='dryrun', type=boolean, help='run through without bsubbing anything', nargs='?', default=False)
+parser.add_argument('--dryrun', action="store_true", dest='dryrun', help='run through without bsubbing anything', default=False)
 
 
 #DISCO INPUTS
@@ -52,9 +52,10 @@ or in the LSB_DEFAULTPROJECT environment variable.
 By default, submitting under project "unspecified--broadfolk".
 Job <1111> is submitted to queue <bhour>.
 """
+    job_no = '-1'
+        
     if not args.dryrun:
         bsub_return = subprocess.check_output("bsub", bsub_command, shell=True)   
-        job_no = -1
         x = re.findall('Job <(\d+)> is submitted to queue <.*>',bsub_return)
         if len(x)>0:
             job_no = x[0]
@@ -74,11 +75,13 @@ def _waitdone(jobs):
         bjobs_return = """JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
     3789887 engreit DONE  hour       node1383    node1371    *uccessful May 11 17:12
     3789899 sredmon WAIT  bhour      tin         node1373    test       May 11 17:12"""
-        bjobs_return = subprocess.check_output("bjobs", " ".join(jobs), shell=True)
-        for l in bjobs_return.split("\n"):
-            F = l.strip().split()
-            job_id, user, status = F[:3]
-            if status == "DONE": done +=1
+        if not args.dryrun:
+            bjobs_return = subprocess.check_output("bjobs", " ".join(jobs), shell=True)
+            for l in bjobs_return.split("\n"):
+                F = l.strip().split()
+                job_id, user, status = F[:3]
+                if status == "DONE": done +=1
+                    
         print >>sys.stderr, "DONE: ",done,"/",alldone
         if sleeptime < 60:
             sleeptime += 10
