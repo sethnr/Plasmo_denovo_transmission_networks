@@ -52,7 +52,7 @@ def _subjob(commandline, jobname, mem=2000, nodes=1, dependency=None):
                     "-n", str(nodes),
                     commandline]
 
-    print >>sys.stderr, "bsub",bsub_command
+    #print >>sys.stderr, "bsub",bsub_command
     bsub_return = """
 Please specify a project.  You can set it with "bsub -P project ..."
 or in the LSB_DEFAULTPROJECT environment variable.
@@ -183,24 +183,59 @@ if not os.path.exists("./out"):
 # for all samples in tab-delim file
 jobs = []
 
+datasets = set([dataset for (seqid, lane, dataset) in samples])
+print >>sys.stderr, datasets
 
-for (seqid, lane, dataset) in samples:
-    command = " ".join([RUNDISCO, seqid, lane, DATADIR, regions])
-    name = seqid+"_"+lane
-    jobNo = _subjob(command, name )
-    jobs += [jobNo]
-    print seqid, lane, name, dataset, jobNo
+for thisdataset in datasets:
+    samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
+    #make and change into dataset subdir
+    if not os.path.exists("./"+thisdataset):
+        os.mkdir("./"+thisdataset)
+    os.chdir("./"+thisdataset)
 
+    for (seqid, lane, dataset) in samplesInDataset:
+        command = " ".join([RUNDISCO, seqid, lane, DATADIR, regions])
+        name = seqid+"_"+lane
+        jobNo = _subjob(command, name )
+        jobs += [jobNo]
+        print seqid, lane, name, dataset, jobNo
+
+    os.chdir("../")
+    
+        
 _waitdone(jobs)
 
 ########
 # RUN ANALYSES
 ########
 
-
 # make summary plots/files/graphs for samples in tab-delim file
 # (subdivide into categories based on tab-delim file
 
+for dataset in datasets:
+    print >>sys.stderr, "getting bam depths ",dataset
+    for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
+        os.system('samtools depth -r '+loc+' '+dataset+'/*/*bam > '+dataset+'_'+loc+'.depth'
+    os.system('cat '+dataset+'_*.depth > '+dataset+'.depth')
+    for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
+        os.system('rm '+dataset+'_'+loc+'.depth'
 
+        
+# parse bed file SNPs
+if args.snpLocs is not None:
+    pass
+
+# parse bed file STRs
+if args.strLocs is not None:
+    if not args.dryrun:
+        subprocess.check_call(['../mergeVcfIndels.sh',
+                                dataset,
+                                dataset+'/*/*filtered.vcf.gz'
+                                ])
+        subprocess.check_call(['python','../getSTRlengthFromVCF.py',
+                                '-v', dataset+'_STRs.vcf'
+                                '-o', dataset+'_STRs.calls'
+                                ])
+    else: pass
 
 
