@@ -14,20 +14,12 @@ echo "LOCS: " $LOCS
 
 vcftools --keep-only-indels --vcf ${OUT}_all.vcf --recode --out merge_indels
 mv merge_indels.recode.vcf merge_indels.vcf
-
-ls
-pwd
-
 bgzip merge_indels.vcf
 tabix -pvcf merge_indels.vcf.gz
 
 
 # replace commas with spaces for tabix
-
 LOCSP="${LOCS//\,/ }"
-echo "LOCSP" $LOCSP
-
-#echo tabix -h merge_indels.vcf.gz $LOCSP
 tabix -h merge_indels.vcf.gz $LOCSP > ${OUT}_STRs.vcf
 
 
