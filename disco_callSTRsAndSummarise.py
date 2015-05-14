@@ -242,12 +242,16 @@ for thisdataset in datasets:
         os.mkdir("./"+thisdataset)
     os.chdir("./"+thisdataset)
    
-    discovars = " NUM_THREADS="+str(args.nodes)
-    discovars = " MAX_MEMORY_GB="+str(ceil(args.mem/1000))
+#    discovars = " NUM_THREADS="+str(args.nodes)
+#    discovars = " MAX_MEMORY_GB="+str(ceil(args.mem/1000))
     
     for (seqid, lane, dataset) in samplesInDataset:
         for region in regions:
-            command = " ".join([RUNDISCO, seqid, lane, DATADIR, region, discovars])
+            command = " ".join([RUNDISCO,
+                                "-n", args.nodes,
+                                "-m", str(int(ceil(args.mem/1000))),
+                                "-d", DATADIR,
+                                seqid, lane, region])
             if args.oneregion:
                 name = seqid+"_"+lane
             else:
