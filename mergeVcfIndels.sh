@@ -9,8 +9,10 @@ echo "MERGING VCFS AND CALLING INDELS"
 echo "OUT: " $OUT
 echo "LOCS: " $LOCS
 
-vcf-merge $@ 1> merge.vcf 2>/dev/null
-vcftools --keep-only-indels --vcf merge.vcf --recode --out merge_indels
+# vcf-merge $@ 1> merge.vcf 2>/dev/null
+./mergeConcatVcfs.sh $OUT
+
+vcftools --keep-only-indels --vcf ${OUT}_all.vcf --recode --out merge_indels
 mv merge_indels.recode.vcf merge_indels.vcf
 
 ls
