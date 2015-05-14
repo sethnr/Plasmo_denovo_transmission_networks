@@ -9,8 +9,9 @@ echo "MERGING VCFS AND CALLING INDELS"
 echo "OUT: " $OUT
 echo "LOCS: " $LOCS
 
+SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # vcf-merge $@ 1> merge.vcf 2>/dev/null
-./mergeConcatVcfs.sh $OUT
+${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
 
 vcftools --keep-only-indels --vcf ${OUT}_all.vcf --recode --out merge_indels
 mv merge_indels.recode.vcf merge_indels.vcf

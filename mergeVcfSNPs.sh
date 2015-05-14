@@ -9,8 +9,9 @@ echo "MERGING VCFS AND PARSING SNPS"
 echo "OUT: " $OUT
 echo "LOCS: " $LOCS
 
+SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 #vcf-merge $@ 1> merge.vcf 2>/dev/null
-./mergeConcatVcfs.sh $OUT
+${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
 
 vcftools --remove-indels --vcf ${OUT}_all.vcf --recode --out merge_snps
 mv merge_snps.recode.vcf merge_snps.vcf
