@@ -234,6 +234,7 @@ datasets = set([dataset for (seqid, lane, dataset) in samples])
 print >>sys.stderr, datasets
 
 sublog = open("submitted.log",'w')
+killscript = open("killAll.sh",'w')
 
 for thisdataset in datasets:
     samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
@@ -248,7 +249,7 @@ for thisdataset in datasets:
     for (seqid, lane, dataset) in samplesInDataset:
         for region in regions:
             command = " ".join([RUNDISCO,
-                                "-n", args.nodes,
+                                "-n", str(args.nodes),
                                 "-m", str(int(ceil(args.mem/1000))),
                                 "-d", DATADIR,
                                 seqid, lane, region])
@@ -262,10 +263,13 @@ for thisdataset in datasets:
             jobs[jobNo] = command
             print >>sublog, '#',jobNo
             print >>sublog, subd_command
+            print >>killscript,"bkill ",jobNo
             print seqid, lane, name, dataset, jobNo
 
     os.chdir("../")
-sublog.close()    
+sublog.close()
+killscript.close()
+os.chmod('killAll.sh',000755)
         
 _waitdone([job for job in jobs])
 
