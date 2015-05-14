@@ -1,9 +1,28 @@
 #!/bin/bash
 
-SET=$1
-LANE=$2
-DATA=$3
-REGION=$4
+#SET=$1
+#LANE=$2
+#DATA=$3
+#REGION=$4
+
+DATA="./"
+$OPTIND=0;
+while getopts ":a" opt; do
+  case $opt in
+    s) SET=$OPTARG ;;
+    l) LANE=$OPTARG ;;
+    d) DATA=$OPTARG ;;
+    r) REGION=$OPTARG ;;
+    m) MEMORY=$OPTARG ;;
+    \?) echo "Invalid option: -$OPTARG" >&2 ;;
+  esac
+done
+
+SET=${@:$OPTIND:1}
+LANE=${@:$OPTIND+1:1}
+REGION=${@:$OPTIND+2:1}
+
+
 
 #NAME=${SET}_${STR}_${LANE}
 NAME=${SET}_${LANE}
@@ -40,6 +59,7 @@ Discovar READS=${NAME}.bam \
 	 OUT_HEAD=${NAME} \
 	 TMP=./tmp \
 	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
+
 rc=$?;
 if [[ $rc != 0 ]];
 then

@@ -182,3 +182,26 @@ for SET in HFGR 3D7DD2 Thies
  python ../getSTRlengthFromVCF.py -v ${SET}_greenhouse.vcf > ${SET}_greenhouse.calls
  grep \#CHROM ${SET}_greenhouse.vcf | cut -f10- > ${SET}_greenhouse.samples
 done
+
+
+######
+# write new wrapper script for whole analysis
+######
+cd $DISCO1/disco_daniels
+./disco_callSTRsAndSummarise.py  -s ../samples/picard_disco1_150504.tab.txt -n ../Daniels_SNPs.bed --nodes 1 --mem 3000 --splitregions
+
+cd $DISCO1/disco_halfmeg
+#chose half meg to capture many daniels assays:
+Pf3D7_07_v3|ref0000015:277104-277104
+Pf3D7_07_v3|ref0000015:490877-490877
+Pf3D7_07_v3|ref0000015:545046-545046
+Pf3D7_07_v3|ref0000015:657939-657939
+Pf3D7_07_v3|ref0000015:671839-671839
+Pf3D7_07_v3|ref0000015:683772-683772
+Pf3D7_07_v3|ref0000015:792356-792356
+Pf3D7_07_v3|ref0000015:1415182-1415182
+
+start with 300k seq:
+
+head -n2 ../samples/picard_disco1_150504.tab.txt > test.samples
+./disco_callSTRsAndSummarise.py  -s test.samples --nodes 8 --mem 16000  -r Pf3D7_07_v3:450000-750000
