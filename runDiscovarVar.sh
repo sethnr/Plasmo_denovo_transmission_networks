@@ -5,15 +5,33 @@
 #DATA=$3
 #REGION=$4
 
+VARIABLE << EOL
+./runDiscovarVar.sh [options] library  lane  region,region...
+options:
+     -d /path/to/data/directory
+     -f ./reference.fasta
+     -m max_mem (GB) [2]
+     -n nodes [1]
+EOL
+
 DATA="./"
 $OPTIND=0;
+
+## defaults
+NODES=1
+MEMORY=2
+
 while getopts ":a" opt; do
   case $opt in
-    s) SET=$OPTARG ;;
-    l) LANE=$OPTARG ;;
+#    s) SET=$OPTARG ;;
+#    l) LANE=$OPTARG ;;
+#    r) REGION=$OPTARG ;;
+
     d) DATA=$OPTARG ;;
-    r) REGION=$OPTARG ;;
+    f) REFERENCE=$OPTARG ;;
     m) MEMORY=$OPTARG ;;
+    m) NODES=$OPTARG ;;
+    
     \?) echo "Invalid option: -$OPTARG" >&2 ;;
   esac
 done
@@ -36,6 +54,10 @@ echo "SET " $SET
 echo "LANE " $LANE
 echo "DATA " $DATA
 echo "REGION " $REGION
+echo "MEMORY " $MEMORY
+echo "NODES " $NODES
+
+# DO SOME STUFF:
 
 ls ${NAME}.final.variant.filtered.vcf
 rc=$?;
@@ -58,8 +80,9 @@ Discovar READS=${NAME}.bam \
 	 REGIONS=${REGION} \
 	 OUT_HEAD=${NAME} \
 	 TMP=./tmp \
-	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
-
+	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
+         NUM_THREADS=${NODES} \
+	 MAX_MEMORY_GB=${MEMORY}
 rc=$?;
 if [[ $rc != 0 ]];
 then
