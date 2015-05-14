@@ -7,6 +7,7 @@ import argparse
 import subprocess
 import re
 import os
+from math import floor, ceil
 from time import sleep
 # import pythongrid as grid
 
@@ -27,19 +28,26 @@ parser.add_argument('-d','--dir', action="store", dest='datadir', type=str, help
 parser.add_argument('--rundir', action="store", dest='rundir', type=str, help='directory for output (default = $PWD)', nargs='?', default=None)
 
 #VARS
-parser.add_argument('-z','--discosize', action="store", dest='discoSize', type=int, help='default size for expanded region for STR calling', nargs='?', default=5000)
+parser.add_argument('-z','--discosize', action="store", dest='discoSize', type=int, help='default size for expanded region for STR calling', nargs='?', default=2000)
 parser.add_argument('-i','--defaultSize', action="store", dest='defSize', type=int, help='default size for STRs', nargs='?', default=0)
-parser.add_argument('--dryrun', action="store_true", dest='dryrun', help='run through without bsubbing anything', default=False)
+parser.add_argument('--dryrun', action="store_true", dest='dryrun', help='run through sample parsing and folder creation without doing anything', default=False)
+parser.add_argument('--discosucks', action="store_true", dest='nobsub', help='run through without bsubbing any disco jobs', default=False)
+parser.add_argument('--shallow', action="store_true", dest='nodepth', help='run through sample parsing and folder creation without doing anything', default=False)
 
 
 #DISCO INPUTS
 parser.add_argument('-f','--ref', action="store", dest='refFasta', type=str, help='fasta file for reference seq', nargs='?', default=None)
 parser.add_argument('-r','--region', action="store", dest='region', type=str, help='region to call exhaustively across', nargs='?', default=None)
+parser.add_argument('--mem', action="store", dest='mem', type=int, help='memory to use for discovar [2000]', nargs='?', default=2000)
+parser.add_argument('--nodes', action="store", dest='nodes', type=int, help='nodes to use for discovar [1]', nargs='?', default=1)
+parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help='queue for LSF jobs [bhour]', nargs='?', default="bhour")
+parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
+
 
 args = parser.parse_args()
 
 
-def _subjob(commandline, jobname, mem=2000, nodes=1, dependency=None):
+def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", dependency=None):
     resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
     bsub_command = ["bsub",
                     "-J", jobname,
@@ -47,29 +55,30 @@ def _subjob(commandline, jobname, mem=2000, nodes=1, dependency=None):
                     "-o", RUNDIR+"/out/"+jobname+".o",
 #                    "-e", jobname+".e",
 #                    "-o", jobname+".o",
+                    "-q", queue,
                     "-R", resource,
                     "-M", str(mem),
                     "-n", str(nodes),
                     commandline]
 
-    #print >>sys.stderr, "bsub",bsub_command
-    bsub_return = """
-Please specify a project.  You can set it with "bsub -P project ..."
-or in the LSB_DEFAULTPROJECT environment variable.
-
-By default, submitting under project "unspecified--broadfolk".
-Job <1111> is submitted to queue <bhour>.
-"""
+#    print >>sys.stderr, ' '.join(bsub_command)
+#    bsub_return = """
+#Please specify a project.  You can set it with "bsub -P project ..."
+#or in the LSB_DEFAULTPROJECT environment variable.
+#
+#By default, submitting under project "unspecified--broadfolk".
+#Job <1111> is submitted to queue <bhour>.
+#"""
     job_no = '-1'
-    
-    if not args.dryrun:
-        bsub_return = subprocess.check_output(bsub_command)
-        print >>sys.stderr, bsub_return
+    if not args.nobsub:
+        FNULL = open(os.devnull, 'w')
+        bsub_return = subprocess.check_output(bsub_command,stderr=FNULL)
+        FNULL.close()
         
         x = re.findall('Job <(\d+)> is submitted to queue <.*>',bsub_return)
         if len(x)>0:
             job_no = x[0]
-    return job_no
+    return (job_no, ' '.join(bsub_command))
 
 
 def _waitdone(jobs):
@@ -77,18 +86,22 @@ def _waitdone(jobs):
     alldone = len(jobs)
     sleeptime = 0
     print "bjobs "+(" ".join(jobs))
-    done = 0
+    
     bjobs_command = ["bjobs"] + jobs
-    print >>sys.stderr, bjobs_command
+#    print >>sys.stderr, bjobs_command
     print >>sys.stderr, "FAIL\tPEND\tRUN\tDONE\tTOTAL"
 
-    while done < alldone:
-        done = 0; run = 0; pend = 0; fail = 0
+    finished = 0
+    while finished < alldone:
+        done = 0
+        running = 0 
+        pend = 0 
+        fail = 0
         sleep(sleeptime)
-        bjobs_return = """JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
-    3789887 engreit DONE  hour       node1383    node1371    *uccessful May 11 17:12
-    3789899 sredmon WAIT  bhour      tin         node1373    test       May 11 17:12"""
-        if not args.dryrun and alldone > 0:
+#        bjobs_return = """JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
+#    3789887 engreit DONE  hour       node1383    node1371    *uccessful May 11 17:12
+#    3789899 sredmon WAIT  bhour      tin         node1373    test       May 11 17:12"""
+        if not args.nobsub:
             bjobs_return = subprocess.check_output(bjobs_command)
         #    print >>sys.stderr, bjobs_return
             for l in bjobs_return.split("\n"):
@@ -97,32 +110,66 @@ def _waitdone(jobs):
                     job_id, user, status = F[:3]
                     if status == "DONE": done +=1
                     elif status == "PEND": pend +=1
-                    elif status == "RUN": run += 1
-                    elif status == "DIED": fail += 1
-        sys.stderr.write(str(fail)+"\t"+str(pend)+"\t"+str(run)+"\t"+str(done)+"\t"+str(alldone)+"\r")
+                    elif status == "RUN": running += 1
+                    elif status == "EXIT": fail += 1
+            
+        sys.stderr.write(" "+str(fail)+"\t"+str(pend)+"\t"+str(running)+"\t"+str(done)+"\t"+str(alldone)+"\r")
         sys.stderr.flush();
         
+        #add failed to total
+        finished = done + fail
         if sleeptime < 60:
             sleeptime += 10
-        if args.dryrun:
-            done = alldone
+        if args.nobsub:
+            finished = alldone
     print >>sys.stderr, ""
-            
+    print >>sys.stderr, "----------------"
+    print >>sys.stderr, " "+str(fail)+"\t"+str(pend)+"\t"+str(running)+"\t"+str(done)+"\t"+str(alldone)
 
+
+
+# list of regions (chrom, start, end) join those within <joinflank> of each other
+def _merge_regions(locs, joinflank=0):
+    i=1
+    locs = sorted(locs)
+    while i < len(locs):
+        #print i
+        (c1, s1, e1) = locs[i-1]
+        (c2, s2, e2) = locs[i]
+        if (c1 == c2) and (e1 + joinflank > s2):
+        #    print "removing",locs[i-1],locs[i]
+            locs.remove(locs[i])
+            locs.remove(locs[i-1])
+            locs += [(c1, s1, e2)]
+            locs = sorted(locs)
+        else: 
+            i += 1
+    return locs
 
 #variables / defaults / etc
 flank = args.discoSize/2
 if args.datadir is not None: DATADIR = args.datadir
 if args.rundir is not None:  RUNDIR = args.rundir
-
+if args.dryrun:
+    args.nobsub = True
+    args.nodepth = True
 
 
 ######
 #PARSE FILES FOR INPUTS
 ######
+samples = dict()
+
+SNPs = []
+STRs = []
+locs = []
+
+if args.region is not None:
+    (rch,rst,ren) = re.split('\W',args.region)
+    locs += [(rch,int(rst),int(ren))]
+
 
 # parse tab file for samples / lanes / sets
-samples = dict()
 for line in open(args.samples,'r'):
     F = line.strip().split("\t")
     [seqid, lane, dataset] = F[0:3]
@@ -132,10 +179,6 @@ for line in open(args.samples,'r'):
     samples[(seqid,lane,dataset)] = bamfile
     print >>sys.stderr, seqid, lane, dataset, bamfile
 
-
-SNPs = []
-STRs = []
-locs = []
 # parse bed file SNPs
 if args.snpLocs is not None:
     for line in open(args.snpLocs,'r'):
@@ -159,17 +202,18 @@ if args.strLocs is not None:
         STRs += [(chrom,start,end)]
         locs += [(chrom,st,en)]
 
-#for (chrom1, st1, en1) in locs:
-#    for (chrom2, st2, en2) in locs:
+#consolidate locations into larger regions:
+if args.oneregion:
+    regions = [",".join([(chrom+":"+str(st)+"-"+str(en)) for (chrom,st,en) in locs])]
+else:
+    regions = [(chrom+":"+str(st)+"-"+str(en)) for (chrom,st,en) in locs]
+# print sorted(locs)
 
-#consolidate locations:
-#to write
-
-regions = ",".join([(chrom+":"+str(st)+"-"+str(en)) for (chrom,st,en) in locs])
-print regions
-
-
-
+print >>sys.stderr, "merging regions within "+str(flank)
+print >>sys.stderr, str(len(locs))+" --> ",
+locs = _merge_regions(locs,flank)
+print >>sys.stderr, len(locs)
+print >>sys.stderr, locs
 ########
 # RUN DISCOVAR
 ########
@@ -181,10 +225,15 @@ if not os.path.exists("./out"):
 
 # run discovar-var on bed file positions
 # for all samples in tab-delim file
-jobs = []
+jobs = dict()
+failjobs = [] 
+
+os.system("use Discovar")
 
 datasets = set([dataset for (seqid, lane, dataset) in samples])
 print >>sys.stderr, datasets
+
+sublog = open("submitted.log",'w')
 
 for thisdataset in datasets:
     samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
@@ -192,19 +241,37 @@ for thisdataset in datasets:
     if not os.path.exists("./"+thisdataset):
         os.mkdir("./"+thisdataset)
     os.chdir("./"+thisdataset)
-
+   
+    discovars = " NUM_THREADS="+str(args.nodes)
+    discovars = " MAX_MEMORY_GB="+str(ceil(args.mem/1000))
+    
     for (seqid, lane, dataset) in samplesInDataset:
-        command = " ".join([RUNDISCO, seqid, lane, DATADIR, regions])
-        name = seqid+"_"+lane
-        if not args.nobsub:
-            jobNo = _subjob(command, name )
-            jobs += [jobNo]
-        print seqid, lane, name, dataset, jobNo
+        for region in regions:
+            command = " ".join([RUNDISCO, seqid, lane, DATADIR, region, discovars])
+            if args.oneregion:
+                name = seqid+"_"+lane
+            else:
+                name = seqid+"_"+lane+"_"+region
+            
+            (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue)
+            #jobs += [jobNo]
+            jobs[jobNo] = command
+            print >>sublog, '#',jobNo
+            print >>sublog, subd_command
+            print seqid, lane, name, dataset, jobNo
 
     os.chdir("../")
-    
+sublog.close()    
         
-_waitdone(jobs)
+_waitdone([job for job in jobs])
+
+if len(failjobs) > 0:
+    faillog = open("failed.log",'w')
+    for job in failjobs:
+        print >>faillog, '#',job
+        print >>faillog, jobs[job]
+    faillog.close()
+
 
 ########
 # RUN ANALYSES
@@ -215,7 +282,7 @@ _waitdone(jobs)
 
 for dataset in datasets:
     print >>sys.stderr, "getting bam depths ",dataset
-    if not args.dryrun:
+    if not args.nodepth:
         for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
             os.system('samtools depth -r '+loc+' '+dataset+'/*/*bam > '+dataset+'_'+loc+'.depth')
         os.system('cat '+dataset+'_*.depth > '+dataset+'.depth')
@@ -223,21 +290,45 @@ for dataset in datasets:
             os.system('rm '+dataset+'_'+loc+'.depth')
 
         
-# parse bed file SNPs
-if args.snpLocs is not None:
-    pass
+    # parse bed file SNPs
+    if args.snpLocs is not None:
+        pass
+        if not args.dryrun:
+            SNPlocs = ",".join([chrom+":"+str(pos)+"-"+str(pos) for (chrom, pos) in SNPs])
+            print >>sys.stderr," ".join(['bash',
+                                         '../mergeVcfSNPs.sh',
+                                         dataset,
+                                         SNPlocs,
+                                         dataset+'/*/*filtered.vcf.gz'
+                                         ])
+            subprocess.check_call(['bash',
+                                   '../mergeVcfSNPs.sh',
+                                    dataset,
+                                    SNPlocs,
+                                    dataset+'/*/*filtered.vcf.gz'
+                                    ])
 
-# parse bed file STRs
-if args.strLocs is not None:
-    if not args.dryrun:
-        subprocess.check_call(['../mergeVcfIndels.sh',
-                                dataset,
-                                dataset+'/*/*filtered.vcf.gz'
-                                ])
-        subprocess.check_call(['python','../getSTRlengthFromVCF.py',
-                                '-v', dataset+'_STRs.vcf'
-                                '-o', dataset+'_STRs.calls'
-                                ])
-    else: pass
+    # parse bed file STRs
+    if args.strLocs is not None:
+        if not args.dryrun:
+            STRlocs = ",".join([chrom+":"+str(st)+"-"+str(en) for (chrom, st, en) in STRs])
+
+            print >>sys.stderr," ".join(['bash',
+                                         '../mergeVcfIndels.sh',
+                                         dataset,
+                                         STRlocs,
+                                         dataset+'/*/*filtered.vcf.gz'
+                                         ])
+            subprocess.check_call(['bash',
+                                   '../mergeVcfIndels.sh',
+                                    dataset,
+                                    STRlocs,
+                                    dataset+'/*/*filtered.vcf.gz'
+                                    ])
+            subprocess.check_call(['python','../getSTRlengthFromVCF.py',
+                                    '-v', dataset+'_STRs.vcf',
+                                    '-o', dataset+'_STRs.calls'
+                                    ])
+        else: pass
 
 

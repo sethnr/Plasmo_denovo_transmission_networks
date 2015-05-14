@@ -18,14 +18,14 @@ print >>sys.stderr, args.vcfFile
 
 outfile = sys.stderr
 if args.outFile is not None:
-    outfile = open(args.outFile,'r')
+    outfile = open(args.outFile,'w')
 
     
 vcfFile = open(args.vcfFile,'r')
 reader=vcf.Reader(vcfFile)
 
-print "\t".join(["#CHROM","POS"]),
-print "\t".join(reader.samples)
+print >>outfile, "\t".join(["#CHROM","POS"]),
+print >>outfile, "\t".join(reader.samples)
     
 for record in reader:
     refAllele = record.alleles[0]
@@ -48,3 +48,5 @@ for record in reader:
                 callSTRlens += [STRlens[allele]]
             print >>outfile, "/".join(callSTRlens),
     print >>outfile, ""
+
+sys.exit(0)
