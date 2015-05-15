@@ -18,6 +18,9 @@ RUNDISCO = '$DISCO1/runDiscovarVar.sh'
 DATADIR = '/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/'
 RUNDIR = os.getcwd()
 
+MEMORYGAP=1
+
+
 parser = argparse.ArgumentParser(description='call STRs ')
 
 #INPUTS:
@@ -81,38 +84,56 @@ def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", dependency=N
     return (job_no, ' '.join(bsub_command))
 
 
-def _waitdone(jobs):
-
+def _waitdone(jobs, faillog=sys.stderr):
+    if type(jobs) is dict:
+        pass
+        #jobsd = copy(jobs)
+        #jobs = [job for job in jobs]
+    
+    failing=set()
     alldone = len(jobs)
     sleeptime = 0
     print "bjobs "+(" ".join(jobs))
     
-    bjobs_command = ["bjobs"] + jobs
+#    bjobs_command = ["bjobs"] + jobs
 #    print >>sys.stderr, bjobs_command
     print >>sys.stderr, "FAIL\tPEND\tRUN\tDONE\tTOTAL"
 
     finished = 0
+    done = 0
+    fail = 0    
     while finished < alldone:
-        done = 0
         running = 0 
         pend = 0 
-        fail = 0
         sleep(sleeptime)
 #        bjobs_return = """JOBID   USER    STAT  QUEUE      FROM_HOST   EXEC_HOST   JOB_NAME   SUBMIT_TIME
 #    3789887 engreit DONE  hour       node1383    node1371    *uccessful May 11 17:12
 #    3789899 sredmon WAIT  bhour      tin         node1373    test       May 11 17:12"""
         if not args.nobsub:
+            bjobs_command = ["bjobs"] + jobs
             bjobs_return = subprocess.check_output(bjobs_command)
         #    print >>sys.stderr, bjobs_return
             for l in bjobs_return.split("\n"):
                 F = l.strip().split()
                 if len(F) >=3:
                     job_id, user, status = F[:3]
-                    if status == "DONE": done +=1
+                    if status == "DONE": 
+                        done +=1
+                        jobs.remove(job_id)
                     elif status == "PEND": pend +=1
                     elif status == "RUN": running += 1
-                    elif status == "EXIT": fail += 1
-            
+                    elif status == "EXIT": 
+                        fail += 1
+                        jobs.remove(job_id)
+                        if job_id not in failing:
+                            if type(jobs) is dict:
+                                print >>faillog, job_id, jobs[job_id]
+                            else:
+                                print >>faillog, job_id
+                            failing.add(job_id)
+                            
+                            
+        sys.stderr.write("\033[K")
         sys.stderr.write(" "+str(fail)+"\t"+str(pend)+"\t"+str(running)+"\t"+str(done)+"\t"+str(alldone)+"\r")
         sys.stderr.flush();
         
@@ -250,7 +271,7 @@ for thisdataset in datasets:
         for region in regions:
             command = " ".join([RUNDISCO,
                                 "-n", str(args.nodes),
-                                "-m", str(int(ceil(args.mem/1000))),
+                                "-m", str(int(ceil(args.mem/1000))-MEMORYGAP),
                                 "-d", DATADIR,
                                 seqid, lane, region])
             if args.oneregion:
@@ -260,7 +281,7 @@ for thisdataset in datasets:
             
             (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue)
             #jobs += [jobNo]
-            jobs[jobNo] = command
+            jobs[jobNo] = (seqid+"_"+str(lane), region)
             print >>sublog, '#',jobNo
             print >>sublog, subd_command
             print >>killscript,"bkill ",jobNo
@@ -270,19 +291,61 @@ for thisdataset in datasets:
 sublog.close()
 killscript.close()
 os.chmod('killAll.sh',000755)
+
+faillog = open("failed.log",'w',0)
         
-_waitdone([job for job in jobs])
+_waitdone([job for job in jobs], faillog)
 
 if len(failjobs) > 0:
-    faillog = open("failed.log",'w')
+#    faillog = open("failed.log",'w')
     for job in failjobs:
         print >>faillog, '#',job
         print >>faillog, jobs[job]
-    faillog.close()
+
+faillog.close()
 
 
 ########
 # RUN ANALYSES
+#!/bin/bash
+
+OUT=$1
+shift
+LOCS=$1
+shift
+
+echo "MERGING VCFS AND CALLING INDELS"
+echo "OUT: " $OUT
+echo "LOCS: " $LOCS
+
+SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+# vcf-merge $@ 1> merge.vcf 2>/dev/null
+echo ${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
+${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
+
+
+vcftools --keep-only-indels --vcf ${OUT}_all.vcf --recode --out merge_indels
+mv merge_indels.recode.vcf merge_indels.vcf
+bgzip merge_indels.vcf
+tabix -pvcf merge_indels.vcf.gz
+
+
+# replace commas with spaces for tabix
+LOCSP="${LOCS//\,/ }"
+tabix -h merge_indels.vcf.gz $LOCSP > ${OUT}_STRs.vcf
+
+
+rm merge.vcf \
+   merge.vcf.vcfidx \
+   merge_indels.log \
+   merge_indels.vcf.gz \
+   merge_indels.vcf.gz.tbi
+
+#UGLY HACK: (discovar leaves region=<nothing> tags in header, STR parser chokes)
+perl -i -ne 'print $_ unless $_ =~ m/DiscovarRegion/gi' ${OUT}_STRs.vcf
+
+
+exit 0
 ########
 
 # make summary plots/files/graphs for samples in tab-delim file

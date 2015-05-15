@@ -11,6 +11,8 @@ echo "LOCS: " $LOCS
 
 SCRIPTDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 # vcf-merge $@ 1> merge.vcf 2>/dev/null
+echo ${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
+
 ${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
 
 vcftools --keep-only-indels --vcf ${OUT}_all.vcf --recode --out merge_indels
