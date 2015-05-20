@@ -5,6 +5,12 @@
   wget http://plasmodb.org/common/downloads/Current_Release/Pfalciparum3D7/fasta/data/PlasmoDB-24_Pfalciparum3D7_Genome.fasta
 
 
+######
+# sort out fasta names and reorder
+######
+perl -i -pe 's/^>(\w+).*$/>$1/gi;'  PlasmoDB-24_Pfalciparum3D7_Genome.fasta
+pyfasta split --header="%(seqid)s.fasta"  PlasmoDB-24_Pfalciparum3D7_Genome.fasta
+cat M76611.fasta PFC10_API_IRAB.fasta Pf3D7_*  > Pf3D7_v3.fasta
 
 ########
 # find set of STRs to work with initially
@@ -205,3 +211,38 @@ start with 300k seq:
 
 head -n2 ../samples/picard_disco1_150504.tab.txt > test.samples
 ./disco_callSTRsAndSummarise.py  -s test.samples --nodes 8 --mem 16000  -r Pf3D7_07_v3:450000-750000
+
+
+   bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
+     	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+
+python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
+
+
+cd $DISCO1/disco_daniels_3d7
+python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
+
+cd $DISCO1/disco_halfmeg
+python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 8  -r  Pf3D7_07_v3:450000-750000 --shallow --splitregions -Q hour
+
+python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 6000 --nodes 4  -r  Pf3D7_07_v3:450000-750000 --shallow --splitregions -Q hour
+
+
+cd $DISCO1/disco_green_daniels
+python ../disco_callSTRsAndSummarise.py  -s ../samples/picard_disco1_150504.tab.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed -t ../STRfiles/greenhouse_primer_locations.bed --shallow --splitregions -Q hour
+
+
+
+
+for FASTA in `ls $WORK/refs/ | grep pf | perl -pe 's/.fasta//' `;
+do
+    $DISCO1/STRfinders/mreps/mreps -res 3 -minperiod 3 -exp 3 \
+    -fasta $WORK/refs/${FASTA}.fasta \
+    | perl -lane "next if 1..15; print join(\"\t\",${FASTA},@F) " \
+    | grep -e '->' ;
+done | perl -lane 'print $_ if $F[8]+0 < 0.05'
+
+
+
+####wrote quick script to get GATK calls
+UnifiedGenotyper -l ../Daniels_SNPs.bed -B ../test.bams.list -R $WORK/refs/Pf3D7_v3.fasta
