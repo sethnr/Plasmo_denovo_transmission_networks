@@ -246,3 +246,16 @@ done | perl -lane 'print $_ if $F[8]+0 < 0.05'
 
 ####wrote quick script to get GATK calls
 UnifiedGenotyper -l ../Daniels_SNPs.bed -B ../test.bams.list -R $WORK/refs/Pf3D7_v3.fasta
+
+grep 3D7DD2 samples/picard_disco1_150504.tab.txt | cut -f5,5  > samples/3D7DD2.bams.list
+grep Thies samples/picard_disco1_150504.tab.txt | cut -f5,5  > samples/Thies.bams.list
+grep HFGR samples/picard_disco1_150504.tab.txt | cut -f5,5 > samples/HFGR.bams.list
+
+
+
+#Daniels positions all bloody wrong (old ref!)!
+#make fasta with 50 Ns between each primer
+perl -lane 'print "\>".$F[0]."\n".$F[3].("N" x 50).$F[4]."\n";' daniels_primers.txt > daniels_primers.fasta
+
+blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta \
+	 -i daniels_primers.fasta -m 8 -e 0.01
