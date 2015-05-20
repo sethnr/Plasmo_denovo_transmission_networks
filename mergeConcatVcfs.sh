@@ -26,6 +26,6 @@ fi
 echo "merging"
 echo $TOMERGE
 echo "to ${OUT}_all.vcf"
-vcf-merge $TOMERGE > ${OUT}_all.vcf
+vcf-merge -s $TOMERGE > ${OUT}_all.vcf
 bgzip ${OUT}_all.vcf
 tabix -pvcf ${OUT}_all.vcf.gz

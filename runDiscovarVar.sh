@@ -60,7 +60,7 @@ if [[ $SPLIT==1 ]]; then NAME=${NAME}_$REGION; fi
 echo "SETUP..."
 mkdir $REFNAME
 cd $REFNAME
-mkdir tmp
+mkdir tmp_${NAME}
 
 
 echo "SET " $SET
@@ -93,11 +93,13 @@ then
     samtools index ${NAME}.bam
 fi
 
+#mkdir tmp_${NAME}
+
 echo "DISCOVAR"
 Discovar READS=${NAME}.bam \
 	 REGIONS=${REGION} \
 	 OUT_HEAD=${NAME} \
-	 TMP=./tmp \
+	 TMP=./tmp_${NAME} \
 	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
          NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
@@ -113,13 +115,16 @@ rc=$?;
 if [[ $rc != 0 ]];
 then
     echo "DISCOVAR FINISHED WITHOUT OUTPUT";
-    exit $rc;
+#    exit $rc;
+    exit 0
 fi
 
 
 echo "MAKE OUTPUTS"
 dot -Tpng -o ${NAME}.final.png ${NAME}.final.dot
-perl -i -pe "s/${SET}$/${NAME}/gi" ${NAME}.final.variant.filtered.vcf
+# perl -i -pe "s/${SET}$/${NAME}/gi" ${NAME}.final.variant.filtered.vcf
+perl -i -pe "s/${SET}$/${REFNAME}/gi" ${NAME}.final.variant.filtered.vcf
+
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz
 
@@ -130,6 +135,6 @@ then
 fi
 
 echo "CLEANUP"
-rm -r tmp
+# rm -r tmp_${NAME}
 
 
