@@ -124,6 +124,8 @@ echo "MAKE OUTPUTS"
 dot -Tpng -o ${NAME}.final.png ${NAME}.final.dot
 # perl -i -pe "s/${SET}$/${NAME}/gi" ${NAME}.final.variant.filtered.vcf
 perl -i -pe "s/${SET}$/${REFNAME}/gi" ${NAME}.final.variant.filtered.vcf
+#UGLY HACK (discovarRegion is left blank)
+perl -i -ne 'print $_ unless $_ =~ m/DiscovarRegion/gi' ${NAME}.final.variant.filtered.vcf
 
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz

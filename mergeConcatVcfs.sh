@@ -8,6 +8,18 @@ VCF_NO=`find $OUT | grep vcf.gz$ | wc -l`
 
 TOMERGE=`find $OUT | grep vcf.gz$ `
 
+
+#check if it is already there (i.e. SNPs already calculated)
+ls ${OUT}_all.vcf.gz
+rc=$?;
+if [[ $rc == 0 ]];
+then
+    echo "MERGECONCAT OUTPUT ALREADY PRESENT, NOT RUNNING";
+    exit 0;
+fi
+
+
+
 if [[SAMPLE_NO == VCF_NO]]
    then
        for SAMPLE in `ls $OUT `

@@ -15,7 +15,7 @@ echo ${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
 
 ${SCRIPTDIR}/mergeConcatVcfs.sh $OUT
 
-vcftools --keep-only-indels --vcf ${OUT}_all.vcf --recode --out merge_indels
+vcftools --keep-only-indels --gzvcf ${OUT}_all.vcf.gz --recode --out merge_indels
 mv merge_indels.recode.vcf merge_indels.vcf
 bgzip merge_indels.vcf
 tabix -pvcf merge_indels.vcf.gz
