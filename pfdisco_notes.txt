@@ -258,4 +258,33 @@ grep HFGR samples/picard_disco1_150504.tab.txt | cut -f5,5 > samples/HFGR.bams.l
 perl -lane 'print "\>".$F[0]."\n".$F[3].("N" x 50).$F[4]."\n";' daniels_primers.txt > daniels_primers.fasta
 
 blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta \
-	 -i daniels_primers.fasta -m 8 -e 0.01
+	 -i SNPfiles/daniels_primers.fasta \
+	 -m 8 -e 0.01 > SNPfiles/daniels_primers.blastout
+
+
+cd $PFDISCO
+UnifiedGenotyper -l SNPfiles/Daniels_SNPs.v4.bed -R $WORK/refs/Pf3D7_v4.fasta -V \
+   -B samples/Thies.bams.list  -o disco_daniels/GATK_calls_daniels_Thies.vcf
+
+UnifiedGenotyper -l SNPfiles/Daniels_SNPs.v4.bed -R $WORK/refs/Pf3D7_v4.fasta -V \
+   -B samples/HFGR.bams.list  -o disco_daniels/GATK_calls_daniels_HFGR.vcf
+
+UnifiedGenotyper -l SNPfiles/Daniels_SNPs.v4.bed -R $WORK/refs/Pf3D7_v4.fasta -V \
+   -B samples/3D7DD2.bams.list  -o disco_daniels/GATK_calls_daniels_3D7DD2.vcf
+
+
+
+perl -lane 'print "\>".$F[0]."\n".$F[5]."\n";' SNPfiles/daniels_primers.txt > SNPfiles/daniels_primers.reporters.fa
+blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta \
+	 -i SNPfiles/daniels_primers.reporters.fasta \
+	 -m 8 -e 0.01 > SNPfiles/daniels_primers.reporters.blastout
+
+
+perl -lane 'print "\>".$F[0]."_F\n".$F[5]."\n"."\>".$F[0]."_SNP\n".$F[5]."\n"."\>".$F[0]."_R\n".$F[4]."\n";' SNPfiles/daniels_primers.txt > SNPfiles/daniels_primers.reporters.fasta
+blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta  -i SNPfiles/daniels_primers.reporters.fasta -m8 > SNPfiles/daniels_primers.reporters.blastout
+perl -pe 's/(?<=\d)_(?=[RSF])/\t/gi' SNPfiles/daniels_primers.reporters.blastout  | sort -k1,1 -k3,3 -k10,10 > SNPfiles/daniels_primers.reporters.sort.blastout
+
+
+perl -lane 'print "\>".$F[0]."\n".$F[3].("N" x50).$F[5].("N"x50).$F[4];' SNPfiles/daniels_primers.txt > SNPfiles/daniels_primers.fasta
+blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta  -i SNPfiles/daniels_primers.fasta -m8 > SNPfiles/daniels_primers.reporters.blastout
+
