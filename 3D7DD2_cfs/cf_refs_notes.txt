@@ -1,0 +1,7 @@
+nucmer
+
+#get all > 10k matches
+nucmer -c 10000 -o -p nucmer.3D7vIT.c10k Pf3D7_v4.fasta PfIT_v3.fasta
+
+#as above but using non-unique seq
+nucmer -c 10000 -o -p nucmer.3D7vIT.c10kMAX --maxmatch Pf3D7_v4.fasta PfIT_v3.fasta

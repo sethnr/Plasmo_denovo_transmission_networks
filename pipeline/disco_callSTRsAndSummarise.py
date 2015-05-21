@@ -288,7 +288,7 @@ for thisdataset in datasets:
             #jobs += [jobNo]
             jobs[jobNo] = (seqid+"_"+str(lane), region)
             print >>sublog, '#',jobNo
-            print >>sublog, """ subd_command """
+            print r >>sublog, subd_command
             print >>killscript,"bkill ",jobNo
             print seqid, lane, name, dataset, jobNo
 
