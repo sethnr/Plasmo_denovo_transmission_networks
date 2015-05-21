@@ -14,7 +14,9 @@ from time import sleep
 from string import *
 
 #SET VARS
-RUNDISCO = '$DISCO1/runDiscovarVar.sh'
+PIPELINE='$DISCO1/pipeline'
+RUNDISCO=PIPELINE+'/runDiscovarVar.sh'
+
 DATADIR = '/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/'
 RUNDIR = os.getcwd()
 
@@ -252,7 +254,7 @@ if not os.path.exists("./out"):
 jobs = dict()
 failjobs = [] 
 
-os.system("use Discovar")
+# os.system("use Discovar")
 
 datasets = set([dataset for (seqid, lane, dataset) in samples])
 print >>sys.stderr, datasets
@@ -331,13 +333,13 @@ for dataset in datasets:
         if not args.dryrun:
             SNPlocs = ",".join([chrom+":"+str(pos)+"-"+str(pos) for (chrom, pos) in SNPs])
             print >>sys.stderr," ".join(['bash',
-                                         '../mergeVcfSNPs.sh',
+                                         PIPELINE+'/mergeVcfSNPs.sh',
                                          dataset,
                                          SNPlocs,
                                          dataset+'/*/*filtered.vcf.gz'
                                          ])
             subprocess.check_call(['bash',
-                                   '../mergeVcfSNPs.sh',
+                                   PIPELINE+'/mergeVcfSNPs.sh',
                                     dataset,
                                     SNPlocs,
                                     dataset+'/*/*filtered.vcf.gz'
@@ -349,18 +351,18 @@ for dataset in datasets:
             STRlocs = ",".join([chrom+":"+str(st)+"-"+str(en) for (chrom, st, en) in STRs])
 
             print >>sys.stderr," ".join(['bash',
-                                         '../mergeVcfIndels.sh',
+                                         PIPELINE+'/mergeVcfIndels.sh',
                                          dataset,
                                          STRlocs,
                                          dataset+'/*/*filtered.vcf.gz'
                                          ])
             subprocess.check_call(['bash',
-                                   '../mergeVcfIndels.sh',
+                                   PIPELINE+'/mergeVcfIndels.sh',
                                     dataset,
                                     STRlocs,
                                     dataset+'/*/*filtered.vcf.gz'
                                     ])
-            subprocess.check_call(['python','../getSTRlengthFromVCF.py',
+            subprocess.check_call(['python',PIPELINE+'/getSTRlengthFromVCF.py',
                                     '-v', dataset+'_STRs.vcf',
                                     '-o', dataset+'_STRs.calls'
                                     ])
