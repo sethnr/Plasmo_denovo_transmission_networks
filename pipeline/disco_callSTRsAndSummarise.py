@@ -46,11 +46,12 @@ parser.add_argument('--nodes', action="store", dest='nodes', type=int, help='nod
 parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help='queue for LSF jobs [bhour]', nargs='?', default="bhour")
 parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
 
+parser.add_argument('-W','--jobtime', action="store", dest='jobtime', type=str, help='time for job', nargs='?', default=None)
 
 args = parser.parse_args()
 
 
-def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", dependency=None):
+def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None):
     resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
     bsub_command = ["bsub",
                     "-J", jobname,
@@ -61,9 +62,11 @@ def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", dependency=N
                     "-q", queue,
                     "-R", resource,
                     "-M", str(mem),
-                    "-n", str(nodes),
-                    commandline]
+                    "-n", str(nodes)]
 
+    if jobtime is not None: bsub_command += ['-W',jobtime]
+    bsub_command += [commandline]
+    
 #    print >>sys.stderr, ' '.join(bsub_command)
 #    bsub_return = """
 #Please specify a project.  You can set it with "bsub -P project ..."
@@ -279,11 +282,11 @@ for thisdataset in datasets:
             else:
                 name = seqid+"_"+lane+"_"+region
             
-            (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue)
+            (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
             #jobs += [jobNo]
             jobs[jobNo] = (seqid+"_"+str(lane), region)
             print >>sublog, '#',jobNo
-            print >>sublog, subd_command
+            print >>sublog, """ subd_command """
             print >>killscript,"bkill ",jobNo
             print seqid, lane, name, dataset, jobNo
 

@@ -1,0 +1,82 @@
+Sender: LSF System <lsf@node1663>
+Subject: Job 3786536: <test> Done
+
+Job <test> was submitted from host <tin> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <node1663>, in queue <bhour>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/disco_greenhouse> was used as the working directory.
+Started at Mon May 11 15:46:30 2015
+Results reported at Mon May 11 15:46:32 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+/seq/plasmodium/sredmond//pfdisco//runDiscovarVar.sh
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      0.12 sec.
+    Max Memory :         5 MB
+    Max Swap   :        43 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+SETUP...
+LINK/INDEX BAM...
+DISCOVAR
+MAKE OUTPUTS
+CLEANUP
+
+
+PS:
+
+Read file <test.e> for stderr output of this job.
+
+Sender: LSF System <lsf@node1373>
+Subject: Job 3789899: <test> Done
+
+Job <test> was submitted from host <tin> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <node1373>, in queue <bhour>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/disco_greenhouse> was used as the working directory.
+Started at Mon May 11 17:17:44 2015
+Results reported at Mon May 11 17:17:46 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+/seq/plasmodium/sredmond//pfdisco//runDiscovarVar.sh
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :      0.41 sec.
+    Max Memory :         4 MB
+    Max Swap   :        45 MB
+
+    Max Processes  :         1
+    Max Threads    :         1
+
+The output (if any) follows:
+
+SETUP...
+LINK/INDEX BAM...
+DISCOVAR
+MAKE OUTPUTS
+CLEANUP
+
+
+PS:
+
+Read file <test.e> for stderr output of this job.
+
