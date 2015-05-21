@@ -288,3 +288,12 @@ perl -pe 's/(?<=\d)_(?=[RSF])/\t/gi' SNPfiles/daniels_primers.reporters.blastout
 perl -lane 'print "\>".$F[0]."\n".$F[3].("N" x50).$F[5].("N"x50).$F[4];' SNPfiles/daniels_primers.txt > SNPfiles/daniels_primers.fasta
 blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta  -i SNPfiles/daniels_primers.fasta -m8 > SNPfiles/daniels_primers.reporters.blastout
 
+
+#remap flanking seqs from daniels set from original Fasta:
+#change names to MAL1-style
+perl -i -pe 's/^Pf3D7_0*(\d+)_v3/MAL$1/' SNPfiles/Daniels_SNPs.bed
+perl -i -pe 's/\>.*(MAL\d+).*/\>$1/' /seq/plasmodium/sredmond/refs/PfalciparumGenomic_plasmoDB-5.0.fasta
+
+
+python ../disco_callSTRsAndSummarise.py  -s ../samples/picard_disco1_150504.tab.txt  --mem 3000 --nodes 1  -n ../SNPfiles/Daniels_SNPs.v4.bed -t ../STRfiles/greenhouse_primer_locations.bed --shallow --splitregions -Q hour
+
