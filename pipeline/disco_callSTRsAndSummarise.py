@@ -14,7 +14,7 @@ from time import sleep
 from string import *
 
 #SET VARS
-PIPELINE='$DISCO1/pipeline'
+PIPELINE='/seq/plasmodium/sredmond/pfdisco/pipeline'
 RUNDISCO=PIPELINE+'/runDiscovarVar.sh'
 
 DATADIR = '/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/'
@@ -288,7 +288,7 @@ for thisdataset in datasets:
             #jobs += [jobNo]
             jobs[jobNo] = (seqid+"_"+str(lane), region)
             print >>sublog, '#',jobNo
-            print r >>sublog, subd_command
+            print >>sublog, repr(subd_command)
             print >>killscript,"bkill ",jobNo
             print seqid, lane, name, dataset, jobNo
 

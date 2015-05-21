@@ -14,30 +14,31 @@ ls ${OUT}_all.vcf.gz
 rc=$?;
 if [[ $rc == 0 ]];
 then
-    echo "MERGECONCAT OUTPUT ALREADY PRESENT, NOT RUNNING";
+    echo "MERGE/CONCAT OUTPUT ALREADY PRESENT, NOT RUNNING";
     exit 0;
 fi
 
 
-
-if [[SAMPLE_NO == VCF_NO]]
+if [[ $SAMPLE_NO != $VCF_NO ]]
    then
        for SAMPLE in `ls $OUT `
        do
 	   echo "concatting"
-	   ls ${OUT}/${SAMPLE}/*/*vcf.gz
+	   ls ${OUT}/${SAMPLE}/*vcf.gz
 	   echo "to" ${OUT}"/"${SAMPLE}"_concat.vcf.gz"
 
-	   vcf-concat ${OUT}/${SAMPLE}/*/*vcf.gz > ${OUT}/${SAMPLE}_concat.vcf
+	   vcf-concat -s 1 ${OUT}/${SAMPLE}/*vcf.gz | vcf-sort > ${OUT}/${SAMPLE}_concat.vcf
 	   bgzip ${OUT}/${SAMPLE}_concat.vcf
 	   tabix -pvcf ${OUT}/${SAMPLE}_concat.vcf.gz
        done
    TOMERGE=`ls ${OUT}/*concat.vcf.gz`
 fi
 
+
+
 echo "merging"
 echo $TOMERGE
 echo "to ${OUT}_all.vcf"
-vcf-merge -s $TOMERGE > ${OUT}_all.vcf
+vcf-merge -d -s $TOMERGE > ${OUT}_all.vcf
 bgzip ${OUT}_all.vcf
 tabix -pvcf ${OUT}_all.vcf.gz

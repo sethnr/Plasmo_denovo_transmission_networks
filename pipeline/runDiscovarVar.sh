@@ -74,49 +74,51 @@ echo "NODES " $NODES
 
 ls ${NAME}.final.variant.filtered.vcf
 rc=$?;
-if [[ $rc == 0 ]];
+if [[! $rc == 0 ]];
 then
     echo "DISCOVAR OUTPUT ALREADY PRESENT, NOT RUNNING";
     exit 0;
 fi
 
-
-echo "LINK/INDEX BAM..."
-BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
+if [[! -f ${NAME}.final.variant.filtered.vcf]]
+then
+    echo "LINK/INDEX BAM..."
+    BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
 
 #check if bam index file already present
-ls ${NAME}.bam.bai
-rc=$?;
-if [[ $rc != 0 ]];
-then
-    ln -s $BAMFILE ${NAME}.bam
+    ls ${NAME}.bam.bai
+    rc=$?;
+    if [[ $rc != 0 ]];
+	then
+	ln -s $BAMFILE ${NAME}.bam
     samtools index ${NAME}.bam
-fi
-
+    fi
+    
 #mkdir tmp_${NAME}
 
-echo "DISCOVAR"
-Discovar READS=${NAME}.bam \
-	 REGIONS=${REGION} \
-	 OUT_HEAD=${NAME} \
-	 TMP=./tmp_${NAME} \
-	 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
-         NUM_THREADS=${NODES} \
+    echo "DISCOVAR"
+    Discovar READS=${NAME}.bam \
+	REGIONS=${REGION} \
+	OUT_HEAD=${NAME} \
+	TMP=./tmp_${NAME} \
+	REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
+	NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
-rc=$?;
-if [[ $rc != 0 ]];
-then
-    echo "DISCOVAR ERROR";
-    exit $rc;
-fi
+    rc=$?;
+    if [[ $rc != 0 ]];
+	then
+	echo "DISCOVAR ERROR";
+	exit $rc;
+    fi
 
-ls ${NAME}.final.variant.filtered.vcf
-rc=$?;
-if [[ $rc != 0 ]];
-then
-    echo "DISCOVAR FINISHED WITHOUT OUTPUT";
+    ls ${NAME}.final.variant.filtered.vcf
+    rc=$?;
+    if [[ $rc != 0 ]];
+	then
+	echo "DISCOVAR FINISHED WITHOUT OUTPUT";
 #    exit $rc;
-    exit 0
+	exit 0
+    fi
 fi
 
 
