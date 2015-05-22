@@ -1,0 +1,22 @@
+
+cd $DISCO1/analyses/daniels_nocalls
+
+# get all fastas in iterations
+# concat into file, with iteration number appended
+perl -pe '$name = $ARGV; $name =~ s/^.*(\d+).fasta/$1/; s/\>/\>F$name
+# /gi;'
+# ../../disco_daniels/3D7DD2/SM-7LV8V_1/SM-7LV8V_1_Pf3D7_14_v3\:754731-756731.{1..9}*fasta
+
+
+perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>3D7_F${name}_/gi;' \
+  ../../disco_daniels/3D7DD2/SM-7LV8V_1/SM-7LV8V_1_Pf3D7_14_v3\:754731-756731.{1..9}*fasta \
+  > SM-7LV8V_1_3D7_edges_c14.fasta
+
+perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>DD2_F${name}_/gi;' \
+  ../../disco_daniels/3D7DD2/SM-7LV8R_1/SM-7LV8R_1_Pf3D7_14_v3\:754731-756731.{1..9}*fasta \
+  > SM-7LV8R_1_DD2_edges_c14.fasta
+
+perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>DD2_FINAL_/gi;' \
+  ../../disco_daniels/3D7DD2/SM-7LV8R_1/SM-7LV8R_1_Pf3D7_14_v3\:754731-756731.final.fasta > SM-7LV8R_1_DD2_edgesFinal_c14.fasta
+perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>3D7_FINAL_/gi;' \
+  ../../disco_daniels/3D7DD2/SM-7LV8V_1/SM-7LV8V_1_Pf3D7_14_v3\:754731-756731.final.fasta > SM-7LV8R_1_3D7_edgesFinal_c14.fasta

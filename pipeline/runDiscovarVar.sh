@@ -74,13 +74,13 @@ echo "NODES " $NODES
 
 ls ${NAME}.final.variant.filtered.vcf
 rc=$?;
-if [[! $rc == 0 ]];
+if [[ $rc == 0 ]];
 then
     echo "DISCOVAR OUTPUT ALREADY PRESENT, NOT RUNNING";
     exit 0;
 fi
 
-if [[! -f ${NAME}.final.variant.filtered.vcf]]
+if [[ ! -f ${NAME}.final.variant.filtered.vcf ]];
 then
     echo "LINK/INDEX BAM..."
     BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
