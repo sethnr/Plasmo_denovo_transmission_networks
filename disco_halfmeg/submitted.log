@@ -1,32 +1,32 @@
-# 4353485
- subd_command 
-# 4353486
- subd_command 
-# 4353487
- subd_command 
-# 4353488
- subd_command 
-# 4353489
- subd_command 
-# 4353490
- subd_command 
-# 4353491
- subd_command 
-# 4353492
- subd_command 
-# 4353493
- subd_command 
-# 4353494
- subd_command 
-# 4353495
- subd_command 
-# 4353496
- subd_command 
-# 4353497
- subd_command 
-# 4353498
- subd_command 
-# 4353499
- subd_command 
-# 4353500
- subd_command 
+# 4394215
+'bsub -J SM-7LV8T_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8T_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8T_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8T 2 Pf3D7_07_v3:450000-750000'
+# 4394217
+'bsub -J SM-7LV8S_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8S_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8S_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8S 2 Pf3D7_07_v3:450000-750000'
+# 4394219
+'bsub -J SM-7LV8O_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8O_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8O_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8O 1 Pf3D7_07_v3:450000-750000'
+# 4394220
+'bsub -J SM-7LV8U_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8U_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8U_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8U 1 Pf3D7_07_v3:450000-750000'
+# 4394221
+'bsub -J SM-7LV8O_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8O_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8O_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8O 2 Pf3D7_07_v3:450000-750000'
+# 4394222
+'bsub -J SM-7LV8T_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8T_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8T_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8T 1 Pf3D7_07_v3:450000-750000'
+# 4394223
+'bsub -J SM-7LV8V_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8V_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8V_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8V 2 Pf3D7_07_v3:450000-750000'
+# 4394224
+'bsub -J SM-7LV8U_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8U_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8U_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8U 2 Pf3D7_07_v3:450000-750000'
+# 4394227
+'bsub -J SM-7LV8P_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8P_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8P_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8P 2 Pf3D7_07_v3:450000-750000'
+# 4394228
+'bsub -J SM-7LV8V_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8V_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8V_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8V 1 Pf3D7_07_v3:450000-750000'
+# 4394230
+'bsub -J SM-7LV8S_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8S_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8S_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8S 1 Pf3D7_07_v3:450000-750000'
+# 4394232
+'bsub -J SM-7LV8Q_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8Q_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8Q_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8Q 1 Pf3D7_07_v3:450000-750000'
+# 4394236
+'bsub -J SM-7LV8P_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8P_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8P_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8P 1 Pf3D7_07_v3:450000-750000'
+# 4394238
+'bsub -J SM-7LV8R_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8R_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8R_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8R 2 Pf3D7_07_v3:450000-750000'
+# 4394239
+'bsub -J SM-7LV8Q_2 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8Q_2.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8Q_2.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8Q 2 Pf3D7_07_v3:450000-750000'
+# 4394240
+'bsub -J SM-7LV8R_1 -e /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8R_1.e -o /seq/plasmodium/sredmond/pfdisco/disco_halfmeg/out/SM-7LV8R_1.o -q forest -R select[mem>16000] rusage[mem=16000]  span[ptile=6] -M 16000 -n 6 /seq/plasmodium/sredmond/pfdisco/pipeline/runDiscovarVar.sh -n 6 -m 15 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8R 1 Pf3D7_07_v3:450000-750000'

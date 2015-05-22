@@ -1,0 +1,108 @@
+Sender: LSF System <lsf@node1657>
+Subject: Job 4361953: <nucmerMax> Done
+
+Job <nucmerMax> was submitted from host <copper> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <node1657>, in queue <hour>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/3D7DD2_cfs> was used as the working directory.
+Started at Thu May 21 18:18:10 2015
+Results reported at Thu May 21 18:19:23 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+nucmer -c 10000 -o -p nucmer.3D7vIT.c10k.b20k --nooptimize -d 20000 Pf3D7_v4.fasta PfIT_v3.fasta
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :     70.82 sec.
+    Max Memory :       414 MB
+    Max Swap   :       507 MB
+
+    Max Processes  :         6
+    Max Threads    :         7
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/nucmerMax.e> for stderr output of this job.
+
+Sender: LSF System <lsf@node1624>
+Subject: Job 4361960: <nucmerMax> Done
+
+Job <nucmerMax> was submitted from host <copper> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <node1624>, in queue <hour>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/3D7DD2_cfs> was used as the working directory.
+Started at Thu May 21 18:19:26 2015
+Results reported at Thu May 21 18:21:22 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+nucmer -c 2000 -o -p nucmer.3D7vIT.c2k.b20k --nooptimize -b 20000 Pf3D7_v4.fasta PfIT_v3.fasta
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :    115.20 sec.
+    Max Memory :       414 MB
+    Max Swap   :       507 MB
+
+    Max Processes  :         6
+    Max Threads    :         7
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/nucmerMax.e> for stderr output of this job.
+
+Sender: LSF System <lsf@node1442>
+Subject: Job 4361906: <nucmerMax> Done
+
+Job <nucmerMax> was submitted from host <copper> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <node1442>, in queue <hour>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/3D7DD2_cfs> was used as the working directory.
+Started at Thu May 21 18:14:58 2015
+Results reported at Thu May 21 19:06:58 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+nucmer -c 5000 -o -p nucmer.3D7vIT.c5k.d5k --nooptimize -b 5000 Pf3D7_v4.fasta PfIT_v3.fasta
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time   :   3131.16 sec.
+    Max Memory :      1916 MB
+    Max Swap   :      2003 MB
+
+    Max Processes  :         6
+    Max Threads    :         7
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/nucmerMax.e> for stderr output of this job.
+
