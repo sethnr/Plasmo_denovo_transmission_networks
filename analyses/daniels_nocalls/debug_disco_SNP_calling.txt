@@ -19,4 +19,51 @@ perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>DD2_F${name}_/
 perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>DD2_FINAL_/gi;' \
   ../../disco_daniels/3D7DD2/SM-7LV8R_1/SM-7LV8R_1_Pf3D7_14_v3\:754731-756731.final.fasta > SM-7LV8R_1_DD2_edgesFinal_c14.fasta
 perl -pe '$name = $ARGV; $name =~ s/^.*\.(\d+)\.fasta/$1/; s/\>/\>3D7_FINAL_/gi;' \
-  ../../disco_daniels/3D7DD2/SM-7LV8V_1/SM-7LV8V_1_Pf3D7_14_v3\:754731-756731.final.fasta > SM-7LV8R_1_3D7_edgesFinal_c14.fasta
+  ../../disco_daniels/3D7DD2/SM-7LV8V_1/SM-7LV8V_1_Pf3D7_14_v3\:754731-756731.final.fasta > SM-7LV8V_1_3D7_edgesFinal_c14.fasta
+
+
+#get just marker 14:
+grep -A1 MAL14  /seq/plasmodium/sredmond/pfdisco/SNPfiles/Daniels_SNPs.flanks.fasta > RD_14_3291006.fa
+
+blastall -p blastn -d 3d7_dd2_cf.fasta \
+	 -i RD_14_3291006.fa \
+	 -m 8 -e 1e-10 -K1
+
+#get first and last hits on Cs14
+     grep Pf3D7_14_v3  all_edges_v_genome.blastout | sort -k9,9 | head -n1
+     > DD2_F1_edge_15	Pf3D7_14_v3	100.00	481	0	0	1	481	754482	754962	0.0	 912
+     grep Pf3D7_14_v3  all_edges_v_genome.blastout | sort -k9,9 | tail -n1
+     > DD2_F9_edge_0	Pf3D7_14_v3	100.00	188	0	0	1	188	757357	757170	8e-103	 373
+sought: 754731  -  756731
+found:   754482 -> 757170
+basically OK
+
+
+blastall -p blastn -d 3d7_dd2_cf.fasta \
+	 -i RD_14_3291006.fa \
+	 -e 1e-10 -K1 >
+
+for FASTA in SM*fasta
+do
+	blastall -p blastn -d $WORK/refs/Pf3D7_v3.fasta \
+	 -i $FASTA \
+	 -e 1e-10 -K1 > ${FASTA//.fasta/.blastn}
+done
+
+
+cd $WORK/refs/
+bwa index Pf3D7_v3.fasta
+
+
+for FASTA in SM*fasta
+do
+	perl  ~/bin/fasta_to_fastq.pl $FASTA > ${FASTA//.fasta/.fastq}
+	bwa mem  -SP  $WORK/refs/Pf3D7_v3.fasta \
+	 ${FASTA//.fasta/.fastq} \
+	 > ${FASTA//.fasta/.sam}
+	samindex ${FASTA//.fasta/.sam}
+done
+
+# igv *bam Pf3D7_14_v3:754000-757000
+#make igv file (load all bams and go to region)
+igv -b viewSection.igv
