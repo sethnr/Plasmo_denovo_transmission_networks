@@ -97,6 +97,13 @@ then
 #mkdir tmp_${NAME}
 
     echo "DISCOVAR"
+    echo Discovar READS=${NAME}.bam \
+	REGIONS=${REGION} \
+	OUT_HEAD=${NAME} \
+	TMP=./tmp_${NAME} \
+	REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
+	NUM_THREADS=${NODES} \
+	 MAX_MEMORY_GB=${MEMORY}
     Discovar READS=${NAME}.bam \
 	REGIONS=${REGION} \
 	OUT_HEAD=${NAME} \

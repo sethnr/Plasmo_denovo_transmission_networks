@@ -47,6 +47,8 @@ parser.add_argument('--mem', action="store", dest='mem', type=int, help='memory 
 parser.add_argument('--nodes', action="store", dest='nodes', type=int, help='nodes to use for discovar [1]', nargs='?', default=1)
 parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help='queue for LSF jobs [bhour]', nargs='?', default="bhour")
 parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
+parser.add_argument('--splitsize', action="store", dest='splitsize', type=int, default=-1, help='split regions larger than N [-1]')
+parser.add_argument('--splitflank', action="store", dest='splitflank', type=int, default=500, help='overlap regions by flank N bp [500]')
 
 parser.add_argument('-W','--jobtime', action="store", dest='jobtime', type=str, help='time for job', nargs='?', default=None)
 
@@ -172,6 +174,30 @@ def _merge_regions(locs, joinflank=0):
             i += 1
     return locs
 
+def _split_regions(locs, ssize=50000, sflank=500):
+    locs = sorted(locs)
+    #nb need to copy array, otherwise keeps iterating through new ranges
+    for bigloc in locs[:]:
+        (c1, s1, e1) = bigloc
+        if e1 - s1 > ssize:
+            #print "removing",bigloc
+            if args.oneregion is True:
+                args.oneregion = False
+                print >> sys.stderr, "splitting large region, submitting separate jobs for each locus"
+                
+            locs.remove(bigloc)
+            #print >>sys.stderr, range(s1, e1, ssize)
+            for s2 in range(s1, e1, ssize):
+                e2 = s2 + ssize
+                if e2 > e1: e2 = e1
+                if s2 > s1: s2 -= sflank
+                locs += [(c1, s2, e2)]
+                #print "adding", (c1, s2, e2)
+                
+            locs = sorted(locs)
+    return locs
+
+
 #variables / defaults / etc
 flank = args.discoSize/2
 if args.datadir is not None: DATADIR = args.datadir
@@ -228,6 +254,12 @@ if args.strLocs is not None:
         STRs += [(chrom,start,end)]
         locs += [(chrom,st,en)]
 
+print >>sys.stderr, "merging regions within "+str(flank)
+print >>sys.stderr, str(len(locs))+" --> ",
+locs = _merge_regions(locs,flank)
+if args.splitsize > 0:
+    locs = _split_regions(locs,args.splitsize,args.splitflank)
+            
 #consolidate locations into larger regions:
 if args.oneregion:
     regions = [",".join([(chrom+":"+str(st)+"-"+str(en)) for (chrom,st,en) in locs])]
@@ -235,9 +267,7 @@ else:
     regions = [(chrom+":"+str(st)+"-"+str(en)) for (chrom,st,en) in locs]
 # print sorted(locs)
 
-print >>sys.stderr, "merging regions within "+str(flank)
-print >>sys.stderr, str(len(locs))+" --> ",
-locs = _merge_regions(locs,flank)
+
 print >>sys.stderr, len(locs)
 print >>sys.stderr, locs
 ########
