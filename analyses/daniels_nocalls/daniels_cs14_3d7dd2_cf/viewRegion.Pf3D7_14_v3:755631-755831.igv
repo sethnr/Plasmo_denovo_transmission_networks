@@ -1,9 +1,9 @@
 new
 genome /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
 goto Pf3D7_14_v3:755631-755831
-load  SM-7LV8R_1_3D7_edgesFinal_c14.bam
 load  SM-7LV8R_1_DD2_edges_c14.bam
 load  SM-7LV8R_1_DD2_edgesFinal_c14.bam
 load  SM-7LV8V_1_3D7_edges_c14.bam
+load  SM-7LV8V_1_3D7_edgesFinal_c14.bam
 collapse
 snapshot daniels_cs14_3d7dd2_cf.png
