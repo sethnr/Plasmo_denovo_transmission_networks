@@ -7,7 +7,7 @@ OUTDIR="alignViewOut"
 
 while getopts "f:p:o:" opt; do
   case $opt in
-      r) REF=${OPTARG};;
+      f) REF=${OPTARG};;
       p) REGION=${OPTARG};;
       o) OUTDIR=${OPTARG};;
    \?) echo "Invalid option: -$OPTARG" >&2 ;;

@@ -5,5 +5,7 @@ load  SM-7LV8R_1_DD2_edges_c14.bam
 load  SM-7LV8R_1_DD2_edgesFinal_c14.bam
 load  SM-7LV8V_1_3D7_edges_c14.bam
 load  SM-7LV8V_1_3D7_edgesFinal_c14.bam
+load  -r
+load  /seq/references/Plasmodium_falciparum_3D7/v4/Plasmodium_falciparum_3D7.bam
 collapse
 snapshot daniels_cs14_3d7dd2_cf.png
