@@ -49,35 +49,67 @@ info='.'
 format="GT"
 
 def _write_var():
-    global seq1, seq2, st1, st2, en1, en2, lc1, lc2 #, inseq, delseq
+    global seq1, seq2, st1, st2, en1, en2, lc1, lc2, vartype, lastFR#, inseq, delseq
 #    print >>sys.stderr, i," ", lc1, st1, en1, inseq, lc2, st2, en2, delseq
-    print >>sys.stderr, i," ", lc1, st1, en1, seq1, lc2, st2, en2, seq2
+    print >>sys.stderr, i," ", lc1, st1, en1, seq1, lc2, st2, en2, seq2, vartype, lastFR
     #check if indel is in memory
 #    if inseq !='' or delseq != '':
 
     var2type='SNP'
+    pb1=''
+    pb2=''
     if vartype == 'SNP':
         pass
     else:
-        if vartype=='ins':
+        pb1 = _get_base(fasta1,lc1,st1-1)
+        pb2 = _get_base(fasta2,lc2,st2-1)
+        nb1 = _get_base(fasta1,lc1,en1+1)
+        nb2 = _get_base(fasta2,lc2,en2+2)
+        st2 = st2-1 # count both from 
+        st1 = st1-1 # previous base
+        
+        
+        rev=False
+
+        #SEQ 1 and 2, as in first VCF
+        seq1_1 = pb1+seq1
+        seq2_1 = pb1+seq2
+
+        if vartype=='ins' and lastFR==1:
             var2type='del'
-            st2 -=1
-            pb1 = _get_base(fasta1,lc1,st1)
-            pb2 = _get_base(fasta2,lc2,st2)
-#            pb2 = _get_prevbase(fasta2,lc2,st2)
-           
-        if vartype=='del':
+            en1 = en1-1
+            #SEQ 1 and 2, as in second VCF
+            seq1_2 = pb2+seq1
+            seq2_2 = pb2+seq2
+
+        if vartype=='ins' and lastFR==-1:
+            var2type='del'
+            en1=en1-1
+            rev=True
+            seq1_2 = pb2+revcomp(seq1)
+            seq2_2 = pb2+revcomp(seq2)
+
+        elif vartype=='del' and lastFR==1:
             var2type='ins'
-            st1 -= 1
-#            pb1 = _get_prevbase(fasta1,lc1,st1)
-            pb1 = _get_base(fasta1,lc1,st1)
-            pb2 = _get_base(fasta2,lc2,st2)
-        #else:
-        #    pb1=''
-        #    pb2=''
-            
-        seq1 = pb1+seq1
-        seq2 = pb2+seq2
+            en2=en2-1
+            seq1_2 = pb2+seq1
+            seq2_2 = pb2+seq2
+
+        elif vartype=='del' and lastFR==-1:
+            var2type='ins'
+            en2=en2-1
+            rev=True
+            seq1_2 = pb2+revcomp(seq1)
+            seq2_2 = pb2+revcomp(seq2)
+
+        if rev is True:
+            vartype += 'R'
+            var2type += 'R'
+        else:
+            vartype += 'F'
+            var2type += 'F'
+
+
 ##         if inseq != '':
 ##             delseq=pb1+delseq
 ##             inseq=pb2+inseq
@@ -87,9 +119,15 @@ def _write_var():
 ##             # try a different approach...
 ##             #line = vcf.model._Record(lc1, st1, '.', delseq, inseq, qual, filter, info, format,[1,2], [0,1])# [vcfname1,vcfname2])
 ##             #vcf1.write_record(line)
-    vcf1line = [lc1, st1, '.', seq1, seq2, qual, filter, "TYPE="+vartype, format, 0, 1]
+
+    if args.sanity:  #PUT IN INDEX LINE TO ALLOW REORDERING OF FILE
+        print >>vcf1,i,"\t",
+        print >>vcf2,i,"\t",
+        
+    
+    vcf1line = [lc1, st1, '.', seq1_1, seq2_1, qual, filter, "TYPE="+vartype, format, 0, 1]
     print >>vcf1, "\t".join(map(str,vcf1line))
-    vcf2line = [lc2, st2, '.', seq2, seq1, qual, filter, "TYPE="+var2type, format, 0, 1]
+    vcf2line = [lc2, st2, '.', seq2_1, seq1_1, qual, filter, "TYPE="+var2type, format, 0, 1]
     print >>vcf2, "\t".join(map(str,vcf2line))
             
 ##         elif delseq != '':
@@ -100,35 +138,41 @@ def _write_var():
 ##             print >>vcf1, "\t".join(map(str,vcf1line))
 ##             vcf2line = [lc2, st2, '.', inseq, delseq, qual, filter, "TYPE=ins", format, 0, 1]
 ##             print >>vcf2, "\t".join(map(str,vcf2line))
-
-    varflank1 = getseq(fasta1,lc1,st1-10,st1-1).lower()+seq1+getseq(fasta1,lc1,en1+1,en1+10).lower()
-    varflank2 = getseq(fasta2,lc2,st2-10,st2-1).lower()+seq2+getseq(fasta2,lc2,en2+1,en2+10).lower()
+    
+    fsize=20
+    varflank1_1 = getseq(fasta1,lc1,st1-fsize,st1-1).lower()+seq1_1+getseq(fasta1,lc1,en1+1,en1+fsize).lower()
+    varflank2_1 = getseq(fasta2,lc2,st2-fsize,st2-1).lower()+seq2_1+getseq(fasta2,lc2,en2+1,en2+fsize).lower()
+    varflank1_2 = getseq(fasta1,lc1,st1-fsize,st1-1).lower()+seq1_2+getseq(fasta1,lc1,en1+1,en1+fsize).lower()
+    varflank2_2 = getseq(fasta2,lc2,st2-fsize,st2-1).lower()+seq2_2+getseq(fasta2,lc2,en2+1,en2+fsize).lower()
 
     if args.sanity:
-        print >>vcf1, "\t".join(map(str,[lc1,st1,en1,st2,en2,vartype,buff,"vcf",
-                                         varflank1,
-                                         varflank2,
+        print >>vcf1, "\t".join(map(str,[i, lc1,st1,en1,st2,en2,vartype,buff,"vcf",
+                                         varflank1_1,
+                                         varflank2_1,
                                          ]))
-        print >>vcf1, "\t".join(map(str,[lc1,st1,en1,st2,en2,vartype,buff,"seq",
-                                         getseq(fasta1,lc1,st1-10,en1+10).lower(),
-                                         getseq(fasta2,lc2,st2-10,en2+10).lower(),
+        print >>vcf1, "\t".join(map(str,[i, lc1,st1,en1,st2,en2,vartype,buff,"seq",
+                                         getseq(fasta1,lc1,st1-fsize,en1+fsize).lower(),
+                                         #getseq(fasta2,lc2,st2-fsize,en2+fsize).lower(),
                                          ]))
-        print >>vcf1, "\t".join(map(str,[lc1,st1,en1,st2,en2,vartype,buff,"vcfrev",
-                                         revcomp(varflank2),
-                                         revcomp(varflank1),
-                                         ]))
+ #       print >>vcf1, "\t".join(map(str,[lc1,st1,en1,st2,en2,vartype,buff,"vcfrev",
+ #                                        revcomp(varflank2_1),
+ #                                        revcomp(varflank1_1),
+ #                                        ]))
+        print >>vcf1,""
         
-        print >>vcf2, "\t".join(map(str,[lc2,st2,en2,st1,en1,var2type,buff,"vfl",
-                                         varflank2,
-                                         varflank1,
+        print >>vcf2, "\t".join(map(str,[i, lc2,st2,en2,st1,en1,var2type,buff,"vfl",
+                                         varflank2_2,
+                                         varflank1_2,
                                          ]))
-        print >>vcf2, "\t".join(map(str,[lc2,st2,en2,st1,en1,var2type,buff,"seq",
-                                         getseq(fasta2,lc2,st2-10,en2+10).lower(),
-                                         getseq(fasta1,lc1,st1-10,en1+10).lower()]))
-        print >>vcf2, "\t".join(map(str,[lc2,st2,en2,st1,en1,var2type,buff,"vflrev",
-                                         revcomp(varflank1),
-                                         revcomp(varflank2),
+        print >>vcf2, "\t".join(map(str,[i, lc2,st2,en2,st1,en1,var2type,buff,"seq",
+                                         getseq(fasta2,lc2,st2-fsize,en2+fsize).lower(),
+                                         #getseq(fasta1,lc1,st1-fsize,en1+fsize).lower()
                                          ]))
+#        print >>vcf2, "\t".join(map(str,[lc2,st2,en2,st1,en1,var2type,buff,"vflrev",
+#                                         revcomp(varflank1_1),
+#                                         revcomp(varflank2_1),
+#                                         ]))
+        print >>vcf2,""
 
 
     #if args.sanity: print >>vcf1, "\t".join(map(str,[lc1,st1,en1,vartype]))
@@ -275,7 +319,7 @@ for mumm in mummer:
     elif(len(mumm)<10):
         pass
     else:  
-        (p1, s1, s2, p2, buff, dist, fr, this, c1, c2) = mumm
+        (p1, s1, s2, p2, buff, dist, this, fr, c1, c2) = mumm
         p1 = int(p1); p2 = int(p2)
 
         #if something is in buffer
@@ -368,6 +412,6 @@ for mumm in mummer:
 ##             seq1 += s1
 ##             seq2 += s2
         nearestSNP=buff
-        lastFR=fr
+        lastFR=int(fr)
 i=-1
 _write_var()
