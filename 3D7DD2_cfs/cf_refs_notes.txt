@@ -5,3 +5,62 @@ nucmer -c 10000 -o -p nucmer.3D7vIT.c10k Pf3D7_v4.fasta PfIT_v3.fasta
 
 #as above but using non-unique seq
 nucmer -c 10000 -o -p nucmer.3D7vIT.c10kMAX --maxmatch Pf3D7_v4.fasta PfIT_v3.fasta
+
+bsub -J nucmerMax -o out/nucmerMax.o -e out/nucmerMax.e \
+     -R 'select[mem>12000] rusage[mem=12000]  span[ptile=1]' \
+     -M 12000 -n 1 \
+     nucmer -c 10000 -o -p nucmer.3D7vIT.c10kMAX --maxmatch Pf3D7_v4.fasta PfIT_v3.fasta
+
+
+
+
+bsub -J nucmerMax -o out/nucmerMax.o -e out/nucmerMax.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=1]' \
+     -M 8000 -n 1 \
+     nucmer -c 10000 -o -p nucmer.3D7vIT.c10k.b20k --nooptimize -b 20000 Pf3D7_v4.fasta PfIT_v3.fasta
+
+
+bsub -J nucmerMax -o out/nucmerMax.o -e out/nucmerMax.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=1]' \
+     -M 8000 -n 1 \
+     nucmer -c 2000 -o -p nucmer.3D7vIT.c2k.b20k --nooptimize -b 20000 Pf3D7_v4.fasta PfIT_v3.fasta
+
+#find regions of high homology between 3D7 IT for 450-750kb region:
+more nucmer.3D7vIT.c2k.b20k.coords | grep Pf3D7_14
+-->
+  410153   496782  |   440616   526815  |    86630    86200  |    99.17  | Pf3D7_14_v3	PfIT_14_v3
+  496647   522027  |   526440   551728  |    25381    25289  |    99.02  | Pf3D7_14_v3	PfIT_14_v3
+  522000   720053  |   552032   749212  |   198054   197181  |    99.04  | Pf3D7_14_v3	PfIT_14_v3
+  719964   757478  |   749204   786569  |    37515    37366  |    99.00  | Pf3D7_14_v3	PfIT_14_v3
+  757830   779518  |   786505   808168  |    21689    21664  |    99.15  | Pf3D7_14_v3	PfIT_14_v3
+
+#get variants in region
+show-snps -TC nucmer.3D7vIT.c2k.b20k.delta > nucmer.3D7vIT.c2k.b20k.snps.txt
+
+
+
+
+
+#fake NGS sequence (muration rate, R=0, read lengths 250)
+get no of reads for N depth:
+fragment length / 250 * depth
+300000 / 250 * 50 = 60000 (per read file)
+
+samtools faidx $WORK/refs/Pf3D7_v3.fasta Pf3D7_07_v3:450000-750000 > Pf3D7_07_v3:450000-750000.fasta
+wgsim -r 0 -1250 -2250 Pf3D7_07_v3\:450000-750000.fasta Pf3D7_07_v3\:450000-750000.r1 Pf3D7_07_v3\:450000-750000.r2
+
+
+
+#writing mummer to VCF converter:
+#get one example of each SNP (in and del) for each alignment
+grep -e 91019 -e 33737 -e 23947 -e 5698 -e SUB -e fasta -e 91014 -e 14212  *TEST.snps > tinytest.snps
+
+
+python mummer2vcf.py -m tinytest.snps --sanity
+
+#get all vcfs and reorder by SNP
+cat *vcf | sort -k1,1g -k2,2 -k4,4g
+
+do final run (whole genome):
+
+python mummer2vcf.py -m nucmer.3D7vIT.c2k.b20k.snps --vcf 3D7vIT.c2K.b20K.vars

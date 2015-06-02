@@ -67,3 +67,27 @@ done
 # igv *bam Pf3D7_14_v3:754000-757000
 #make igv file (load all bams and go to region)
 igv -b viewSection.igv
+
+#WRITE SCRIPT TO DO THE ABOVE:
+
+#../../alignAndView.sh -o daniels_cs14_3d7dd2_cf -p Pf3D7_14_v3:754000-757000 SM*fasta
+../../alignAndView.sh -o daniels_cs14_3d7dd2_cf -p Pf3D7_14_v3:755631-755831 SM*fasta
+
+
+compare to pileup, check variant in same place:
+samtools mpileup -r Pf3D7_14_v3:755631-755831 SM-7LV8R_1_DD2/SM-7LV8R_1_Pf3D7_14_v3\:754731-756731.bam -o SM-7LV8R_1_DD2.Pf3D7_14_v3\:754731-756731.mpileup
+samtools mpileup -r Pf3D7_14_v3:755631-755831 SM-7LV8V_1_3D7/SM-7LV8V_1_Pf3D7_14_v3\:754731-756731.bam -o SM-7LV8V_1_3D7.Pf3D7_14_v3\:754731-756731.mpileup
+
+#definitely different in ref:
+sredmond@node1388:/seq/plasmodium/sredmond/pfdisco/analyses/daniels_nocalls$ grep 755731 *mpileup
+SM-7LV8R_1_DD2.Pf3D7_14_v3:754731-756731.mpileup:Pf3D7_14_v3	755731	N	64	TTtTttttTttTttTTTTttTTTtTtTTTTTTtTTtttttTtttTtTTTTtTTttTtTTtttTT	EhHEHFIIHHIgHHCpFnHIHIHHHG0HHqIC1HHGFIIGHH1IIEGDIGGIEIIHDHIH@.GI
+SM-7LV8V_1_3D7.Pf3D7_14_v3:754731-756731.mpileup:Pf3D7_14_v3	755731	N	81	g$gGGgGgGgggGGgggGGGgGGGGGGGggGGGGGgGGgGGgGGGGGGGggGGgGGGGGGGAgGggggGGGGgGGGGGGgGG	D@HFIpICII<cq@EHGESIkIHCoqdIC0ICIoI0HGHqIIh@IqIHIHEIEIHIIHII/IIIIH1IIIIHHHIIH@1II
+
+
+#run discovar against my (3d7_v3) reference, see where aligns lie:
+runDiscovarVar.sh -n 1 -m 2 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ SM-7LV8R 1 Pf3D7_14_v3:754731-756731
+#run discovar against aligned (from bam header) reference, see where aligns lie:
+runDiscovarVar.sh -n 1 -m 2 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ -f /seq/references/Plasmodium_falciparum_3D7/v4/Plasmodium_falciparum_3D7.fasta  SM-7LV8R 1 Pf3D7_14_v3:754731-756731
+
+
+../../alignAndView.sh -o daniels_cs14_3d7dd2_cf -p Pf3D7_14_v3:755631-755831 SM*fasta -r 

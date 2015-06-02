@@ -216,20 +216,20 @@ head -n2 ../samples/picard_disco1_150504.tab.txt > test.samples
    bsub -e out/SM-7LV8${SET}_${LANE}.e  -o out/SM-7LV8${SET}_${LANE}.o -J SM-7LV8${SET}_${LANE} \
      	     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
 
-python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
 
 
 cd $DISCO1/disco_daniels_3d7
-python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
 
 cd $DISCO1/disco_halfmeg
-python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 8  -r  Pf3D7_07_v3:450000-750000 --shallow --splitregions -Q hour
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 8  -r  Pf3D7_07_v3:450000-750000 --shallow --splitregions -Q hour
 
-python ../disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 6000 --nodes 4  -r  Pf3D7_07_v3:450000-750000 --shallow --splitregions -Q hour
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 6000 --nodes 4  -r  Pf3D7_07_v3:450000-750000 --shallow --splitregions -Q hour
 
 
 cd $DISCO1/disco_green_daniels
-python ../disco_callSTRsAndSummarise.py  -s ../samples/picard_disco1_150504.tab.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed -t ../STRfiles/greenhouse_primer_locations.bed --shallow --splitregions -Q hour
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/picard_disco1_150504.tab.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed -t ../STRfiles/greenhouse_primer_locations.bed --shallow --splitregions -Q hour
 
 
 
@@ -293,7 +293,39 @@ blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta  -i SNPfiles/daniels_primers.fas
 #change names to MAL1-style
 perl -i -pe 's/^Pf3D7_0*(\d+)_v3/MAL$1/' SNPfiles/Daniels_SNPs.bed
 perl -i -pe 's/\>.*(MAL\d+).*/\>$1/' /seq/plasmodium/sredmond/refs/PfalciparumGenomic_plasmoDB-5.0.fasta
+python getSNPflank.py --fasta /seq/plasmodium/sredmond/refs/PfalciparumGenomic_plasmoDB-5.0.fasta -n SNPfiles/Daniels_SNPs.bed > SNPfiles/Daniels_SNPs.flanks.fasta -d40
+blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta \
+	 -i SNPfiles/Daniels_SNPs.flanks.fasta \
+	 -m 8 -e 1e-10 -K1  > SNPfiles/daniels_primers.flanks.blastout
+cat SNPfiles/daniels_primers.flanks.blastout | sort -k2,2 -k9,9g | perl -ne 'm/MAL(\d+).*Pf3D7_0*(\d+)/; print $_ if $1==$2' | wc -l 
+cat SNPfiles/daniels_primers.flanks.blastout | sort -k2,2 -k9,9g | perl -ne 'm/MAL(\d+).*Pf3D7_0*(\d+)/; print $_ if $1==$2'
+
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/picard_disco1_150504.tab.txt  --mem 3000 --nodes 1  -n ../SNPfiles/Daniels_SNPs.v4.bed  --shallow --splitregions -Q hour
 
 
-python ../disco_callSTRsAndSummarise.py  -s ../samples/picard_disco1_150504.tab.txt  --mem 3000 --nodes 1  -n ../SNPfiles/Daniels_SNPs.v4.bed -t ../STRfiles/greenhouse_primer_locations.bed --shallow --splitregions -Q hour
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../Daniels_SNPs.bed --shallow --splitregions -Q hour
 
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../SNPfiles/Daniels_SNPs.v4.bed  --shallow --splitregions -Q hour
+
+#HALFMEG
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 6  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest
+
+#HALFMEG SPLIT
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 6  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest --dryrun --splitsize 50000 --splitregions
+
+#wrote script to get failed jobs, resubmit all
+perl  getFailedDiscovarJobs.pl 3D7DD2 > resub_3D7DD2.sh;
+chmod 755 resub_3D7DD2.sh
+cd 3D7DD2; ../resub.sh
+JOBS=`bjobs | grep hour | cut -f 1,1 -d\ `
+bjobs $JOBS
+
+
+#move jobs from working root into 3D7 folder
+for FOLDER in SM*; do cp ${FOLDER}/* 3D7DD2/${FOLDER}/; done
+
+
+bsub -J daniels_3D7 -o out/daniels_3D7.0 -e out/daniels_3D7.e \
+     -R 'select[mem>3000] rusage[mem=3000]  span[ptile=1]' \
+     -M 3000 -n 1 \
+     python ../pipeline/disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../SNPfiles/Daniels_SNPs.v4.bed  --discosucks --shallow --splitregions -Q flower
