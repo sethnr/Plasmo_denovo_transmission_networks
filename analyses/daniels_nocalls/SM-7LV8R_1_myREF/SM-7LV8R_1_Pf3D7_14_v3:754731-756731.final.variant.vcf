@@ -1,0 +1,12 @@
+##fileformat=VCFv4.1
+##DiscovarRegion=<CHR="Pf3D7_14_v3",START=754731,END=756731>
+##INFO=<ID=BL,Number=1,Type=Integer,Description="Discovar variant block">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##FORMAT=<ID=GP,Number=G,Type=Float,Description="phred-scaled genotype posterior probabilities">
+##FORMAT=<ID=REFP,Number=1,Type=Float,Description="phred-scaled probability that reference exists">
+##FORMAT=<ID=ALTP,Number=A,Type=Float,Description="phred-scaled probability that alternatives exist">
+##SAMPLE=<ID=SM-7LV8R,Description="unphased representation of DISCOVAR variant ouput for dataset SM-7LV8R">
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	SM-7LV8R
+Pf3D7_14_v3	755105	.	G	T	2022	.	BL=1	GT:GP:REFP:ALTP	1/1:0,0,2022:0:2022
+Pf3D7_14_v3	755835	.	T	TTATATATA	579	.	BL=1	GT:GP:REFP:ALTP	1/1:0,0,579:0:579
+Pf3D7_14_v3	755959	.	G	GAAAAAAAA,GAAAAAAAAAAAAAAAAAAAAAAAAAAAA	100	.	BL=2	GT:GP:REFP:ALTP	0/2:0,0,0,50,0,4.34297e-05:50:0,100

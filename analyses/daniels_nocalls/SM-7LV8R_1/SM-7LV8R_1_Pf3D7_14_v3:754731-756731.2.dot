@@ -1,0 +1,57 @@
+digraph G {
+
+node [width=0.1,height=0.1,fontsize=10,shape=point];
+edge [fontsize=12,penwidth=1,arrowsize=1,fontname=Arial];
+margin=1.0;
+rankdir=LR;
+labeljust=l;
+margin=0;
+
+subgraph cluster0 {
+color=white;
+0 -> 3 [minlen=4,color=red,label="41 (1.2 kb)"];
+1 -> 0 [minlen=1,color=gray,label="0"];
+1 -> 0 [minlen=1,color=gray,label="1"];
+2 -> 1 [minlen=2,color=black,label="2"];
+4 -> 2 [minlen=1,color=gray,label="3"];
+4 -> 2 [minlen=1,color=gray,label="4"];
+5 -> 4 [minlen=1,color=gray,label="5"];
+6 -> 5 [minlen=2,color=black,label="6"];
+6 -> 11 [minlen=1,color=gray,label="11"];
+7 -> 5 [minlen=1,color=gray,label="7"];
+8 -> 6 [minlen=1,color=gray,label="8"];
+8 -> 10 [minlen=1,color=gray,label="16"];
+8 -> 16 [minlen=1,color=gray,label="19"];
+9 -> 7 [minlen=1,color=gray,label="9"];
+10 -> 7 [minlen=1,color=gray,label="10"];
+11 -> 15 [minlen=1,color=gray,label="17"];
+11 -> 15 [minlen=1,color=gray,label="18"];
+12 -> 8 [minlen=1,color=gray,label="12"];
+12 -> 21 [minlen=1,color=gray,label="26"];
+13 -> 9 [minlen=1,color=gray,label="13"];
+14 -> 9 [minlen=1,color=gray,label="14"];
+14 -> 10 [minlen=1,color=gray,label="15"];
+15 -> 16 [minlen=1,color=gray,label="24"];
+16 -> 21 [minlen=1,color=gray,label="25"];
+17 -> 12 [minlen=1,color=gray,label="20"];
+17 -> 27 [minlen=1,color=gray,label="33"];
+18 -> 13 [minlen=1,color=gray,label="21"];
+18 -> 24 [minlen=1,color=gray,label="35"];
+19 -> 13 [minlen=1,color=gray,label="22"];
+20 -> 14 [minlen=1,color=gray,label="23"];
+20 -> 25 [minlen=1,color=gray,label="36"];
+21 -> 27 [minlen=1,color=gray,label="32"];
+22 -> 17 [minlen=1,color=gray,label="27"];
+22 -> 28 [minlen=1,color=gray,label="40"];
+23 -> 18 [minlen=2,color=black,label="28",taillabel="contig 0",labelangle=180,weight=10000,labeldistance=5,labelfontsize=18,labelfontname="Times-Bold"];
+24 -> 19 [minlen=1,color=gray,label="29"];
+24 -> 26 [minlen=1,color=gray,label="38"];
+25 -> 19 [minlen=1,color=gray,label="30"];
+26 -> 20 [minlen=1,color=gray,label="31"];
+26 -> 22 [minlen=1,color=gray,label="34"];
+27 -> 28 [minlen=1,color=gray,label="39"];
+28 -> 25 [minlen=1,color=gray,label="37"];
+}
+
+}
+#done
