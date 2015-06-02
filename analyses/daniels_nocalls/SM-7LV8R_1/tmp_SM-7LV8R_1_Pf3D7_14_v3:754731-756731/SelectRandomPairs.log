@@ -1,0 +1,14 @@
+Wed May 27 14:40:29 2015: loading pairing info
+Wed May 27 14:40:29 2015: loading bases
+Wed May 27 14:40:29 2015: shuffling pairs ids
+
+total length of selected reads: 208000
+pairs in input:                 416
+pairs selected:                 416
+
+Wed May 27 14:40:29 2015: saving pairs
+Wed May 27 14:40:29 2015: saving correspondence map (select)
+Wed May 27 14:40:29 2015: saving bases
+Wed May 27 14:40:29 2015: loading quals
+Wed May 27 14:40:29 2015: saving quals
+Wed May 27 14:40:29 2015: done selecting random pairs
