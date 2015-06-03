@@ -16,6 +16,7 @@ from string import *
 #SET VARS
 PIPELINE='/seq/plasmodium/sredmond/pfdisco/pipeline'
 RUNDISCO=PIPELINE+'/runDiscovarVar.sh'
+RUNJOBARR=PIPELINE+'/runJobInArray.sh'
 
 DATADIR = '/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/'
 RUNDIR = os.getcwd()
@@ -38,6 +39,7 @@ parser.add_argument('-i','--defaultSize', action="store", dest='defSize', type=i
 parser.add_argument('--dryrun', action="store_true", dest='dryrun', help='run through sample parsing and folder creation without doing anything', default=False)
 parser.add_argument('--discosucks', action="store_true", dest='nobsub', help='run through without bsubbing any disco jobs', default=False)
 parser.add_argument('--shallow', action="store_true", dest='nodepth', help='run through sample parsing and folder creation without doing anything', default=False)
+parser.add_argument('--interactive', action="store_true", dest='interactive', help='monitor jobs as being run (shell must remain open to finish analysis), default=[fire-and-forget]', default=False)
 
 
 #DISCO INPUTS
@@ -45,6 +47,7 @@ parser.add_argument('-f','--ref', action="store", dest='refFasta', type=str, hel
 parser.add_argument('-r','--region', action="store", dest='region', type=str, help='region to call exhaustively across', nargs='?', default=None)
 parser.add_argument('--mem', action="store", dest='mem', type=int, help='memory to use for discovar [2000]', nargs='?', default=2000)
 parser.add_argument('--nodes', action="store", dest='nodes', type=int, help='nodes to use for discovar [1]', nargs='?', default=1)
+parser.add_argument('--maxconc', action="store", dest='maxconc', type=int, help='maximum number of discovar jobs to run at once [20]', nargs='?', default=20)
 parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help='queue for LSF jobs [bhour]', nargs='?', default="bhour")
 parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
 parser.add_argument('--splitsize', action="store", dest='splitsize', type=int, default=-1, help='split regions larger than N [-1]')
@@ -54,20 +57,41 @@ parser.add_argument('-W','--jobtime', action="store", dest='jobtime', type=str, 
 
 args = parser.parse_args()
 
+def _subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1):
+    comlog = "sub_commands.txt"
+    comlogf = open(comlog,'w')
+    
+    for command in joblist:
+        print >>sys.stderr, command
+        print >>comlogf, command
+    
+        #(jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
+        #jobs += [jobNo]
+        #jobs[jobNo] = (seqid+"_"+str(lane), region)
+    comlogf.close()
+    arrCommand=RUNJOBARR+" "+comlog
+    jobarrname = jobname+"["+str(1)+"-"+str(len(joblist))+"]"
+    outname = jobname+".%I"
+    if maxconc > 0: jobarrname += "%"+str(maxconc)
+    (jobNo, subdcommand) = _subjob(arrCommand, jobarrname, mem, nodes, queue, jobtime, dependency, outname)
+    return (jobNo, subdcommand)
+#    (jobNo, subdcommand) = _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime, dependency):
 
-def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None):
+
+def _subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, outname=None):
     resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
+    if outname is None: outname=jobname
     bsub_command = ["bsub",
                     "-J", jobname,
-                    "-e", RUNDIR+"/out/"+jobname+".e",
-                    "-o", RUNDIR+"/out/"+jobname+".o",
+                    "-e", RUNDIR+"/out/"+outname+".e",
+                    "-o", RUNDIR+"/out/"+outname+".o",
 #                    "-e", jobname+".e",
 #                    "-o", jobname+".o",
                     "-q", queue,
                     "-R", resource,
                     "-M", str(mem),
                     "-n", str(nodes)]
-
+    if dependency is not None: bsub_command += ['-w',dependency]
     if jobtime is not None: bsub_command += ['-W',jobtime]
     bsub_command += [commandline]
     
@@ -289,8 +313,10 @@ failjobs = []
 datasets = set([dataset for (seqid, lane, dataset) in samples])
 print >>sys.stderr, datasets
 
+
 sublog = open("submitted.log",'w')
 killscript = open("killAll.sh",'w')
+commands = []
 
 for thisdataset in datasets:
     samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
@@ -302,6 +328,26 @@ for thisdataset in datasets:
 #    discovars = " NUM_THREADS="+str(args.nodes)
 #    discovars = " MAX_MEMORY_GB="+str(ceil(args.mem/1000))
     
+##     for (seqid, lane, dataset) in samplesInDataset:
+##         for region in regions:
+##             command = " ".join([RUNDISCO,
+##                                 "-n", str(args.nodes),
+##                                 "-m", str(int(ceil(args.mem/1000))-MEMORYGAP),
+##                                 "-d", DATADIR,
+##                                 seqid, lane, region])
+##             if args.oneregion:
+##                 name = seqid+"_"+lane
+##             else:
+##                 name = seqid+"_"+lane+"_"+region
+            
+##             (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
+##             #jobs += [jobNo]
+##             jobs[jobNo] = (seqid+"_"+str(lane), region)
+##             print >>sublog, '#',jobNo
+##             print >>sublog, repr(subd_command)
+##             print >>killscript,"bkill ",jobNo
+##             print seqid, lane, name, dataset,
+
     for (seqid, lane, dataset) in samplesInDataset:
         for region in regions:
             command = " ".join([RUNDISCO,
@@ -309,35 +355,45 @@ for thisdataset in datasets:
                                 "-m", str(int(ceil(args.mem/1000))-MEMORYGAP),
                                 "-d", DATADIR,
                                 seqid, lane, region])
-            if args.oneregion:
-                name = seqid+"_"+lane
-            else:
-                name = seqid+"_"+lane+"_"+region
-            
-            (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
-            #jobs += [jobNo]
-            jobs[jobNo] = (seqid+"_"+str(lane), region)
-            print >>sublog, '#',jobNo
-            print >>sublog, repr(subd_command)
-            print >>killscript,"bkill ",jobNo
-            print seqid, lane, name, dataset, jobNo
+            commands += [command]
 
+    #MAKE THIS CODE BLOCK INTO SUB_ARRAY FUNCTION:
+##     comlog = "sub_commands.txt"
+##     comlogf = open(comlog,'w')
+    
+##     for command in commands:
+##         print >>sys.stderr, command
+##         print >>comlogf, command
+    
+##         #(jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
+##         #jobs += [jobNo]
+##         #jobs[jobNo] = (seqid+"_"+str(lane), region)
+##     comlogf.close()
+##    arrCommand=[RUNJOBARR, comlog]
+    jobname = thisdataset+"_disco"
+    (jobNo, subdcommand) = _subarray(commands, jobname, args.mem, args.nodes, args.queue, args.jobtime, maxconc=args.maxconc)
+    #return jobNo
+
+    print >>sublog, '#',jobNo
+    print >>sublog, repr(subdcommand)
+    print >>killscript,"bkill ",jobNo
+    #print seqid, lane, name, dataset, jobNo
+    jobs[thisdataset] = jobNo
     os.chdir("../")
-sublog.close()
-killscript.close()
+    sublog.close()
+    killscript.close()
 os.chmod('killAll.sh',000755)
 
-faillog = open("failed.log",'w',0)
-        
-_waitdone([job for job in jobs], faillog)
 
-if len(failjobs) > 0:
-#    faillog = open("failed.log",'w')
-    for job in failjobs:
-        print >>faillog, '#',job
-        print >>faillog, jobs[job]
-
-faillog.close()
+#if running interactively, wait for jobs to finish and monitor
+if args.interactive is True:
+    faillog = open("failed.log",'w',0)
+    _waitdone([jobs[dataset] for dataset in jobs], faillog)
+    if len(failjobs) > 0:
+        for job in failjobs:
+            print >>faillog, '#',job
+            print >>faillog, jobs[job]
+    faillog.close()
 
 
 ########
@@ -347,8 +403,15 @@ faillog.close()
 # make summary plots/files/graphs for samples in tab-delim file
 # (subdivide into categories based on tab-delim file
 
+#reopen log files
+sublog = open("submitted.log",'a')
+killscript = open("killAll.sh",'a')
+
+
 for dataset in datasets:
     print >>sys.stderr, "getting bam depths ",dataset
+    discoFinished="\"done("+jobs[dataset]+")\""
+    
     if not args.nodepth:
         for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
             os.system('samtools depth -r '+loc+' '+dataset+'/*/*bam > '+dataset+'_'+loc+'.depth')
@@ -368,12 +431,26 @@ for dataset in datasets:
                                          SNPlocs,
                                          dataset+'/*/*filtered.vcf.gz'
                                          ])
-            subprocess.check_call(['bash',
+            if args.interactive is True:
+                # following code block for interactive running, for jobarray skip to next phase
+                subprocess.check_call(['bash',
                                    PIPELINE+'/mergeVcfSNPs.sh',
                                     dataset,
                                     SNPlocs,
                                     dataset+'/*/*filtered.vcf.gz'
                                     ])
+            else:
+                SNPcommand = " ".join(['bash',
+                                   PIPELINE+'/mergeVcfSNPs.sh',
+                                    dataset,
+                                    SNPlocs,
+                                    dataset+'/*/*filtered.vcf.gz'
+                                    ])
+                name = dataset+"_mergeSNPs";
+                (jobNo, subdcommand) = _subjob(SNPcommand, name, args.mem, args.nodes, args.queue, args.jobtime, dependency=discoFinished)
+                print >>sublog, '#',jobNo
+                print >>sublog, repr(subdcommand)
+                print >>killscript,"bkill ",jobNo
 
     # parse bed file STRs
     if args.strLocs is not None:
@@ -386,16 +463,33 @@ for dataset in datasets:
                                          STRlocs,
                                          dataset+'/*/*filtered.vcf.gz'
                                          ])
-            subprocess.check_call(['bash',
+            if args.interactive is True:
+                #write an interactive version soon!
+                pass
+            else:
+
+                STRcommand1 = " ".join(['bash',
                                    PIPELINE+'/mergeVcfIndels.sh',
                                     dataset,
                                     STRlocs,
                                     dataset+'/*/*filtered.vcf.gz'
                                     ])
-            subprocess.check_call(['python',PIPELINE+'/getSTRlengthFromVCF.py',
+            
+                name = dataset+"_mergeSTRs";
+             
+                (jobNo1, subdcommand) = _subjob(STRcommand1, name, args.mem, args.nodes, args.queue, args.jobtime, dependency=discoFinished)
+                print >>sublog, '#',jobNo1
+                print >>sublog, repr(subdcommand)
+                print >>killscript,"bkill ",jobNo1
+                STRcommand2 = " ".join(['python',PIPELINE+'/getSTRlengthFromVCF.py',
                                     '-v', dataset+'_STRs.vcf',
                                     '-o', dataset+'_STRs.calls'
                                     ])
+                (jobNo, subdcommand) = _subjob(STRcommand2, name, args.mem, args.nodes, args.queue, args.jobtime, dependency=jobNo2)
+                print >>sublog, '#',jobNo2
+                print >>sublog, repr(subdcommand)
+                print >>killscript,"bkill ",jobNo2
+            
         else: pass
 
 
