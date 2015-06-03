@@ -329,3 +329,10 @@ bsub -J daniels_3D7 -o out/daniels_3D7.0 -e out/daniels_3D7.e \
      -R 'select[mem>3000] rusage[mem=3000]  span[ptile=1]' \
      -M 3000 -n 1 \
      python ../pipeline/disco_callSTRsAndSummarise.py  -s ../samples/3D7DD2.samples.txt  --mem 3000 --nodes 1  -n ../SNPfiles/Daniels_SNPs.v4.bed  --discosucks --shallow --splitregions -Q flower
+
+
+#get job array running:
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 6  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest --dryrun --splitsize 50000 --splitregions
+
+
+
