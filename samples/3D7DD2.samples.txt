@@ -1,0 +1,16 @@
+SM-7LV8O	1	3D7DD2	Dd2-Fidock1	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8O/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8O	2	3D7DD2	Dd2-Fidock1	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8O/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8P	1	3D7DD2	Dd2-Fidock2	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8P/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8P	2	3D7DD2	Dd2-Fidock2	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8P/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8Q	1	3D7DD2	Dd2-Fidock3	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8Q/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8Q	2	3D7DD2	Dd2-Fidock3	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8Q/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8R	1	3D7DD2	Dd2-2D4	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8R/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8R	2	3D7DD2	Dd2-2D4	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8R/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8S	1	3D7DD2	3d7-Goldberg1	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8S/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8S	2	3D7DD2	3d7-Goldberg1	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8S/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8T	1	3D7DD2	3d7-Goldberg2	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8T/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8T	2	3D7DD2	3d7-Goldberg2	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8T/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8U	1	3D7DD2	3d7-Goldberg3	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8U/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8U	2	3D7DD2	3d7-Goldberg3	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8U/H2MGCBCXX.2.aligned.duplicates_marked.bam
+SM-7LV8V	1	3D7DD2	3d7-WirthLab	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/1/SM-7LV8V/H2MGCBCXX.1.aligned.duplicates_marked.bam
+SM-7LV8V	2	3D7DD2	3d7-WirthLab	/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/2/SM-7LV8V/H2MGCBCXX.2.aligned.duplicates_marked.bam
