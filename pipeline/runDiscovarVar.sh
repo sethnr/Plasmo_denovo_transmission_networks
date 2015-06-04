@@ -21,14 +21,17 @@
 NODES=1
 MEMORY=2
 SPLIT=0
+REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
 
-while getopts "d:f:m:n:s" opt; do
+while getopts "d:f:m:n:s:B:N:" opt; do
   case $opt in
     d) DATA=${OPTARG} ;;
     f) REFERENCE=$OPTARG ;;
     m) MEMORY=$OPTARG ;;
     n) NODES=$OPTARG ;;
     s) SPLIT=1;;
+    B) BAMFILE=$OPTARG;;
+    N) NAME=$OPTARG;;
 #    s) SET=$OPTARG ;;
 #    l) LANE=$OPTARG ;;
 #    r) REGION=$OPTARG ;;
@@ -38,17 +41,31 @@ done
 
 echo "OPTIND - " $OPTIND
 
-SET=${@:$OPTIND:1}
-LANE=${@:$OPTIND+1:1}
-REGION=${@:$OPTIND+2:1}
-
-
+if [ -z "$BAMFILE" ]; then
+    SET=${@:$OPTIND:1}
+    LANE=${@:$OPTIND+1:1}
+    REGION=${@:$OPTIND+2:1}
 #only get one bam for all regions
 #put all regions in same file
-REFNAME=${SET}_${LANE}
+    REFNAME=${SET}_${LANE}
 #IF NOT SPLITTING REGIONS, THEN NAME = SET+NAME
-NAME=${SET}_${LANE}
+    NAME=${SET}_${LANE}
 #OTHERWISE ADD REGION TO END
+    BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
+
+elif [ -z "$NAME" ]; then
+     echo "NAME [-N] must be set if BAMFILE [-B] is set"
+     exit 1
+else
+     echo "BAMFILE set: "${BAMFILE}
+     echo "NAME set: "${NAME}
+     REFNAME=$NAME
+     SET=$NAME
+     REGION=${@:$OPTIND:1}
+
+fi
+
+
 if [[ $SPLIT==1 ]]; then NAME=${NAME}_$REGION; fi
 
 #if [[ $SPLIT==1 ]]; then REFNAME=${NAME}_$REGION; fi
@@ -83,7 +100,6 @@ fi
 if [[ ! -f ${NAME}.final.variant.filtered.vcf ]];
 then
     echo "LINK/INDEX BAM..."
-    BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
 
 #check if bam index file already present
     ls ${NAME}.bam.bai
@@ -91,7 +107,8 @@ then
     if [[ $rc != 0 ]];
 	then
 	ln -s $BAMFILE ${NAME}.bam
-    samtools index ${NAME}.bam
+	echo samtools index ${NAME}.bam
+	samtools index ${NAME}.bam
     fi
     
 #mkdir tmp_${NAME}
@@ -101,14 +118,14 @@ then
 	REGIONS=${REGION} \
 	OUT_HEAD=${NAME} \
 	TMP=./tmp_${NAME} \
-	REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
+	REFERENCE=${REFERENCE} \
 	NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
     Discovar READS=${NAME}.bam \
 	REGIONS=${REGION} \
 	OUT_HEAD=${NAME} \
 	TMP=./tmp_${NAME} \
-	REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
+	REFERENCE=${REFERENCE} \
 	NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
     rc=$?;
@@ -132,9 +149,16 @@ fi
 echo "MAKE OUTPUTS"
 dot -Tpng -o ${NAME}.final.png ${NAME}.final.dot
 # perl -i -pe "s/${SET}$/${NAME}/gi" ${NAME}.final.variant.filtered.vcf
-perl -i -pe "s/${SET}$/${REFNAME}/gi" ${NAME}.final.variant.filtered.vcf
+
+#if using set/lane/etc, change back to refname before concatenating
+if [[ -n "$SET" && -n "$LANE" ]]; then
+    perl -i -pe "s/${SET}$/${REFNAME}/gi" ${NAME}.final.variant.filtered.vcf
+fi 
+
 #UGLY HACK (discovarRegion is left blank)
 perl -i -ne 'print $_ unless $_ =~ m/DiscovarRegion/gi' ${NAME}.final.variant.filtered.vcf
+#UGLY HACK sample name is 'unknown' in fakeNGS samples
+perl -i -pe "s/unknown(?>$)/${SET}/" ${NAME}.final.variant.filtered.vcf
 
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz

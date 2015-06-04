@@ -20,7 +20,7 @@ RUNJOBARR=PIPELINE+'/runJobInArray.sh'
 
 DATADIR = '/seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/'
 RUNDIR = os.getcwd()
-
+REFERENCE = "/seq/plasmodium/sredmond/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta"
 MEMORYGAP=1
 
 
@@ -52,6 +52,9 @@ parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help
 parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
 parser.add_argument('--splitsize', action="store", dest='splitsize', type=int, default=-1, help='split regions larger than N [-1]')
 parser.add_argument('--splitflank', action="store", dest='splitflank', type=int, default=500, help='overlap regions by flank N bp [500]')
+
+parser.add_argument('--bam_bylane', action="store_true", dest='bylane', default=True, help='parse bam location from lane [True]')
+parser.add_argument('--bam_direct', action="store_false", dest='bylane', default=True, help='parse bam location from lane [True]')
 
 parser.add_argument('-W','--jobtime', action="store", dest='jobtime', type=str, help='time for job', nargs='?', default=None)
 
@@ -249,10 +252,21 @@ if args.region is not None:
 for line in open(args.samples,'r'):
     F = line.strip().split("\t")
     [seqid, lane, dataset] = F[0:3]
-    bamfile = "noBamCheck"
+    bamfile = F[4]
+    samples[(seqid,lane,dataset)] = bamfile
+
+# CHECK SHAPE OF SAMPLE FILE? DISTINGUISH BETWEEN sample/lane/dataset or name/bamfile
+# LATER...
+#    if len(F)==3:
+#        [name, dataset, bamfile] = F[0:3]
+#        samples[(name, dataset)] = bamfile
+#    elif len(F)==4:
+#        [seqid, lane, dataset, bamfile] = F[0:4]
+#        samples[(seqid,lane,dataset,bamfile)] = bamfile
+    
     # lsstring = args.datafile,"/",lane,"/",dataset,"/*bam"
     # bamfile = subprocess.check_output("ls", lsstring, shell=True)
-    samples[(seqid,lane,dataset)] = bamfile
+    
     print >>sys.stderr, seqid, lane, dataset, bamfile
 
 # parse bed file SNPs
@@ -291,6 +305,8 @@ else:
     regions = [(chrom+":"+str(st)+"-"+str(en)) for (chrom,st,en) in locs]
 # print sorted(locs)
 
+if args.refFasta is not None:
+    REFERENCE = args.refFasta
 
 print >>sys.stderr, len(locs)
 print >>sys.stderr, locs
@@ -318,58 +334,36 @@ sublog = open("submitted.log",'w')
 killscript = open("killAll.sh",'w')
 commands = []
 
+
 for thisdataset in datasets:
-    samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
+#    samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
+    samplesInDataset = [(seqid, lane, dataset, samples[(seqid, lane, dataset)]) for (seqid, lane, dataset) in samples if dataset == thisdataset]
+
     #make and change into dataset subdir
     if not os.path.exists("./"+thisdataset):
         os.mkdir("./"+thisdataset)
     os.chdir("./"+thisdataset)
    
-#    discovars = " NUM_THREADS="+str(args.nodes)
-#    discovars = " MAX_MEMORY_GB="+str(ceil(args.mem/1000))
-    
-##     for (seqid, lane, dataset) in samplesInDataset:
-##         for region in regions:
-##             command = " ".join([RUNDISCO,
-##                                 "-n", str(args.nodes),
-##                                 "-m", str(int(ceil(args.mem/1000))-MEMORYGAP),
-##                                 "-d", DATADIR,
-##                                 seqid, lane, region])
-##             if args.oneregion:
-##                 name = seqid+"_"+lane
-##             else:
-##                 name = seqid+"_"+lane+"_"+region
-            
-##             (jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
-##             #jobs += [jobNo]
-##             jobs[jobNo] = (seqid+"_"+str(lane), region)
-##             print >>sublog, '#',jobNo
-##             print >>sublog, repr(subd_command)
-##             print >>killscript,"bkill ",jobNo
-##             print seqid, lane, name, dataset,
-
-    for (seqid, lane, dataset) in samplesInDataset:
+    for (seqid, lane, dataset, bamfile) in samplesInDataset:
         for region in regions:
-            command = " ".join([RUNDISCO,
+            if args.bylane is True:
+                command = " ".join([RUNDISCO,
+                                 "-n", str(args.nodes),
+                                 "-m", str(int(ceil(args.mem/1000))-MEMORYGAP),
+                                 "-f", REFERENCE,
+                                 "-d", DATADIR,
+                                 seqid, lane, region])
+            else:
+                command = " ".join([RUNDISCO,
                                 "-n", str(args.nodes),
                                 "-m", str(int(ceil(args.mem/1000))-MEMORYGAP),
-                                "-d", DATADIR,
-                                seqid, lane, region])
+                                "-f", REFERENCE,
+                                "-N", seqid,
+                                "-B", bamfile,
+                                    region])
             commands += [command]
 
-    #MAKE THIS CODE BLOCK INTO SUB_ARRAY FUNCTION:
-##     comlog = "sub_commands.txt"
-##     comlogf = open(comlog,'w')
     
-##     for command in commands:
-##         print >>sys.stderr, command
-##         print >>comlogf, command
-    
-##         #(jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
-##         #jobs += [jobNo]
-##         #jobs[jobNo] = (seqid+"_"+str(lane), region)
-##     comlogf.close()
-##    arrCommand=[RUNJOBARR, comlog]
     jobname = thisdataset+"_disco"
     (jobNo, subdcommand) = _subarray(commands, jobname, args.mem, args.nodes, args.queue, args.jobtime, maxconc=args.maxconc)
     #return jobNo
@@ -407,7 +401,25 @@ if args.interactive is True:
 sublog = open("submitted.log",'a')
 killscript = open("killAll.sh",'a')
 
+for dataset in datasets:
+    print >>sys.stderr, "merge/concat ",dataset
+    discoFinished="done("+jobs[dataset]+")"
+    if args.interactive is True:
+        # following code block for interactive running, for jobarray skip to next phase
+        subprocess.check_call(['bash',
+                                   PIPELINE+'/mergeConcatVcfs.sh',
+                                   dataset])
+    else:
+        mergeCommand = " ".join(['bash',
+                                 PIPELINE+'/mergeConcatVcfs.sh',
+                                 dataset])
+        name = dataset+"_concat";
+        (jobNo, subdcommand) = _subjob(mergeCommand, name, args.mem, 1, args.queue, args.jobtime, dependency=discoFinished)
+        print >>sublog, '#',jobNo
+        print >>sublog, repr(subdcommand)
+        print >>killscript,"bkill ",jobNo
 
+                
 for dataset in datasets:
     print >>sys.stderr, "getting bam depths ",dataset
     discoFinished="\"done("+jobs[dataset]+")\""

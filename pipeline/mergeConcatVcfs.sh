@@ -23,13 +23,16 @@ if [[ $SAMPLE_NO != $VCF_NO ]]
    then
        for SAMPLE in `ls $OUT `
        do
-	   echo "concatting"
-	   ls ${OUT}/${SAMPLE}/*vcf.gz
-	   echo "to" ${OUT}"/"${SAMPLE}"_concat.vcf.gz"
-
-	   vcf-concat -s 1 ${OUT}/${SAMPLE}/*vcf.gz | vcf-sort > ${OUT}/${SAMPLE}_concat.vcf
-	   bgzip ${OUT}/${SAMPLE}_concat.vcf
-	   tabix -pvcf ${OUT}/${SAMPLE}_concat.vcf.gz
+	   if [[ -d "${OUT}/${SAMPLE}/" ]]
+	       then
+	       echo "concatting"
+	       ls ${OUT}/${SAMPLE}/*vcf.gz
+	       echo "to" ${OUT}"/"${SAMPLE}"_concat.vcf.gz"
+	       
+	       vcf-concat -s 1 ${OUT}/${SAMPLE}/*vcf.gz | vcf-sort > ${OUT}/${SAMPLE}_concat.vcf
+	       bgzip ${OUT}/${SAMPLE}_concat.vcf
+	       tabix -pvcf ${OUT}/${SAMPLE}_concat.vcf.gz
+	   fi
        done
    TOMERGE=`ls ${OUT}/*concat.vcf.gz`
 fi
