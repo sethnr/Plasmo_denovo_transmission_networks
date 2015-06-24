@@ -1,4 +1,4 @@
-/seq/plasmodium/sredmond/pfdisco/3D7DD2_cfs/Pf3D7_v4.fasta /seq/plasmodium/sredmond/pfdisco/3D7DD2_cfs/PfIT_v3.fasta
+/seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs/Pf3D7_v4.fasta /seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs/PfIT_v3.fasta
 NUCMER
 >Pf3D7_10_v3 PfIT_10_v3 1687656 1511117
 68525 107733 8287 47349 412 412 0
