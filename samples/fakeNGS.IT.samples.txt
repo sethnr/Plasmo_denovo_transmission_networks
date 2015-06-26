@@ -1,0 +1,3 @@
+Pf3D7vIT	1	fakevIT	Pf3D7vIT	/seq/plasmodium/sredmond/pfdisco/analyses/fakeNGS/Pf3D7_07_v3:450000-750000_v_PfIT.bam
+PfITvIT	1	fakevIT	Pf3D7vIT	/seq/plasmodium/sredmond/pfdisco/analyses/fakeNGS/PfIT_07_v3:450000-750000_v_PfIT.bam
+PfDD2vIT	1	fakevIT	PfDD2vIT	/seq/plasmodium/sredmond/pfdisco/analyses/fakeNGS/PfDD2_07_v1:450000-750000_v_PfIT.bam
