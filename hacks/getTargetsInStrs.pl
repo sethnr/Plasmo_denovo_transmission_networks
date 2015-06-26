@@ -15,11 +15,11 @@ while(<TARGETS>) {
   push @{$targets{lc($chr)}}, \@target;
 }
 
-foreach $chr (keys %targets) {
-  foreach $target (@{$targets{$chr}}) {
-    print "\#".join("\t", $chr, @{$target})."\n";
-  }
-}
+# foreach $chr (keys %targets) {
+#   foreach $target (@{$targets{$chr}}) {
+#     print "\#".join("\t", $chr, @{$target})."\n";
+#   }
+# }
 
 while(<STRS>) {
   my @F = split(/\s+/,$_);
