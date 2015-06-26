@@ -264,12 +264,16 @@ def _set_starts(c1, c2, p1, p2, s1, s2):
         seq1 = s1
         seq2 = s2
 
-def _setup_fasta(filename, seqdict=None, prefix=''):
+def _setup_fasta(filename, seqdict=None, prefix=None):
     if seqdict==None:
             seqdict = dict()
 
     samplename = path.splitext(path.basename(filename))[0]
-    vcf = open(prefix+samplename+".vcf", 'w')
+    vcfname = samplename+".vcf"
+    if prefix is not None:
+        vcfname = prefix+"."+vcfname
+        
+    vcf = open(vcfname, 'w')
 ##     fasta_seqs = check_output(['grep','>',filename])
 ##     fasta_seqs = fasta_seqs.splitlines()
 ##     for seq in fasta_seqs:
@@ -306,8 +310,13 @@ for mumm in mummer:
         fasta1, fasta2 = mumm
 
                                                #fasta_name, seqs_in_fasta, prefix for output files
-        (vcf1, sample1, seqdict) = _setup_fasta(fasta1, None, args.vcf)
-        (vcf2, sample2, seqdict) = _setup_fasta(fasta2, seqdict, args.vcf)
+        f1 = path.splitext(path.basename(fasta1))[0]
+        f2 = path.splitext(path.basename(fasta2))[0]
+        
+        #(vcf1, sample1, seqdict) = _setup_fasta(fasta1, None, args.vcf)
+        #(vcf2, sample2, seqdict) = _setup_fasta(fasta2, seqdict, args.vcf)
+        (vcf1, sample1, seqdict) = _setup_fasta(f1+"x"+f2, None, "nucmer")
+        (vcf2, sample2, seqdict) = _setup_fasta(f2+"x"+f1, seqdict, "nucmer")
         vcfdict[sample1]=vcf1
         vcfdict[sample2]=vcf2
         
