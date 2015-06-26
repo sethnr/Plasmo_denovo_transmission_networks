@@ -34,6 +34,17 @@ for rec in reader:
     type = rec.INFO['TYPE'][0]
     con = rec.INFO['CON'][0]
     qual = str(rec.QUAL)
+
+    STR=""
+    STRp='0'
+    STRe='0'
+    STRs='0'
+    if 'STR' in rec.INFO:
+        STR=rec.INFO['STR'][0]
+        STRp=rec.INFO['STRP'][0]
+        STRe=rec.INFO['STRE'][0]
+        STRs=rec.INFO['STRS'][0]  
+    
     print >>sys.stdout,"\t".join((vcfname,
                                   rec.CHROM,
                                   str(rec.POS),
@@ -42,5 +53,9 @@ for rec in reader:
                                   qual,
                                   varlen,
                                   noAlls,
-                                  bcomplex
+                                  bcomplex,
+                                  STR,
+                                  STRp,
+                                  STRe,
+                                  STRs
                                   ))

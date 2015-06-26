@@ -8,8 +8,10 @@ open(TARGETS,$targetFile);
 
 while(<TARGETS>) {
 #  print $_;
-  my ($name, $chr, $st, $en) = split(/\s+/,$_);
-  my @target = ($name,$st,$en);
+#  my ($name, $chr, $st, $en) = split(/\s+/,$_);
+  my ($chr, $st) = split(/\s+/,$_);
+#  my @target = ($name,$st,$en);
+  my @target = ($name,$st,$st);
 #  print "@target";
 #  print "$name, $chr, $st, $en !\n";
   push @{$targets{lc($chr)}}, \@target;
