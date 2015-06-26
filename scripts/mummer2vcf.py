@@ -51,7 +51,7 @@ format="GT"
 def _write_var():
     global seq1, seq2, st1, st2, en1, en2, lc1, lc2, vartype, lastFR#, inseq, delseq
 #    print >>sys.stderr, i," ", lc1, st1, en1, inseq, lc2, st2, en2, delseq
-    print >>sys.stderr, i," ", lc1, st1, en1, seq1, lc2, st2, en2, seq2, vartype, lastFR
+#    print >>sys.stderr, i," ", lc1, st1, en1, seq1, lc2, st2, en2, seq2, vartype, lastFR
     #check if indel is in memory
 #    if inseq !='' or delseq != '':
 
