@@ -332,7 +332,13 @@ bsub -J daniels_3D7 -o out/daniels_3D7.0 -e out/daniels_3D7.e \
 
 
 #get job array running:
-python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 16000 --nodes 6  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest --dryrun --splitsize 50000 --splitregions
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 4000 --nodes 4  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest  --splitsize 50000 --splitregions
+
+
+#rerun failed (-e) jobs from job array with more memory
+brequeue -e 4633535
+bmod -M 10000 -R "select[mem>10000] rusage[mem=10000] span[ptile=4]" 4633535
 
 
 
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 8000 --nodes 2  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest --dryrun --splitsize 10000 --splitregions --maxconc 40

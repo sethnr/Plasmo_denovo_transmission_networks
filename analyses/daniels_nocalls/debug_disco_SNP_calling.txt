@@ -90,4 +90,4 @@ runDiscovarVar.sh -n 1 -m 2 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-0
 runDiscovarVar.sh -n 1 -m 2 -d /seq/picard/H2MGCBCXX/C1-516_2015-04-30_2015-05-03/ -f /seq/references/Plasmodium_falciparum_3D7/v4/Plasmodium_falciparum_3D7.fasta  SM-7LV8R 1 Pf3D7_14_v3:754731-756731
 
 
-../../alignAndView.sh -o daniels_cs14_3d7dd2_cf -p Pf3D7_14_v3:755631-755831 SM*fasta -r 
+../../alignAndView.sh -o daniels_cs14_3d7dd2_BAMREF_cf -p Pf3D7_14_v3:755631-755831 SM*fasta -r /seq/references/Plasmodium_falciparum_3D7/v4/Plasmodium_falciparum_3D7.fasta
