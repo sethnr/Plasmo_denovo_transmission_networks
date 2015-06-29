@@ -17,6 +17,14 @@ reader=vcf.Reader(vcfFile1)
 
 vcfname = path.basename(args.vcfFile1)
 vcfname = path.splitext(vcfname)[0]
+
+
+def stringComplex(mystring):
+    comp = bz2.compress(mystring)
+    bcomplex = float(len(mystring))/len(comp)
+    return bcomplex
+
+
 for rec in reader:
     alleles = [str(i) for i in rec.alleles]
     varlen=1
@@ -25,9 +33,7 @@ for rec in reader:
         maxallele = max(alleles, key=len)
         varlen = len(maxallele)
         comp = bz2.compress(maxallele)
-#        print len(maxallele), maxallele
-#        print len(comp)
-        bcomplex = float(len(maxallele))/len(comp)
+        bcomplex = stringComplex(maxallele)
     noAlls = str(len(alleles))
     bcomplex = str(bcomplex)
     varlen = str(varlen)
@@ -39,12 +45,21 @@ for rec in reader:
     STRp='0'
     STRe='0'
     STRs='0'
+    STRc='0'
+    Apc ='0'
+    Tpc ='0'
+    Cpc ='0'
+    Gpc ='0'
+    
     if 'STR' in rec.INFO:
         STR=rec.INFO['STR'][0]
         STRp=rec.INFO['STRP'][0]
         STRe=rec.INFO['STRE'][0]
-        STRs=rec.INFO['STRS'][0]  
-    
+        STRs=rec.INFO['STRS'][0]
+        basecomp = rec.INFO['STRatcg'][0]
+        (Apc,Tpc,Cpc,Gpc) = basecomp.split(":")
+        STRc = rec.INFO['STRC'][0]
+        
     print >>sys.stdout,"\t".join((vcfname,
                                   rec.CHROM,
                                   str(rec.POS),
@@ -57,5 +72,7 @@ for rec in reader:
                                   STR,
                                   STRp,
                                   STRe,
-                                  STRs
+                                  STRs,
+                                  STRc,
+                                  Apc,Tpc,Cpc,Gpc
                                   ))
