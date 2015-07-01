@@ -70,9 +70,9 @@ for rec in reader:
                                   noAlls,
                                   bcomplex,
                                   STR,
-                                  STRp,
-                                  STRe,
-                                  STRs,
-                                  STRc,
+                                  STRp, #period
+                                  STRe, #exponent
+                                  STRs, #str length
+                                  STRc, #str complexity
                                   Apc,Tpc,Cpc,Gpc
                                   ))
