@@ -7,7 +7,7 @@ from string import *
 import bz2
 from os import path
 
-parser = argparse.ArgumentParser(description='get STR length differences from disco VCF')
+parser = argparse.ArgumentParser(description='parse out statistics from VCF ')
 
 parser.add_argument('-v','--vcf', action="store", dest='vcfFile1', type=str, help='vcfFile1', nargs='?', default=None)
 

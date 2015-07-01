@@ -1,0 +1,7 @@
+library(ggplot2)
+library(knitr)
+
+#depth vs snp rates vs call rates
+```{r}
+```
+

@@ -74,7 +74,9 @@ for region in args.regions:
     for st in range(regst,regen,block):
         en = st+block
 
-        #GET DEPTH VALUES
+        ##################
+        # PROCESS DEPTH VALUES
+        #################
         #get depth vals from (tabixed) depth file
         depths = None
         i=-1
@@ -85,17 +87,56 @@ for region in args.regions:
 #            print bdepths, len(bdepths),block
             #initialise empty zero arrays
             if depths is None:
+                #initialise depths
                 depths = np.zeros((block,len(bdepths)))
-
+                if st == regst:
+                    #print header:
+                    print >>outfile,"\t".join(["#chrom","start","end"]+
+                                          ["d"+str(d+1) for d in range(0,len(bdepths))]+
+                                          ["SNPS","Smatch","Smiss","Spriv",
+                                          "INDELS","Imatch","Imiss","Ipriv"])
             for j in range(0,len(bdepths)):
-                bdepth = int(bdepths[j])
+#                print i,j
+                bdepth = float(bdepths[j])
                 depths[(i,j)] = bdepth
 ##        print >>sys.stderr, depths
+        mean = np.mean(depths,axis=0)
+
+        depths[depths < args.minCovDepth] = np.nan
+        noCovered = np.sum(depths >= args.minCovDepth,0)
+        meanCovered = np.nanmean(depths,axis=0)
+        meanCovered[np.isnan(meanCovered)] = 0
         
+        print >>outfile, chrom, st, en, "\t".join([str(i) for i in noCovered.tolist()+mean.tolist()+meanCovered.tolist()]),
 
-
-        #GET GENOTYPES
+        ##################
+        # PROCESS GENOTYPES
+        #################
         blockreader = reader.fetch(chrom, st, en)
+        vars = 0
+        #setup null count matrix
+        typecon = dict()
+        for type in ['SNP','INDEL']:
+            for con in ['MATCH','MISMATCH','PRIVATE']:
+                typecon[(type,con)] = 0
+
         for rec in blockreader:
-            pass
-    
+            vars += 1
+            type = rec.INFO['TYPE'][0]
+            con = rec.INFO['CON'][0]
+            if (type, con) not in typecon:
+                typecon[(type,con)] = 0
+            typecon[(type,con)] +=1
+        
+        for type in ['SNP','INDEL']:
+            total = 0
+            for con in ['MATCH','MISMATCH','PRIVATE']:
+                total += typecon[type,con]
+            print >>outfile, total,
+            for con in ['MATCH','MISMATCH','PRIVATE']:
+                if total > 0:
+                    pc = typecon[type,con]/float(total)
+                else:
+                    pc=float(0)
+                print >>outfile,pc,
+        print ""
