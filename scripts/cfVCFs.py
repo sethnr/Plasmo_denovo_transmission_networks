@@ -11,7 +11,7 @@ parser.add_argument('--v1','--vcf1', action="store", dest='vcfFile1', type=str, 
 parser.add_argument('--v2','--vcf2', action="store", dest='vcfFile2', type=str, help='vcfFile2', nargs='?', default=None)
 parser.add_argument('-n','--nucmer', action="store", dest='nucmer', type=str, help='nucmer', nargs='?', default=None)
 
-parser.add_argument('-o','--out', action="store", dest='outFile', type=str, help='outFile', nargs='?', default=None)
+parser.add_argument('-o','--out', action="store", dest='outFile', type=str, help='make combined outfile named <outfile> instead of separate files', nargs='?', default=None)
 #parser.add_argument('-i','--defaultSize', action="store", dest='defSize', type=int, help='default size for STRs', nargs='?', default=0)
 
 
@@ -19,11 +19,6 @@ args = parser.parse_args()
 print >>sys.stderr, args.vcfFile1, args.vcfFile2
 
 
-outfile = sys.stdout
-if args.outFile is not None:
-    outfile = open(args.outFile,'w')
-
-    
 vcfFile1 = open(args.vcfFile1,'r')
 reader1=vcf.Reader(vcfFile1)
 
@@ -42,6 +37,24 @@ vcfoutF2 = replace(vcfoutF2,'.vcf.gz','.cfout.vcf')
 print >>sys.stderr, "VCFOUT2",vcfoutF2
 vcfoutF2 = open(vcfoutF2,'w')
 vcfout2=vcf.Writer(vcfoutF2,reader2)
+
+vcfcomb = None
+outfile = sys.stdout
+vcf1S = 0
+vcf2S = 0
+
+if args.outFile is not None:
+    outfile = open(args.outFile,'w')
+    vcfcomb=vcf.Writer(outfile,reader1)
+#    print >>sys.stderr, "SAMPLES",reader1.samples
+    vcf1S=reader1.samples
+    vcf2S=reader2.samples
+
+outGenoFormat = []
+outGenoCalldata = None
+    
+    
+
 
 
 v1end = False
@@ -93,8 +106,13 @@ def _handlePriv1():
     elif type1 == "INDEL":
         pi1 +=1
     rec1.INFO['TYPE']=type1
-    rec1.INFO['CON']='PRIVATE'
+    rec1.INFO['CON']='PRIVATE_1'
     vcfout1.write_record(rec1)
+
+    reccomb = _combineRecs(rec1,None)
+    reccomb.INFO['TYPE']=type1
+    reccomb.INFO['CON']='PRIVATE_1'    
+    vcfcomb.write_record(reccomb)
 
 def _handlePriv2():
     global pv2, ps2, pi2, rec2
@@ -104,8 +122,13 @@ def _handlePriv2():
     elif type2 == "INDEL":
         pi2 +=1
     rec2.INFO['TYPE']=type2
-    rec2.INFO['CON']='PRIVATE'
+    rec2.INFO['CON']='PRIVATE_2'
     vcfout2.write_record(rec2)
+
+    reccomb = _combineRecs(None,rec2)
+    reccomb.INFO['TYPE']=type2
+    reccomb.INFO['CON']='PRIVATE_2'    
+    vcfcomb.write_record(reccomb)
 
 def _handleMatch():
     global matchI,match,matchS, type1, type2, rec1, rec2
@@ -120,6 +143,12 @@ def _handleMatch():
     rec1.INFO['CON']='MATCH'
     vcfout1.write_record(rec1)
     vcfout2.write_record(rec2)
+      
+    reccomb = _combineRecs(rec1,rec2)
+    reccomb.INFO['TYPE']=type1
+    reccomb.INFO['CON']='MATCH'    
+    vcfcomb.write_record(reccomb)
+  
 
 def _handleMismatch():
     global mismatch, type1, type2, rec1, rec2
@@ -129,6 +158,57 @@ def _handleMismatch():
     rec1.INFO['CON']='MISMATCH'
     vcfout1.write_record(rec1)
     vcfout2.write_record(rec2)
+
+    reccomb = _combineRecs(rec1,rec2)
+    rec1.INFO['TYPE']=type1
+    rec1.INFO['TYPE2']=type2
+    rec1.INFO['CON']='MISMATCH'    
+    vcfcomb.write_record(reccomb)
+  
+
+def _combineRecs(rec1,rec2):
+    recOut = rec1
+    if rec1 is None:
+        recOut = rec2
+    recOut.format= ":".join(outGenoFormat)
+    callscomb = []
+    if rec1 is None:
+##      cdobject = vcf.model.make_calldata_tuple("GT")
+        for S in vcf1S:
+##          cd = cdobject(".")
+            cd = outGenoCalldata(".")
+            callscomb += [vcf.model._Call(recOut,S,cd)]
+    else:
+        for call in rec1.samples:
+            cd = outGenoCalldata("/".join(call.gt_alleles))
+            callscomb += [vcf.model._Call(recOut,call.sample,cd)]
+        
+    if rec2 is None:
+##      cdobject = vcf.model.make_calldata_tuple("GT")
+        for S in vcf2S:
+##          cd = cdobject(".")
+            cd = outGenoCalldata(".")
+            callscomb += [vcf.model._Call(recOut,S,cd)]
+    else:
+        for call in rec2.samples:
+            cd = outGenoCalldata("/".join(call.gt_alleles))
+            callscomb += [vcf.model._Call(recOut,call.sample,cd)]
+        
+
+    
+    print >>sys.stderr, callscomb
+
+#    genoFields = []
+#    for call in callscomb:
+#        for key in callkeys:
+#            if key not in call.data:
+#                call.data[key] = '.'
+    
+    print >>sys.stderr, callscomb
+    recOut.samples = callscomb
+
+    return recOut
+    
 
 
 
@@ -140,6 +220,9 @@ if sameRef:
             #neither file has started
             rec1, c1, p1, ar1, aa1, calls1, type1, v1end = _readVar(reader1)
             rec2, c2, p2, ar2, aa2, calls2, type2, v2end = _readVar(reader2)
+            outGenoFormat = list(set(rec1.FORMAT.split(":") + rec2.FORMAT.split(":")))
+            print outGenoFormat
+            outGenoCalldata = vcf.model.make_calldata_tuple("GT")
         elif v2end:
             #file 2 has finished
             print >>sys.stderr, '<'
