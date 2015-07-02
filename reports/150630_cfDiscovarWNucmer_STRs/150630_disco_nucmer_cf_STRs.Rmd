@@ -1,5 +1,8 @@
 library(ggplot2)
 library(knitr)
+```{r setup}
+opts_chunk$set(fig.width=9, fig.height=6)
+``` 
 
 ```{r}
 #150626 - indel stats, but no STR/mreps stats
@@ -29,51 +32,6 @@ nuccfs$quality <- as.numeric(nuccfs$quality)
 #nuccfs[is.na(as.numeric(nuccfs$quality)),]
 #REMOVE MISMATCHES (messy/infrequent)
 nuccfs <- nuccfs[which(nuccfs$concordance!="MISMATCH"),]
-```
-
-#indel/snp based metrics
-##discovar quality scores
-Nb: type 2 errors (nucmer private) have no qual score
-```{r}
- qscoreI <- ggplot(subset(nuccfs,type=="INDEL"),aes(y=quality,x=set, colour=set)) + 
-            geom_boxplot() + facet_grid(ref1 ~ type + ref2)
- qscoreS <- ggplot(subset(nuccfs,type=="SNP"),aes(y=quality,x=set, colour=set)) + 
-            geom_boxplot() + facet_grid(ref1 ~ type + ref2)
- qscoreI
- qscoreS
-```
-
-#indel metrics
-##length
-```{r}
-indel_length <- ggplot(subset(nuccfs,type=="INDEL"),aes(y=length,x=set, colour=quality)) + 
-  geom_jitter() + facet_grid(ref1 ~ type + ref2) + geom_hline(y=50,linetype=2) + scale_y_log10()
-indel_length
-
-indel_lengthD <- ggplot(subset(nuccfs,type=="INDEL" & concordance != "MISMATCH"),aes(x=length,group=set, colour=set)) + 
-  geom_density() + facet_grid(ref1 ~ type + ref2) + geom_vline(x=50,linetype=2) + scale_x_log10()
-indel_lengthD
-```
-###complexity
-(ratio of string length to bz comp string length)
-```{r}
-indel_complexity <- ggplot(subset(nuccfs,type=="INDEL"),aes(y=complexity,x=set, colour=set)) + geom_boxplot() + facet_grid(ref1 ~ ref2) + scale_y_log10()
-indel_complexityD <- ggplot(subset(nuccfs,(type=="INDEL" & concordance != "MISMATCH")),aes(x=complexity,group=set, colour=set)) + 
-                      geom_density() + facet_grid(ref1 ~ ref2) + scale_x_log10()
-indel_complexity
-indel_complexityD
-```
-
-###length v complexity
-```{r}
-indel_len_complex <- ggplot(subset(nuccfs,type=="INDEL"),aes(y=complexity,x=length, colour=set)) + geom_point() + 
-  scale_y_log10() + scale_x_log10()
-indel_len_complex
-```
-###no of alleles
-```{r}
-alleles <- ggplot(subset(nuccfs,type=="INDEL"),aes(x=alleles,fill=concordance)) + geom_bar(binwidth=1) + facet_grid(ref1 ~ ref2)
-alleles
 ```
 
 #STR metrics
