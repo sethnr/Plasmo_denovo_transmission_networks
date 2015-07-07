@@ -41,7 +41,7 @@ for rec in reader:
     con = rec.INFO['CON'][0]
     qual = str(rec.QUAL)
 
-    STR=""
+    STR="NULL"
     STRp='0'
     STRe='0'
     STRs='0'
@@ -50,7 +50,7 @@ for rec in reader:
     Tpc ='0'
     Cpc ='0'
     Gpc ='0'
-    
+#    print rec.INFO
     if 'STR' in rec.INFO:
         STR=rec.INFO['STR'][0]
         STRp=rec.INFO['STRP'][0]

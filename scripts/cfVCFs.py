@@ -16,7 +16,7 @@ parser.add_argument('-o','--out', action="store", dest='outFile', type=str, help
 
 
 args = parser.parse_args()
-print >>sys.stderr, args.vcfFile1, args.vcfFile2
+print >>sys.stdout, args.vcfFile1, args.vcfFile2
 
 
 vcfFile1 = open(args.vcfFile1,'r')
@@ -28,13 +28,13 @@ reader2=vcf.Reader(vcfFile2)
 
 vcfoutF1 = replace(args.vcfFile1,'.vcf','.cfout.vcf')
 vcfoutF1 = replace(vcfoutF1,'.vcf.gz','.cfout.vcf')
-print >>sys.stderr, "VCFOUT1",vcfoutF1
+print >>sys.stdout, "VCFOUT1",vcfoutF1
 vcfoutF1 = open(vcfoutF1,'w')
 vcfout1=vcf.Writer(vcfoutF1,reader1)
 
 vcfoutF2 = replace(args.vcfFile2,'.vcf','.cfout.vcf')
 vcfoutF2 = replace(vcfoutF2,'.vcf.gz','.cfout.vcf')
-print >>sys.stderr, "VCFOUT2",vcfoutF2
+print >>sys.stdout, "VCFOUT2",vcfoutF2
 vcfoutF2 = open(vcfoutF2,'w')
 vcfout2=vcf.Writer(vcfoutF2,reader2)
 
@@ -45,10 +45,12 @@ vcf2S = 0
 
 if args.outFile is not None:
     outfile = open(args.outFile,'w')
-    vcfcomb=vcf.Writer(outfile,reader1)
-#    print >>sys.stderr, "SAMPLES",reader1.samples
     vcf1S=reader1.samples
     vcf2S=reader2.samples
+    r1copy = reader1
+    r1copy.samples = vcf1S + vcf2S
+    vcfcomb=vcf.Writer(outfile,r1copy)
+#    print >>sys.stdout, "SAMPLES",reader1.samples
 
 outGenoFormat = []
 outGenoCalldata = None
@@ -196,7 +198,7 @@ def _combineRecs(rec1,rec2):
         
 
     
-    print >>sys.stderr, callscomb
+#    print >>sys.stdout, callscomb
 
 #    genoFields = []
 #    for call in callscomb:
@@ -204,7 +206,7 @@ def _combineRecs(rec1,rec2):
 #            if key not in call.data:
 #                call.data[key] = '.'
     
-    print >>sys.stderr, callscomb
+#    print >>sys.stdout, callscomb
     recOut.samples = callscomb
 
     return recOut
@@ -215,7 +217,7 @@ def _combineRecs(rec1,rec2):
 if sameRef:
     while not (v1end and v2end):
         #get initial values
-        print >> sys.stderr, c1, p1, c2, p2,
+        print >> sys.stdout, c1, p1, c2, p2,
         if c1 is None and c2 is None:
             #neither file has started
             rec1, c1, p1, ar1, aa1, calls1, type1, v1end = _readVar(reader1)
@@ -225,7 +227,7 @@ if sameRef:
             outGenoCalldata = vcf.model.make_calldata_tuple("GT")
         elif v2end:
             #file 2 has finished
-            print >>sys.stderr, '<'
+            print >>sys.stdout, '<'
 ##             pv1 +=1
 ##             if type1 == "SNP":
 ##                 ps1 +=1
@@ -236,7 +238,7 @@ if sameRef:
             rec1, c1, p1, ar1, aa1, calls1, type1, v1end = _readVar(reader1)
         elif v1end:
             #file 1 has finished
-            print >>sys.stderr, '>'
+            print >>sys.stdout, '>'
 ##             pv2 +=1
 ##             if type2 == "SNP":
 ##                 ps2 +=1
@@ -247,7 +249,7 @@ if sameRef:
             
         elif (c1 == c2 and p1 > p2) or c1 > c2:
             # print cf
-            print >>sys.stderr,'>'
+            print >>sys.stdout,'>'
 ##             pv2 +=1
 ##             if type2 == "SNP":
 ##                 ps2 +=1
@@ -258,7 +260,7 @@ if sameRef:
             rec2, c2, p2, ar2, aa2, calls2, type2, v2end = _readVar(reader2)
         elif (c1 == c2 and p1 < p2) or c1 < c2:
             # print cf
-            print >>sys.stderr,'<'
+            print >>sys.stdout,'<'
 ##             pv1 +=1
 ##             if type1 == "SNP":
 ##                 ps1 +=1
@@ -271,7 +273,7 @@ if sameRef:
             # print cf
             if ar1 == ar2 and aa2 == aa1:
                 #match = True
-                print >>sys.stderr,"="
+                print >>sys.stdout,"="
 ##                 match +=1
 ##                 if type2 == "SNP":
 ##                     matchS +=1
@@ -280,27 +282,27 @@ if sameRef:
                 _handleMatch()
             else:
 ##                mismatch += 1
-                print >>sys.stderr,"."
+                print >>sys.stdout,"."
                 _handleMismatch()
             # get next
             rec1, c1, p1, ar1, aa1, calls1, type1, v1end = _readVar(reader1)
             rec2, c2, p2, ar2, aa2, calls2, type2, v2end = _readVar(reader2)
         else:
             # if none have worked, we got issues (end of file)
-            print >>sys.stderr,"!"
+            print >>sys.stdout,"!"
 
 elif recipRef:
     pass
 ##         elif p1 == pTrans(p2) and c1 == cTrans(c2):
 ##             if ar1 == aa2 and ar2 == aa1:
 ##                 match = True
-##                 print >>sys.stderr,"="
+##                 print >>sys.stdout,"="
 ##             else:
-##                 print >>sys.stderr,"."
+##                 print >>sys.stdout,"."
             # get next
 
 
-print "pv1", "pv2", "match", "mismatch"
-print "vars:",pv1, pv2, match, mismatch
-print "snps:",ps1, ps2, matchS
-print "indels:",pi1, pi2, matchI
+print >>sys.stderr, "pv1", "pv2", "match", "mismatch"
+print >>sys.stderr, "vars:",pv1, pv2, match, mismatch
+print >>sys.stderr, "snps:",ps1, ps2, matchS
+print >>sys.stderr, "indels:",pi1, pi2, matchI

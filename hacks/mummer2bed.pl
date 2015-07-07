@@ -16,8 +16,8 @@ while(<COORDS>){
 	$F2 =~ s/\.fa$//i;
 	$F2 =~ s/\.fasta$//i;
 	$F2 =~ s/^.*\///i;
-	$fn1 = "nucmer.".$F1."in".$F2.".bed";
-	$fn2 = "nucmer.".$F2."in".$F1.".bed";
+	$fn1 = "nucmer.".$F1."x".$F2.".bed";
+	$fn2 = "nucmer.".$F2."x".$F1.".bed";
 	print STDERR $fn1."\t".$fn2."\n";
 
 	open(F1INF2,">$fn1");
