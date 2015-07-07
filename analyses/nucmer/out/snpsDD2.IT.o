@@ -1,0 +1,114 @@
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 721891: <snpsDD2.IT> in cluster <cromwell> Done
+
+Job <snpsDD2.IT> was submitted from host <node1747> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs> was used as the working directory.
+Started at Mon Jun 22 15:47:55 2015
+Results reported on Mon Jun 22 20:23:15 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python /seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf.py -m nucmer.DD2vIT.c2k.b20k.snps -v DD2vIT.c2K.b20K.vars
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               9085.42 sec.
+    Max Memory :             65 MB
+    Average Memory :         41.59 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           1935.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            5
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/snpsDD2.IT.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 762162: <snpsDD2.IT> in cluster <cromwell> Exited
+
+Job <snpsDD2.IT> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs> was used as the working directory.
+Started at Fri Jun 26 12:44:24 2015
+Results reported on Fri Jun 26 12:44:25 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python /seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf.py -m nucmer.DD2vIT.c2k.b20k.snps -v DD2vIT.c2K.b20K.vars
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :               0.15 sec.
+    Max Memory :             6 MB
+    Average Memory :         1.00 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           1994.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          1
+    Max Threads :            1
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/snpsDD2.IT.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 762193: <snpsDD2.IT> in cluster <cromwell> Done
+
+Job <snpsDD2.IT> was submitted from host <node1748> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs> was used as the working directory.
+Started at Fri Jun 26 12:57:36 2015
+Results reported on Fri Jun 26 14:31:48 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python /seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf.py -m nucmer.DD2vIT.c2k.b20k.snps -v DD2vIT.c2K.b20K.vars
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               8288.10 sec.
+    Max Memory :             65 MB
+    Average Memory :         42.54 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           1935.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            5
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/snpsDD2.IT.e> for stderr output of this job.
+

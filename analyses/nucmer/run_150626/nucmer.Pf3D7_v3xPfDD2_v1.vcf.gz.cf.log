@@ -1,0 +1,14 @@
+
+VCFtools - v0.1.10
+(C) Adam Auton 2009
+
+Parameters as interpreted:
+	--gzvcf ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz
+	--out ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz.cf
+	--recode
+	--bed compareRegions.bed
+
+Using zlib version: 1.2.6
+VCF index is older than VCF file. Will regenerate.
+Building new index file.
+Error:No header or meta information. Invalid file: ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz

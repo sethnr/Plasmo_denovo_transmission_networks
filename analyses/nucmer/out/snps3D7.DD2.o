@@ -1,0 +1,282 @@
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 721890: <snps3D7.DD2> in cluster <cromwell> Done
+
+Job <snps3D7.DD2> was submitted from host <node1747> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs> was used as the working directory.
+Started at Mon Jun 22 15:47:42 2015
+Results reported on Mon Jun 22 21:01:39 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python /seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf.py -m nucmer.3D7vDD2.c2k.b20k.snps -v 3D7vDD2.c2K.b20K.vars
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               11551.52 sec.
+    Max Memory :             37789 MB
+    Average Memory :         1970.13 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           -35789.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            6
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 762161: <snps3D7.DD2> in cluster <cromwell> Exited
+
+Job <snps3D7.DD2> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs> was used as the working directory.
+Started at Fri Jun 26 12:44:24 2015
+Results reported on Fri Jun 26 12:44:24 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python /seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf.py -m nucmer.3D7vDD2.c2k.b20k.snps -v 3D7vDD2.c2K.b20K.vars
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :               0.18 sec.
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           -
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 762192: <snps3D7.DD2> in cluster <cromwell> Done
+
+Job <snps3D7.DD2> was submitted from host <node1748> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/3D7DD2_cfs> was used as the working directory.
+Started at Fri Jun 26 12:57:36 2015
+Results reported on Fri Jun 26 14:56:05 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+python /seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf.py -m nucmer.3D7vDD2.c2k.b20k.snps -v 3D7vDD2.c2K.b20K.vars
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               10302.87 sec.
+    Max Memory :             46 MB
+    Average Memory :         31.33 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           1954.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            5
+
+The output (if any) follows:
+
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1073515: <snps3D7.DD2> in cluster <cromwell> Done
+
+Job <snps3D7.DD2> was submitted from host <node1747> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/nucmer> was used as the working directory.
+Started at Tue Jul  7 17:55:19 2015
+Results reported on Tue Jul  7 17:55:52 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+/seq/plasmodium/sredmond//pfdisco//scripts/runNucmerPipeline.sh PfIT_v3.fasta PfDD2_v1.fasta nucmer.ITvDD2
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               2.05 sec.
+    Max Memory :             8919 MB
+    Average Memory :         1998.80 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           -6919.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            5
+
+The output (if any) follows:
+
+running nucmer
+parsing SNPs/INDELs
+mummer 2 bed
+mummer 2 VCF
+done
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1073514: <snps3D7.DD2> in cluster <cromwell> Done
+
+Job <snps3D7.DD2> was submitted from host <node1747> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/nucmer> was used as the working directory.
+Started at Tue Jul  7 17:55:14 2015
+Results reported on Tue Jul  7 17:55:52 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+/seq/plasmodium/sredmond//pfdisco//scripts/runNucmerPipeline.sh Pf3D7_v3.fasta PfIT_v3.fasta nucmer.3D7vIT
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               2.06 sec.
+    Max Memory :             5331 MB
+    Average Memory :         1786.20 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           -3331.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            5
+
+The output (if any) follows:
+
+running nucmer
+parsing SNPs/INDELs
+mummer 2 bed
+mummer 2 VCF
+done
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1073513: <snps3D7.DD2> in cluster <cromwell> Done
+
+Job <snps3D7.DD2> was submitted from host <node1747> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/nucmer> was used as the working directory.
+Started at Tue Jul  7 17:55:12 2015
+Results reported on Tue Jul  7 17:55:52 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+/seq/plasmodium/sredmond//pfdisco//scripts/runNucmerPipeline.sh Pf3D7_v3.fasta PfDD2_v1.fasta nucmer.3D7vDD2
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               2.10 sec.
+    Max Memory :             7842 MB
+    Average Memory :         1998.80 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           -5842.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            5
+
+The output (if any) follows:
+
+running nucmer
+parsing SNPs/INDELs
+mummer 2 bed
+mummer 2 VCF
+done
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1073522: <snps3D7.DD2> in cluster <cromwell> Done
+
+Job <snps3D7.DD2> was submitted from host <node1747> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/analyses/nucmer> was used as the working directory.
+Started at Tue Jul  7 17:58:34 2015
+Results reported on Tue Jul  7 18:07:08 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+/seq/plasmodium/sredmond//pfdisco//scripts/runNucmerPipeline.sh Pf3D7_v3.fasta PfIT_v3.fasta nucmer.3D7vIT
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               516.72 sec.
+    Max Memory :             12625 MB
+    Average Memory :         1670.26 MB
+    Total Requested Memory : 2000.00 MB
+    Delta Memory :           -10625.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          7
+    Max Threads :            8
+
+The output (if any) follows:
+
+running nucmer
+parsing SNPs/INDELs
+mummer 2 bed
+mummer 2 VCF
+done
+
+
+PS:
+
+Read file <out/snps3D7.DD2.e> for stderr output of this job.
+
