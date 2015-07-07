@@ -38,19 +38,6 @@ more nucmer.3D7vIT.c2k.b20k.coords | grep Pf3D7_14
 show-snps -TC nucmer.3D7vIT.c2k.b20k.delta > nucmer.3D7vIT.c2k.b20k.snps.txt
 
 
-
-
-
-#fake NGS sequence (muration rate, R=0, read lengths 250)
-get no of reads for N depth:
-fragment length / 250 * depth
-300000 / 250 * 50 = 60000 (per read file)
-
-samtools faidx $WORK/refs/Pf3D7_v3.fasta Pf3D7_07_v3:450000-750000 > Pf3D7_07_v3:450000-750000.fasta
-wgsim -r 0 -1250 -2250 Pf3D7_07_v3\:450000-750000.fasta Pf3D7_07_v3\:450000-750000.r1 Pf3D7_07_v3\:450000-750000.r2
-
-
-
 #writing mummer to VCF converter:
 #get one example of each SNP (in and del) for each alignment
 grep -e 91019 -e 33737 -e 23947 -e 5698 -e SUB -e fasta -e 91014 -e 14212  *TEST.snps > tinytest.snps
@@ -63,4 +50,252 @@ cat *vcf | sort -k1,1g -k2,2 -k4,4g
 
 do final run (whole genome):
 
+
+bsub -J nuc2vcf -o out/nuc2vcf.o -e out/nuc2vcf.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 \
 python mummer2vcf.py -m nucmer.3D7vIT.c2k.b20k.snps --vcf 3D7vIT.c2K.b20K.vars
+
+
+####
+# mummer / vcf making for all 3 pairwise refs
+####
+
+do nucmer for DD2 / IT / 3D7
+use MUMmer
+bsub -J nucmerMax -o out/nucmerMax.o -e out/nucmerMax.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=1]' \
+     -M 8000 -n 1 \
+     nucmer -c 2000 -o -p nucmer.3D7vIT.c2k.b20k --nooptimize -b 20000 Pf3D7_v4.fasta PfIT_v3.fasta
+
+bsub -J nucmer3D7DD2 -o out/nucmer3D7DD2.o -e out/nucmer3D7DD2.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=1]' \
+     -M 8000 -n 1  \
+     nucmer -c 2000 -o -p nucmer.3D7vDD2.c2k.b20k --nooptimize -b 20000 Pf3D7_v4.fasta PfDD2_v1.fasta
+
+bsub -J nucmerDD2IT -o out/nucmer3D7DD2.o -e out/nucmer3D7DD2.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=1]' \
+     -M 8000 -n 1 \
+     nucmer -c 2000 -o -p nucmer.DD2vIT.c2k.b20k --nooptimize -b 20000 PfDD2_v1.fasta PfIT_v3.fasta
+
+show-snps -TC nucmer.DD2vIT.c2k.b20k.delta > nucmer.DD2vIT.c2k.b20k.snps
+show-snps -TC nucmer.3D7vDD2.c2k.b20k.delta > nucmer.3D7vDD2.c2k.b20k.snps
+show-snps -TC nucmer.3D7vIT.c2k.b20k.delta > nucmer.3D7vIT.c2k.b20k.snps
+
+bsub -J snps3D7.IT -o out/snps3D7.IT.o -e out/snps3D7.IT.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower  \
+      python $DISCO1/scripts/mummer2vcf.py -m nucmer.3D7vIT.c2k.b20k.snps -v 3D7vIT.c2K.b20K.vars
+bsub -J snps3D7.DD2 -o out/snps3D7.DD2.o -e out/snps3D7.DD2.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower  \
+     python $DISCO1/scripts/mummer2vcf.py -m nucmer.3D7vDD2.c2k.b20k.snps -v 3D7vDD2.c2K.b20K.vars
+bsub -J snpsDD2.IT -o out/snpsDD2.IT.o -e out/snpsDD2.IT.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower \
+     python $DISCO1/scripts/mummer2vcf.py -m nucmer.DD2vIT.c2k.b20k.snps -v DD2vIT.c2K.b20K.vars
+
+#####
+#SORT AND TABIX ALL VCFS
+#####
+for VCF in *vcf; do sort -k1,1 -k2,2g -o $VCF $VCF ; bgzip $VCF ; tabix -pvcf ${VCF}.gz; done
+
+###############
+# MAKE FAKE NGS SEQ FOR 3D7/IT/DD2
+###############
+
+# (mutation rate, R=0, read lengths 250)
+  get no of reads for N depth:
+  fragment length / 250 * depth
+  300000 / 250 * 50 = 60000 (per read file)
+
+#nucmer shows broad concurrence with positions between 51 and 75MB (some overall deletion in PfIT?)
+  nucmer.3D7vIT.c2k.b20k.coords  418150   467874  |   448103   497803  |    49725    49701  |    98.32  | Pf3D7_07_v3	PfIT_07_v3
+  nucmer.3D7vIT.c2k.b20k.coords  469433   482359  |   499308   512145  |    12927    12838  |    98.39  | Pf3D7_07_v3	PfIT_07_v3
+			       ...
+  nucmer.3D7vIT.c2k.b20k.coords  684875   746088  |   671443   732077  |    61214    60635  |    98.07  | Pf3D7_07_v3	PfIT_07_v3
+  nucmer.3D7vIT.c2k.b20k.coords  746232   851114  |   732077   836451  |   104883   104375  |    99.00  | Pf3D7_07_v3	PfIT_07_v3
+
+samtools faidx $WORK/refs/PfIT_v3.fasta PfIT_07_v3:450000-750000 > PfIT_07_v3:450000-750000.fasta
+samtools faidx $WORK/refs/Pf3D7_v3.fasta Pf3D7_07_v3:450000-750000 > Pf3D7_07_v3:450000-750000.fasta
+samtools faidx $WORK/refs/PfDD2_v1.fasta  PfDd2_07_TT:450000-750000 > PfDD2_07_v1:450000-750000.fasta
+
+wgsim -r 0 -N 60000 -1250 -2250 PfIT_07_v3\:450000-750000.fasta.gz PfIT_07_v3\:450000-750000.r1.fastq PfIT_07_v3\:450000-750000.r2.fastq
+wgsim -r 0 -N 60000 -1250 -2250 Pf3D7_07_v3\:450000-750000.fasta.gz Pf3D7_07_v3\:450000-750000.r1.fastq Pf3D7_07_v3\:450000-750000.r2.fastq
+
+wgsim -r 0 -N 60000 -1250 -2250 PfDD2_07_v1\:450000-750000.fasta.gz PfDD2_07_v1\:450000-750000.r1.fastq PfDD2_07_v1\:450000-750000.r2.fastq
+
+
+
+##align each set of reads to opposite reference, using same command as in 3D7 discovar aligns:
+samtools view -H $DISCO1/disco_daniels/3D7DD2/SM-7LV8O_1/*bam | grep CL:
+
+cd $DISCO1/analyses/fakeNGS
+bwa mem -M -t 5 $WORK/refs/Pf3D7_v3.fasta  PfIT_07_v3:450000-750000.r1.fastq.gz     PfIT_07_v3:450000-750000.r2.fastq.gz    | samtools view -bS - > PfIT_07_v3:450000-750000_v_Pf3D7.bam
+bwa mem -M -t 5 $WORK/refs/Pf3D7_v3.fasta  Pf3D7_07_v3:450000-750000.r1.fastq.gz Pf3D7_07_v3:450000-750000.r2.fastq.gz | samtools view -bS - > Pf3D7_07_v3:450000-750000_v_Pf3D7.bam
+bwa mem -M -t 5 $WORK/refs/Pf3D7_v3.fasta  PfDD2_07_v1:450000-750000.r1.fastq.gz PfDD2_07_v1:450000-750000.r2.fastq.gz | samtools view -bS - > PfDD2_07_v1:450000-750000_v_Pf3D7.bam
+
+bwa mem -M -t 5 $WORK/refs/PfIT_v3.fasta      Pf3D7_07_v3:450000-750000.r1.fastq.gz Pf3D7_07_v3:450000-750000.r2.fastq.gz | samtools view -bS - > Pf3D7_07_v3:450000-750000_v_PfIT.bam
+bwa mem -M -t 5 $WORK/refs/PfIT_v3.fasta      PfIT_07_v3:450000-750000.r1.fastq.gz     PfIT_07_v3:450000-750000.r2.fastq.gz    | samtools view -bS - > PfIT_07_v3:450000-750000_v_PfIT.bam
+bwa mem -M -t 5 $WORK/refs/PfIT_v3.fasta  PfDD2_07_v1:450000-750000.r1.fastq.gz PfDD2_07_v1:450000-750000.r2.fastq.gz | samtools view -bS - > PfDD2_07_v1:450000-750000_v_PfIT.bam
+
+bwa mem -M -t 5 $WORK/refs/PfDD2_v1.fasta      Pf3D7_07_v3:450000-750000.r1.fastq.gz Pf3D7_07_v3:450000-750000.r2.fastq.gz | samtools view -bS - > Pf3D7_07_v3:450000-750000_v_PfDD2.bam
+bwa mem -M -t 5 $WORK/refs/PfDD2_v1.fasta      PfIT_07_v3:450000-750000.r1.fastq.gz     PfIT_07_v3:450000-750000.r2.fastq.gz    | samtools view -bS - > PfIT_07_v3:450000-750000_v_PfDD2.bam
+bwa mem -M -t 5 $WORK/refs/PfDD2_v1.fasta  PfDD2_07_v1:450000-750000.r1.fastq.gz PfDD2_07_v1:450000-750000.r2.fastq.gz | samtools view -bS - > PfDD2_07_v1:450000-750000_v_PfDD2.bam
+
+for BAM in *bam; do samtools sort -o ${BAM/.bam/.s.bam} -T temp  $BAM; done
+for BAM in *s.bam; do mv $BAM ${BAM/.s.bam/.bam}; done
+for BAM in *bam; do samtools index $BAM; done
+
+
+
+cd $PFDISCO/disco_halfmeg_fakeNGS
+ln -s ../analyses/fakeNGS/PfIT_07_v3:450000-750000.bam PfIT_07_v3:450000-750000.bam
+ln -s ../analyses/fakeNGS/Pf3D7_07_v3\:450000-750000.bam Pf3D7_07_v3\:450000-750000.bam
+
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.IT.samples.txt  --mem 8000 --nodes 1  -r PfIT_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfIT_v3.fasta 
+
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.3D7.samples.txt  --mem 8000 --nodes 1  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/PfIT_v3.fasta --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/Pf3D7_v4.fasta
+
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.DD2.samples.txt  --mem 8000 --nodes 1  -r PfDd2_07_TT:450000-750000 -f $WORK/refs/PfDD2_v1.fasta --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta
+
+
+######
+# filter DISCOVAR vcfs for regions comparable to nucmer
+######
+
+vcftools --gzvcf fakev3D7_all.vcf.gz --recode --out fakev3D7_all.inIT --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4inPfIT_v3.bed
+vcftools --gzvcf fakev3D7_all.vcf.gz --recode --out fakev3D7_all.inDD2 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4inPfDD2_v1.bed
+vcftools --gzvcf fakevIT_all.vcf.gz --recode --out fakevIT_all.in3D7 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3inPf3D7_v4.bed
+vcftools --gzvcf fakevIT_all.vcf.gz --recode --out fakevIT_all.inDD2 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3inPfDD2_v1.bed
+vcftools --gzvcf fakevDD2_all.vcf.gz --recode --out fakevDD2_all.inIT --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1inPfIT_v3.bed
+vcftools --gzvcf fakevDD2_all.vcf.gz --recode --out fakevDD2_all.in3D7 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1inPf3D7_v4.bed
+
+
+#####
+# get regions of nucmer vcfs that were passed to discovar
+#####
+cd $DISCO1/analyses/3D7DD2_cfs
+
+for VCF in *vcf.gz
+do
+  tabix $VCF  PfDd2_07_TT:450000-750000  Pf3D7_07_v3:450000-750000  PfIT_07_v3:450000-750000 > ${VCF/.vcf.gz/.CFDISCO.vcf}
+done
+
+
+
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4xPfDD2_v1.CFDISCO.vcf --v2 fakev3D7_all.inDD2.recode.vcf 2>/dev/null 
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1xPf3D7_v4.CFDISCO.vcf --v2 fakevDD2_all.in3D7.recode.vcf 2>/dev/null
+
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4xPfIT_v3.CFDISCO.vcf --v2 fakev3D7_all.inIT.recode.vcf 2>/dev/null
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3xPf3D7_v4.CFDISCO.vcf --v2 fakevIT_all.in3D7.recode.vcf 2>/dev/null
+
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3xPfDD2_v1.CFDISCO.vcf --v2 fakevIT_all.inDD2.recode.vcf 2>/dev/null
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1xPfIT_v3.CFDISCO.vcf --v2 fakevDD2_all.inIT.recode.vcf 2>/dev/null
+
+
+
+for VCF in *cfout.vcf
+do
+python $DISCO1/scripts/addSTRsToVCF.py -v $VCF -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
+done
+
+for VCF in *cfout.STRs.vcf
+do
+  python ../scripts/getVcfMatchStats.py -v $VCF > ${VCF/STRs.vcf/STRs.txt}
+done
+
+perl -i -pe 's/fakev(\w+)_all.in(\w+).recode.cfout.STRs/DISC\t$1\t$2/gi' *cfout.STRs.txt
+perl -i -pe 's/nucmer.Pf(\w+)_v\dxPf(\w+)_v\d\.CFDISCO.cfout.STRs/NUC\t$1\t$2/gi'  *CFDISCO.cfout.STRs.txt
+
+cat *cfout.STRs.txt > pairwise_nucmer_discovar_cfs_150629.txt
+#cat *cfout.STRs.txt > pairwise_nucmer_discovar_cfs_150626.txt
+
+
+
+
+#run just depth coverage sections
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.IT.samples.txt  --mem 8000 --nodes 1  -r PfIT_07_v3:450000-750000 -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfIT_v3.fasta --discosucks
+
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.DD2.samples.txt  --mem 8000 --nodes 1  -r PfDd2_07_TT:450000-750000 -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta --discosucks
+
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.3D7.samples.txt  --mem 8000 --nodes 1  -r Pf3D7_07_v3:450000-750000 -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/Pf3D7_v4.fasta --discosucks
+
+##sort all depth files in place:
+for DEPTH in *depth:
+do
+  sort -o $DEPTH -u $DEPTH
+done
+
+#write depth/het script
+#currently just gets bare Nos of SNPs (in future, make it calculate PI)
+
+python ../scripts/getDepthHet.py -v fakev3D7_all.inDD2.recode.cfout.vcf.gz -d fakev3D7.depth.gz -r Pf3D7_07_v3:450000-750000 -b10 > depth_v_het_10kb_150629.txt
+
+
+
+####
+# refilter discovar analyses - keep only variants called in specific genomes
+####
+
+######
+# filter DISCOVAR vcfs for regions comparable to nucmer
+######
+
+vcftools --gzvcf fakev3D7_all.vcf.gz --recode --out fakev3D7_all.inIT --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4inPfIT_v3.bed   --indv PfITv3D7 --max-missing-count 0
+vcftools --gzvcf fakev3D7_all.vcf.gz --recode --out fakev3D7_all.inDD2 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4inPfDD2_v1.bed   --indv PfDD2v3D7 --max-missing-count 0
+vcftools --gzvcf fakevIT_all.vcf.gz --recode --out fakevIT_all.in3D7 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3inPf3D7_v4.bed   --indv Pf3D7vIT --max-missing-count 0
+vcftools --gzvcf fakevIT_all.vcf.gz --recode --out fakevIT_all.inDD2 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3inPfDD2_v1.bed   --indv PfDD2vIT --max-missing-count 0
+vcftools --gzvcf fakevDD2_all.vcf.gz --recode --out fakevDD2_all.inIT --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1inPfIT_v3.bed  --indv PfITvDD2 --max-missing-count 0
+vcftools --gzvcf fakevDD2_all.vcf.gz --recode --out fakevDD2_all.in3D7 --bed $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1inPf3D7_v4.bed  --indv Pf3D7vDD2 --max-missing-count 0
+
+#redo comparisons with new files
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4xPfDD2_v1.CFDISCO.vcf --v2 fakev3D7_all.inDD2.recode.vcf -o cf_nucmer_discovar_readsDD2xref3D7.vcf
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1xPf3D7_v4.CFDISCO.vcf --v2 fakevDD2_all.in3D7.recode.vcf -o cf_nucmer_discovar_reads3D7xrefDD2.vcf
+
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.Pf3D7_v4xPfIT_v3.CFDISCO.vcf --v2 fakev3D7_all.inIT.recode.vcf -o cf_nucmer_discovar_reads3D7xrefIT.vcf
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3xPf3D7_v4.CFDISCO.vcf --v2 fakevIT_all.in3D7.recode.vcf -o cf_nucmer_discovar_readsITxref3D7.vcf
+
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfIT_v3xPfDD2_v1.CFDISCO.vcf --v2 fakevIT_all.inDD2.recode.vcf -o cf_nucmer_discovar_readsITxrefDD2.vcf
+python ../scripts/cfVCFs.py --v1 $DISCO1/analyses/3D7DD2_cfs/nucmer.PfDD2_v1xPfIT_v3.CFDISCO.vcf --v2 fakevDD2_all.inIT.recode.vcf -o cf_nucmer_discovar_readsDD2xrefIT.vcf
+
+
+
+#redo mummer2vcf to check +1 error
+bsub -J snps3D7.DD2 -o out/snps3D7.DD2.o -e out/snps3D7.DD2.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower  \
+     python $DISCO1/scripts/mummer2vcf.py -m nucmer.3D7vDD2.c2k.b20k.snps -v 3D7vDD2.c2K.b20K.vars
+
+
+
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.bed Pf3D7_07_v3:450000-750000 nucdiscocf.Pf3D7_v3xPfDD2_v1
+
+
+#run all nucmer with new pipeline scripts
+cd /seq/plasmodium/sredmond/pfdisco/analyses/nucmer
+bsub -J nucmer3D7.DD2 -o out/nucmer3D7.DD2.o -e out/nucmer3D7.DD2.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower  \
+     $DISCO1/scripts/runNucmerPipeline.sh   Pf3D7_v3.fasta   PfDD2_v1.fasta  nucmer.3D7vDD2
+
+bsub -J nucmer3D7.IT -o out/nucmer3D7.IT.o -e out/nucmer3D7.IT.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower  \
+     $DISCO1/scripts/runNucmerPipeline.sh   Pf3D7_v3.fasta   PfIT_v3.fasta  nucmer.3D7vIT
+
+bsub -J nucmerIT.DD2 -o out/nucmerIT.DD2.o -e out/nucmerIT.DD2.e \
+     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
+     -M 2000 -n 1 -q flower  \
+     $DISCO1/scripts/runNucmerPipeline.sh   PfIT_v3.fasta   PfDD2_v1.fasta  nucmer.ITvDD2
+
+
+
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz  ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.bed Pf3D7_07_v3:450000-750000 cf.Pf3D7_v3xPfDD2_v1
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevDD2_all.in3D7.vcf.gz  ../nucmer/nucmer.PfDD2_v1xPf3D7_v3.bed PfDD2_07_TT:450000-750000 cf.PfDD2_v1xPf3D7_v3
+
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfIT_v3xPfDD2_v1.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevIT_all.inDD2.vcf.gz  ../nucmer/nucmer.PfIT_v3xPfDD2_v1.bed PfIT_07_v3:450000-750000 cf.PfIT_v3xPfDD2_v1
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPfIT_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevDD2_all.inIT.vcf.gz  ../nucmer/nucmer.PfDD2_v1xPfIT_v3.bed PfDD2_07_TT:450000-750000 cf.PfDD2_v1xPfIT_v3
+
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfIT_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inIT.vcf.gz  ../nucmer/nucmer.Pf3D7_v3xPfIT_v3.bed Pf3D7_07_v3:450000-750000 cf.Pf3D7_v3xPfIT_v3
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfIT_v3xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevIT_all.inIT.vcf.gz  ../nucmer/nucmer.PfIT_v3xPf3D7_v3.bed PfIT_07_v3:450000-750000 cf.PfIT_v3xPf3D7_v3
