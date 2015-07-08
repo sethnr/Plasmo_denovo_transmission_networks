@@ -48,8 +48,8 @@ echo python $DISCO1/scripts/cfVCFs.py \
   --v2 ${DISCO/.vcf*/}.cf.vcf \
   -o ${OUTFILE}.vcf
 python $DISCO1/scripts/cfVCFs.py \
-  --v2 ${NUCMER/.vcf*/}.cf.vcf \
-  --v1 ${DISCO/.vcf*/}.cf.vcf \
+  --v1 ${NUCMER/.vcf*/}.cf.vcf \
+  --v2 ${DISCO/.vcf*/}.cf.vcf \
   -o ${OUTFILE}.vcf  1>/dev/null
 
 
