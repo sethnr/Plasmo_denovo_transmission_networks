@@ -68,14 +68,19 @@ ATpc
 ##STR length v indel length
 
 ```r
-len_len <- ggplot(subset(nuccfs,STR!="NULL" & ref1 == "Pf3D7_v3"),aes(y=STRlength,x=length, colour=set)) + geom_point()  + facet_grid(set ~ ref2)+
+len_len <- ggplot(subset(nuccfs,STR!="NULL" & ref1 == "Pf3D7_v3" & type=="INDEL"),aes(y=STRlength,x=length, colour=set)) + geom_point()  + facet_grid(set ~ ref2)+
   geom_abline(intercept=0,slope=1)
 len_len
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 ###log scale: 
+
+```r
 len_len + scale_y_log10() + scale_x_log10()
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 ##STR period v indel length
 
@@ -85,7 +90,7 @@ period_len <- ggplot(subset(nuccfs,type=="INDEL" & STR!="NULL" & ref1 == "Pf3D7_
 period_len; period_len + scale_y_log10() + scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
 ###log scale
 
 
@@ -100,13 +105,13 @@ lenrem_hist <- ggplot(subset(nuccfs,type=="INDEL" & STR!="NULL" & ref1 == "Pf3D7
 print(period_lenrem)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
 
 ```r
 print(lenrem_hist)
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png) 
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png) 
 
 ##presence of STR vs call concordance
 
@@ -115,7 +120,7 @@ hasSTR <- ggplot(subset(nuccfs,ref1 == "Pf3D7_v3"),aes(x=set, group=(STR!="NULL"
 hasSTR
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
 ##STR type (A/TA/complex) vs call concordance
 
@@ -124,4 +129,4 @@ STRtype <- ggplot(subset(nuccfs,ref1 == "Pf3D7_v3" & STR!="NULL"),aes(x=set, gro
 STRtype
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 

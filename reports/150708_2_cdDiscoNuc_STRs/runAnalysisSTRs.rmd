@@ -51,12 +51,14 @@ ATpc
 
 ##STR length v indel length
 ```{r}
-len_len <- ggplot(subset(nuccfs,STR!="NULL" & ref1 == "Pf3D7_v3"),aes(y=STRlength,x=length, colour=set)) + geom_point()  + facet_grid(set ~ ref2)+
+len_len <- ggplot(subset(nuccfs,STR!="NULL" & ref1 == "Pf3D7_v3" & type=="INDEL"),aes(y=STRlength,x=length, colour=set)) + geom_point()  + facet_grid(set ~ ref2)+
   geom_abline(intercept=0,slope=1)
 len_len
 ```
 ###log scale: 
+```{r}
 len_len + scale_y_log10() + scale_x_log10()
+``` 
 
 ##STR period v indel length
 ```{r}
