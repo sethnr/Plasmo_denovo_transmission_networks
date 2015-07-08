@@ -65,3 +65,41 @@ Traceback (most recent call last):
   File "/seq/plasmodium/sredmond//pfdisco//scripts/mummer2vcf_plus1error.py", line 219, in revcomp
     r = [d[b] for b in reversed(seq)]
 KeyError: 'N'
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "nucmer.ITvDD2.ntref" of length 22983635
+# construct suffix tree for sequence of length 22983635
+# (maximum reference length is 536870908)
+# (maximum query length is 4294967295)
+# process 229836 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /broad/software/free/Linux/redhat_6_x86_64/pkgs/mummer_3.22/mummer nucmer.ITvDD2.ntref 13.10
+# reading input file "/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfDD2_v1.fasta" of length 22682354
+# matching query-file "/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfDD2_v1.fasta"
+# against subject-file "nucmer.ITvDD2.ntref"
+# COMPLETETIME /broad/software/free/Linux/redhat_6_x86_64/pkgs/mummer_3.22/mummer nucmer.ITvDD2.ntref 49.35
+# SPACE /broad/software/free/Linux/redhat_6_x86_64/pkgs/mummer_3.22/mummer nucmer.ITvDD2.ntref 44.19
+4: FINISHING DATA
+WARNING: Invalid break length 20000, ignoring
+5: GENERATING COORDS FILE
+/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfIT_v3.fasta	/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfDD2_v1.fasta
+nucmer.PfIT_v3inPfDD2_v1.bed	nucmer.PfDD2_v1inPfIT_v3.bed
+1: PREPARING DATA
+2,3: RUNNING mummer AND CREATING CLUSTERS
+# reading input file "nucmer.3D7vDD2.ntref" of length 23332847
+# construct suffix tree for sequence of length 23332847
+# (maximum reference length is 536870908)
+# (maximum query length is 4294967295)
+# process 233328 characters per dot
+#....................................................................................................
+# CONSTRUCTIONTIME /broad/software/free/Linux/redhat_6_x86_64/pkgs/mummer_3.22/mummer nucmer.3D7vDD2.ntref 15.15
+# reading input file "/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfDD2_v1.fasta" of length 22682354
+# matching query-file "/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfDD2_v1.fasta"
+# against subject-file "nucmer.3D7vDD2.ntref"
+# COMPLETETIME /broad/software/free/Linux/redhat_6_x86_64/pkgs/mummer_3.22/mummer nucmer.3D7vDD2.ntref 46.99
+# SPACE /broad/software/free/Linux/redhat_6_x86_64/pkgs/mummer_3.22/mummer nucmer.3D7vDD2.ntref 44.53
+4: FINISHING DATA
+WARNING: Invalid break length 20000, ignoring
+5: GENERATING COORDS FILE
+/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/Pf3D7_v3.fasta	/seq/plasmodium/sredmond/pfdisco/analyses/nucmer/PfDD2_v1.fasta
+nucmer.Pf3D7_v3inPfDD2_v1.bed	nucmer.PfDD2_v1inPf3D7_v3.bed

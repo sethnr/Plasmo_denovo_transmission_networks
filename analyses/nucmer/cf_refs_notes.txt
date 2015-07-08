@@ -12,6 +12,8 @@ bsub -J nucmerMax -o out/nucmerMax.o -e out/nucmerMax.e \
      nucmer -c 10000 -o -p nucmer.3D7vIT.c10kMAX --maxmatch Pf3D7_v4.fasta PfIT_v3.fasta
 
 
+alias ni="ssh -Y sredmond@ni.broadinstitute.org"
+alias sn="ssh -Y sredmond@sn.broadinstitute.org"
 
 
 bsub -J nucmerMax -o out/nucmerMax.o -e out/nucmerMax.e \
@@ -292,10 +294,10 @@ bsub -J nucmerIT.DD2 -o out/nucmerIT.DD2.o -e out/nucmerIT.DD2.e \
 
 
 $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz  ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.bed Pf3D7_07_v3:450000-750000 cf.Pf3D7_v3xPfDD2_v1
-$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevDD2_all.in3D7.vcf.gz  ../nucmer/nucmer.PfDD2_v1xPf3D7_v3.bed PfDD2_07_TT:450000-750000 cf.PfDD2_v1xPf3D7_v3
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevDD2_all.in3D7.vcf.gz  ../nucmer/nucmer.PfDD2_v1xPf3D7_v3.bed PfDd2_07_TT:450000-750000 cf.PfDD2_v1xPf3D7_v3
 
 $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfIT_v3xPfDD2_v1.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevIT_all.inDD2.vcf.gz  ../nucmer/nucmer.PfIT_v3xPfDD2_v1.bed PfIT_07_v3:450000-750000 cf.PfIT_v3xPfDD2_v1
-$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPfIT_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevDD2_all.inIT.vcf.gz  ../nucmer/nucmer.PfDD2_v1xPfIT_v3.bed PfDD2_07_TT:450000-750000 cf.PfDD2_v1xPfIT_v3
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPfIT_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevDD2_all.inIT.vcf.gz  ../nucmer/nucmer.PfDD2_v1xPfIT_v3.bed PfDd2_07_TT:450000-750000 cf.PfDD2_v1xPfIT_v3
 
 $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfIT_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inIT.vcf.gz  ../nucmer/nucmer.Pf3D7_v3xPfIT_v3.bed Pf3D7_07_v3:450000-750000 cf.Pf3D7_v3xPfIT_v3
-$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfIT_v3xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevIT_all.inIT.vcf.gz  ../nucmer/nucmer.PfIT_v3xPf3D7_v3.bed PfIT_07_v3:450000-750000 cf.PfIT_v3xPf3D7_v3
+$DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfIT_v3xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevIT_all.in3D7.vcf.gz  ../nucmer/nucmer.PfIT_v3xPf3D7_v3.bed PfIT_07_v3:450000-750000 cf.PfIT_v3xPf3D7_v3
