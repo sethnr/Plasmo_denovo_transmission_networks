@@ -1,0 +1,356 @@
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1239054: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Exited
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 13:52:39 2015
+Results reported on Mon Jul 13 13:52:52 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :               57.82 sec.
+    Max Memory :             500 MB
+    Average Memory :         298.80 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           7500.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            74
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:450000-750000 -APO haplo.r3D7.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1239055: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Done
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 13:53:15 2015
+Results reported on Mon Jul 13 13:56:37 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:480000-500000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.48-50.vcf
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               288.37 sec.
+    Max Memory :             31474 MB
+    Average Memory :         31286.59 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           -23474.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            76
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.48-50.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:480000-500000 -APO haplo.r3D7.ALL.48-50.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1239098: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Done
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 14:31:26 2015
+Results reported on Mon Jul 13 14:36:23 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:480000-500000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.48-50.vcf
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               396.29 sec.
+    Max Memory :             5402 MB
+    Average Memory :         5266.79 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           2598.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            74
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.48-50.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:480000-500000 -APO haplo.r3D7.ALL.48-50.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1240239: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Exited
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 16:50:03 2015
+Results reported on Mon Jul 13 16:50:09 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :               23.75 sec.
+    Max Memory :             34302 MB
+    Average Memory :         31958.50 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           -26302.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            73
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:450000-750000 -APO haplo.r3D7.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1240266: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Exited
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 17:00:56 2015
+Results reported on Mon Jul 13 17:03:15 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:480000-500000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :               206.28 sec.
+    Max Memory :             971 MB
+    Average Memory :         832.06 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           7029.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            74
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:480000-500000 -APO haplo.r3D7.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1240273: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Done
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 17:05:15 2015
+Results reported on Mon Jul 13 17:08:46 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:480000-500000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               286.29 sec.
+    Max Memory :             3447 MB
+    Average Memory :         3312.71 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           4553.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            74
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:480000-500000 -APO haplo.r3D7.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1240297: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Done
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 17:26:29 2015
+Results reported on Mon Jul 13 18:27:24 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000 -B bams.3D7.list -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               3836.74 sec.
+    Max Memory :             3793 MB
+    Average Memory :         3569.47 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           4207.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            75
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.3D7.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L Pf3D7_07_v3:450000-750000 -APO haplo.r3D7.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1240298: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Exited
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 19:44:33 2015
+Results reported on Mon Jul 13 19:44:40 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l PfDD2_07_v1:450000-750000 -B bams.DD2.list -R /seq/plasmodium/sredmond//refs/PfDD2_v1.fasta -o haplo.rDD2.ALL.vcf
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :               22.19 sec.
+    Max Memory :             17781 MB
+    Average Memory :         17581.33 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           -9781.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            75
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.DD2.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/PfDD2_v1.fasta -o haplo.rDD2.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L PfDD2_07_v1:450000-750000 -APO haplo.rDD2.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1240299: <haplo.halfmeg.fakeNGS> in cluster <cromwell> Exited
+
+Job <haplo.halfmeg.fakeNGS> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 19:44:41 2015
+Results reported on Mon Jul 13 19:44:49 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l PfIT_07_v3:450000-750000 -B bams.ITlist -R /seq/plasmodium/sredmond//refs/PfIT_v3.fasta -o haplo.rIT.ALL.vcf
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :               26.42 sec.
+    Max Memory :             36383 MB
+    Average Memory :         31982.00 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           -28383.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            75
+
+The output (if any) follows:
+
+[Mon Jul 13 19:44:43 EDT 2015] net.sf.picard.sam.CreateSequenceDictionary R=/seq/plasmodium/sredmond//refs/PfIT_v3.fasta O=/seq/plasmodium/sredmond//refs/PfIT_v3.dict
+[Mon Jul 13 19:44:44 EDT 2015] net.sf.picard.sam.CreateSequenceDictionary done.
+Runtime.totalMemory()=74973184
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.ITlist -ploidy 1 -R /seq/plasmodium/sredmond//refs/PfIT_v3.fasta -o haplo.rIT.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L PfIT_07_v3:450000-750000 -APO haplo.rIT.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeNGS.e> for stderr output of this job.
+

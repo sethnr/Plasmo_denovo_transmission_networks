@@ -1,0 +1,31 @@
+Starttime: Mon Jul 13 17:50:36 2015
+Endtime: Mon Jul 13 17:50:39 2015
+Git version: 3.0.3
+Machtype: x86_64
+Params: # version=allelotype_3.0.3;command=classify;bam=lobSTR.r3D7.q3D7.sorted.bam;index-prefix=/seq/plasmodium/sredmond/lobSTRrefs/Pf3D7_lobstr/lobSTR_;strinfo=/seq/plasmodium/sredmond/lobSTRrefs/Pf3D7_lobstr/strinfo.tab;noise-model=/seq/plasmodium/sredmond/lobSTR/share/lobSTR/models/illumina_v3.pcrfree;haploid=all;out=lobSTR.r3D7.q3D7;
+Allelotype stats
+Sample	sample
+Num calls	1150
+Num calls >=5x	886
+Mean coverage	12.9617
+Mean perc. agree	0.99913
+Call type by period (0/0, 0/1, 1/1, 1/2)
+Period 1	585	0	0	0
+Period 2	236	0	0	0
+Period 3	129	0	0	0
+Period 4	85	0	0	0
+Period 5	56	0	0	0
+Period 6	59	0	0	0
+Read filter stats:
+	                 NOT_UNIT:	0
+	            DIFF_FROM_REF:	2
+	          MAPPING_QUALITY:	10053
+	                MATE_DIST:	0
+	              ALLELE_SIZE:	2
+	          SPANNING_AMOUNT:	281
+	          NUM_END_MATCHES:	1399
+	          NOT_MAXIMAL_END:	327
+	          BP_BEFORE_INDEL:	0
+	               UNFILTERED:	24665
+
+

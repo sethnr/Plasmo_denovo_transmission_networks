@@ -1,0 +1,14 @@
+Starttime: Mon Jul 13 17:52:52 2015
+Endtime: Mon Jul 13 17:54:02 2015
+Git version: 3.0.3
+Machtype: x86_64
+Params: # version=lobSTR_3.0.3;index-prefix=/seq/plasmodium/sredmond//lobSTRrefs/PfDD2_lobstr/lobSTR_;files=PfDD2_07_v1:450000-750000_v_Pf3D7.sort.bam;bampair;rg-sample=Pf3D7;rg-lib=Pf3D7;out=lobSTR.rDD2.q3D7;
+Alignment stats
+Reads aligned	44803
+Perc. stitched	0.0551079
+Perc. single	0.472446
+Perc. mate	0.472446
+Perc. reverse	0.286047
+Perc. nonunit	0
+Mean insert size: 216.995
+

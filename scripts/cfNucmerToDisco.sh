@@ -43,7 +43,7 @@ tabix -h $DISCO $REGION > ${DISCO/.vcf*/}.cf.vcf
 tabix -h $NUCMER $REGION > ${NUCMER/.vcf*/}.cf.vcf
 
 echo "comparing vcfs"
-echo python $DISCO1/scripts/cfVCFs.py \
+echo python $DISCO1/scripts/cfs/cfVCFs.py \
   --v1 ${NUCMER/.vcf*/}.cf.vcf \
   --v2 ${DISCO/.vcf*/}.cf.vcf \
   -o ${OUTFILE}.vcf
@@ -54,14 +54,14 @@ python $DISCO1/scripts/cfVCFs.py \
 
 
 echo "adding STR information"
-echo python $DISCO1/scripts/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
-python $DISCO1/scripts/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
+echo python $DISCO1/scripts/cfs/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
+python $DISCO1/scripts/cfs/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
 # mv ${OUTFILE}.STRs.vcf ${OUTFILE}.vcf
 
 
 
 echo "calculating match statistics"
-python $DISCO1/scripts/getVcfMatchStats.py -v ${OUTFILE}.STRs.vcf > ${OUTFILE}.txt
+python $DISCO1/scripts/cfs/getVcfMatchStats.py -v ${OUTFILE}.STRs.vcf > ${OUTFILE}.txt
 
 
 cp ${OUTFILE}.txt ../${OUTFILE}.txt

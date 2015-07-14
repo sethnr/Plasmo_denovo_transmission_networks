@@ -1,0 +1,39 @@
+Sender: LSF System <lsf@a2e-bigmem-0>
+Subject: Job 1241352: <haplo.halfmeg.fakeIT> in cluster <cromwell> Done
+
+Job <haplo.halfmeg.fakeIT> was submitted from host <gold> by user <sredmond> in cluster <cromwell>.
+Job was executed on host(s) <4*a2e-bigmem-0>, in queue <flower>, as user <sredmond> in cluster <cromwell>.
+</home/unix/sredmond> was used as the home directory.
+</seq/plasmodium/sredmond/pfdisco/gatkHaplo_halfmeg_fakeNGS> was used as the working directory.
+Started at Mon Jul 13 20:00:07 2015
+Results reported on Mon Jul 13 20:48:59 2015
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+../scripts/runHaplotypeCaller.sh -l PfIT_07_v3:450000-750000 -B bams.IT.list -R /seq/plasmodium/sredmond//refs/PfIT_v3.fasta -o haplo.rIT.ALL.vcf
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :               3188.06 sec.
+    Max Memory :             3496 MB
+    Average Memory :         3327.43 MB
+    Total Requested Memory : 8000.00 MB
+    Delta Memory :           4504.00 MB
+    (Delta: the difference between Total Requested Memory and Max Memory.)
+    Max Processes :          4
+    Max Threads :            76
+
+The output (if any) follows:
+
+java -jar /humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar -T HaplotypeCaller -I bams.IT.list -ploidy 1 -R /seq/plasmodium/sredmond//refs/PfIT_v3.fasta -o haplo.rIT.ALL.vcf -gt_mode DISCOVERY -out_mode EMIT_ALL_CONFIDENT_SITES -stand_emit_conf 0 -stand_call_conf 0 -L PfIT_07_v3:450000-750000 -APO haplo.rIT.ALL.apo -forceActive -globalMAPQ -1 -pcrModel NONE -useFilteredReadsForAnnotations -mmq 0
+
+
+PS:
+
+Read file <out/haplo.halfmeg.fakeIT.e> for stderr output of this job.
+

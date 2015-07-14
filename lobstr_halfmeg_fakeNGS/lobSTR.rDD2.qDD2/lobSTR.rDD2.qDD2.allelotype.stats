@@ -1,0 +1,31 @@
+Starttime: Mon Jul 13 17:29:51 2015
+Endtime: Mon Jul 13 17:29:56 2015
+Git version: 3.0.3
+Machtype: x86_64
+Params: # version=allelotype_3.0.3;command=classify;bam=lobSTR.rDD2.qDD2.sorted.bam;index-prefix=/seq/plasmodium/sredmond//lobSTRrefs/PfDD2_lobstr/lobSTR_;strinfo=/seq/plasmodium/sredmond//lobSTRrefs/PfDD2_lobstr/strinfo.tab;noise-model=/seq/plasmodium/sredmond/lobSTR/share/lobSTR/models/illumina_v3.pcrfree;haploid=all;out=lobSTR.rDD2.qDD2;
+Allelotype stats
+Sample	sample
+Num calls	1129
+Num calls >=5x	852
+Mean coverage	12.2923
+Mean perc. agree	0.997343
+Call type by period (0/0, 0/1, 1/1, 1/2)
+Period 1	601	0	1	0
+Period 2	210	0	0	0
+Period 3	124	0	0	0
+Period 4	85	0	0	0
+Period 5	56	0	0	0
+Period 6	52	0	0	0
+Read filter stats:
+	                 NOT_UNIT:	0
+	            DIFF_FROM_REF:	2
+	          MAPPING_QUALITY:	10664
+	                MATE_DIST:	0
+	              ALLELE_SIZE:	6
+	          SPANNING_AMOUNT:	357
+	          NUM_END_MATCHES:	1430
+	          NOT_MAXIMAL_END:	410
+	          BP_BEFORE_INDEL:	0
+	               UNFILTERED:	25678
+
+

@@ -31,20 +31,15 @@ QUERYOUT=${QUERYOUT/%.fa/.fastq}
 QOUT1=${QUERYOUT/%.fastq/.r1.fastq}
 QOUT2=${QUERYOUT/%.fastq/.r2.fastq}
 
-
-echo wgsim -r 0 \
--N $READPAIRS -1${READLENGTH} -2${READLENGTH} \
-$QUERY  $QOUT1 $QOUT2
-wgsim -r 0 \
--N $READPAIRS -1${READLENGTH} -2${READLENGTH} \
-$QUERY  $QOUT1 $QOUT2
+ERROR=0.01  #error rate (default 0.02)
 
 if [[ ! -f ${QOUT1} &&  -f ${QOUT2} ]];
 then
     echo "wgsim not run?"
-    exit 1
+    $DISCO1/scripts/makeSimSeq.sh \
+	-q $QUERY -r $REFERENCE -o $OUT
 fi
-
 
 echo bwa mem -M -t 5 $REFERENCE  $QOUT1  $QOUT2 \| samtools view -bS - \> ${OUT}.bam
 bwa mem -M -t 5 $REFERENCE  $QOUT1  $QOUT2 | samtools view -bS - > ${OUT}.bam
+

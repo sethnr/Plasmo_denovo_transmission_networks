@@ -1,0 +1,9 @@
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000  -B $DISCO1/analyses/fakeNGS/Pf3D7_07_v3:450000-750000_v_Pf3D7.rg.bam -R $WORK/refs/Pf3D7_v3.fasta -o haplo.r3D7.q3D7.vcf
+../scripts/runHaplotypeCaller.sh -l PfDd2_07_TT:450000-750000 -B $DISCO1/analyses/fakeNGS/Pf3D7_07_v3:450000-750000_v_PfDD2.rg.bam -R $WORK/refs/PfDD2_v1.fasta -o haplo.rDD2.q3D7.vcf
+../scripts/runHaplotypeCaller.sh -l PfIT_07_v3:450000-750000 -B $DISCO1/analyses/fakeNGS/Pf3D7_07_v3:450000-750000_v_PfIT.rg.bam -R $WORK/refs/PfIT_v3.fasta -o haplo.rIT.q3D7.vcf
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000 -B $DISCO1/analyses/fakeNGS/PfDD2_07_v1:450000-750000_v_Pf3D7.rg.bam -R $WORK/refs/Pf3D7_v3.fasta -o haplo.r3D7.qDD2.vcf
+../scripts/runHaplotypeCaller.sh -l PfDd2_07_TT:450000-750000 -B $DISCO1/analyses/fakeNGS/PfDD2_07_v1:450000-750000_v_PfDD2.rg.bam -R $WORK/refs/PfDD2_v1.fasta -o haplo.rDD2.qDD2.vcf
+../scripts/runHaplotypeCaller.sh -l PfIT_07_v3:450000-750000 -B $DISCO1/analyses/fakeNGS/PfDD2_07_v1:450000-750000_v_PfIT.rg.bam -R $WORK/refs/PfIT_v3.fasta -o haplo.rIT.qDD2.vcf
+../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000 -B $DISCO1/analyses/fakeNGS/PfIT_07_v3:450000-750000_v_Pf3D7.rg.bam -R $WORK/refs/Pf3D7_v3.fasta -o haplo.r3D7.qIT.vcf
+../scripts/runHaplotypeCaller.sh -l PfDd2_07_TT:450000-750000 -B $DISCO1/analyses/fakeNGS/PfIT_07_v3:450000-750000_v_PfDD2.rg.bam -R $WORK/refs/PfDD2_v1.fasta -o haplo.rDD2.qIT.vcf
+../scripts/runHaplotypeCaller.sh -l PfIT_07_v3:450000-750000 -B $DISCO1/analyses/fakeNGS/PfIT_07_v3:450000-750000_v_PfIT.rg.bam -R $WORK/refs/PfIT_v3.fasta -o haplo.rIT.qIT.vcf
