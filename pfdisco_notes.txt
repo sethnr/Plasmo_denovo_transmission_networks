@@ -282,7 +282,7 @@ blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta \
 
 perl -lane 'print "\>".$F[0]."_F\n".$F[5]."\n"."\>".$F[0]."_SNP\n".$F[5]."\n"."\>".$F[0]."_R\n".$F[4]."\n";' SNPfiles/daniels_primers.txt > SNPfiles/daniels_primers.reporters.fasta
 blastall -p blastn -d $WORK/refs/Pf3D7_v4.fasta  -i SNPfiles/daniels_primers.reporters.fasta -m8 > SNPfiles/daniels_primers.reporters.blastout
-perl -pe 's/(?<=\d)_(?=[RSF])/\t/gi' SNPfiles/daniels_primers.reporters.blastout  | sort -k1,1 -k3,3 -k10,10 > SNPfiles/daniels_primers.reporters.sort.blastout
+perl -pe 's/(?<=\d)_(?=[RSF])/\t/gi' SNPfiles/daniels_primers.reporters.blastout  |-k1,1 -k3,3 -k10,10 > SNPfiles/daniels_primers.reporters.sort.blastout
 
 
 perl -lane 'print "\>".$F[0]."\n".$F[3].("N" x50).$F[5].("N"x50).$F[4];' SNPfiles/daniels_primers.txt > SNPfiles/daniels_primers.fasta
@@ -342,3 +342,19 @@ bmod -M 10000 -R "select[mem>10000] rusage[mem=10000] span[ptile=4]" 4633535
 
 
 python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 8000 --nodes 2  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest --dryrun --splitsize 10000 --splitregions --maxconc 40
+
+
+bsub48 haplo.halfmeg.3D7DD2  ../scripts/runHaplotypeCaller.sh -l Pf3D7_07_v3:450000-750000  -B $DISCO1/samples/3D7DD2.bams.list -R $WORK/refs/Pf3D7_v3.fasta -o haplo.r3D7.3D7DD2.vcf
+
+cd $DISCO1/gatkHaplo_halfmeg_fakeNGS
+bsub48 haplo.halfmeg.fake3D7  ../scripts/runHaplotypeCaller.sh \
+  -l Pf3D7_07_v3:450000-750000  -B bams.3D7.list \
+  -R $WORK/refs/Pf3D7_v3.fasta -o haplo.r3D7.ALL.vcf
+
+bsub48 haplo.halfmeg.fakeDD2  ../scripts/runHaplotypeCaller.sh \
+  -l PfDd2_07_TT:450000-750000  -B bams.DD2.list \
+  -R $WORK/refs/PfDD2_v1.fasta -o haplo.rDD2.ALL.vcf
+  
+bsub48 haplo.halfmeg.fakeIT  ../scripts/runHaplotypeCaller.sh \
+  -l PfIT_07_v3:450000-750000  -B bams.IT.list \
+  -R $WORK/refs/PfIT_v3.fasta -o haplo.rIT.ALL.vcf

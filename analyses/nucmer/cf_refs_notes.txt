@@ -155,11 +155,11 @@ cd $PFDISCO/disco_halfmeg_fakeNGS
 ln -s ../analyses/fakeNGS/PfIT_07_v3:450000-750000.bam PfIT_07_v3:450000-750000.bam
 ln -s ../analyses/fakeNGS/Pf3D7_07_v3\:450000-750000.bam Pf3D7_07_v3\:450000-750000.bam
 
-python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.IT.samples.txt  --mem 8000 --nodes 1  -r PfIT_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfIT_v3.fasta 
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.IT.samples.txt  --mem 8000 --nodes 1  -r PfIT_07_v3:450000-750000 --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfIT_v3.fasta 
 
-python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.3D7.samples.txt  --mem 8000 --nodes 1  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/PfIT_v3.fasta --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/Pf3D7_v4.fasta
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.3D7.samples.txt  --mem 8000 --nodes 1  -r Pf3D7_07_v3:450000-750000 --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/Pf3D7_v4.fasta
 
-python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.DD2.samples.txt  --mem 8000 --nodes 1  -r PfDd2_07_TT:450000-750000 -f $WORK/refs/PfDD2_v1.fasta --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta
+python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.DD2.samples.txt  --mem 8000 --nodes 1  -r PfDd2_07_TT:450000-750000 --shallow -Q flower  --splitsize 50000 --splitregions --maxconc 10 --bam_direct  -f /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta
 
 
 ######
@@ -277,18 +277,18 @@ $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfDD2_v1.vcf.gz $DI
 #run all nucmer with new pipeline scripts
 cd /seq/plasmodium/sredmond/pfdisco/analyses/nucmer
 bsub -J nucmer3D7.DD2 -o out/nucmer3D7.DD2.o -e out/nucmer3D7.DD2.e \
-     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
-     -M 2000 -n 1 -q flower  \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=4]' \
+     -M 8000 -n 4 -q flower  \
      $DISCO1/scripts/runNucmerPipeline.sh   Pf3D7_v3.fasta   PfDD2_v1.fasta  nucmer.3D7vDD2
 
 bsub -J nucmer3D7.IT -o out/nucmer3D7.IT.o -e out/nucmer3D7.IT.e \
-     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
-     -M 2000 -n 1 -q flower  \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=4]' \
+     -M 8000 -n 4 -q flower \
      $DISCO1/scripts/runNucmerPipeline.sh   Pf3D7_v3.fasta   PfIT_v3.fasta  nucmer.3D7vIT
 
 bsub -J nucmerIT.DD2 -o out/nucmerIT.DD2.o -e out/nucmerIT.DD2.e \
-     -R 'select[mem>2000] rusage[mem=2000]  span[ptile=1]' \
-     -M 2000 -n 1 -q flower  \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=4]' \
+     -M 8000 -n 4 -q flower \
      $DISCO1/scripts/runNucmerPipeline.sh   PfIT_v3.fasta   PfDD2_v1.fasta  nucmer.ITvDD2
 
 
@@ -301,3 +301,34 @@ $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfDD2_v1xPfIT_v3.vcf.gz  $DI
 
 $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.Pf3D7_v3xPfIT_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inIT.vcf.gz  ../nucmer/nucmer.Pf3D7_v3xPfIT_v3.bed Pf3D7_07_v3:450000-750000 cf.Pf3D7_v3xPfIT_v3
 $DISCO1/scripts/cfNucmerToDisco.sh ../nucmer/nucmer.PfIT_v3xPf3D7_v3.vcf.gz  $DISCO1/disco_halfmeg_fakeNGS/fakevIT_all.in3D7.vcf.gz  ../nucmer/nucmer.PfIT_v3xPf3D7_v3.bed PfIT_07_v3:450000-750000 cf.PfIT_v3xPf3D7_v3
+
+
+
+
+#LOBSTR CALLING COMPARISONS
+
+$DISCO1/scripts/runLobSTR.sh \
+   -b $DISCO1/analyses/fakeNGS/Pf3D7_07_v3:450000-750000_v_PfDD2.bam \
+   -o lobSTR.r3D7.qDD2
+$DISCO1/scripts/runLobSTR.sh \
+   -b $DISCO1/analyses/fakeNGS/Pf3D7_07_v3:450000-750000_v_Pf3D7.bam \
+   -o lobSTR.r3D7.q3D7
+
+$DISCO1/scripts/runLobSTR.sh \
+   -b $DISCO1/analyses/fakeNGS/PfDD2_07_v1:450000-750000_v_PfDD2.bam \
+   -o lobSTR.rDD2.qDD2 \
+   -r $WORK/lobSTRrefs/PfDD2_lobstr
+$DISCO1/scripts/runLobSTR.sh \
+   -b $DISCO1/analyses/fakeNGS/PfDD2_07_v1:450000-750000_v_Pf3D7.bam \
+   -o lobSTR.rDD2.q3D7 \
+   -r $WORK/lobSTRrefs/PfDD2_lobstr
+
+
+do whole genome runs:
+
+for LOCUS in `cat $WORK/refs/Pf3D7.chrom.loci`
+do
+  python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/fakeNGS.3D7.samples.txt  --mem 8000 --nodes 1  \
+  -r $LOCUS -f $WORK/refs/Pf3D7_v3.fasta --shallow -Q flower  --splitsize 50000 \
+  --splitregions --maxconc 5 --bam_direct
+done

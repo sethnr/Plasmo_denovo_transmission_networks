@@ -93,3 +93,10 @@ hasSTR
 STRtype <- ggplot(subset(nuccfs,ref1 == "Pf3D7_v3" & STR!="NULL"),aes(x=set, group=STRtype, fill=STRtype)) + geom_histogram()  + facet_grid(type ~ ref2,scales="free_y")
 STRtype
 ```
+
+##STR type (A/TA/complex) vs call concordance
+```{r}
+STRtype <- ggplot(subset(nuccfs,ref1 == "Pf3D7_v3" & ref2=="PfDD2_v1" & STR!="NULL"),aes(x=length, group=STRtype, fill=STRtype)) + geom_histogram(binwidth=5)  + facet_grid(type ~ set,scales="free_y")
+STRtype
+```
+
