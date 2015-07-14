@@ -1,0 +1,33 @@
+#running mreps
+with zero errors permitted:
+#nb, not allowing --res =~ res=0
+
+$DISCO1/STRcallers/mreps/mreps  -fasta Pf3D7_v3.fasta > STRs_mreps_Pf3D7.R0.txt
+$DISCO1/STRcallers/mreps/mreps  -fasta PfDD2_v1.fasta > STRs_mreps_PfDD2.R0.txt
+
+$DISCO1/STRcallers/mreps/mreps  -fasta PfIT_v3.fasta > STRs_mreps_PfIT.R0.txt
+# too many Ns in the window (in CS7) - could chose window manually?
+ignore for now
+
+$DISCO1/scripts/runMreps.sh PfIT_v3.fasta
+$DISCO1/scripts/runMreps.sh Pf3D7_v3.fasta
+$DISCO1/scripts/runMreps.sh PfDD2_v1.fasta
+
+perl ../../hacks/makeLobSTRBedFromMREPS.pl < STRs_mreps_Pf3D7_v3.R0.txt > STRs_mreps_Pf3D7_v3.R0.bed
+perl ../../hacks/makeLobSTRBedFromMREPS.pl < STRs_mreps_PfDD2_v1.R0.txt > STRs_mreps_PfDD2_v1.R0.bed
+
+use BEDTools 
+
+python $WORK/lobSTR/scripts/lobstr_index.py \
+  --str STRs_mreps_Pf3D7_v3.R0.bed \
+  --ref Pf3D7_v3.fasta  \
+  --out $WORK/lobSTRrefs/Pf3D7_lobstr
+
+python  $WORK/lobSTR/scripts/lobstr_index.py \
+  --str STRs_mreps_PfDD2_v1.R0.bed \
+  --ref PfDD2_v1.fasta  \
+  --out $WORK/lobSTRrefs/PfDD2_lobstr
+
+
+python  $WORK/lobSTR/scripts/GetSTRInfo.py  STRs_mreps_PfDD2_v1.R0.bed PfDD2_v1.fasta > $WORK/lobSTRrefs/PfDD2_lobstr/strinfo.tab
+python  $WORK/lobSTR/scripts/GetSTRInfo.py  STRs_mreps_Pf3D7_v3.R0.bed Pf3D7_v3.fasta > $WORK/lobSTRrefs/Pf3D7_lobstr/strinfo.tab
