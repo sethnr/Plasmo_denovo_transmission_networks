@@ -48,6 +48,12 @@ filter='PASS'
 info='.'
 format="GT"
 
+
+HEADER='''##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##fileformat=VCFv4.1
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	'''
+
+
 def _write_var():
     global seq1, seq2, st1, st2, en1, en2, lc1, lc2, vartype, lastFR#, inseq, delseq
 #    print >>sys.stderr, i," ", lc1, st1, en1, inseq, lc2, st2, en2, delseq
@@ -139,9 +145,11 @@ def _write_var():
         print >>vcf2,i,"\t",
         
     
-    vcf1line = [lc1, st1, '.', seq1_1, seq2_1, qual, filter, "TYPE="+vartype, format, 0, 1]
+#    vcf1line = [lc1, st1, '.', seq1_1, seq2_1, qual, filter, "TYPE="+vartype, format, 0, 1]
+    vcf1line = [lc1, st1, '.', seq1_1, seq2_1, qual, filter, "TYPE="+vartype, format, 1]
     print >>vcf1, "\t".join(map(str,vcf1line))
-    vcf2line = [lc2, st2, '.', seq2_2, seq1_2, qual, filter, "TYPE="+var2type, format, 0, 1]
+#    vcf2line = [lc2, st2, '.', seq2_2, seq1_2, qual, filter, "TYPE="+var2type, format, 0, 1]
+    vcf2line = [lc2, st2, '.', seq2_2, seq1_2, qual, filter, "TYPE="+var2type, format, 1]
     print >>vcf2, "\t".join(map(str,vcf2line))
             
 ##         elif delseq != '':
@@ -279,6 +287,7 @@ def _setup_fasta(filename, seqdict=None, prefix=None):
         vcfname = prefix+"."+vcfname
         
     vcf = open(vcfname, 'w')
+    print >>vcf, HEADER+samplename;
 ##     fasta_seqs = check_output(['grep','>',filename])
 ##     fasta_seqs = fasta_seqs.splitlines()
 ##     for seq in fasta_seqs:
@@ -287,6 +296,7 @@ def _setup_fasta(filename, seqdict=None, prefix=None):
 ##             seqdict[seq]=samplename
 ##         else:
 ##             raise KeyError("key "+seq+"("+filename+") already found seq dict")
+
     return (vcf, samplename, seqdict)
         
 mummer = open(args.mummer)

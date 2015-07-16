@@ -8,12 +8,24 @@ REGION=$4
 OUTFILE=$5
 
 echo "setup"
+echo "F1" $NUCMER
+echo "F2" $DISCO
+echo "bed" $NUCMERBED
+echo "region" $REGION
+echo "outfile" $OUTFILE
 
 #get abspaths
 NUCMER=`readlink -f  $NUCMER`
 DISCO=`readlink -f  $DISCO`
 NUCMERBED=`readlink -f  $NUCMERBED`
 #DISCOBED=`readlink -f  $DISCOBED`
+
+echo "F1" $NUCMER
+echo "F2" $DISCO
+echo "bed" $NUCMERBED
+echo "region" $REGION
+echo "outfile" $OUTFILE
+
 
 mkdir $OUTFILE
 cd $OUTFILE
@@ -47,15 +59,15 @@ echo python $DISCO1/scripts/cfs/cfVCFs.py \
   --v1 ${NUCMER/.vcf*/}.cf.vcf \
   --v2 ${DISCO/.vcf*/}.cf.vcf \
   -o ${OUTFILE}.vcf
-python $DISCO1/scripts/cfVCFs.py \
+python $DISCO1/scripts/cfs/cfVCFs.py \
   --v1 ${NUCMER/.vcf*/}.cf.vcf \
   --v2 ${DISCO/.vcf*/}.cf.vcf \
   -o ${OUTFILE}.vcf  1>/dev/null
 
 
 echo "adding STR information"
-echo python $DISCO1/scripts/cfs/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
-python $DISCO1/scripts/cfs/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7.R0.txt
+echo python $DISCO1/scripts/cfs/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7_v3.R0.txt
+python $DISCO1/scripts/cfs/addSTRsToVCF.py -v ${OUTFILE}.vcf -s $DISCO1/analyses/STR_calling/STRs_mreps_Pf3D7_v3.R0.txt
 # mv ${OUTFILE}.STRs.vcf ${OUTFILE}.vcf
 
 

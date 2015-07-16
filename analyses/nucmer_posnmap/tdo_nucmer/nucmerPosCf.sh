@@ -11,5 +11,6 @@ show-snps -CHTr $name.filter.delta > $name.Csnp
 show-snps -HTr $name.filter.delta > $name.snp 
 
 y=$name;
-perl ~tdo/Bin/reichenowi.allels.V2.pl $y.filter.coords $y.Csnp $y.snp $ref3D7 $y  > Nuc.alleles.$name.txt
+echo perl ./reichenowi.allels.V2.pl $y.filter.coords $y.Csnp $y.snp $ref $y  \> Nuc.alleles.$name.txt
+perl ./reichenowi.allels.V2.pl $y.filter.coords $y.Csnp $y.snp $ref $y  > Nuc.alleles.$name.txt
 

@@ -81,8 +81,7 @@ sub getCoords{
 
   ### get an field, where there is coverage
   foreach (<F>) {
-	my ($refPos1,$refPos2,$queryPos1,$queryPos2,$overlap1,$overlap2,$identity,$refLengt
-h,$queryLength,$dum1,$dum2,$reference,$query) = split(/\s+/);
+	my ($refPos1,$refPos2,$queryPos1,$queryPos2,$overlap1,$overlap2,$identity,$refLength,$queryLength,$dum1,$dum2,$reference,$query) = split(/\s+/);
 
 	foreach my $pos ($refPos1..$refPos2) {
 	  $h{$reference}{$pos}=1
@@ -103,8 +102,7 @@ sub getSNPc{
 
   my %h;
   foreach (<F>) {
-	my ($refPos,$refWhat,$queryWhat,$queryPos,$dum1,$dum2,$refStrand,$queryStrand,$refe
-rence,$query) = split(/\s+/);
+	my ($refPos,$refWhat,$queryWhat,$queryPos,$dum1,$dum2,$refStrand,$queryStrand,$reference,$query) = split(/\s+/);
 
 	###three cases
 	if ($refWhat eq ".") {
@@ -214,8 +212,7 @@ sub getMutations{
   my %h_sizeQuery;
 
   foreach (@File) {
-	my ($refPos,$refWhat,$queryWhat,$queryPos,$dum1,$dum2,$refStrand,$queryStrand,$refe
-rence,$query) = split(/\s+/);
+	my ($refPos,$refWhat,$queryWhat,$queryPos,$dum1,$dum2,$refStrand,$queryStrand,$reference,$query) = split(/\s+/);
 
 	if ($refWhat eq ".") {
 	  $BB{$reference} .="$reference\tBBA\tIns\t$refPos\t$refPos\t0\t+\t.\tnote=\"Insert
@@ -251,8 +248,7 @@ erence:+$refWhat++++Strand+of+query+is+$queryStrand\"\n";
 
   ### get an field, where there is coverage
   foreach (@File) {
-	my ($refPos1,$refPos2,$queryPos1,$queryPos2,$overlap1,$overlap2,$identity,$refLengt
-h,$queryLength,$dum1,$dum2,$reference,$query) = split(/\s+/);
+	my ($refPos1,$refPos2,$queryPos1,$queryPos2,$overlap1,$overlap2,$identity,$refLength,$queryLength,$dum1,$dum2,$reference,$query) = split(/\s+/);
 	$sizeRef{$reference}=$refLength;
 	$sizeQuery{$query}=$queryLength;
 
@@ -266,8 +262,7 @@ h,$queryLength,$dum1,$dum2,$reference,$query) = split(/\s+/);
 
 	# check for the query
 	$coverLB{$query}[$queryLength]=undef;
-	if ($queryPos2<$queryPos1) {  my $tmp=$queryPos2;$queryPos1=$queryPos2;$queryPos2=$
-tmp	}
+	if ($queryPos2<$queryPos1) {  my $tmp=$queryPos2;$queryPos1=$queryPos2;$queryPos2=$tmp	}
 	$coveredQuery{$query}+=(abs($queryPos2-$queryPos1)+1);
 	for ($queryPos1..$queryPos2) {
 	  $coverLB{$query}[$_]=1;
