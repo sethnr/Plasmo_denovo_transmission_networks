@@ -49,8 +49,8 @@ info='.'
 format="GT"
 
 
-HEADER='''##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
-##fileformat=VCFv4.1
+HEADER='''##fileformat=VCFv4.1
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
 #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	'''
 
 
@@ -95,8 +95,15 @@ def _write_var():
 
         if vartype=='ins' and lastFR==1:
             var2type='del'
+            #APPARENT off-by-one error? why?
+            pb1 = _get_base(fasta1,lc1,st1+1)
+            pb2 = _get_base(fasta2,lc2,st2+1)
+            seq1_1 = pb1+seq1
+            seq2_1 = pb1+seq2
             #en1 = en1-1
             st1 += 1
+           
+
             #SEQ 1 and 2, as in second VCF
             seq1_2 = pb2+seq1
             seq2_2 = pb2+seq2
@@ -287,7 +294,7 @@ def _setup_fasta(filename, seqdict=None, prefix=None):
         vcfname = prefix+"."+vcfname
         
     vcf = open(vcfname, 'w')
-    print >>vcf, HEADER+samplename;
+    print >>vcf, HEADER+str(samplename)
 ##     fasta_seqs = check_output(['grep','>',filename])
 ##     fasta_seqs = fasta_seqs.splitlines()
 ##     for seq in fasta_seqs:

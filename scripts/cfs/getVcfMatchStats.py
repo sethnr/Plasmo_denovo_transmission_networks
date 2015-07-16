@@ -37,8 +37,13 @@ for rec in reader:
     noAlls = str(len(alleles))
     bcomplex = str(bcomplex)
     varlen = str(varlen)
-    type = rec.INFO['TYPE'][0]
-    con = rec.INFO['CON'][0]
+    vartype = rec.INFO['TYPE'][0]
+    con=''
+    matched=''
+    if 'CON' in rec.INFO:
+        con = rec.INFO['CON'][0]
+    if 'MATCHED' in rec.INFO:
+        matched = ','.join(rec.INFO['MATCHED'])
     qual = str(rec.QUAL)
 
     STR="NULL"
@@ -63,8 +68,9 @@ for rec in reader:
     print >>sys.stdout,"\t".join((vcfname,
                                   rec.CHROM,
                                   str(rec.POS),
-                                  type,
+                                  vartype,
                                   con,
+                                  matched,
                                   qual,
                                   varlen,
                                   noAlls,
