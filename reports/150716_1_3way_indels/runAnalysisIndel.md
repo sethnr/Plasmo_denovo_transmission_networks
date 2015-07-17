@@ -10,8 +10,8 @@ opts_chunk$set(fig.width=9, fig.height=6)
 #150626 - indel stats, but no STR/mreps stats
 #nuccfs <- read.table("pairwise_nucmer_discovar_cfs_150626.txt",sep="\t",stringsAsFactors = F)
 #150629 - indel stats and STR/mreps stats
-nuccfs <- read.table("pairwise_nucmer_discovar_cfs_150629.txt",sep="\t",stringsAsFactors = F)
-colnames(nuccfs) <- c("prog","ref1","ref2","chr","pos","type","concordance","quality","length","alleles","complexity",
+nuccfs <- read.table("cf.allNucmervDisco.150707.txt",sep="\t",stringsAsFactors = F)
+colnames(nuccfs) <- c("ref1","ref2","chr","pos","type","concordance","quality","length","alleles","complexity",
                       "STR","period","exponent","STRlength",
                       "STRcomplexity","Apc","Tpc","Cpc","Gpc" )
 ```
@@ -25,11 +25,11 @@ nuccfs[nuccfs$TA,]$STRtype = "TA"
 nuccfs[nuccfs$polyA,]$STRtype = "polyA"
 
 nuccfs$set = "MATCH"
-nuccfs[which(nuccfs$prog=="NUC" & nuccfs$concordance=="PRIVATE"),"set"] <- "TYPE2"
-nuccfs[which(nuccfs$prog=="DISC" & nuccfs$concordance=="PRIVATE"),"set"] <- "TYPE1"
+nuccfs[which(nuccfs$concordance=="PRIVATE_1"),"set"] <- "PRIV_DISCO"
+nuccfs[which(nuccfs$concordance=="PRIVATE_2"),"set"] <- "PRIV_NUCMER"
 nuccfs[which(nuccfs$concordance=="MISMATCH"),"set"] <- "MISMATCH"
 #remove nucmer matches to prevent double counting (leave discovar matches untouched)
-nuccfs <- nuccfs[!(nuccfs$prog=="NUC" & nuccfs$concordance=="MATCH"),]
+#nuccfs <- nuccfs[!(nuccfs$prog=="NUC" & nuccfs$concordance=="MATCH"),]
 
 nuccfs$quality <- as.numeric(nuccfs$quality)
 ```
