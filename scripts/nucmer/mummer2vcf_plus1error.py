@@ -51,6 +51,7 @@ format="GT"
 
 HEADER='''##fileformat=VCFv4.1
 ##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=TYPE,Number=1,Type=String,Description="indel type">
 #CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	'''
 
 

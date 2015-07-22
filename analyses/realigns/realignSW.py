@@ -5,6 +5,7 @@ import argparse
 from string import *
 from subprocess import call, check_output
 import os.path as path
+import os
 from math import ceil,floor
 import pysam
 
@@ -18,9 +19,14 @@ parser.add_argument('-r2','-f','--fasta_for_cons', action="append", dest='fasta_
 parser.add_argument('-o','--out', action="store", dest='outFile', type=str, help='outFile', nargs='?', default=None)
 parser.add_argument('-b','--blockSize', action="store", dest='blocksize', type=int, help='default blocksize for summary (kb)', nargs='?', default=10)
 parser.add_argument('-l','--loci', action="store", dest='regions', type=str, help='regions over which to summarize', nargs='+', default=None)
+parser.add_argument('-t','--tmp', action="store", dest='tmp', type=str, help='temp folder for calculations <tmp>', nargs='?', default='tmp')
+
 args = parser.parse_args()
 
-TMP="./tmp/"
+TMP="./"+args.tmp+"/"
+if not path.exists(TMP):
+    os.makedirs(TMP)
+
 block = args.blocksize * 1000
 blocks = open(TMP+"blocks.intervals","w")
 
@@ -57,6 +63,7 @@ tags=['AS', #alignment score (no matched bases?)
 for fasta in args.fasta_align:
     bwa_command = ['bwa','bwasw',
                fasta, TMP+'consensus.fasta']
+    print >>sys.stderr, " ".join(bwa_command)
     name = path.basename(fasta).replace('.fasta','')
     samfilename = TMP+name+'.sam'
 #    samfilename = TMP+"realigns.sam"

@@ -32,6 +32,10 @@ parser.add_argument('-n','--SNP', action="store", dest='snpLocs', type=str, help
 parser.add_argument('-s','--samples', action="store", dest='samples', type=str, help='tab-delim file for sample names [sample_id, lane#, set]', nargs='?', default=None)
 parser.add_argument('-d','--dir', action="store", dest='datadir', type=str, help='data directory for bam files', nargs='?', default=None)
 parser.add_argument('--rundir', action="store", dest='rundir', type=str, help='directory for output (default = $PWD)', nargs='?', default=None)
+#parser.add_argument('--tmp', action="store", dest='tmpdir', type=str, help='directory for output (default = $PWD)', nargs='?', default=None)
+
+parser.add_argument('--genome', action="store_true", dest='wholeGenome', help='run exhaustively across all regions in genome', default=False)
+
 
 #VARS
 parser.add_argument('-z','--discosize', action="store", dest='discoSize', type=int, help='default size for expanded region for STR calling', nargs='?', default=2000)
@@ -224,6 +228,21 @@ def _split_regions(locs, ssize=50000, sflank=500):
             locs = sorted(locs)
     return locs
 
+def _parse_chrs_from_dict(fasta):
+    seqdictF = fasta.replace(".fasta",".dict")
+    print >>sys.stderr, seqdictF
+    seqdict = open(seqdictF,'r')
+    for line in seqdict:
+    #    try:
+        print >>sys.stderr, line
+        seqname = re.search('SN:(\S+)', line).group(1)
+        seqlen = re.search('LN:(\d+)', line).group(1)
+        print >>sys.stderr, seqname, seqlen
+   #     except:
+    #        pass
+    
+
+
 
 #variables / defaults / etc
 flank = args.discoSize/2
@@ -243,10 +262,15 @@ SNPs = []
 STRs = []
 locs = []
 
-if args.region is not None:
+
+if args.wholeGenome and args.region is not None:
+    print >>sys.stderr, "--genome and --region cannot both be set"
+    exit(1)
+elif args.wholeGenome:
+    _parse_chrs_from_dict(args.refFasta)
+elif args.region is not None:
     (rch,rst,ren) = re.split('\W',args.region)
     locs += [(rch,int(rst),int(ren))]
-
 
 # parse tab file for samples / lanes / sets
 for line in open(args.samples,'r'):

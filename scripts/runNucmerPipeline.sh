@@ -23,6 +23,25 @@ perl $DISCO1/scripts/nucmer/mummer2bed.pl ${OUT}.coords
 echo "mummer 2 VCF"
 #make two vcfs from mummer SNP output
 #python $DISCO1/scripts/nucmer/mummer2vcf_plus1error.py -m ${OUT}.snps
-python $DISCO1/scripts/nucmer/mummer2vcf_plus1error.py -m ${OUT}.filter.snps
+python $DISCO1/scripts/nucmer/mummer2vcf_plus1error.py -m ${OUT}.filter.snps 
 
+f1=`basename $FASTA1`
+f2=`basename $FASTA2`
+f1=${f1/.fasta/}
+f2=${f2/.fasta/}
+
+#echo $DISCO1/scripts/leftAlignIndels.sh -v nucmer.${f1}x${f2}.vcf -f $FASTA1
+$DISCO1/scripts/leftAlignIndels.sh -v nucmer.${f1}x${f2}.vcf -f $FASTA1
+
+#echo $DISCO1/scripts/leftAlignIndels.sh -v nucmer.${f2}x${f1}.vcf -f $FASTA2
+$DISCO1/scripts/leftAlignIndels.sh -v nucmer.${f2}x${f1}.vcf -f $FASTA2
+
+for VCF in  nucmer.${f1}x${f2}.vcf nucmer.${f2}x${f1}.vcf
+do 
+  vcf-sort -c $VCF > ${VCF}.tmp
+  if [[ $? != 0 ]]; then exit $?; fi
+  mv ${VCF}.tmp ${VCF}
+  bgzip $VCF ; 
+  tabix -pvcf ${VCF}.gz; 
+done
 echo "done"
