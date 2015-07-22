@@ -66,8 +66,6 @@ nuccfs[nuccfs$TA,]$STRtype = "TA"
 nuccfs[nuccfs$polyA,]$STRtype = "polyA"
 
 nuccfs$quality <- as.numeric(nuccfs$quality)
-#nuccfs[is.na(as.numeric(nuccfs$quality)),]
-#REMOVE MISMATCHES (messy/infrequent)
 nuccfs <- nuccfs[which(nuccfs$concordance!="MISMATCH"),]
 
 nuccfsRight <- nuccfs
@@ -90,13 +88,6 @@ ggplot(subset(ctable,x!="none"),aes(x,y,fill=Freq)) +
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
-
-```r
-# ggplot(subset(ctable,matched != "" & STRtype %in% c("polyA","TA")),aes(x,y,fill=Freq)) + 
-#   geom_tile() + scale_fill_gradient(low="white",high="red") +
-#   stat_bin2d(geom="text", aes(label=Freq)) +
-#   facet_grid(type ~ STRtype)
-```
 ##left align
 
 ```r
@@ -113,18 +104,11 @@ ggplot(subset(ctable,x!="none"),aes(x,y,fill=Freq)) +
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
-```r
-# ggplot(subset(ctable,matched != "" & STRtype %in% c("polyA","TA")),aes(x,y,fill=Freq)) + 
-#   geom_tile() + scale_fill_gradient(low="white",high="red") +
-#   stat_bin2d(geom="text", aes(label=Freq)) +
-#   facet_grid(type ~ STRtype)
-```
-
 #call concordance vs posn, SNPs
 
 ```r
 posConcL <- ggplot(subset(nuccfsLeft,type=="S"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)
-posConcL + ggtitle("concordance x pos, aligned") + scale_fill_manual(values = colours)
+posConcL + ggtitle("concordance x pos, aligned SNPs") + scale_fill_manual(values = colours)
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
@@ -132,28 +116,28 @@ posConcL + ggtitle("concordance x pos, aligned") + scale_fill_manual(values = co
 
 ```r
 posConcR <- ggplot(subset(nuccfsRight,type=="I"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)
-posConcR + ggtitle("concordance x pos, unaligned") + scale_fill_manual(values = colours)
+posConcR + ggtitle("concordance x pos, unaligned INDELS") + scale_fill_manual(values = colours)
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
 ```r
 posConcL <- ggplot(subset(nuccfsLeft,type=="I"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)
-posConcL + ggtitle("concordance x pos, aligned") + scale_fill_manual(values = colours)
+posConcL + ggtitle("concordance x pos, aligned INDELS") + scale_fill_manual(values = colours)
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
 ##STR type (A/TA/complex) vs concordance, INDELS
 
 ```r
-posConcSTRR <- ggplot(subset(nuccfsRight,type=="I"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)  + facet_grid(STRtype ~ .,scales="free_y") + ggtitle("STR type x pos, unaligned") + scale_fill_manual(values = colours)
+posConcSTRR <- ggplot(subset(nuccfsRight,type=="I"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)  + facet_grid(STRtype ~ .,scales="free_y") + ggtitle("STR type x pos, unaligned INDELS") + scale_fill_manual(values = colours)
 posConcSTRR
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
 ```r
-posConcSTRL <- ggplot(subset(nuccfsLeft,type=="I"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)  + facet_grid(STRtype ~ .,scales="free_y") + ggtitle("STR type x pos, aligned") + scale_fill_manual(values = colours)
+posConcSTRL <- ggplot(subset(nuccfsLeft,type=="I"),aes(x=pos, group=matched, fill=matched)) + geom_histogram(binwidth=10000)  + facet_grid(STRtype ~ .,scales="free_y") + ggtitle("STR type x pos, aligned INDELS") + scale_fill_manual(values = colours)
 posConcSTRL
 ```
 
