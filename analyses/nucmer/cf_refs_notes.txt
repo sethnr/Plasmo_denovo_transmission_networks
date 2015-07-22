@@ -382,10 +382,123 @@ $DISCO1/scripts/runCfVcfsMulti.sh \
 
 #using CS7 nucmer run:
 $DISCO1/scripts/runCfVcfsMulti.sh \
-   -b $DISCO1/analyses/nucmer/nucmer.Pf3D7_v3xPfDD2_v1.bed \
+  -c Pf3D7_07_v3 -s 450000 -e 750000 \
+   -b $DISCO1/analyses/nucmer/nucmer.Pf3D7_07_v3xPfDd2_07_TT.bed \
    -o cfNucmerDiscoHaplo_150714 \
-   -r Pf3D7_07_v3:450000-750000 \
    NUCMER:::$DISCO1/analyses/nucmer/nucmer.Pf3D7_07_v3xPfDd2_07_TT.vcf.gz \
    DISCO:::$DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz  \
    HAPLO:::$DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.PfDD2.vcf.gz 
    
+
+#realignment edit distance:
+python realignSW.py -v $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.Pf3D7v3D7.vcf.gz \
+       -r $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/PfDD2_v1.fasta \
+       -l Pf3D7_07_v3:450000-750000 \
+       --tmp tmp_disco_3D7 \
+       > disco_q3D7vr3D7.txt
+python realignSW.py -v $DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.PfDD2v3D7.vcf.gz \
+       -r1 $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/PfDD2_v1.fasta \
+       -l Pf3D7_07_v3:450000-750000 \
+       --tmp tmp_disco_DD2 \
+       > disco_qDD2vr3D7.txt
+
+python realignSW.py -v $DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.Pf3D7.vcf.gz \
+       -r1 $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/PfDD2_v1.fasta \
+       -l Pf3D7_07_v3:450000-750000 \
+       --tmp tmp_haplo_3D7 \
+       > haplo_q3D7vr3D7.txt
+python realignSW.py -v $DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.PfDD2.vcf.gz \
+       -r1 $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/PfDD2_v1.fasta \
+       -l Pf3D7_07_v3:450000-750000 \
+       --tmp tmp_haplo_DD2 \
+       > haplo_qDD2vr3D7.txt
+
+python realignSW.py -v $DISCO1/analyses/nucmer/nucmer.Pf3D7_07_v3xPfDd2_07_TT.vcf.gz \
+       -r1 $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/Pf3D7_v3.fasta \
+       -f $WORK/refs/PfDD2_v1.fasta \
+       -l Pf3D7_07_v3:450000-750000 \
+       --tmp tmp_nucmer_DD2 \
+       > nucmer_qDD2vr3D7.txt
+
+
+
+
+
+
+$DISCO1/scripts/runCfVcfsMulti.sh \
+  -c Pf3D7_07_v3 -s 450000 -e 750000 \
+   -b $DISCO1/analyses/nucmer/nucmer.Pf3D7_v3xPfDD2_v1.bed \
+   -o cfNucmerDiscoHaplo_150720 \
+   NUCMER:::$DISCO1/analyses/nucmer/nucmer.Pf3D7_07_v3xPfDd2_07_TT.vcf.gz \
+   DISCO:::$DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz  \
+   HAPLO:::$DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.PfDD2.vcf.gz 
+   
+
+#CHECK ALIGNS IN REALIGN SAM FILES
+perl -lane 'splice(@F,9,1); print join("\t",$ARGV,@F) if $F[0]  ~~  [20,21,18] '  tmp_*_DD2/PfDD2_v1.sam | sort -k2,2
+#MATCH LENGTHS AS GOOD IN NUCMER AS DISCO:
+  sredmond@node1749.broadinstitute.org:/seq/plasmodium/sredmond/pfdisco/analyses/realigns$ perl -lane 'splice(@F,9,1); print join("\t",$ARGV,@F) if $F[0]  ~~  [20,21,18] '  tmp_*_DD2/PfDD2_v1.sam | sort -k2,2
+  tmp_disco_DD2/PfDD2_v1.sam	18	0	PfDd2_07_TT	580496	250	9541M45I437M	*	0	0	*	AS:i:9883	XS:i:81	XF:i:0	XE:i:168	NM:i:45
+  tmp_haplo_DD2/PfDD2_v1.sam	18	0	PfDd2_07_TT	580496	250	9541M45I437M	*	0	0	*	AS:i:9867	XS:i:81	XF:i:0	XE:i:166	NM:i:49
+  tmp_nucmer_DD2/PfDD2_v1.sam	18	0	PfDd2_07_TT	580496	250	9978M	*	0	0	*	AS:i:9978	XS:i:81	XF:i:0	XE:i:164	NM:i:0
+  tmp_disco_DD2/PfDD2_v1.sam	20	0	PfDd2_07_TT	600480	250	10013M	*	0	0	*	AS:i:10013	XS:i:60	XF:i:0	XE:i:153	NM:i:0
+  tmp_haplo_DD2/PfDD2_v1.sam	20	0	PfDd2_07_TT	600480	250	10013M	*	0	0	*	AS:i:10013	XS:i:60	XF:i:0	XE:i:153	NM:i:0
+  tmp_nucmer_DD2/PfDD2_v1.sam	20	0	PfDd2_07_TT	600480	250	10013M	*	0	0	*	AS:i:10005	XS:i:60	XF:i:0	XE:i:153	NM:i:2
+  tmp_disco_DD2/PfDD2_v1.sam	21	0	PfDd2_07_TT	610494	250	7995M1870S	*	0	0	*	AS:i:7995	XS:i:51	XF:i:0	XE:i:125	NM:i:0
+  tmp_disco_DD2/PfDD2_v1.sam	21	0	PfDd2_07_TT	618491	250	7889S1976M	*	0	0	*	AS:i:1976	XS:i:106	XF:i:0	XE:i:31	NM:i:0
+  tmp_haplo_DD2/PfDD2_v1.sam	21	0	PfDd2_07_TT	610494	250	8100M40I15M2I1858M	*	0	0	*	AS:i:9871	XS:i:179	XF:i:0	XE:i:160	NM:i:4    4
+
+
+#REGIONS APPEAR TO BE SIMILAR, BUT MISPLACED
+  Pf3D7_07_v3	650369	.	AATATATATATATATAT	A	2341.91	PASS	MATCHED=DISCO,HAPLO  
+  Pf3D7_07_v3	650392	.	ATATATATATATATATA	A	40.0	PASS	MATCHED=NUCMER
+  Pf3D7_07_v3	650625	.	TAAAAAA	T	3107.83	.	MATCHED=HAPLO
+  Pf3D7_07_v3	650650	.	AAAAAAA	A	40.0	PASS	MATCHED=NUCMER
+  Pf3D7_07_v3	650654	.	AAAAG	A	570.0	PASS	MATCHED=DISCO
+  Pf3D7_07_v3	650666	.	C	CAT,T	1105.91	PASS	MATCHED=DISCO
+  Pf3D7_07_v3	655261	.	TTA	T	3044.91	PASS	MATCHED=DISCO,HAPLO
+  Pf3D7_07_v3	655280	.	TAT	T	40.0	PASS	MATCHED=NUCMER
+  Pf3D7_07_v3	657350	.	CT	C	1197.62	PASS	MATCHED=DISCO,HAPLO
+  Pf3D7_07_v3	657376	.	TT	T	40.0	PASS	MATCHED=NUCMER
+
+#LEFT ALIGN ALL INDELS FROM NUCMER
+$DISCO1/scripts/runNucmerPipeline.sh  Pf3D7_07_v3.fasta  PfDd2_07_TT.fasta  nucmer.3D7vDD2_c7
+
+edit script to remove leftaligns
+bsub -J nucmer3D7.DD2 -o out/nucmer3D7.DD2.o -e out/nucmer3D7.DD2.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=4]' \
+     -M 8000 -n 2 -q flower  \
+     $DISCO1/scripts/runNucmerPipeline.sh  Pf3D7_07_v3.fasta  PfDd2_07_TT.fasta  nucmer.3D7vDD2_c7
+mv nucmer* noLeftAlign
+
+bsub -J nucmer3D7.DD2 -o out/nucmer3D7.DD2.o -e out/nucmer3D7.DD2.e \
+     -R 'select[mem>8000] rusage[mem=8000]  span[ptile=4]' \
+     -M 8000 -n 2 -q flower  \
+     $DISCO1/scripts/runNucmerPipeline.sh  Pf3D7_07_v3.fasta  PfDd2_07_TT.fasta  nucmer.3D7vDD2_c7
+mv nucmer* leftAlign
+
+
+$DISCO1/scripts/runCfVcfsMulti.sh \
+  -c Pf3D7_07_v3 -s 450000 -e 750000 \
+   -b $DISCO1/analyses/nucmer/leftAlign/nucmer.Pf3D7_07_v3xPfDd2_07_TT.bed \
+   -o cfNucmerDiscoHaplo_150722_leftAlign \
+   NUCMER:::$DISCO1/analyses/nucmer/leftAlign/nucmer.Pf3D7_07_v3xPfDd2_07_TT.vcf.gz \
+   DISCO:::$DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz  \
+   HAPLO:::$DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.PfDD2.vcf.gz 
+
+$DISCO1/scripts/runCfVcfsMulti.sh \
+  -c Pf3D7_07_v3 -s 450000 -e 750000 \
+   -b $DISCO1/analyses/nucmer/noLeftAlign/nucmer.Pf3D7_07_v3xPfDd2_07_TT.bed \
+   -o cfNucmerDiscoHaplo_150722_noLeftAlign \
+   NUCMER:::$DISCO1/analyses/nucmer/noLeftAlign/nucmer.Pf3D7_07_v3xPfDd2_07_TT.vcf.gz \
+   DISCO:::$DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.inDD2.vcf.gz  \
+   HAPLO:::$DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.PfDD2.vcf.gz 
