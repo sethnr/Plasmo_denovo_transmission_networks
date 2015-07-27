@@ -132,7 +132,9 @@ ctable$y <- c(0,1,2,3,2,3,3,4)
 ctable$x <- factor(ctable$x,labels=c("none","NUCMER","DISCO","HAPLO","ALL"))
 ctable$y <- factor(ctable$y,labels=c("none","NUCMER","DISCO","HAPLO","ALL"))
 ggplot(subset(ctable,x!="none"),aes(x,y,fill=Freq)) + geom_tile() + scale_fill_gradient(low="white",high="red") +
+stat_bin2d(geom="text", aes(label=Freq)) +
   facet_grid(type ~ STRtype)
 ggplot(subset(ctable,matched != "" & STRtype %in% c("polyA","TA")),aes(x,y,fill=Freq)) + geom_tile() + scale_fill_gradient(low="white",high="red") +
+stat_bin2d(geom="text", aes(label=Freq)) +
   facet_grid(type ~ STRtype)
 ```
