@@ -77,9 +77,7 @@ if [[ $SPLIT==1 ]]; then NAME=${NAME}_$REGION; fi
 echo "SETUP..."
 mkdir $REFNAME
 cd $REFNAME
-mkdir tmp_${NAME}
-
-
+#mkdir tmp_${NAME}
 echo "SET " $SET
 echo "LANE " $LANE
 echo "DATA " $DATA
@@ -89,13 +87,25 @@ echo "NODES " $NODES
 
 # DO SOME STUFF:
 
-ls ${NAME}.final.variant.filtered.vcf
-rc=$?;
-if [[ $rc == 0 ]];
+#ls ${NAME}.final.variant.filtered.vcf
+#rc=$?;
+#if [[ $rc == 0 ]];
+
+#if [[ -f ${NAME}.final.variant.filtered.vcf ]]
+#then
+#    echo "DISCOVAR OUTPUT ALREADY PRESENT, NOT RUNNING";
+#    exit 0;
+if [[ -f ${NAME}.final.variant.filtered.vcf.gz ]]
 then
     echo "DISCOVAR OUTPUT ALREADY PRESENT, NOT RUNNING";
     exit 0;
 fi
+
+#MAKE SUB FOLDER (FULL RUN IS MAKING TOO MANY FILES IN ONE FOLDER)
+mkdir $NAME
+cd $NAME
+mkdir tmp_${NAME}
+
 
 if [[ ! -f ${NAME}.final.variant.filtered.vcf ]];
 then
@@ -159,6 +169,10 @@ fi
 perl -i -ne 'print $_ unless $_ =~ m/DiscovarRegion/gi' ${NAME}.final.variant.filtered.vcf
 #UGLY HACK sample name is 'unknown' in fakeNGS samples
 perl -i -pe "s/unknown(?>$)/${SET}/" ${NAME}.final.variant.filtered.vcf
+
+#move back to parent folder
+cp ${NAME}.final.variant.filtered.vcf ../${NAME}.final.variant.filtered.vcf
+cd ../
 
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz

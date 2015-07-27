@@ -36,6 +36,7 @@ parser.add_argument('--rundir', action="store", dest='rundir', type=str, help='d
 
 parser.add_argument('--genome', action="store_true", dest='wholeGenome', help='run exhaustively across all regions in genome', default=False)
 
+parser.add_argument('--prefix', action="store", dest='prefix', help='prefix for submission log and killscripts (to allow concurrent runs in same folder', default="")
 
 #VARS
 parser.add_argument('-z','--discosize', action="store", dest='discoSize', type=int, help='default size for expanded region for STR calling', nargs='?', default=2000)
@@ -48,7 +49,7 @@ parser.add_argument('--interactive', action="store_true", dest='interactive', he
 
 #DISCO INPUTS
 parser.add_argument('-f','--ref', action="store", dest='refFasta', type=str, help='fasta file for reference seq', nargs='?', default=None)
-parser.add_argument('-r','--region', action="store", dest='region', type=str, help='region to call exhaustively across', nargs='?', default=None)
+parser.add_argument('-r','--region','--regions', action="store", dest='region', type=str, help='region to call exhaustively across', nargs='?', default=None)
 parser.add_argument('--mem', action="store", dest='mem', type=int, help='memory to use for discovar [2000]', nargs='?', default=2000)
 parser.add_argument('--nodes', action="store", dest='nodes', type=int, help='nodes to use for discovar [1]', nargs='?', default=1)
 parser.add_argument('--maxconc', action="store", dest='maxconc', type=int, help='maximum number of discovar jobs to run at once [20]', nargs='?', default=20)
@@ -66,6 +67,7 @@ args = parser.parse_args()
 
 def _subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1):
     comlog = "sub_commands.txt"
+    print >>sys.stderr, "OPENING COMLOG"
     comlogf = open(comlog,'w')
     
     for command in joblist:
@@ -75,8 +77,12 @@ def _subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, 
         #(jobNo, subd_command) = _subjob(command, name, args.mem, args.nodes, args.queue, args.jobtime)
         #jobs += [jobNo]
         #jobs[jobNo] = (seqid+"_"+str(lane), region)
+    print >>sys.stderr, "CLOSING COMLOG"
     comlogf.close()
+#    os.system("cp sub_commands.txt sub_commands.log")
+#    os.system("wc -l sub_commands.*")
     arrCommand=RUNJOBARR+" "+comlog
+    
     jobarrname = jobname+"["+str(1)+"-"+str(len(joblist))+"]"
     outname = jobname+".%I"
     if maxconc > 0: jobarrname += "%"+str(maxconc)
@@ -232,15 +238,15 @@ def _parse_chrs_from_dict(fasta):
     seqdictF = fasta.replace(".fasta",".dict")
     print >>sys.stderr, seqdictF
     seqdict = open(seqdictF,'r')
+    locs = []
     for line in seqdict:
-    #    try:
-        print >>sys.stderr, line
-        seqname = re.search('SN:(\S+)', line).group(1)
-        seqlen = re.search('LN:(\d+)', line).group(1)
-        print >>sys.stderr, seqname, seqlen
-   #     except:
-    #        pass
-    
+        snres = re.search('SN:(\S+)', line)
+        if snres is not None:
+            seqname = snres.group(1)
+            seqlen = re.search('LN:(\d+)', line).group(1)
+#            print >>sys.stderr, seqname, seqlen
+            locs += [(seqname,1,int(seqlen))]
+    return locs
 
 
 
@@ -267,10 +273,17 @@ if args.wholeGenome and args.region is not None:
     print >>sys.stderr, "--genome and --region cannot both be set"
     exit(1)
 elif args.wholeGenome:
-    _parse_chrs_from_dict(args.refFasta)
+    locs = _parse_chrs_from_dict(args.refFasta)
 elif args.region is not None:
-    (rch,rst,ren) = re.split('\W',args.region)
-    locs += [(rch,int(rst),int(ren))]
+    if os.path.exists(args.region):
+        regions = open(args.region,'r')
+        for r in regions:
+#            print >>sys.stderr, re.split('\W',r.rstrip())
+            (rch,rst,ren) = re.split('\W',r.rstrip())
+            locs += [(rch,int(rst),int(ren))]
+    else:
+        (rch,rst,ren) = re.split('\W',args.region)
+        locs += [(rch,int(rst),int(ren))]
 
 # parse tab file for samples / lanes / sets
 for line in open(args.samples,'r'):
@@ -316,8 +329,8 @@ if args.strLocs is not None:
         STRs += [(chrom,start,end)]
         locs += [(chrom,st,en)]
 
-print >>sys.stderr, "merging regions within "+str(flank)
-print >>sys.stderr, str(len(locs))+" --> ",
+#print >>sys.stderr, "merging regions within "+str(flank)
+#print >>sys.stderr, str(len(locs))+" --> ",
 locs = _merge_regions(locs,flank)
 if args.splitsize > 0:
     locs = _split_regions(locs,args.splitsize,args.splitflank)
@@ -353,9 +366,14 @@ failjobs = []
 datasets = set([dataset for (seqid, lane, dataset) in samples])
 print >>sys.stderr, datasets
 
+sublogname="submitted.log"
+killscriptname="killAll.sh"
+if args.prefix is not None:
+    sublogname = args.prefix+"."+sublogname
+    killscriptname = args.prefix+"."+killscriptname
 
-sublog = open("submitted.log",'w')
-killscript = open("killAll.sh",'w')
+sublog = open(sublogname,'w')
+killscript = open(killscriptname,'w')
 commands = []
 
 
@@ -400,7 +418,7 @@ for thisdataset in datasets:
     os.chdir("../")
     sublog.close()
     killscript.close()
-os.chmod('killAll.sh',000755)
+os.chmod(killscriptname,000755)
 
 
 #if running interactively, wait for jobs to finish and monitor
@@ -422,8 +440,8 @@ if args.interactive is True:
 # (subdivide into categories based on tab-delim file
 
 #reopen log files
-sublog = open("submitted.log",'a')
-killscript = open("killAll.sh",'a')
+sublog = open(sublogname,'a')
+killscript = open(killscriptname,'a')
 
 for dataset in datasets:
     print >>sys.stderr, "merge/concat ",dataset
@@ -505,11 +523,11 @@ for dataset in datasets:
             else:
 
                 STRcommand1 = " ".join(['bash',
-                                   PIPELINE+'/mergeVcfIndels.sh',
-                                    dataset,
-                                    STRlocs,
-                                    dataset+'/*/*filtered.vcf.gz'
-                                    ])
+                                        PIPELINE+'/mergeVcfIndels.sh',
+                                        dataset,
+                                        STRlocs,
+                                        dataset+'/*/*filtered.vcf.gz'
+                                        ])
             
                 name = dataset+"_mergeSTRs";
              
