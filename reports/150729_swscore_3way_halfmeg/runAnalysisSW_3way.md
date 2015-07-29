@@ -157,7 +157,7 @@ ggplot(subset(SWcf,set==matched),aes(LD,NM,colour=matched)) +
 ```r
 ggplot(SWcf,aes(pos,NM,colour=matched)) + 
   geom_point(size=4,alpha=0.7) +  scale_colour_manual(values = colours) + 
-   ggtitle("levenshtein distance x indel complexity [log scale]") +
+   ggtitle("levenshtein distance x posn") +
   facet_grid(set ~ .)
 ```
 
@@ -166,7 +166,7 @@ ggplot(SWcf,aes(pos,NM,colour=matched)) +
 ```r
 ggplot(SWcf,aes(length,NM,colour=matched)) + 
   geom_point(size=4,alpha=0.7) + scale_colour_manual(values = colours) + 
-   ggtitle("levenshtein distance x indel complexity [log scale]") +
+   ggtitle("levenshtein distance x indel length") +
   facet_grid(set ~ .)
 ```
 
