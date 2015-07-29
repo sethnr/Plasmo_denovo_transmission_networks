@@ -1,6 +1,6 @@
 #/seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
-#fakev3D7_all.PfDD2v3D7.vcf.gz
-block i	block	L	LD	N	AS	RS	NM	XS
+#DISCO.vcf.gz
+i	block	L	LD	N	AS	RS	NM	XS
 1	Pf3D7_07_v3:476009 	186	20	1	186	1.0	0	31 
 2	Pf3D7_07_v3:476196 	206	6	1	206	1.0	0	36 
 3	Pf3D7_07_v3:476327 	201	2	1	189	0.94	3	39 
