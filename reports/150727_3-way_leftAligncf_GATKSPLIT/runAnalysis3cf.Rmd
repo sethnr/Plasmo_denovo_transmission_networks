@@ -6,7 +6,7 @@ opts_chunk$set(fig.width=9, fig.height=6)
 ``` 
 
 ```{r}
-depths <- read.table("cfNucmerDiscoHaplo_150722_leftAlign.DEPTH.txt",stringsAsFactors = F,sep='\t',header=T)
+depths <- read.table("cfNucmerDiscoHaplo_150722_leftAlignGATKSPLIT.DEPTH.txt",stringsAsFactors = F,sep='\t',header=T)
 # colnames(values) <- c("chrom","start","end",
 #                       "covered1","covered2","covered3",
 #                       "d1",  "d2",  "d3",	
@@ -20,7 +20,7 @@ depths$block <- c(1:30) #nb, 10kb blocks
 ```
 
 ```{r}
-nuccfs <- read.table("cfNucmerDiscoHaplo_150722_leftAlign.txt",sep="\t",stringsAsFactors = F)
+nuccfs <- read.table("cfNucmerDiscoHaplo_150722_leftAlignGATKSPLIT.txt",sep="\t",stringsAsFactors = F)
 colnames(nuccfs) <- c("file","chr","pos","type","concordance","matched","quality","length","alleles","complexity",
                       "STR","period","exponent","STRlength",
                       "STRcomplexity","Apc","Tpc","Cpc","Gpc" )
@@ -47,7 +47,7 @@ rm(nuccfs)
 ``` 
 
 ```{r}
-nuccfs <- read.table("cfNucmerDiscoHaplo_150722_noLeftAlign.txt",sep="\t",stringsAsFactors = F)
+nuccfs <- read.table("cfNucmerDiscoHaplo_150722_noLeftAlignGATKSPLIT.txt",sep="\t",stringsAsFactors = F)
 colnames(nuccfs) <- c("file","chr","pos","type","concordance","matched","quality","length","alleles","complexity",
                       "STR","period","exponent","STRlength",
                       "STRcomplexity","Apc","Tpc","Cpc","Gpc" )

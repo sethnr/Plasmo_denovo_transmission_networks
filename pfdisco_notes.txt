@@ -363,9 +363,71 @@ bsub48 haplo.halfmeg.fakeIT  ../scripts/runHaplotypeCaller.sh \
 python ../pipeline/disco_callSTRsAndSummarise.py   -s ../samples/3D7DD2.samples.txt  --mem 8000 --nodes 2  -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v4.fasta --shallow -Q forest --dryrun --splitsize 10000 --splitregions --maxconc 40
 
 
+cd $DISCO1/analyses/fakeNGS/genome
+bsub48 fake3D7BWA $DISCO1/scripts/alignSimSeq.sh  \
+    -q /seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta \
+    -r /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta \
+    -o q3D7vrDD2_genome -n 2500000
+
+bsub48 fakeDD2BWA $DISCO1/scripts/alignSimSeq.sh  \
+    -q /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta \
+    -r /seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta \
+    -o qDD2vr3D7_genome -n 2500000
+
 
 #DO WHOLE GENOME DISCOVAR RUN:
-python ../pipeline/disco_callSTRsAndSummarise.py   \
-       -s ../samples/3D7DD2.samples.txt  --mem 4000 --nodes 4  \
-       -r Pf3D7_07_v3:450000-750000 -f $WORK/refs/Pf3D7_v3.fasta \
-       --shallow -Q forest  --splitsize 50000 --splitregions --dryrun --wholeGenome
+python ../pipeline/disco_callSTRsAndSummarise.py  \
+       -s ../samples/fakeNGS.3D7vDD2.sample.txt  \
+       --mem 4000 --nodes 4    -f $WORK/refs/PfDD2_v1.fasta \
+       --shallow -Q forest  --splitsize 100000 --splitregions \
+       --genome --prefix DD2 --bam_direct --dryrun 
+
+
+python ../pipeline/disco_callSTRsAndSummarise.py  \
+       -s ../samples/fakeNGS.DD2v3D7.sample.txt  \
+       --mem 8000 --nodes 4    -f $WORK/refs/Pf3D7_v3.fasta \
+       --shallow -Q forest  --splitsize 50000 --splitregions \
+       --genome --prefix 3D7  --bam_direct --dryrun 
+
+
+brequeue -e 
+bmod -M 16000 -R "select[mem>16000] rusage[mem=16000] span[ptile=4]" 1372365
+
+
+bmod -M 4000 -R "select[mem>4000] rusage[mem=4000] span[ptile=4]" 1384834
+
+resub some jobs (failed reporting?)
+
+grep -v -e DONE -e FAIL sub_commands.txt  > resub_commands.txt
+
+bsub -J fakev3D7_disco.resub[1-6] -e /seq/plasmodium/sredmond/pfdisco/disco_fullrun_fakeNGS/out/fakev3D7_disco.resub.%I.e -o /seq/plasmodium/sredmond/pfdisco/disco_fullrun_fakeNGS/out/fakev3D7_disco.resub.%I.o -q forest -R select[mem>8000] rusage[mem=8000]  span[ptile=4] -M 8000 -n 4 /seq/plasmodium/sredmond/pfdisco/pipeline/runJobInArray.sh resub_commands.txt
+
+
+cd $DISCO1/disco_fullrun_fakeNGS
+perl $DISCO1/hacks/getFailedRegions.pl < fakev3D7/sub_commands.txt > failed_regions.txt
+for LOC in `cat failed_regions.txt`; do rm -r fakev3D7/PfDD2v3D7/PfDD2v3D7_${LOC}; done
+
+
+python ../pipeline/disco_callSTRsAndSummarise.py  \
+       -s ../samples/fakeNGS.DD2v3D7.sample.txt  \
+       --mem 8000 --nodes 4    -f $WORK/refs/Pf3D7_v3.fasta \
+       --shallow -Q forest  --splitsize 10000 --splitregions \
+       --regions failed_regions.txt --prefix 3D7  --bam_direct
+
+
+## WHOLE GENOME RUN, 3D7DD2
+python ../pipeline/disco_callSTRsAndSummarise.py  \
+       -s ../samples/3D7DD2.samples.txt  \
+       --mem 8000 --nodes 4    -f $WORK/refs/Pf3D7_v3.fasta \
+       --shallow -Q forest  --splitsize 50000 --splitregions \
+       --genome --prefix 3D7  --bam_direct --dryrun 
+#redo failed in 10kb fragments
+cd  $DISCO1/disco_fullrun_3D7DD2
+perl $DISCO1/hacks/getFailedRegions.pl < 3D7DD2/sub_commands.txt > failed_regions.txt
+for LOC in `cat failed_regions.txt`; do rm -r 3D7DD2/*/*_${LOC}; done
+
+python ../pipeline/disco_callSTRsAndSummarise.py  \
+       -s ../samples/fakeNGS.DD2v3D7.sample.txt  \
+       --mem 8000 --nodes 4    -f $WORK/refs/Pf3D7_v3.fasta \
+       --shallow -Q forest  --splitsize 10000 --splitregions \
+       --regions failed_regions.txt --prefix 3D7  --bam_direct
