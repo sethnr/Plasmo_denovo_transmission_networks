@@ -1,0 +1,113 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+matchlevels <- c("",     "NUCMER","DISCO","HAPLO","NUCMER,DISCO","NUCMER,HAPLO","DISCO,HAPLO","NUCMER,DISCO,HAPLO")
+colours <-     c("black","green", "red",  "blue", "yellow",      "cyan",        "magenta",     "white")
+names(colours) <- matchlevels
+
+``` 
+
+```{r}
+SWnucmer <- read.table("NUCMER.qDD2vr3D7.INDELS.SW.txt",stringsAsFactors = F,sep='\t',header=T)
+SWnucmer$set="NUCMER"
+SWdisco <- read.table("DISCO.qDD2vr3D7.INDELS.SW.txt",stringsAsFactors = F,sep='\t',header=T)
+SWdisco$set="DISCO"
+SWscores <- rbind(SWnucmer,SWdisco)
+#SWscores <- SWdisco
+head(SWscores)
+colnames(SWscores)[1:2] <- c("i","var")
+SWscores <- cbind(t(as.data.frame(strsplit(SWscores$var,split = ':'))),SWscores)
+colnames(SWscores)[1:2] <- c("chr","pos")
+SWscores$pos <- as.integer(as.character(SWscores$pos))
+
+```
+
+```{r}
+telos <- readLines("List.subtelomeres.3D7.regions.txt")
+telos <- t(as.data.frame(strsplit(telos,split = ':')))
+telos <- as.data.frame(cbind(telos[,1],t(as.data.frame(strsplit(telos[,2],split = '-')))))
+colnames(telos) <- c("chr","st","en")
+telos$st <- as.numeric(as.character(telos$st))
+telos$en <- as.numeric(as.character(telos$en))
+telos$chr <- as.character(telos$chr)
+
+telos <- merge(subset(telos,st < 1000),subset(telos,st > 1000),by="chr")
+colnames(telos) <- c("chr","stL","enL","stR","enR")
+
+
+SWscores$chr <- as.character(SWscores$chr)
+SWscores$telo=F
+tmp <- merge(SWscores,telos,by="chr",all.x=T)
+
+tmp[is.na(tmp$stL),c("stL","enL","stR","enR")] <- -1
+tmp$telo[tmp$pos < tmp$enL] = T # "L"
+tmp$telo[tmp$pos > tmp$stR] = T # "R"
+SWscores <- tmp[,colnames(SWscores)]
+rm(tmp)
+
+```
+
+```{r}
+SWscores$error=""
+SWscores[SWscores$NM>0,"error"]="LDerror"
+SWscores[SWscores$RS>1,"error"]="RSerror"
+
+table(SWscores[,c("error","set")])
+```
+
+
+```{r}
+
+blocksize <- 1000
+SWscores$block <- paste(SWscores$chr,floor(SWscores$pos/blocksize),sep=":")
+
+varcount <- aggregate(SWscores$var,by=list(SWscores$block),FUN=length)[,2]
+means <- as.data.frame(aggregate(SWscores[,c("LD","RS","NM")],by=list(SWscores$block),FUN=mean))
+goodcount <- aggregate(SWscores$NM==0,by=list(SWscores$block),FUN=sum)[,2]
+LDcount <- aggregate(SWscores$error=="LDerror",by=list(SWscores$block),FUN=sum)[,2]
+RScount <- aggregate(SWscores$error=="RSerror",by=list(SWscores$block),FUN=sum)[,2]
+colnames(means)[[1]] <- "block"
+
+poschr <- t(as.data.frame(strsplit(means$block,split = ':')))
+colnames(poschr) <- c("chr","pos")
+poschr <- as.data.frame(poschr)
+poschr$pos <- as.numeric(as.character(poschr$pos))
+poschr$st = poschr$pos*blocksize
+poschr$mid = poschr$st+(blocksize/2)
+poschr$en = poschr$st+blocksize
+
+blocksum <- cbind(poschr,means,varcount,goodcount,LDcount,RScount)
+fs <- blocksum[,c("goodcount","LDcount","RScount")]/varcount
+colnames(fs) <- c("goodF","LDF","RSF")
+blocksum <- cbind(blocksum,fs)
+rm(fs)
+
+```
+
+
+```{r}
+goodlim=0.6
+ggplot(blocksum,aes(x=mid,y=LDF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("LD-failing percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+ggplot(blocksum,aes(x=mid,y=RSF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("RS-failing* percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+ggplot(blocksum,aes(x=mid,y=LDF+RSF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("All-failing percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+ggplot(blocksum,aes(x=mid,y=goodF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("pass percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+
+ggplot(blocksum,aes(x=goodF)) + geom_density(adjust=0.2)
+
+print(sum(blocksum$goodF>goodlim) / length(blocksum$goodF))
+
+write.table(aggregate(blocksum$goodF,by=list(blocksum$chr),function(x) {sum(x>goodlim) / length(x)}))
+
+```
