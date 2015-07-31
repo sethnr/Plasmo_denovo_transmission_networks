@@ -81,17 +81,24 @@ table(SWscores[,c("error","set")])
 ##   RSerror  1464    716
 ```
 
+```r
+#remake subtables with chr/pos values, etc
+SWdisco <- subset(SWscores,set=="DISCO")
+SWnucmer <- subset(SWscores,set=="NUCMER")
+```
+
 
 
 ```r
+#make nucmer blockscores
 blocksize <- 1000
-SWscores$block <- paste(SWscores$chr,floor(SWscores$pos/blocksize),sep=":")
+SWnucmer$block <- paste(SWnucmer$chr,floor(SWnucmer$pos/blocksize),sep=":")
 
-varcount <- aggregate(SWscores$var,by=list(SWscores$block),FUN=length)[,2]
-means <- as.data.frame(aggregate(SWscores[,c("LD","RS","NM")],by=list(SWscores$block),FUN=mean))
-goodcount <- aggregate(SWscores$NM==0,by=list(SWscores$block),FUN=sum)[,2]
-LDcount <- aggregate(SWscores$error=="LDerror",by=list(SWscores$block),FUN=sum)[,2]
-RScount <- aggregate(SWscores$error=="RSerror",by=list(SWscores$block),FUN=sum)[,2]
+varcount <- aggregate(SWnucmer$var,by=list(SWnucmer$block),FUN=length)[,2]
+means <- as.data.frame(aggregate(SWnucmer[,c("LD","RS","NM")],by=list(SWnucmer$block),FUN=mean))
+goodcount <- aggregate(SWnucmer$NM==0,by=list(SWnucmer$block),FUN=sum)[,2]
+LDcount <- aggregate(SWnucmer$error=="LDerror",by=list(SWnucmer$block),FUN=sum)[,2]
+RScount <- aggregate(SWnucmer$error=="RSerror",by=list(SWnucmer$block),FUN=sum)[,2]
 colnames(means)[[1]] <- "block"
 
 poschr <- t(as.data.frame(strsplit(means$block,split = ':')))
@@ -102,18 +109,43 @@ poschr$st = poschr$pos*blocksize
 poschr$mid = poschr$st+(blocksize/2)
 poschr$en = poschr$st+blocksize
 
-blocksum <- cbind(poschr,means,varcount,goodcount,LDcount,RScount)
-fs <- blocksum[,c("goodcount","LDcount","RScount")]/varcount
+blocksumN <- cbind(poschr,means,varcount,goodcount,LDcount,RScount)
+fs <- blocksumN[,c("goodcount","LDcount","RScount")]/varcount
 colnames(fs) <- c("goodF","LDF","RSF")
-blocksum <- cbind(blocksum,fs)
+blocksumN <- cbind(blocksumN,fs)
+rm(fs)
+
+
+#make disco blockscores
+SWdisco$block <- paste(SWdisco$chr,floor(SWdisco$pos/blocksize),sep=":")
+
+varcount <- aggregate(SWdisco$var,by=list(SWdisco$block),FUN=length)[,2]
+means <- as.data.frame(aggregate(SWdisco[,c("LD","RS","NM")],by=list(SWdisco$block),FUN=mean))
+goodcount <- aggregate(SWdisco$NM==0,by=list(SWdisco$block),FUN=sum)[,2]
+LDcount <- aggregate(SWdisco$error=="LDerror",by=list(SWdisco$block),FUN=sum)[,2]
+RScount <- aggregate(SWdisco$error=="RSerror",by=list(SWdisco$block),FUN=sum)[,2]
+colnames(means)[[1]] <- "block"
+
+poschr <- t(as.data.frame(strsplit(means$block,split = ':')))
+colnames(poschr) <- c("chr","pos")
+poschr <- as.data.frame(poschr)
+poschr$pos <- as.numeric(as.character(poschr$pos))
+poschr$st = poschr$pos*blocksize
+poschr$mid = poschr$st+(blocksize/2)
+poschr$en = poschr$st+blocksize
+
+blocksumD <- cbind(poschr,means,varcount,goodcount,LDcount,RScount)
+fs <- blocksumD[,c("goodcount","LDcount","RScount")]/varcount
+colnames(fs) <- c("goodF","LDF","RSF")
+blocksumD <- cbind(blocksumD,fs)
 rm(fs)
 ```
 
-
+#DISCOVAR ONLY
 
 ```r
 goodlim=0.6
-ggplot(blocksum,aes(x=mid,y=LDF,colour=goodF>=goodlim)) + 
+ggplot(blocksumD,aes(x=mid,y=LDF,colour=goodF>=goodlim)) + 
   ggtitle(paste("LD-failing percentage, ",(blocksize/1000),"kb blocks")) +
   geom_point() + facet_grid(chr ~ .)
 ```
@@ -121,7 +153,7 @@ ggplot(blocksum,aes(x=mid,y=LDF,colour=goodF>=goodlim)) +
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ```r
-ggplot(blocksum,aes(x=mid,y=RSF,colour=goodF>=goodlim)) + 
+ggplot(blocksumD,aes(x=mid,y=RSF,colour=goodF>=goodlim)) + 
   ggtitle(paste("RS-failing* percentage, ",(blocksize/1000),"kb blocks")) +
   geom_point() + facet_grid(chr ~ .)
 ```
@@ -129,7 +161,7 @@ ggplot(blocksum,aes(x=mid,y=RSF,colour=goodF>=goodlim)) +
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
 
 ```r
-ggplot(blocksum,aes(x=mid,y=LDF+RSF,colour=goodF>=goodlim)) + 
+ggplot(blocksumD,aes(x=mid,y=LDF+RSF,colour=goodF>=goodlim)) + 
   ggtitle(paste("All-failing percentage, ",(blocksize/1000),"kb blocks")) +
   geom_point() + facet_grid(chr ~ .)
 ```
@@ -137,7 +169,7 @@ ggplot(blocksum,aes(x=mid,y=LDF+RSF,colour=goodF>=goodlim)) +
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png) 
 
 ```r
-ggplot(blocksum,aes(x=mid,y=goodF,colour=goodF>=goodlim)) + 
+ggplot(blocksumD,aes(x=mid,y=goodF,colour=goodF>=goodlim)) + 
   ggtitle(paste("pass percentage, ",(blocksize/1000),"kb blocks")) +
   geom_point() + facet_grid(chr ~ .)
 ```
@@ -145,38 +177,131 @@ ggplot(blocksum,aes(x=mid,y=goodF,colour=goodF>=goodlim)) +
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png) 
 
 ```r
-ggplot(blocksum,aes(x=goodF)) + geom_density(adjust=0.2)
+ggplot(blocksumD,aes(x=goodF)) + geom_density(adjust=0.2)
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-5.png) 
 
 ```r
-print(sum(blocksum$goodF>goodlim) / length(blocksum$goodF))
+print(sum(blocksumD$goodF>goodlim) / length(blocksumD$goodF))
 ```
 
 ```
-## [1] 0.7487828
+## [1] 0.9832079
 ```
 
 ```r
-write.table(aggregate(blocksum$goodF,by=list(blocksum$chr),function(x) {sum(x>goodlim) / length(x)}))
+write.table(aggregate(blocksumD$goodF,by=list(blocksumD$chr),function(x) {sum(x>goodlim) / length(x)}))
 ```
 
 ```
 ## "Group.1" "x"
-## "1" "Pf3D7_01_v3" 0.684444444444444
-## "2" "Pf3D7_02_v3" 0.763239875389408
-## "3" "Pf3D7_03_v3" 0.787598944591029
-## "4" "Pf3D7_04_v3" 0.690361445783133
-## "5" "Pf3D7_05_v3" 0.719367588932806
-## "6" "Pf3D7_06_v3" 0.728456913827655
-## "7" "Pf3D7_07_v3" 0.738289205702648
-## "8" "Pf3D7_08_v3" 0.748091603053435
-## "9" "Pf3D7_09_v3" 0.78008658008658
-## "10" "Pf3D7_10_v3" 0.735483870967742
-## "11" "Pf3D7_11_v3" 0.744
-## "12" "Pf3D7_12_v3" 0.760657734470158
-## "13" "Pf3D7_13_v3" 0.762399622106755
-## "14" "Pf3D7_14_v3" 0.764227642276423
-## "15" "PFC10_API_IRAB" 0.875
+## "1" "Pf3D7_01_v3" 0.947727272727273
+## "2" "Pf3D7_02_v3" 0.981848184818482
+## "3" "Pf3D7_03_v3" 0.98236092265943
+## "4" "Pf3D7_04_v3" 0.965116279069767
+## "5" "Pf3D7_05_v3" 0.991516436903499
+## "6" "Pf3D7_06_v3" 0.974137931034483
+## "7" "Pf3D7_07_v3" 0.976241900647948
+## "8" "Pf3D7_08_v3" 0.981409001956947
+## "9" "Pf3D7_09_v3" 0.987364620938628
+## "10" "Pf3D7_10_v3" 0.983079526226734
+## "11" "Pf3D7_11_v3" 0.983181499649615
+## "12" "Pf3D7_12_v3" 0.98190892077355
+## "13" "Pf3D7_13_v3" 0.988448016072325
+## "14" "Pf3D7_14_v3" 0.994546979865772
+## "15" "PFC10_API_IRAB" 1
+```
+
+##nucmer
+
+```r
+ggplot(blocksumN,aes(x=mid,y=goodF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("pass percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+
+```r
+ggplot(blocksumN,aes(x=goodF)) + geom_density(adjust=0.2)
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+
+```r
+print(sum(blocksumN$goodF>goodlim) / length(blocksumN$goodF))
+```
+
+```
+## [1] 0.5338213
+```
+
+
+```r
+#limits <- c(12:20)/20
+limits <- c(6:10)/10
+outm <- aggregate(blocksumN$goodF,by=list(blocksumN$chr),length)
+total <- outm[,2]
+for(limit in limits) {
+  pass <- aggregate(blocksumN$goodF,by=list(blocksumN$chr),function(x){sum(x>=limit)})[,2]
+  pass <- as.numeric(pass)
+  pass <- round(pass/total,3)
+  outm <- cbind(outm,pass)  
+}
+colnames(outm) <- c("chr","blocks",paste("x",limits,sep=""))
+#NUCMER LIMITS
+outm
+```
+
+```
+##               chr blocks  x0.6  x0.7  x0.8  x0.9    x1
+## 1     Pf3D7_01_v3    398 0.475 0.397 0.344 0.332 0.332
+## 2     Pf3D7_02_v3    600 0.553 0.480 0.452 0.425 0.423
+## 3     Pf3D7_03_v3    707 0.583 0.487 0.454 0.438 0.438
+## 4     Pf3D7_04_v3    759 0.489 0.411 0.381 0.354 0.354
+## 5     Pf3D7_05_v3    978 0.518 0.428 0.397 0.380 0.380
+## 6     Pf3D7_06_v3    908 0.558 0.467 0.428 0.417 0.417
+## 7     Pf3D7_07_v3    903 0.553 0.477 0.442 0.421 0.421
+## 8     Pf3D7_08_v3    995 0.555 0.469 0.424 0.405 0.405
+## 9     Pf3D7_09_v3   1083 0.575 0.485 0.443 0.421 0.421
+## 10    Pf3D7_10_v3   1164 0.531 0.452 0.408 0.386 0.386
+## 11    Pf3D7_11_v3   1425 0.535 0.448 0.408 0.385 0.385
+## 12    Pf3D7_12_v3   1546 0.559 0.471 0.429 0.413 0.413
+## 13    Pf3D7_13_v3   2005 0.580 0.486 0.450 0.432 0.432
+## 14    Pf3D7_14_v3   2373 0.557 0.486 0.450 0.432 0.432
+## 15 PFC10_API_IRAB      4 0.500 0.500 0.500 0.500 0.500
+```
+
+```r
+#DISCO LIMITS
+outm <- aggregate(blocksumD$goodF,by=list(blocksumD$chr),length)
+total <- outm[,2]
+for(limit in limits) {
+  pass <- aggregate(blocksumD$goodF,by=list(blocksumD$chr),function(x){sum(x>=limit)})[,2]
+  pass <- as.numeric(pass)
+  pass <- round(pass/total,3)
+  outm <- cbind(outm,pass)  
+}
+colnames(outm) <- c("chr","blocks",paste("x",limits,sep=""))
+outm
+```
+
+```
+##               chr blocks  x0.6  x0.7  x0.8  x0.9    x1
+## 1     Pf3D7_01_v3    440 0.948 0.936 0.930 0.927 0.927
+## 2     Pf3D7_02_v3    606 0.982 0.980 0.979 0.977 0.977
+## 3     Pf3D7_03_v3    737 0.982 0.978 0.977 0.974 0.974
+## 4     Pf3D7_04_v3    774 0.968 0.964 0.960 0.957 0.957
+## 5     Pf3D7_05_v3    943 0.992 0.990 0.988 0.987 0.987
+## 6     Pf3D7_06_v3    928 0.975 0.968 0.968 0.966 0.966
+## 7     Pf3D7_07_v3    926 0.976 0.971 0.970 0.965 0.965
+## 8     Pf3D7_08_v3   1022 0.981 0.978 0.977 0.974 0.974
+## 9     Pf3D7_09_v3   1108 0.987 0.986 0.983 0.982 0.982
+## 10    Pf3D7_10_v3   1182 0.984 0.974 0.970 0.966 0.966
+## 11    Pf3D7_11_v3   1427 0.985 0.980 0.980 0.976 0.976
+## 12    Pf3D7_12_v3   1603 0.983 0.980 0.976 0.974 0.974
+## 13    Pf3D7_13_v3   1991 0.988 0.986 0.983 0.982 0.982
+## 14    Pf3D7_14_v3   2384 0.995 0.993 0.992 0.990 0.990
+## 15 PFC10_API_IRAB      8 1.000 1.000 1.000 1.000 1.000
 ```
