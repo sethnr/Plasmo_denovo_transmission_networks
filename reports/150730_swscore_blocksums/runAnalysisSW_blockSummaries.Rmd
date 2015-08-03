@@ -1,0 +1,189 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+matchlevels <- c("",     "NUCMER","DISCO","HAPLO","NUCMER,DISCO","NUCMER,HAPLO","DISCO,HAPLO","NUCMER,DISCO,HAPLO")
+colours <-     c("black","green", "red",  "blue", "yellow",      "cyan",        "magenta",     "white")
+names(colours) <- matchlevels
+
+``` 
+
+```{r}
+SWnucmer <- read.table("NUCMER.qDD2vr3D7.INDELS.SW.txt",stringsAsFactors = F,sep='\t',header=T)
+SWnucmer$set="NUCMER"
+SWdisco <- read.table("DISCO.qDD2vr3D7.INDELS.SW.txt",stringsAsFactors = F,sep='\t',header=T)
+SWdisco$set="DISCO"
+SWscores <- rbind(SWnucmer,SWdisco)
+#SWscores <- SWdisco
+head(SWscores)
+colnames(SWscores)[1:2] <- c("i","var")
+SWscores <- cbind(t(as.data.frame(strsplit(SWscores$var,split = ':'))),SWscores)
+colnames(SWscores)[1:2] <- c("chr","pos")
+SWscores$pos <- as.integer(as.character(SWscores$pos))
+
+
+```
+
+```{r}
+telos <- readLines("List.subtelomeres.3D7.regions.txt")
+telos <- t(as.data.frame(strsplit(telos,split = ':')))
+telos <- as.data.frame(cbind(telos[,1],t(as.data.frame(strsplit(telos[,2],split = '-')))))
+colnames(telos) <- c("chr","st","en")
+telos$st <- as.numeric(as.character(telos$st))
+telos$en <- as.numeric(as.character(telos$en))
+telos$chr <- as.character(telos$chr)
+
+telos <- merge(subset(telos,st < 1000),subset(telos,st > 1000),by="chr")
+colnames(telos) <- c("chr","stL","enL","stR","enR")
+
+
+SWscores$chr <- as.character(SWscores$chr)
+SWscores$telo=F
+tmp <- merge(SWscores,telos,by="chr",all.x=T)
+
+tmp[is.na(tmp$stL),c("stL","enL","stR","enR")] <- -1
+tmp$telo[tmp$pos < tmp$enL] = T # "L"
+tmp$telo[tmp$pos > tmp$stR] = T # "R"
+SWscores <- tmp[,colnames(SWscores)]
+rm(tmp)
+
+```
+
+```{r}
+SWscores$error=""
+SWscores[SWscores$NM>0,"error"]="LDerror"
+SWscores[SWscores$RS>1,"error"]="RSerror"
+
+table(SWscores[,c("error","set")])
+
+#remake subtables with chr/pos values, etc
+SWdisco <- subset(SWscores,set=="DISCO")
+SWnucmer <- subset(SWscores,set=="NUCMER")
+
+
+
+```
+
+
+```{r}
+#make nucmer blockscores
+blocksize <- 1000
+SWnucmer$block <- paste(SWnucmer$chr,floor(SWnucmer$pos/blocksize),sep=":")
+
+varcount <- aggregate(SWnucmer$var,by=list(SWnucmer$block),FUN=length)[,2]
+means <- as.data.frame(aggregate(SWnucmer[,c("LD","RS","NM")],by=list(SWnucmer$block),FUN=mean))
+goodcount <- aggregate(SWnucmer$NM==0,by=list(SWnucmer$block),FUN=sum)[,2]
+LDcount <- aggregate(SWnucmer$error=="LDerror",by=list(SWnucmer$block),FUN=sum)[,2]
+RScount <- aggregate(SWnucmer$error=="RSerror",by=list(SWnucmer$block),FUN=sum)[,2]
+colnames(means)[[1]] <- "block"
+
+poschr <- t(as.data.frame(strsplit(means$block,split = ':')))
+colnames(poschr) <- c("chr","pos")
+poschr <- as.data.frame(poschr)
+poschr$pos <- as.numeric(as.character(poschr$pos))
+poschr$st = poschr$pos*blocksize
+poschr$mid = poschr$st+(blocksize/2)
+poschr$en = poschr$st+blocksize
+
+blocksumN <- cbind(poschr,means,varcount,goodcount,LDcount,RScount)
+fs <- blocksumN[,c("goodcount","LDcount","RScount")]/varcount
+colnames(fs) <- c("goodF","LDF","RSF")
+blocksumN <- cbind(blocksumN,fs)
+rm(fs)
+
+
+#make disco blockscores
+SWdisco$block <- paste(SWdisco$chr,floor(SWdisco$pos/blocksize),sep=":")
+
+varcount <- aggregate(SWdisco$var,by=list(SWdisco$block),FUN=length)[,2]
+means <- as.data.frame(aggregate(SWdisco[,c("LD","RS","NM")],by=list(SWdisco$block),FUN=mean))
+goodcount <- aggregate(SWdisco$NM==0,by=list(SWdisco$block),FUN=sum)[,2]
+LDcount <- aggregate(SWdisco$error=="LDerror",by=list(SWdisco$block),FUN=sum)[,2]
+RScount <- aggregate(SWdisco$error=="RSerror",by=list(SWdisco$block),FUN=sum)[,2]
+colnames(means)[[1]] <- "block"
+
+poschr <- t(as.data.frame(strsplit(means$block,split = ':')))
+colnames(poschr) <- c("chr","pos")
+poschr <- as.data.frame(poschr)
+poschr$pos <- as.numeric(as.character(poschr$pos))
+poschr$st = poschr$pos*blocksize
+poschr$mid = poschr$st+(blocksize/2)
+poschr$en = poschr$st+blocksize
+
+blocksumD <- cbind(poschr,means,varcount,goodcount,LDcount,RScount)
+fs <- blocksumD[,c("goodcount","LDcount","RScount")]/varcount
+colnames(fs) <- c("goodF","LDF","RSF")
+blocksumD <- cbind(blocksumD,fs)
+rm(fs)
+
+
+
+```
+
+#DISCOVAR ONLY
+```{r}
+goodlim=0.6
+ggplot(blocksumD,aes(x=mid,y=LDF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("LD-failing percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+ggplot(blocksumD,aes(x=mid,y=RSF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("RS-failing* percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+ggplot(blocksumD,aes(x=mid,y=LDF+RSF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("All-failing percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+ggplot(blocksumD,aes(x=mid,y=goodF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("pass percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+
+ggplot(blocksumD,aes(x=goodF)) + geom_density(adjust=0.2)
+
+print(sum(blocksumD$goodF>goodlim) / length(blocksumD$goodF))
+
+write.table(aggregate(blocksumD$goodF,by=list(blocksumD$chr),function(x) {sum(x>goodlim) / length(x)}))
+
+```
+
+##nucmer
+```{r}
+ggplot(blocksumN,aes(x=mid,y=goodF,colour=goodF>=goodlim)) + 
+  ggtitle(paste("pass percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point() + facet_grid(chr ~ .)
+
+ggplot(blocksumN,aes(x=goodF)) + geom_density(adjust=0.2)
+
+print(sum(blocksumN$goodF>goodlim) / length(blocksumN$goodF))
+
+```
+
+```{r}
+#limits <- c(12:20)/20
+limits <- c(6:10)/10
+outm <- aggregate(blocksumN$goodF,by=list(blocksumN$chr),length)
+total <- outm[,2]
+for(limit in limits) {
+  pass <- aggregate(blocksumN$goodF,by=list(blocksumN$chr),function(x){sum(x>=limit)})[,2]
+  pass <- as.numeric(pass)
+  pass <- round(pass/total,3)
+  outm <- cbind(outm,pass)  
+}
+colnames(outm) <- c("chr","blocks",paste("x",limits,sep=""))
+#NUCMER LIMITS
+outm
+
+#DISCO LIMITS
+outm <- aggregate(blocksumD$goodF,by=list(blocksumD$chr),length)
+total <- outm[,2]
+for(limit in limits) {
+  pass <- aggregate(blocksumD$goodF,by=list(blocksumD$chr),function(x){sum(x>=limit)})[,2]
+  pass <- as.numeric(pass)
+  pass <- round(pass/total,3)
+  outm <- cbind(outm,pass)  
+}
+colnames(outm) <- c("chr","blocks",paste("x",limits,sep=""))
+outm
+
+```
