@@ -1,0 +1,35 @@
+get regions called in all samples:
+tabix -h 3D7DD2_halfmeg.vcf.gz Pf3D7_07_v3:450000-500000 Pf3D7_07_v3:600000-650000 > 3D7DD2_halfmeg.allcall.vcf
+
+#get same regions from disco call:
+tabix -h /seq/plasmodium/sredmond/pfdisco/disco_fullrun_fakeNGS/fakev3D7_all.PfDD2v3D7.vcf.gz Pf3D7_07_v3:450000-500000 Pf3D7_07_v3:600000-650000 > fakeNGS.allcall.vcf
+
+python $DISCO1/scripts/checkLaneConcordance.py -v
+3D7DD2_halfmeg.allcall.vcf  | sort -k3,3g -k2,2g | more
+
+
+python ../../scripts/checkRealVFakeDD2.py -v1 3D7DD2_all_10k.vcf -v2
+fakeNGS.halfmeg.vcf
+python ../../scripts/cfs/ -v1 3D7DD2_all_10k.vcf -v2 fakeNGS.halfmeg.vcf
+
+
+cd ../SWscorevars_fullrun
+#enable file to be tabixed
+perl -i.bak -pe 's/(\S+)\:(\d+)/$1\t$2\t$&/' DISCO.qDD2vr3D7.INDELS.SW.txt
+bgzip  DISCO.qDD2vr3D7.INDELS.SW.txt
+tabix -s2 -b3 -e3 DISCO.qDD2vr3D7.INDELS.SW.txt.gz
+
+bgzip qDD2vr3D7_genome.Pf3D7_07_v3\:450000-750000.depth
+tabix -s1 -b2 -e2 qDD2vr3D7_genome.Pf3D7_07_v3\:450000-750000.depth.gz
+
+
+
+
+$DISCO1/scripts/vcf/addValueToVCF.py -v 3D7DD2_all_10k.DD2c.STRs.vcf
+-f ../callable_blocks/callable_halfmeg.basewise.txt -i CALLABLE
+
+python $DISCO1/scripts/vcf/copyAnnotationToVCF.py -v1
+../cfNucmerDiscoHaplo/3-way/cfNucmerDiscoHaplo_150729_leftAlignGATKSPLIT.vcf.gz
+-v2 3D7DD2_all_10k.DD2c.STRs.CALLABLE.vcf -i MATCHED
+
+python parseDD2Vals.py -v 3D7DD2_all_10k.DD2c.STRs.CALLABLE.MATCHED.vcf.gz > 3D7DD2_all_10k.DD2c.STRs.CALLABLE.MATCHED.txt
