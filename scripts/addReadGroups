@@ -1,0 +1,58 @@
+#!/bin/bash
+
+#NB GATK3.4 requires Java 1.8
+
+RGID='null'
+RGLIB="fakelib"
+RGPLATFORM='illumina'
+RGPLATUNIT='picard'
+RGSAMPLE="fakesample"
+RGCENTER="broad"
+RGDESCRIPTION='fake read group added by picard AddOrReplaceReadGroups'
+RGINSERT=250
+
+PICARD=/seq/software/picard/current/bin/picard.jar
+GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
+
+OUTPUT="addReadGroups.bam"
+
+while getopts "b:s:l:i:o:I:" opt; do
+  case $opt in
+    b) BAM=${OPTARG} ;;
+    s) RGSAMPLE=$OPTARG ;;
+    l) RGLIB=$OPTARG ;;
+    i) RGID=$OPTARG;;
+    o) OUTPUT=$OPTARG;;
+    I) RGINSERT=$OPTARG;;
+    ?) echo "Invalid option: -$OPTARG" >&2 ;;
+  esac
+done
+
+#check ref.dict file is present, otherwise create
+#if [ ! -f ${REF//fasta/dict} ]
+#  then
+
+echo java -jar $PICARD AddOrReplaceReadGroups \
+    INPUT=${BAM} \
+    OUTPUT=${OUTPUT} \
+    RGID=$RGID \
+    RGLB=$RGLIB \
+    RGPL=$RGPLATFORM \
+    RGPU=$RGPLATUNIT \
+    RGSM=$RGSAMPLE \
+    RGCN=BI \
+    RGPI=$RGINSERT 
+
+java -jar $PICARD AddOrReplaceReadGroups \
+    INPUT=${BAM} \
+    OUTPUT=${OUTPUT} \
+    RGID=$RGID \
+    RGLB=$RGLIB \
+    RGPL=$RGPLATFORM \
+    RGPU=$RGPLATUNIT \
+    RGSM=$RGSAMPLE \
+    RGCN=BI \
+    RGPI=$RGINSERT
+
+#fi
+
