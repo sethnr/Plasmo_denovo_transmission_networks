@@ -4,6 +4,7 @@ import sys
 import os 
 import re
 import subprocess
+from math import ceil,floor
 
 PIPELINE='/seq/plasmodium/sredmond/pfdisco/pipeline'
 RUNJOBARR=PIPELINE+'/runJobInArray.sh'
@@ -22,53 +23,86 @@ def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, d
     comlogf.close()
 #    os.system("cp sub_commands.txt sub_commands.log")
 #    os.system("wc -l sub_commands.*")
+
+    print >>sys.stderr, comlog,"\n",os.path.abspath(comlog)
     arrCommand=RUNJOBARR+" "+comlog
     
-    jobarrname = jobname+"["+str(1)+"-"+str(len(joblist))+"]"
-    outname = jobname+".%I"
-    if maxconc > 0: jobarrname += "%"+str(maxconc)
-    (jobNo, subdcommand) = subjob(arrCommand, jobarrname, mem, nodes, queue, jobtime, dependency, outname)
+#    jobarrname = jobname+"["+str(1)+"-"+str(len(joblist))+"]"
+    arrayjobs=len(joblist)
+    outname = jobname
+#    if maxconc > 0: jobarrname += "%"+str(maxconc)
+    (jobNo, subdcommand) = subjob(arrCommand, jobname, mem, nodes, queue, jobtime, dependency, outname, arrayjobs, maxconc)
     return (jobNo, subdcommand)
 #    (jobNo, subdcommand) = subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime, dependency):
 
 
-def subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, outname=None, nobsub=False):
-    resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
+def subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, outname=None, arrayjobs=-1, maxconc=-1, nobsub=False):
+#    resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
+    resource =  [
+                 '-l','m_mem_free='+str(floor(mem/1000))+'G',
+#                 '-l','mem='+str(floor(mem/1000))+'G',
+        
+                 '-l','m_core='+str(nodes)]                        
+    if jobtime is not None: resource += ['-l','h_rt='+jobtime]
+
     if outname is None: outname=jobname
-    bsub_command = ["bsub",
-                    "-J", jobname,
-                    "-e", RUNDIR+"/out/"+outname+".e",
-                    "-o", RUNDIR+"/out/"+outname+".o",
-#                    "-e", jobname+".e",
-#                    "-o", jobname+".o",
-                    "-q", queue,
-                    "-R", resource,
-                    "-M", str(mem),
-                    "-n", str(nodes)]
-    if dependency is not None: bsub_command += ['-w',dependency]
-    if jobtime is not None: bsub_command += ['-W',jobtime]
-    bsub_command += [commandline]
+#    qsub_command = ["qsub",
+#                    "-J", jobname,
+#                    "-e", RUNDIR+"/out/"+outname+".e",
+#                    "-o", RUNDIR+"/out/"+outname+".o",
+#                    "-q", queue,
+#                    "-R", resource,
+#                    "-M", str(mem),
+#                    "-n", str(nodes)]
+    if re.match('\d',jobname[0]): jobname = 'j'+jobname
+    qsub_command = ["qsub",'-terse',
+                    "-N", jobname,
+#                    "-e", RUNDIR+"/out/"+outname+".${SGE_TASK_ID}.e",
+#                    "-o", RUNDIR+"/out/"+outname+".${SGE_TASK_ID}.o",
+                    "-e", RUNDIR+"/out/",
+                    "-o", RUNDIR+"/out/",
+                    "-q", queue]
+    qsub_command += resource
+    if arrayjobs > 0: qsub_command +=  ['-t','1-'+str(arrayjobs)]
+    if maxconc > 0: qsub_command += ['-tc',str(maxconc)]
+
+#    -W depend=afterok:<Job-ID>
     
-#    print >>sys.stderr, ' '.join(bsub_command)
-#    bsub_return = """
-#Please specify a project.  You can set it with "bsub -P project ..."
+    if dependency is not None:
+#        dependency="depend=afterok:"+dependency
+#        qsub_command += ['-W',dependency]
+        qsub_command += ['-hold_jid',dependency]
+    qsub_command += commandline.split()
+    
+#    print >>sys.stderr, ' '.join(qsub_command)
+#    qsub_return = """
+#Please specify a project.  You can set it with "qsub -P project ..."
 #or in the LSB_DEFAULTPROJECT environment variable.
 #
 #By default, submitting under project "unspecified--broadfolk".
 #Job <1111> is submitted to queue <bhour>.
 #"""
+
+    print >>sys.stderr, " ".join(qsub_command)
+
     job_no = '-1'
     if not nobsub:
-        FNULL = open(os.devnull, 'w')
-        bsub_return = subprocess.check_output(bsub_command,stderr=FNULL)
-        FNULL.close()
-        
-        x = re.findall('Job <(\d+)> is submitted to queue <.*>',bsub_return)
-        if len(x)>0:
-            job_no = x[0]
-    return (job_no, ' '.join(bsub_command))
+#        FNULL = open(os.devnull, 'w')
+#        qsub_return = subprocess.check_output(qsub_command,stderr=FNULL)
+#        FNULL.close()
+        qsub_return = subprocess.check_output(qsub_command,stderr=sys.stderr)
+        print >>sys.stderr, "JOB NO: ",qsub_return.split('.')[0]
+        #x = re.findall('Job <(\d+)> is submitted to queue <.*>',qsub_return)
+        #no need if using -terse
+#        x = qsub_return
+#        if len(x)>0:
+#            job_no = x[0]
+        job_no=qsub_return.rstrip().split('.')[0]
+    return (job_no, ' '.join(qsub_command))
 
 
+
+#TO DO, WILL NOT WORK WITH GridEngine
 def waitdone(jobs, faillog=sys.stderr, nobsub=False):
     if type(jobs) is dict:
         pass
@@ -147,7 +181,7 @@ def joblog(job_id, subdcommand, prefix=None, sublogname="submitted.log", killscr
 
     print >>sublog, '#',job_id
     print >>sublog, repr(subdcommand)
-    print >>killscript,"bkill ",job_id
+    print >>killscript,"qdel ",job_id
     sublog.close()
     killscript.close()
     

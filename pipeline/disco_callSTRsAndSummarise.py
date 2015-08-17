@@ -12,7 +12,8 @@ from time import sleep
 # import pythongrid as grid
 from string import *
 
-from sub_lsf import *
+#from sub_lsf import *
+from sub_sge import *
 
 #SET VARS
 PIPELINE='/seq/plasmodium/sredmond/pfdisco/pipeline'
@@ -54,7 +55,7 @@ parser.add_argument('-r','--region','--regions', action="store", dest='region', 
 parser.add_argument('--mem', action="store", dest='mem', type=int, help='memory to use for discovar [2000]', nargs='?', default=2000)
 parser.add_argument('--nodes', action="store", dest='nodes', type=int, help='nodes to use for discovar [1]', nargs='?', default=1)
 parser.add_argument('--maxconc', action="store", dest='maxconc', type=int, help='maximum number of discovar jobs to run at once [20]', nargs='?', default=20)
-parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help='queue for LSF jobs [bhour]', nargs='?', default="bhour")
+parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help='queue for LSF jobs [bhour]', nargs='?', default="short")
 parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
 parser.add_argument('--splitsize', action="store", dest='splitsize', type=int, default=-1, help='split regions larger than N [-1]')
 parser.add_argument('--splitflank', action="store", dest='splitflank', type=int, default=500, help='overlap regions by flank N bp [500]')
@@ -315,14 +316,18 @@ if args.interactive is True:
 
 for dataset in datasets:
     print >>sys.stderr, "merge/concat ",dataset
-    discoFinished="done("+jobs[dataset]+")"
+#    discoFinished="done("+jobs[dataset]+")"
+    discoFinished=jobs[dataset]
+    
     if args.interactive is True:
         # following code block for interactive running, for jobarray skip to next phase
-        subprocess.check_call(['bash',
-                                   PIPELINE+'/mergeConcatVcfs.sh',
-                                   dataset])
+        subprocess.check_call([
+#                               'bash',
+                               PIPELINE+'/mergeConcatVcfs.sh',
+                               dataset])
     else:
-        mergeCommand = " ".join(['bash',
+        mergeCommand = " ".join([
+#                                 'bash',
                                  PIPELINE+'/mergeConcatVcfs.sh',
                                  dataset])
         name = dataset+"_concat";
@@ -334,8 +339,9 @@ for dataset in datasets:
                 
 for dataset in datasets:
     print >>sys.stderr, "getting bam depths ",dataset
-    discoFinished="\"done("+jobs[dataset]+")\""
-    
+#        discoFinished="\"done("+jobs[dataset]+")\""
+    discoFinished=jobs[dataset]
+
     if not args.nodepth:
         for loc in [chrom+":"+str(st)+"-"+str(en) for (chrom,st,en) in locs]:
             os.system('samtools depth -r '+loc+' '+dataset+'/*/*bam > '+dataset+'_'+loc+'.depth')
@@ -382,7 +388,8 @@ for dataset in datasets:
         if not args.dryrun:
             STRlocs = ",".join([chrom+":"+str(st)+"-"+str(en) for (chrom, st, en) in STRs])
 
-            print >>sys.stderr," ".join(['bash',
+            print >>sys.stderr," ".join([
+#                                         'bash',
                                          PIPELINE+'/mergeVcfIndels.sh',
                                          dataset,
                                          STRlocs,
@@ -393,7 +400,8 @@ for dataset in datasets:
                 pass
             else:
 
-                STRcommand1 = " ".join(['bash',
+                STRcommand1 = " ".join([
+#                                        'bash',
                                         PIPELINE+'/mergeVcfIndels.sh',
                                         dataset,
                                         STRlocs,

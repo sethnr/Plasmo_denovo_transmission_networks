@@ -13,6 +13,8 @@ def doSomeStuff():
     print >>sys.stderr, "did some stuff"
 
 def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1):
+    if dependency is not None:
+        dependency="\"done("+dependency+")\""
     comlog = "sub_commands.txt"
     print >>sys.stderr, "OPENING COMLOG"
     comlogf = open(comlog,'w')
@@ -36,6 +38,8 @@ def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, d
 
 
 def subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, outname=None, nobsub=False):
+    if dependency is not None:
+        dependency="\"done("+dependency+")\""
     resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
     if outname is None: outname=jobname
     bsub_command = ["bsub",

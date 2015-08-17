@@ -1,0 +1,17 @@
+
+#install snpEff
+d/l snpEff, put snpEff script in ~/bin
+edit jar location to readlink to original file:
+   #jardir="$(cd "$(dirname "$0")" && cd ".." && pwd -P)"
+   jardir="$(cd "$(dirname `readlink -f "$0"`)" && cd ".." && pwd -P)"
+
+#build new DB for Pf3D7_v3, annov 25
+wget http://plasmodb.org/common/downloads/release-13.0/Pfalciparum3D7/gff/data/PlasmoDB-13.0_Pfalciparum3D7.gff
+mkdir Pf3D7_v3_a25
+ln -s PlasmoDB-13.0_Pfalciparum3D7.gff Pf3D7_v3_a25/genes.gff
+ln -s /seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta Pf3D7_v3_a25/sequences.fa
+#add new DB to config
+emacs /home/unix/sredmond/software/snpEff/snpEff.config
+snpEff build -gff3 -v Pf3D7_v3_a25
+
+snpEff eff Pf3D7_v3_a25 3D7DD2_all_10k.vcf.gz > 3D7DD2_all_10k.eff.vcf

@@ -23,7 +23,7 @@ MEMORY=2
 SPLIT=0
 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
 
-while getopts "d:f:m:n:s:B:N:" opt; do
+while getopts "d:f:m:n:s:l:B:N:" opt; do
   case $opt in
     d) DATA=${OPTARG} ;;
     f) REFERENCE=$OPTARG ;;
@@ -33,7 +33,7 @@ while getopts "d:f:m:n:s:B:N:" opt; do
     B) BAMFILE=$OPTARG;;
     N) NAME=$OPTARG;;
 #    s) SET=$OPTARG ;;
-#    l) LANE=$OPTARG ;;
+    l) LANE=$OPTARG ;;
 #    r) REGION=$OPTARG ;;
    \?) echo "Invalid option: -$OPTARG" >&2 ;;
   esac
@@ -56,13 +56,19 @@ if [ -z "$BAMFILE" ]; then
 elif [ -z "$NAME" ]; then
      echo "NAME [-N] must be set if BAMFILE [-B] is set"
      exit 1
-else
+#elif [ -z "$LANE" ]; then 
+else:
      echo "BAMFILE set: "${BAMFILE}
      echo "NAME set: "${NAME}
      REFNAME=$NAME
      SET=$NAME
      REGION=${@:$OPTIND:1}
-
+#else
+#     echo "BAMFILE set: "${BAMFILE}
+#     echo "NAME set: "${NAME}_${LANE}
+#     REFNAME=${NAME}_${LANE}
+#     SET=$NAME
+#     REGION=${@:$OPTIND:1}
 fi
 
 
@@ -102,8 +108,8 @@ then
 fi
 
 #MAKE SUB FOLDER (FULL RUN IS MAKING TOO MANY FILES IN ONE FOLDER)
-mkdir $NAME
-cd $NAME
+mkdir ${NAME}_${LANE}
+cd ${NAME}_${LANE}
 mkdir tmp_${NAME}
 
 
@@ -145,9 +151,10 @@ then
 	exit $rc;
     fi
 
-    ls ${NAME}.final.variant.filtered.vcf
-    rc=$?;
-    if [[ $rc != 0 ]];
+#    ls ${NAME}.final.variant.filtered.vcf
+#    rc=$?;
+#    if [[ $rc != 0 ]];
+    if [[ -f ${NAME}.final.variant.filtered.vcf ]]
 	then
 	echo "DISCOVAR FINISHED WITHOUT OUTPUT";
 #    exit $rc;
@@ -170,6 +177,9 @@ perl -i -ne 'print $_ unless $_ =~ m/DiscovarRegion/gi' ${NAME}.final.variant.fi
 #UGLY HACK sample name is 'unknown' in fakeNGS samples
 perl -i -pe "s/unknown(?>$)/${SET}/" ${NAME}.final.variant.filtered.vcf
 
+#cleanup:
+rm ${NAME}.{0..9}*
+
 #move back to parent folder
 cp ${NAME}.final.variant.filtered.vcf ../${NAME}.final.variant.filtered.vcf
 cd ../
@@ -186,4 +196,4 @@ fi
 echo "CLEANUP"
 # rm -r tmp_${NAME}
 
-
+exit 0

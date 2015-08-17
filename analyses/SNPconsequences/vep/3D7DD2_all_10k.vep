@@ -1,0 +1,12 @@
+## ENSEMBL VARIANT EFFECT PREDICTOR v80
+## Output produced at 2015-08-05 11:32:54
+## Using cache in /home/unix/sredmond/.vep/plasmodium_falciparum/80_ASM276v1
+## Using API version 80, DB version ?
+## genebuild version 2010-07
+## dbSNP version 127
+## assembly version ASM276v1
+## Extra column keys:
+## IMPACT : Subjective impact classification
+## DISTANCE : Shortest distance from variant to transcript
+## STRAND : Strand of the feature (1/-1)
+#Uploaded_variation	Location	Allele	Gene	Feature	Feature_type	Consequence	cDNA_position	CDS_position	Protein_position	Amino_acids	Codons	Existing_variation	Extra
