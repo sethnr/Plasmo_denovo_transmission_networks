@@ -10,13 +10,14 @@ PIPELINE='/seq/plasmodium/sredmond/pfdisco/pipeline'
 RUNJOBARR=PIPELINE+'/runJobInArray.sh'
 RUNDIR = os.getcwd()
 
-def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1):
+def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1, nobsub=False):
     comlog = "sub_commands.txt"
     print >>sys.stderr, "OPENING COMLOG"
+    print >>sys.stderr, "dryrun",nobsub
     comlogf = open(comlog,'w')
     
     for command in joblist:
-        print >>sys.stderr, command
+        #print >>sys.stderr, command
         print >>comlogf, command
     
     print >>sys.stderr, "CLOSING COMLOG"
@@ -31,7 +32,7 @@ def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, d
     arrayjobs=len(joblist)
     outname = jobname
 #    if maxconc > 0: jobarrname += "%"+str(maxconc)
-    (jobNo, subdcommand) = subjob(arrCommand, jobname, mem, nodes, queue, jobtime, dependency, outname, arrayjobs, maxconc)
+    (jobNo, subdcommand) = subjob(arrCommand, jobname, mem, nodes, queue, jobtime, dependency, outname, arrayjobs, maxconc,nobsub)
     return (jobNo, subdcommand)
 #    (jobNo, subdcommand) = subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime, dependency):
 

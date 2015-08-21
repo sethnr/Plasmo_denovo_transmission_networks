@@ -66,7 +66,8 @@ for rec in reader1:
     calls = dict()
     for call in rec.samples:
         sample, lane = call.sample.split('_')
-        calls[(sample,int(lane))] = call.gt_type
+#        calls[(sample,int(lane))] = call.gt_type
+        calls[(sample,int(lane))] = call.gt_bases
 #    samples = list(set([s for s,l in calls]))
     laneError = 0
     missing = 0.0

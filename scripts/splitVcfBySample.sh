@@ -17,9 +17,9 @@ else
     echo "parsed samples"
     if [[ $VCF == *".gz" ]]
      then 
- 	SAMPLES=`zcat $VCF | head -n 100 | grep \#CHR | cut -f 10- `
+ 	SAMPLES=`zcat $VCF | head -n 1000 | grep \#CHR | cut -f 10- `
      else
-	SAMPLES=`head -n 100 ${VCF} | grep \#CHR | cut -f 10- `
+	SAMPLES=`head -n 1000 ${VCF} | grep \#CHR | cut -f 10- `
     fi
 
     # TO DO: 

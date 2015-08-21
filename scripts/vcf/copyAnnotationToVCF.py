@@ -5,6 +5,25 @@ import sys
 import argparse
 from string import *
 
+
+
+if len(sys.argv)==1:
+    print >>sys.stdout, sys.argv[0] + """::
+  This script will copy an annotation from the INFO field of VCF 1 to
+  the INFO field of VCF 2. The result will be a *copy* of VCF 2, with the 
+  new variable added. It will not (yet) deal with changing the header
+  info if this field is not in VCF2
+    eg: copy MAF value from VCF1 to VCF2:
+  
+    python copyAnnotationToVCF.py \\
+      -v1 myFromVCF.vcf -v2 myToVCF.vcf  \\
+      -i MAF 
+    result file  ==>  myToVCF.MAF.vcf
+"""
+    exit(0)
+
+
+
 parser = argparse.ArgumentParser(description='from CHR : POS : 1/0 file, add true/false to VCF')
 
 parser.add_argument('-v1','-vcfFrom', action="store", dest='vcfFrom', type=str, help='vcf file', nargs='?', default=None)

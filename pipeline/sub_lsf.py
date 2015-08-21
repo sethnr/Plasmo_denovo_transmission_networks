@@ -12,7 +12,7 @@ RUNDIR = os.getcwd()
 def doSomeStuff():
     print >>sys.stderr, "did some stuff"
 
-def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1):
+def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, maxconc=-1, nobsub=False):
     if dependency is not None:
         dependency="\"done("+dependency+")\""
     comlog = "sub_commands.txt"
@@ -32,7 +32,7 @@ def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, d
     jobarrname = jobname+"["+str(1)+"-"+str(len(joblist))+"]"
     outname = jobname+".%I"
     if maxconc > 0: jobarrname += "%"+str(maxconc)
-    (jobNo, subdcommand) = subjob(arrCommand, jobarrname, mem, nodes, queue, jobtime, dependency, outname)
+    (jobNo, subdcommand) = subjob(arrCommand, jobarrname, mem, nodes, queue, jobtime, dependency, outname, nobsub)
     return (jobNo, subdcommand)
 #    (jobNo, subdcommand) = subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime, dependency):
 

@@ -187,7 +187,8 @@ cd ../
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz
 
-if [[ $rc != 0 ]];
+$tabrc=$?
+if [[ $tabrc != 0 ]];
 then
     echo "TABIX/BGZIP ERROR";
     exit $rc;

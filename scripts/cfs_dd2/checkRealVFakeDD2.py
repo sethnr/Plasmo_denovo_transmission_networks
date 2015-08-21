@@ -164,8 +164,12 @@ print "\t".join(["FILTER","S_CONC","S_DISC","S_MISS","I_CONC","I_DISC","I_MISS"]
 for f in filters:
     if (f,'SNP',True) not in fCounts: fCounts[(f,'SNP',True)]=0
     if (f,'SNP',False) not in fCounts: fCounts[(f,'SNP',False)]=0
+    if (f,'SNP',None) not in fCounts: fCounts[(f,'SNP',None)]=0
+    if (f,'SNP',None) not in fCounts: fCounts[(f,'SNP',None)]=0
     if (f,'INDEL',True) not in fCounts: fCounts[(f,'INDEL',True)]=0
     if (f,'INDEL',False) not in fCounts: fCounts[(f,'INDEL',False)]=0
+    if (f,'INDEL',None) not in fCounts: fCounts[(f,'INDEL',None)]=0
+    if (f,'INDEL',None) not in fCounts: fCounts[(f,'INDEL',None)]=0
 
     print "\t".join(map(str,[f, fCounts[(f,'SNP',True)],fCounts[(f,'SNP',False)],fCounts[(f,'SNP',None)],
                     fCounts[(f,'INDEL',True)],fCounts[(f,'INDEL',False)],fCounts[(f,'INDEL',None)]]))

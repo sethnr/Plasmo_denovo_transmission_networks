@@ -11,7 +11,7 @@ from math import floor, ceil
 from time import sleep
 # import pythongrid as grid
 from string import *
-
+import h5py as h5 
 #from sub_lsf import *
 from sub_sge import *
 
@@ -48,6 +48,9 @@ parser.add_argument('--discosucks', action="store_true", dest='nobsub', help='ru
 parser.add_argument('--shallow', action="store_true", dest='nodepth', help='run through sample parsing and folder creation without doing anything', default=False)
 parser.add_argument('--interactive', action="store_true", dest='interactive', help='monitor jobs as being run (shell must remain open to finish analysis), default=[fire-and-forget]', default=False)
 
+parser.add_argument('--donejobs', action="store", dest='donejobs', help='list of jobs that have already completed (remove from jobarray before submission)', default=None)
+parser.add_argument('--doneH5', action="store", dest='doneH5', help='h5file of regions/samples that have already completed (if whole of job is covered, do not submit)', default=None)
+
 
 #DISCO INPUTS
 parser.add_argument('-f','--ref', action="store", dest='refFasta', type=str, help='fasta file for reference seq', nargs='?', default=None)
@@ -59,6 +62,7 @@ parser.add_argument('-Q','--queue', action="store", dest='queue', type=str, help
 parser.add_argument('--splitregions', action="store_false", dest='oneregion', help='submit each region as separate job [false]')
 parser.add_argument('--splitsize', action="store", dest='splitsize', type=int, default=-1, help='split regions larger than N [-1]')
 parser.add_argument('--splitflank', action="store", dest='splitflank', type=int, default=500, help='overlap regions by flank N bp [500]')
+parser.add_argument('--minsplit', action="store", dest='minsplit', type=int, default=2000, help='do not split into chunk of less than N bp [2000]')
 
 parser.add_argument('--bam_bylane', action="store_true", dest='bylane', default=True, help='parse bam location from lane [True]')
 parser.add_argument('--bam_direct', action="store_false", dest='bylane', default=True, help='parse bam location from lane [True]')
@@ -104,6 +108,8 @@ def _split_regions(locs, ssize=50000, sflank=500):
                 e2 = s2 + ssize
                 if e2 > e1: e2 = e1
                 if s2 > s1: s2 -= sflank
+                if e2-s2 < args.minsplit:
+                    s2=e2-args.minsplit
                 locs += [(c1, s2, e2)]
                 #print "adding", (c1, s2, e2)
                 
@@ -128,6 +134,8 @@ def _parse_chrs_from_dict(fasta):
 
 #variables / defaults / etc
 flank = args.discoSize/2
+if args.donejobs is not None:
+    args.donejobs = os.path.abspath(args.donejobs)
 if args.datadir is not None: DATADIR = args.datadir
 if args.rundir is not None:  RUNDIR = args.rundir
 if args.dryrun:
@@ -221,8 +229,7 @@ else:
 if args.refFasta is not None:
     REFERENCE = args.refFasta
 
-print >>sys.stderr, len(locs)
-print >>sys.stderr, locs
+#print >>sys.stderr, locs
 ########
 # RUN DISCOVAR
 ########
@@ -242,19 +249,14 @@ failjobs = []
 datasets = set([dataset for (seqid, lane, dataset) in samples])
 print >>sys.stderr, datasets
 
-    
-commands = []
-
-
+print >>sys.stderr, "assessing "+str(len(locs))+" regions in "+str(len(samples))+" samples"
+ 
+#commands = []
+commands = dict()
+#CONSTRUCT ALL COMMANDS:
 for thisdataset in datasets:
-#    samplesInDataset = [(seqid, lane, dataset) for (seqid, lane, dataset) in samples if dataset == thisdataset]
     samplesInDataset = [(seqid, lane, dataset, samples[(seqid, lane, dataset)]) for (seqid, lane, dataset) in samples if dataset == thisdataset]
 
-    #make and change into dataset subdir
-    if not os.path.exists("./"+thisdataset):
-        os.mkdir("./"+thisdataset)
-    os.chdir("./"+thisdataset)
-   
     for (seqid, lane, dataset, bamfile) in samplesInDataset:
         for region in regions:
             if args.bylane is True:
@@ -272,11 +274,73 @@ for thisdataset in datasets:
                                 "-N", seqid,
                                 "-B", bamfile,
                                     region])
-            commands += [command]
+            #commands += [command]
+            commands[(seqid+'_'+lane,region)]=command
+    
+
+
+    jobname = thisdataset+"_disco"
 
     
-    jobname = thisdataset+"_disco"
-    (jobNo, subdcommand) = subarray(commands, jobname, args.mem, args.nodes, args.queue, args.jobtime, maxconc=args.maxconc)
+    
+    if args.donejobs is not None:
+        commands = commands.values()
+        done = open(args.donejobs,'r')
+        killlist = done.readlines()
+        print >>sys.stderr, "killlist found: "+args.donejobs
+        print >>sys.stderr, commands[1]
+        print >>sys.stderr, killlist[1]
+        print >>sys.stderr, "commands: "+str(len(commands))+" kills: "+str(len(killlist)),
+        killlist = [k.rstrip() for k in killlist]
+        commands = set(commands)-set(killlist)
+        #commands = [c for c in commands if c not in killlist]
+        print >>sys.stderr, " remain: "+str(len(commands))       
+
+    elif args.doneH5 is not None:
+        h5f= h5.File(args.doneH5, "r")
+
+        h5samples = h5f['samples']
+        stoi = dict()
+        for i in range(0,len(h5samples)):
+            stoi[h5samples[i]]=i
+
+        h5chromosomes = h5f['chromosomes']
+        ctoi = dict()
+        for i in range(0,len(h5chromosomes)):
+            ctoi[h5chromosomes[i]]=i
+
+        done = h5f['completed']
+        
+        toDo = list()
+        toNotDo=list()
+        for smp, region in commands:
+            c,s,e = re.split('\W',region)
+            s = int(s); e = int(e)
+            jobdone = done[stoi[smp],ctoi[c],s:e]
+#            print sum(jobdone)
+#            print len(jobdone)
+            if sum(jobdone) == len(jobdone):
+                toNotDo += [commands[(smp,region)]]
+                pass
+
+#                print "DONE"
+            else:
+                #print "NOT DONE: "+str(sum(jobdone))+"/"+str(len(jobdone)),
+                #print "\t"+commands[(smp,region)][-50:]
+                toDo += [commands[(smp,region)]]
+        print >>sys.stderr, "commands: "+str(len(commands.keys())),
+        print >>sys.stderr, " kills: "+str(len(toNotDo)),
+        print >>sys.stderr, " remain: "+str(len(toDo)),
+
+        commands = toDo
+
+    #make and change into dataset subdir
+    if not os.path.exists("./"+thisdataset):
+        os.mkdir("./"+thisdataset)
+    os.chdir("./"+thisdataset)
+   
+    
+    (jobNo, subdcommand) = subarray(commands, jobname, args.mem, args.nodes, args.queue, args.jobtime, maxconc=args.maxconc, nobsub=args.nobsub)
     #return jobNo
 
     joblog(jobNo, subdcommand, args.prefix)

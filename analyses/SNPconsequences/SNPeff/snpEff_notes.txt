@@ -14,4 +14,6 @@ ln -s /seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta Pf3D7_v3_a25/sequences.fa
 emacs /home/unix/sredmond/software/snpEff/snpEff.config
 snpEff build -gff3 -v Pf3D7_v3_a25
 
-snpEff eff Pf3D7_v3_a25 3D7DD2_all_10k.vcf.gz > 3D7DD2_all_10k.eff.vcf
+snpEff eff Pf3D7_v3_a25 3D7DD2_all_10k.vcf.gz \
+       -no-downstream -no-upstream -no-intron -no-intergenic \
+       > 3D7DD2_all_10k.eff.vcf
