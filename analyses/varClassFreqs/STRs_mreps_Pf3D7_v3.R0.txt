@@ -1,0 +1,1 @@
+../STR_calling/STRs_mreps_Pf3D7_v3.R0.txt

@@ -1,0 +1,18 @@
+
+VCFtools - v0.1.10
+(C) Adam Auton 2009
+
+Parameters as interpreted:
+	--vcf passVars.refPFXConcordance.PASS.RefPFXConc.vcf
+	--recode-INFO-all
+	--geno 1
+	--recode
+
+Reading Index file.
+File contains 1293 entries and 16 individuals.
+Applying Required Filters.
+Filtering sites by allele frequency and call rate
+After filtering, kept 16 out of 16 Individuals
+After filtering, kept 965 out of a possible 1293 Sites
+Outputting VCF file... Done
+Run Time = 4.00 seconds

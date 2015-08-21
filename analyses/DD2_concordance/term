@@ -1,0 +1,4 @@
+  File "../../scripts/cfs_dd2/filterHypervariableRecordsVCF.py", line 92
+    print "PROBS: " np.flatnonzero(overProb)
+                     ^
+SyntaxError: invalid syntax

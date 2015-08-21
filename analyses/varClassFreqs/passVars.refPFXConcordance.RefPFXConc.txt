@@ -1,0 +1,10 @@
+FILTER	S_CONC	S_DISC	S_MISS	I_CONC	I_DISC	I_MISS
+2D4Discord	0	0	0	0	0	2
+2D4FDKIncons	0	0	5	0	0	1
+2D4RefAbsent	0	0	155	0	0	13
+FdkDiscord	0	0	0	0	0	2
+FdkRefAbsent	0	0	155	0	0	13
+FdkXDiscord	0	4	0	0	5	0
+FdkXRefAbsent	0	0	591	0	0	149
+GoldWirthIncons	0	0	1	0	0	0
+PASS	153	0	0	62	0	0

@@ -1,0 +1,24 @@
+INDIVIDUAL FILTERS
+	2D4XRefAbsent	740
+	FdkXRefAbsent	740
+	PASS	215
+	2D4RefAbsent	168
+	FdkRefAbsent	168
+	2D4XDiscord	9
+	FdkXDiscord	9
+	2D4FDKIncons	6
+	2D4Discord	2
+	FdkDiscord	2
+	GoldWirthIncons	1
+
+
+COMBINED FILTERS
+	2D4FDKIncons;FdkDiscord;2D4Discord;FdkXRefAbsent;2D4XRefAbsent	1
+	2D4FDKIncons;FdkRefAbsent;2D4RefAbsent;FdkXRefAbsent;2D4XRefAbsent	3
+	2D4FDKIncons;FdkXRefAbsent;2D4XRefAbsent	2
+	FdkDiscord;2D4Discord;FdkXRefAbsent;2D4XRefAbsent	1
+	FdkRefAbsent;2D4RefAbsent;FdkXRefAbsent;2D4XRefAbsent	164
+	FdkXDiscord;2D4XDiscord	9
+	FdkXRefAbsent;2D4XRefAbsent	568
+	GoldWirthIncons;FdkRefAbsent;2D4RefAbsent;FdkXRefAbsent;2D4XRefAbsent	1
+	PASS	215

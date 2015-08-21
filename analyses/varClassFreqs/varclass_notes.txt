@@ -1,0 +1,29 @@
+#real
+ln -s  ../../disco_halfmeg_split_10k/3D7DD2_all_10k.REFCALL.vcf
+#ref
+ln -s /seq/plasmodium/sredmond/pfdisco/disco_fullrun_fakeNGS/fakev3D7_all.PfDD2v3D7.vcf.gz
+ln -s /seq/plasmodium/sredmond/pfdisco/disco_fullrun_fakeNGS/fakev3D7_all.PfDD2v3D7.vcf.gz.tbi
+#pfx
+ln -s ../pfx_comparison/3D7_DD2_parents.DD2.Pf07.45k-75k.vcf
+#STRs
+ln -s ../STR_calling/STRs_mreps_Pf3D7_v3.R0.txt
+
+
+./checkRefPFXconcordance.sh \
+	3D7DD2_all_10k.REFCALL.vcf \
+  	fakev3D7_all.PfDD2v3D7.vcf.gz \
+	3D7_DD2_parents.DD2.Pf07.45k-75k.vcf \
+    	passVars.refPFXConcordance
+
+#>> passVars.refPFXConcordance.PASS.RefPFXConc.vcf
+
+
+./checkVarClassVariability.sh \
+	passVars.refPFXConcordance.PASS.RefPFXConc.vcf \
+	STRs_mreps_Pf3D7_v3.R0.txt \
+	Pf3D7_v3_a25 \
+	passVars.VarClass
+
+
+python ../../scripts/vcf/summariseVarClassesVCF.py \
+       -v passVars.varClasscount.STRs.ANN.vcf.gz
