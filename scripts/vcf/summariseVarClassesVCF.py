@@ -65,7 +65,9 @@ print >>sys.stdout, "\t".join(
             #                    '.'.join(alleles),
             "varlen",
             "vcomplex",
-             "strType",
+            "strType",
+            "STRP",
+            "STRE",
             "alleles",
             "call_rate",
             "nuc_div"]+
@@ -95,8 +97,8 @@ for rec in reader:
             STRtype="polyA"
         elif fa >= 0.4 and ft >= 0.4:
             STRtype="TArep"
-        STRP=['STRP']
-        STRE=['STRE']
+        STRP=['STRP'][0]
+        STRE=['STRE'][0]
     consequence=""
     coding="intergenic"
     if 'ANN' in rec.INFO:        
