@@ -97,8 +97,8 @@ for rec in reader:
             STRtype="polyA"
         elif fa >= 0.4 and ft >= 0.4:
             STRtype="TArep"
-        STRP=['STRP'][0]
-        STRE=['STRE'][0]
+        STRP=rec.INFO['STRP'][0]
+        STRE=rec.INFO['STRE'][0]
     consequence=""
     coding="intergenic"
     if 'ANN' in rec.INFO:        
