@@ -1,965 +1,965 @@
-chr	pos	vartype	varlen	vcomplex	strType	STRP	STRE	alleles	call_rate	nuc_div	FdkXRefAbsent	2D4RefAbsent	FdkRefAbsent	FdkXDiscord	2D4Discord	FdkDiscord	GoldWirthIncons	2D4FDKIncons	coding	consequence	DD2FDKMAF
-Pf3D7_07_v3	450424	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	450527	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	450529	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	450968	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	451514	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	451640	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	451673	INDEL	-3	0.027	STR	3	5.33	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	451677	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	452764	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	452958	SNP	1	0	TArep	10	2.8	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	452968	SNP	1	0	TArep	10	2.8	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	452970	INDEL	8	0.22	TArep	10	2.8	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	452972	SNP	1	0	STR	2	6.5	2	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	453349	INDEL	-32	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	453400	SNP	1	0	STR	2	27.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	454026	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	454686	INDEL	10	0.239				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	455362	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	455494	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	455550	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	455626	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	455798	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	455897	INDEL	12	0.31				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	455974	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	456232	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	456262	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	456774	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	457005	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	457219	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	457269	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	457641	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	457793	INDEL	-21	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	458775	INDEL	12	0.31				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462295	INDEL	-1	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462338	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462339	SNP	1	0	STR	4	6.75	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462426	SNP	1	0	STR	5	5.4	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462728	INDEL	-6	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462873	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	462904	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	463046	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	463422	INDEL	9	0.25				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	463705	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	463815	INDEL	3	0.103				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	463876	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	464260	INDEL	3	0.098				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	464317	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	464353	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	464538	INDEL	-6	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	465101	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465426	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465508	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465579	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465648	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465691	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465697	INDEL	63	1.164				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	465704	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465706	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465729	SNP	1	0	STR	21	2.29	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465750	SNP	1	0	STR	21	2.29	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465753	SNP	1	0	STR	21	2.29	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465757	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465771	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465774	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465775	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465776	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465793	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465794	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465849	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	465928	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	465946	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	466102	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466106	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466109	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466120	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466124	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466133	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466159	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466431	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466458	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466461	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	466465	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466466	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466482	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	466492	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466648	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	466843	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467025	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	467205	SNP	1	0	STR	9	2.22	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467871	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	467877	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467879	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467882	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467886	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467887	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467888	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467889	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467892	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	467893	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467896	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	stop_gained	0.0
-Pf3D7_07_v3	467897	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467901	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467904	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467907	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467909	INDEL	-10	0.027	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	467921	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467923	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467926	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467927	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467928	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	467929	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467931	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467932	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467937	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467939	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467940	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	467944	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467945	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467947	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467948	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	stop_gained	0.0
-Pf3D7_07_v3	467949	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	467952	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467953	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467959	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467967	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467981	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467983	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	467984	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468005	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468006	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468084	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468150	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468156	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468158	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468228	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468248	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468298	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468299	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468365	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468400	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468403	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468408	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468471	SNP	1	0	STR	6	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468472	SNP	1	0	STR	6	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468530	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468540	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468541	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468576	INDEL	-84	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	468741	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468798	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468876	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	468897	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	468931	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469454	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469462	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469463	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469465	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469488	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469490	INDEL	42	0.768				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	469491	SNP	1	0				2	1.0	0.516	0	0	0	1	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	469504	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469510	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469527	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	469542	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	469554	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	469557	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469559	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469565	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469589	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469628	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469640	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	469716	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	469908	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	469911	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	470017	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	470040	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	470356	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	471237	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	471442	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	471854	SNP	1	0	polyA	8	2.38	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	472294	SNP	1	0	STR	10	2.2	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	472959	INDEL	-7	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	472985	SNP	1	0	STR	2	13.0	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	473039	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	473054	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	473203	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	473334	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	473404	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	473639	INDEL	-4	0.027	STR	4	5.75	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	474179	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	474492	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	474571	INDEL	4	0.116	STR	9	3.56	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	474590	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	474754	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	474973	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	475469	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	475576	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	475932	SNP	1	0	STR	9	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	475957	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	475987	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476196	INDEL	4	0.122				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476223	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476302	SNP	1	0	STR	4	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476306	SNP	1	0	STR	4	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476310	SNP	1	0	STR	4	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476327	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	476708	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	477191	INDEL	-10	0.027				2	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	477426	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	477561	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	477766	INDEL	-4	0.027	STR	8	2.75	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	477855	INDEL	-13	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	478148	INDEL	-24	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	478420	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	478818	INDEL	-14	0.027	STR	16	2.75	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	479217	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	479646	SNP	1	0	STR	9	2.11	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	479648	INDEL	-7	0.027	STR	9	2.11	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	479730	INDEL	-4	0.027	STR	7	2.43	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	489573	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	489666	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	489867	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	490102	INDEL	24	0.581	STR	3	6.33	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	491460	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	491851	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	492136	INDEL	-12	0.027	STR	16	2.19	3	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	492152	SNP	1	0	STR	16	2.19	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	492395	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	492436	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	492807	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	493065	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	493950	INDEL	-5	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	494663	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	494846	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	495462	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	495789	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	495859	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	496138	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	496294	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	496312	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	496337	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	496481	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	496692	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	496829	INDEL	9	0.213	STR	9	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	497212	SNP	1	0				2	1.0	0.508	1	0	0	0	0	0	0	1	coding	missense_variant	0.0
-Pf3D7_07_v3	497598	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	498294	INDEL	-6	0.027	STR	4	3.5	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	498376	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	498396	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	498789	INDEL	-1	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	498906	SNP	1	0	STR	11	2.45	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	498916	INDEL	7	0.195	STR	11	2.45	2	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	499144	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	499331	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	499908	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	499908	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	500220	INDEL	6	0.175				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	502586	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	502667	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	502668	INDEL	12	0.302	STR	12	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	502676	SNP	1	0	STR	12	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	503153	INDEL	24	0.625				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	504497	SNP	1	0				2	1.0	0.121	1	1	1	0	0	0	0	1	intergenic		0.0
-Pf3D7_07_v3	504498	SNP	1	0				2	1.0	0.121	1	1	1	0	0	0	0	1	intergenic		0.0
-Pf3D7_07_v3	504511	SNP	1	0				2	1.0	0.121	1	1	1	0	0	0	0	1	intergenic		0.0
-Pf3D7_07_v3	509654	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	509669	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	509766	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	509864	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510100	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510232	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510289	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510290	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510303	INDEL	-4	0.027	STR	2	7.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510327	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510339	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510380	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510481	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510498	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510503	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510520	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510565	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510566	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510632	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510738	INDEL	-3	0.027	STR	5	4.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510742	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510744	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510746	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	510747	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	524840	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	525342	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	525778	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	525885	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	526076	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	528307	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528319	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528323	INDEL	-6	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	528379	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528400	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528526	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528532	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528570	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	528573	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528580	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528586	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528589	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528595	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	528597	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	528633	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546058	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546065	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546067	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546166	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546168	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546189	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546193	INDEL	3	0.098				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	546195	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546196	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546199	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546205	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546207	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546211	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546215	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546225	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546231	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546233	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546240	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546241	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546249	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546250	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546252	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546253	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546255	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546256	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546258	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546265	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546267	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546284	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546285	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546288	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546289	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546290	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546292	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546293	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546296	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546297	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546298	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546299	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546301	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546302	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546303	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546306	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546307	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546310	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546311	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546313	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546314	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546317	INDEL	-2	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	546320	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546323	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	stop_gained	0.0
-Pf3D7_07_v3	546326	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546327	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	stop_gained	0.0
-Pf3D7_07_v3	546331	INDEL	-4	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	546336	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546340	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546341	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546343	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546351	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546352	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546353	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546355	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546356	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546357	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546359	INDEL	6	0.163				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	546360	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546361	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546366	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546367	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546369	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546370	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546374	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546376	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546377	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546380	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546381	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546384	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546385	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546386	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	stop_gained	0.0
-Pf3D7_07_v3	546389	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546390	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546391	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546392	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	546393	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	546395	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	559945	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	562688	INDEL	8	0.214	STR	2	12.5	2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	563905	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	563908	INDEL	-1	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	563928	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	563937	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	563939	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	563987	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	564019	INDEL	-1	0.027	STR	8	2.12	2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	564035	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	564106	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	574336	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574343	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574354	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574364	INDEL	6	0.163				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574391	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574394	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574398	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574399	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574407	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574409	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574455	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574463	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574467	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574470	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	574480	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	578945	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	578961	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579281	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579282	INDEL	8	0.214				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579294	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579331	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579683	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579690	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579691	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579693	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579696	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579698	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579716	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579772	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579776	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579960	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579960	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579966	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579966	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579967	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	579981	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	580065	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	580099	INDEL	-1	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	580189	INDEL	-5	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	580216	INDEL	-2	0.027				2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	582541	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582550	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582572	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	582574	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582592	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582610	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582619	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582622	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	582625	SNP	1	0				2	1.0	0.516	1	1	1	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	591951	SNP	1	0				2	1.0	0.226	1	1	1	0	0	0	1	0	intergenic		0.0
-Pf3D7_07_v3	599504	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599562	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599570	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599641	SNP	1	0	STR	2	9.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599663	INDEL	2	0.081				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599675	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599676	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599677	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599694	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599714	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599805	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599823	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599871	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599890	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599931	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599932	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599949	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599959	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599963	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	599979	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600003	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600038	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600049	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600076	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600176	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600181	INDEL	6	0.175	STR	2	11.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600191	SNP	1	0	STR	2	11.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600199	SNP	1	0	STR	2	11.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600244	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600305	INDEL	12	0.31				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600319	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600325	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600460	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600638	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600710	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600737	INDEL	-8	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600747	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600766	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600788	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600795	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	600916	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601148	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601166	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601170	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601177	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601178	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601254	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601373	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601408	SNP	1	0	STR	4	3.75	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601441	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601482	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601578	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601610	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601613	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601628	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601660	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601679	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601705	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601730	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601734	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601743	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601826	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601879	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601893	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601922	SNP	1	0	STR	3	4.67	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601934	SNP	1	0	STR	1	10.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601935	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	601991	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602007	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602051	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602066	INDEL	5	0.15				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602191	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	602198	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602224	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602227	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602235	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602249	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602252	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602317	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602349	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602355	INDEL	8	0.22				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602377	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	602419	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602452	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602458	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602460	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	602464	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602467	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602485	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	602497	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602499	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	602566	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602703	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	602713	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602819	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	602959	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	603008	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	603299	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	603481	INDEL	-2	0.027				3	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603562	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603771	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603777	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603841	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603852	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603913	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603921	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603924	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603933	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603942	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603957	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603968	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603978	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603990	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	603998	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604011	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604033	INDEL	-22	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604057	SNP	1	0	STR	2	22.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604058	SNP	1	0	STR	2	22.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604063	SNP	1	0	STR	2	22.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604166	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604169	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604184	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604190	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604211	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604247	INDEL	16	0.386				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604307	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604337	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604340	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604341	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604345	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604358	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604370	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604410	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604426	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604435	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604436	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604466	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604515	INDEL	1	0.051	STR	1	12.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604518	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604543	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604606	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604857	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604901	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604902	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604922	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604944	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	604947	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605004	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605007	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605057	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605066	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605104	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605122	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605174	INDEL	1	0.051				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605204	INDEL	7	0.195				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605316	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605341	SNP	1	0	STR	10	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605355	INDEL	1	0.051				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605398	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605424	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605427	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605439	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605447	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605479	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605490	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605593	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605623	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	605674	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	605695	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	605706	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	606264	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606274	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606288	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606297	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606310	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606321	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606367	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606381	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606383	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	606385	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606386	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606393	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606419	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606425	SNP	1	0	polyA	1	10.0	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	606433	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	606551	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606561	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606563	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606605	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606609	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606611	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606613	INDEL	2	0.075				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606614	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606615	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606616	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606645	INDEL	3	0.098				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	606837	INDEL	4	0.122				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607017	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607068	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607069	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607082	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607089	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607092	INDEL	3	0.098				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607095	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	607115	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	607120	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	607123	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	607126	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	607128	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	608357	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608380	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608560	INDEL	1	0.051				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608580	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608610	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608754	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608760	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608764	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608769	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608776	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608777	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	608992	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	609040	INDEL	1	0.051				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	609227	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	609262	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	609389	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	609410	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	609514	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609514	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609600	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	609600	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	609968	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609968	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609977	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609977	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609992	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	609992	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	610027	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	610700	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	610802	INDEL	4	0.128	STR	4	3.25	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	610807	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	610921	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	610982	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611559	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611607	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611685	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611759	SNP	1	0	STR	2	6.0	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611848	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611851	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	611871	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	612182	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	612231	INDEL	4	0.128				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	612595	INDEL	12	0.317	STR	2	5.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	612906	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	613860	INDEL	-21	0.027	STR	14	2.43	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	613937	SNP	1	0	STR	7	3.86	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	614188	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	614267	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	614272	INDEL	-20	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	614420	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	614531	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	614879	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	614894	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	614929	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	614985	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	614996	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	615003	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	615004	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	616459	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	616829	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	616856	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	616872	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	616874	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	617311	INDEL	4	0.116				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617338	INDEL	6	0.163	STR	8	2.38	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617348	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617350	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617409	INDEL	-8	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617535	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617544	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	617793	INDEL	-10	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	618240	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	618245	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	619279	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	619360	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	619398	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	620034	INDEL	-12	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	620096	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	620142	INDEL	-1	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	620166	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	620660	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	620774	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	621136	INDEL	4	0.125				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	622939	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	623970	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	624824	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	629517	INDEL	-45	0.027	STR	15	2.73	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	629563	SNP	1	0	STR	15	9.87	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	629571	SNP	1	0	STR	15	9.87	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	631202	INDEL	-15	0.027	STR	3	11.33	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	631226	SNP	1	0	STR	3	9.0	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	631520	INDEL	3	0.103				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	631726	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	631730	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	633169	SNP	1	0	STR	30	2.93	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	634115	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	634208	INDEL	9	0.238				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	634216	SNP	1	0	STR	9	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	634232	SNP	1	0	STR	9	2.89	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	634328	INDEL	9	0.244				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	634483	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	634566	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	634749	SNP	1	0	STR	21	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	635199	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	635971	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	635985	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	637946	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	638068	SNP	1	0	STR	7	2.43	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	638524	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	638849	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	638897	INDEL	-4	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	639707	INDEL	18	0.463				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	639861	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	640141	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	642147	INDEL	-18	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	643519	INDEL	-6	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	643685	INDEL	-2	0.027	STR	11	2.18	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	643756	INDEL	5	0.14	polyA	1	11.0	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	644143	SNP	1	0	STR	13	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	644144	SNP	1	0	STR	13	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	645078	SNP	1	0				2	1.0	0.508	1	0	0	0	0	0	0	1	intergenic		0.0
-Pf3D7_07_v3	645441	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	645556	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	645840	INDEL	4	0.128	STR	8	2.25	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	646591	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	648859	INDEL	12	0.31	STR	2	19.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	648909	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649142	INDEL	14	0.375				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649325	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649551	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649551	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649552	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649552	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649602	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649602	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649630	INDEL	-12	0.027	STR	4	5.5	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	649710	INDEL	18	0.452				4	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	650369	INDEL	-16	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	651337	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	653389	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	653393	SNP	1	0	STR	18	3.78	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	653411	SNP	1	0	STR	18	3.78	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	653425	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	653429	SNP	1	0	STR	18	3.78	2	1.0	0.516	0	0	0	1	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	653443	SNP	1	0	STR	18	3.72	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	653447	SNP	1	0	STR	18	3.72	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	654567	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	660003	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	662495	INDEL	16	0.405				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	663210	INDEL	4	0.128				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	663670	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	664516	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	665327	INDEL	-12	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	665394	SNP	1	0	STR	15	2.73	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	666205	INDEL	15	0.381				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	666469	INDEL	24	0.543	STR	4	3.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	666875	INDEL	24	0.568				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	667564	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	668376	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	668512	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	668523	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	668535	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	668539	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	668553	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	668557	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	670034	INDEL	-32	0.027	STR	2	24.5	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	670141	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	670312	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	670380	INDEL	6	0.175				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	670940	INDEL	-10	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	673132	INDEL	6	0.175				3	1.0	-1.0	1	0	0	0	1	1	0	1	intergenic		0.0
-Pf3D7_07_v3	674338	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	675259	INDEL	4	0.122				2	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	675419	INDEL	-8	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	675621	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	675652	INDEL	10	0.275	polyA	1	11.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	675654	SNP	1	0	polyA	1	11.0	2	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	675804	INDEL	-4	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	676123	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	676132	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	676576	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	676922	INDEL	-15	0.027	STR	15	2.6	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	677025	INDEL	15	0.348				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	677791	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	677895	INDEL	6	0.163				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	678227	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	679102	INDEL	6	0.171				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	680475	SNP	1	0	STR	3	20.67	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	680496	SNP	1	0	STR	3	20.67	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	681142	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	681145	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	681146	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	681151	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	681196	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	681200	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	681205	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	681686	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	682413	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	690588	INDEL	-18	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	693368	INDEL	14	0.357				4	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	693490	INDEL	2	0.075				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	693653	INDEL	-14	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	694141	INDEL	4	0.128				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	694289	INDEL	-5	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	694370	SNP	1	0	STR	4	7.75	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	694374	SNP	1	0	STR	4	7.75	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	695265	INDEL	-15	0.027	STR	2	19.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	697616	INDEL	-10	0.027				2	1.0	0.516	0	0	0	1	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	697784	INDEL	-8	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	698754	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	699123	INDEL	-2	0.027	STR	14	2.64	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	699262	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	700840	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	701206	INDEL	4	0.122				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	701263	SNP	1	0	STR	1	16.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	702459	INDEL	-16	0.027	STR	8	2.88	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	702578	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	702956	INDEL	6	0.175	STR	2	11.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	703080	INDEL	8	0.22				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	703158	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	703662	INDEL	-15	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	703904	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	704373	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	704623	INDEL	6	0.175				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	705531	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	706074	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	706086	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706087	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706141	INDEL	15	0.34				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	706155	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	706162	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706170	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706177	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706180	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706252	INDEL	6	0.167	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	706256	SNP	1	0	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706269	INDEL	12	0.295	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
-Pf3D7_07_v3	706273	SNP	1	0	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706277	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	706335	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	707290	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	707632	INDEL	-24	0.027	STR	11	2.09	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	708271	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	708332	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	708347	SNP	1	0	STR	15	7.67	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	708411	INDEL	-60	0.027	STR	15	7.67	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	708623	INDEL	-24	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
-Pf3D7_07_v3	711029	INDEL	4	0.128				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	712278	INDEL	-16	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	712909	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	713157	SNP	1	0	STR	12	2.92	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	713187	INDEL	18	0.432	STR	30	2.57	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	725130	INDEL	-2	0.027	STR	13	2.08	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	725998	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	726594	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	726661	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	727199	INDEL	-14	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	frameshift_variant	0.0
-Pf3D7_07_v3	727266	INDEL	-18	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	727728	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	727792	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	727905	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	727942	INDEL	-5	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	728161	SNP	1	0	polyA	1	10.0	2	1.0	0.516	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	728696	INDEL	-3	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	729073	INDEL	-66	0.027	STR	33	2.24	2	1.0	0.516	1	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
-Pf3D7_07_v3	729550	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	734523	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	734886	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	735180	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	735406	INDEL	9	0.233				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	735710	INDEL	-4	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	735950	INDEL	4	0.116	polyA	8	2.38	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	736978	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	737421	SNP	1	0	polyA	1	16.0	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	737920	INDEL	-19	0.027	STR	2	17.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	738432	INDEL	-5	0.027	STR	2	8.0	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	739255	INDEL	14	0.375				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	739448	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	739611	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740168	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740184	SNP	1	0	polyA	1	15.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740359	INDEL	6	0.175	STR	4	5.75	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740363	SNP	1	0	STR	4	5.75	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740941	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740959	INDEL	16	0.415	STR	8	2.38	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	740963	SNP	1	0	STR	8	2.38	2	1.0	0.516	0	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	741241	INDEL	-10	0.027	STR	15	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	741267	SNP	1	0	STR	2	14.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	741504	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	741607	SNP	1	0				2	1.0	0.0	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	742921	INDEL	18	0.413				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
-Pf3D7_07_v3	743191	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	743384	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	coding	missense_variant	0.0
-Pf3D7_07_v3	744613	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
-Pf3D7_07_v3	744750	SNP	1	0	STR	2	13.0	2	1.0	0.516	1	1	1	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	745417	INDEL	-30	0.027	STR	28	2.68	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	745457	SNP	1	0	STR	2	6.5	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	745459	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
-Pf3D7_07_v3	746945	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	1	1	0	0	intergenic		0.0
-Pf3D7_07_v3	747110	SNP	1	0	polyA	3	5.67	2	1.0	0.516	1	0	0	0	0	0	0	0	intergenic		0.0
+chr	pos	vartype	varlen	vcomplex	strType	STRP	STRE	alleles	call_rate	nuc_div	FdkXRefAbsent	2D4XDiscord	2D4RefAbsent	FdkRefAbsent	FdkXDiscord	2D4Discord	FdkDiscord	GoldWirthIncons	2D4XRefAbsent	2D4FDKIncons	coding	consequence	DD2FDKMAF
+Pf3D7_07_v3	450424	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	450527	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	450529	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	450968	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	451514	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	451640	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	451673	INDEL	-3	0.027	STR	3	5.33	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	451677	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	452764	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	452958	SNP	1	0	TArep	10	2.8	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	452968	SNP	1	0	TArep	10	2.8	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	452970	INDEL	8	0.22	TArep	10	2.8	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	452972	SNP	1	0	STR	2	6.5	2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	453349	INDEL	-32	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	453400	SNP	1	0	STR	2	27.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	454026	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	454686	INDEL	10	0.239				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	455362	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	455494	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	455550	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	455626	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	455798	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	455897	INDEL	12	0.31				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	455974	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	456232	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	456262	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	456774	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	457005	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	457219	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	457269	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	457641	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	457793	INDEL	-21	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	458775	INDEL	12	0.31				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	462295	INDEL	-1	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	462338	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	462339	SNP	1	0	STR	4	6.75	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	462426	SNP	1	0	STR	5	5.4	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	462728	INDEL	-6	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	462873	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	462904	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	463046	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	463422	INDEL	9	0.25				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	463705	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	463815	INDEL	3	0.103				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	463876	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	464260	INDEL	3	0.098				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	464317	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	464353	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	464538	INDEL	-6	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	465101	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465426	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465508	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465579	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465648	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465691	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465697	INDEL	63	1.164				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	465704	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465706	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465729	SNP	1	0	STR	21	2.29	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465750	SNP	1	0	STR	21	2.29	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465753	SNP	1	0	STR	21	2.29	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465757	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465771	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465774	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465775	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465776	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465793	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465794	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465849	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	465928	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	465946	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	466102	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466106	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466109	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466120	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466124	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466133	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466159	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466431	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466458	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466461	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	466465	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466466	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466482	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	466492	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466648	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	466843	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467025	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	467205	SNP	1	0	STR	9	2.22	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467871	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	467877	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467879	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467882	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467886	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467887	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467888	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467889	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467892	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	467893	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467896	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	stop_gained	0.0
+Pf3D7_07_v3	467897	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467901	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467904	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467907	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467909	INDEL	-10	0.027	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	467921	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467923	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467926	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467927	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467928	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	467929	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467931	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467932	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467937	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467939	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467940	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	467944	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467945	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467947	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467948	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	stop_gained	0.0
+Pf3D7_07_v3	467949	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	467952	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467953	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467959	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467967	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467981	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467983	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	467984	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468005	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468006	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468084	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468150	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468156	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468158	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468228	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468248	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468298	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468299	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468365	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468400	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468403	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468408	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468471	SNP	1	0	STR	6	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468472	SNP	1	0	STR	6	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468530	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468540	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468541	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468576	INDEL	-84	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	468741	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468798	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468876	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	468897	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	468931	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469454	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469462	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469463	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469465	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469488	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469490	INDEL	42	0.768				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	469491	SNP	1	0				2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	469504	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469510	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469527	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	469542	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	469554	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	469557	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469559	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469565	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469589	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469628	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469640	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	469716	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	469908	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	469911	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	470017	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	470040	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	470356	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	471237	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	471442	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	471854	SNP	1	0	polyA	8	2.38	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	472294	SNP	1	0	STR	10	2.2	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	472959	INDEL	-7	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	472985	SNP	1	0	STR	2	13.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	473039	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	473054	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	473203	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	473334	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	473404	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	473639	INDEL	-4	0.027	STR	4	5.75	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	474179	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	474492	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	474571	INDEL	4	0.116	STR	9	3.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	474590	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	474754	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	474973	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	475469	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	475576	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	475932	SNP	1	0	STR	9	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	475957	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	475987	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476196	INDEL	4	0.122				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476223	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476302	SNP	1	0	STR	4	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476306	SNP	1	0	STR	4	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476310	SNP	1	0	STR	4	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476327	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	476708	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	477191	INDEL	-10	0.027				2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	477426	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	477561	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	477766	INDEL	-4	0.027	STR	8	2.75	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	477855	INDEL	-13	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	478148	INDEL	-24	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	478420	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	478818	INDEL	-14	0.027	STR	16	2.75	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	479217	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	479646	SNP	1	0	STR	9	2.11	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	479648	INDEL	-7	0.027	STR	9	2.11	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	479730	INDEL	-4	0.027	STR	7	2.43	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	489573	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	489666	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	489867	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	490102	INDEL	24	0.581	STR	3	6.33	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	491460	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	491851	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	492136	INDEL	-12	0.027	STR	16	2.19	3	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	492152	SNP	1	0	STR	16	2.19	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	492395	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	492436	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	492807	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	493065	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	493950	INDEL	-5	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	494663	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	494846	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	495462	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	495789	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	495859	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	496138	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	496294	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	496312	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	496337	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	496481	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	496692	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	496829	INDEL	9	0.213	STR	9	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	497212	SNP	1	0				2	1.0	0.508	1	0	0	0	0	0	0	0	1	1	coding	missense_variant	0.0
+Pf3D7_07_v3	497598	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	498294	INDEL	-6	0.027	STR	4	3.5	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	498376	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	498396	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	498789	INDEL	-1	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	498906	SNP	1	0	STR	11	2.45	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	498916	INDEL	7	0.195	STR	11	2.45	2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	499144	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	499331	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	499908	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	499908	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	500220	INDEL	6	0.175				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	502586	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	502667	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	502668	INDEL	12	0.302	STR	12	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	502676	SNP	1	0	STR	12	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	503153	INDEL	24	0.625				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	504497	SNP	1	0				2	1.0	0.121	1	0	1	1	0	0	0	0	1	1	intergenic		0.0
+Pf3D7_07_v3	504498	SNP	1	0				2	1.0	0.121	1	0	1	1	0	0	0	0	1	1	intergenic		0.0
+Pf3D7_07_v3	504511	SNP	1	0				2	1.0	0.121	1	0	1	1	0	0	0	0	1	1	intergenic		0.0
+Pf3D7_07_v3	509654	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	509669	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	509766	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	509864	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510100	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510232	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510289	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510290	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510303	INDEL	-4	0.027	STR	2	7.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510327	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510339	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510380	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510481	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510498	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510503	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510520	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510565	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510566	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510632	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510738	INDEL	-3	0.027	STR	5	4.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510742	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510744	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510746	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	510747	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	524840	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	525342	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	525778	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	525885	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	526076	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	528307	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528319	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528323	INDEL	-6	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	528379	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528400	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528526	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528532	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528570	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	528573	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528580	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528586	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528589	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528595	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	528597	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	528633	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546058	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546065	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546067	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546166	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546168	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546189	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546193	INDEL	3	0.098				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	546195	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546196	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546199	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546205	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546207	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546211	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546215	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546225	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546231	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546233	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546240	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546241	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546249	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546250	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546252	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546253	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546255	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546256	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546258	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546265	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546267	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546284	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546285	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546288	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546289	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546290	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546292	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546293	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546296	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546297	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546298	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546299	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546301	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546302	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546303	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546306	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546307	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546310	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546311	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546313	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546314	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546317	INDEL	-2	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	546320	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546323	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	stop_gained	0.0
+Pf3D7_07_v3	546326	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546327	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	stop_gained	0.0
+Pf3D7_07_v3	546331	INDEL	-4	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	546336	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546340	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546341	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546343	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546351	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546352	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546353	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546355	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546356	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546357	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546359	INDEL	6	0.163				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	546360	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546361	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546366	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546367	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546369	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546370	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546374	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546376	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546377	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546380	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546381	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546384	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546385	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546386	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	stop_gained	0.0
+Pf3D7_07_v3	546389	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546390	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546391	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546392	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	546393	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	546395	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	559945	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	562688	INDEL	8	0.214	STR	2	12.5	2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	563905	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	563908	INDEL	-1	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	563928	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	563937	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	563939	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	563987	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	564019	INDEL	-1	0.027	STR	8	2.12	2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	564035	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	564106	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	574336	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574343	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574354	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574364	INDEL	6	0.163				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574391	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574394	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574398	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574399	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574407	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574409	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574455	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574463	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574467	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574470	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	574480	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	578945	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	578961	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579281	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579282	INDEL	8	0.214				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579294	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579331	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579683	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579690	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579691	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579693	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579696	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579698	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579716	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579772	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579776	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579960	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579960	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579966	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579966	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579967	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	579981	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	580065	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	580099	INDEL	-1	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	580189	INDEL	-5	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	580216	INDEL	-2	0.027				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	582541	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582550	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582572	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	582574	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582592	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582610	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582619	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582622	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	582625	SNP	1	0				2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	591951	SNP	1	0				2	1.0	0.226	1	0	1	1	0	0	0	1	1	0	intergenic		0.0
+Pf3D7_07_v3	599504	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599562	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599570	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599641	SNP	1	0	STR	2	9.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599663	INDEL	2	0.081				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599675	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599676	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599677	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599694	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599714	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599805	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599823	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599871	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599890	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599931	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599932	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599949	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599959	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599963	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	599979	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600003	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600038	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600049	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600076	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600176	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600181	INDEL	6	0.175	STR	2	11.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600191	SNP	1	0	STR	2	11.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600199	SNP	1	0	STR	2	11.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600244	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600305	INDEL	12	0.31				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600319	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600325	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600460	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600638	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600710	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600737	INDEL	-8	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600747	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600766	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600788	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600795	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	600916	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601148	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601166	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601170	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601177	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601178	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601254	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601373	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601408	SNP	1	0	STR	4	3.75	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601441	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601482	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601578	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601610	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601613	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601628	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601660	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601679	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601705	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601730	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601734	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601743	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601826	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601879	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601893	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601922	SNP	1	0	STR	3	4.67	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601934	SNP	1	0	STR	1	10.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601935	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	601991	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602007	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602051	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602066	INDEL	5	0.15				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602191	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	602198	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602224	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602227	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602235	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602249	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602252	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602317	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602349	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602355	INDEL	8	0.22				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602377	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	602419	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602452	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602458	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602460	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	602464	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602467	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602485	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	602497	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602499	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	602566	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602703	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	602713	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602819	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	602959	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	603008	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	603299	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	603481	INDEL	-2	0.027				3	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603562	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603771	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603777	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603841	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603852	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603913	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603921	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603924	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603933	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603942	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603957	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603968	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603978	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603990	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	603998	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604011	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604033	INDEL	-22	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604057	SNP	1	0	STR	2	22.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604058	SNP	1	0	STR	2	22.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604063	SNP	1	0	STR	2	22.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604166	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604169	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604184	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604190	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604211	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604247	INDEL	16	0.386				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604307	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604337	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604340	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604341	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604345	INDEL	-1	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604358	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604370	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604410	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604426	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604435	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604436	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604466	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604515	INDEL	1	0.051	STR	1	12.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604518	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604543	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604606	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604857	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604901	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604902	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604922	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604944	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	604947	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605004	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605007	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605057	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605066	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605104	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605122	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605174	INDEL	1	0.051				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605204	INDEL	7	0.195				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605316	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605341	SNP	1	0	STR	10	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605355	INDEL	1	0.051				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605398	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605424	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605427	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605439	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605447	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605479	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605490	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605593	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605623	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	605674	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	605695	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	605706	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	606264	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606274	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606288	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606297	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606310	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606321	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606367	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606381	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606383	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	606385	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606386	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606393	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606419	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606425	SNP	1	0	polyA	1	10.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	606433	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	606551	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	606561	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	606563	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	606605	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606609	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606611	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606613	INDEL	2	0.075				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606614	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606615	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606616	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606645	INDEL	3	0.098				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	606837	INDEL	4	0.122				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	607017	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607068	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607069	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607082	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607089	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607092	INDEL	3	0.098				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607095	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	607115	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	607120	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	607123	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	607126	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	607128	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	608357	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608380	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608560	INDEL	1	0.051				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608580	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608610	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	608754	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608760	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608764	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608769	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608776	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608777	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	608992	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	609040	INDEL	1	0.051				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	609227	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	609262	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	609389	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	609410	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	609514	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609514	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609600	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	609600	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	609968	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609968	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609977	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609977	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609992	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	609992	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	610027	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	610700	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	610802	INDEL	4	0.128	STR	4	3.25	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	610807	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	610921	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	610982	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	611559	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	611607	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	611685	INDEL	-3	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	611759	SNP	1	0	STR	2	6.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	611848	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	611851	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	611871	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	612182	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	612231	INDEL	4	0.128				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	612595	INDEL	12	0.317	STR	2	5.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	612906	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	613860	INDEL	-21	0.027	STR	14	2.43	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	613937	SNP	1	0	STR	7	3.86	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	614188	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	614267	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	614272	INDEL	-20	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	614420	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	614531	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	614879	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	614894	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	614929	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	614985	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	614996	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	615003	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	615004	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	616459	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	616829	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	616856	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	616872	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	616874	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	617311	INDEL	4	0.116				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	617338	INDEL	6	0.163	STR	8	2.38	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	617348	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	617350	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	617409	INDEL	-8	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	617535	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	617544	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	617793	INDEL	-10	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	618240	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	618245	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	619279	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	619360	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	619398	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	620034	INDEL	-12	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	620096	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	620142	INDEL	-1	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	620166	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	620660	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	620774	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	621136	INDEL	4	0.125				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	622939	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	623970	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	624824	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	629517	INDEL	-45	0.027	STR	15	2.73	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	629563	SNP	1	0	STR	15	9.87	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	629571	SNP	1	0	STR	15	9.87	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	631202	INDEL	-15	0.027	STR	3	11.33	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	631226	SNP	1	0	STR	3	9.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	631520	INDEL	3	0.103				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	631726	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	631730	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	633169	SNP	1	0	STR	30	2.93	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	634115	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	634208	INDEL	9	0.238				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	634216	SNP	1	0	STR	9	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	634232	SNP	1	0	STR	9	2.89	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	634328	INDEL	9	0.244				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	634483	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	634566	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	634749	SNP	1	0	STR	21	5.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	635199	INDEL	-6	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	635971	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	635985	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	637946	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	638068	SNP	1	0	STR	7	2.43	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	638524	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	638849	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	638897	INDEL	-4	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	639707	INDEL	18	0.463				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	639861	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	640141	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	642147	INDEL	-18	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	643519	INDEL	-6	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	643685	INDEL	-2	0.027	STR	11	2.18	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	643756	INDEL	5	0.14	polyA	1	11.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	644143	SNP	1	0	STR	13	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	644144	SNP	1	0	STR	13	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	645078	SNP	1	0				2	1.0	0.508	1	0	0	0	0	0	0	0	1	1	intergenic		0.0
+Pf3D7_07_v3	645441	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	645556	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	645840	INDEL	4	0.128	STR	8	2.25	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	646591	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	648859	INDEL	12	0.31	STR	2	19.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	648909	INDEL	2	0.077				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649142	INDEL	14	0.375				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	649325	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	649551	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649551	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649552	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649552	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649602	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649602	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649630	INDEL	-12	0.027	STR	4	5.5	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	649710	INDEL	18	0.452				4	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	650369	INDEL	-16	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	651337	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	653389	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	653393	SNP	1	0	STR	18	3.78	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	653411	SNP	1	0	STR	18	3.78	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	653425	SNP	1	0	STR	18	3.78	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	653429	SNP	1	0	STR	18	3.78	2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	653443	SNP	1	0	STR	18	3.72	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	653447	SNP	1	0	STR	18	3.72	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	654567	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	660003	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	662495	INDEL	16	0.405				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	663210	INDEL	4	0.128				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	663670	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	664516	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	665327	INDEL	-12	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	665394	SNP	1	0	STR	15	2.73	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	666205	INDEL	15	0.381				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	666469	INDEL	24	0.543	STR	4	3.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	666875	INDEL	24	0.568				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	667564	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	668376	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	668512	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	668523	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	668535	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	668539	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	668553	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	668557	SNP	1	0	STR	18	4.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	670034	INDEL	-32	0.027	STR	2	24.5	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	670141	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	670312	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	670380	INDEL	6	0.175				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	670940	INDEL	-10	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	673132	INDEL	6	0.175				3	1.0	-1.0	1	0	0	0	0	1	1	0	1	1	intergenic		0.0
+Pf3D7_07_v3	674338	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	675259	INDEL	4	0.122				2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	675419	INDEL	-8	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	675621	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	675652	INDEL	10	0.275	polyA	1	11.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	675654	SNP	1	0	polyA	1	11.0	2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	675804	INDEL	-4	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	676123	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	676132	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	676576	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	676922	INDEL	-15	0.027	STR	15	2.6	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	677025	INDEL	15	0.348				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	677791	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	677895	INDEL	6	0.163				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	678227	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	679102	INDEL	6	0.171				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	680475	SNP	1	0	STR	3	20.67	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	680496	SNP	1	0	STR	3	20.67	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	681142	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	681145	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	681146	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	681151	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	681196	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	681200	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	681205	SNP	1	0	STR	54	2.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	681686	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	682413	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	690588	INDEL	-18	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	693368	INDEL	14	0.357				4	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	693490	INDEL	2	0.075				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	693653	INDEL	-14	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	694141	INDEL	4	0.128				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	694289	INDEL	-5	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	694370	SNP	1	0	STR	4	7.75	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	694374	SNP	1	0	STR	4	7.75	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	695265	INDEL	-15	0.027	STR	2	19.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	697616	INDEL	-10	0.027				2	1.0	0.516	0	1	0	0	1	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	697784	INDEL	-8	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	698754	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	699123	INDEL	-2	0.027	STR	14	2.64	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	699262	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	700840	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	701206	INDEL	4	0.122				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	701263	SNP	1	0	STR	1	16.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	702459	INDEL	-16	0.027	STR	8	2.88	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	702578	INDEL	-2	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	702956	INDEL	6	0.175	STR	2	11.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	703080	INDEL	8	0.22				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	703158	INDEL	2	0.077				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	703662	INDEL	-15	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	703904	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	704373	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	704623	INDEL	6	0.175				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	705531	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	706074	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	706086	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706087	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706141	INDEL	15	0.34				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	706155	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	706162	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706170	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706177	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706180	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706252	INDEL	6	0.167	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	706256	SNP	1	0	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706269	INDEL	12	0.295	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_insertion	0.0
+Pf3D7_07_v3	706273	SNP	1	0	STR	18	2.56	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706277	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	706335	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	707290	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	707632	INDEL	-24	0.027	STR	11	2.09	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	708271	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	708332	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	708347	SNP	1	0	STR	15	7.67	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	708411	INDEL	-60	0.027	STR	15	7.67	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	708623	INDEL	-24	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	disruptive_inframe_deletion	0.0
+Pf3D7_07_v3	711029	INDEL	4	0.128				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	712278	INDEL	-16	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	712909	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	713157	SNP	1	0	STR	12	2.92	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	713187	INDEL	18	0.432	STR	30	2.57	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	725130	INDEL	-2	0.027	STR	13	2.08	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	725998	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	726594	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	726661	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	727199	INDEL	-14	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	frameshift_variant	0.0
+Pf3D7_07_v3	727266	INDEL	-18	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	727728	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	727792	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	727905	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	727942	INDEL	-5	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	728161	SNP	1	0	polyA	1	10.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	missense_variant	0.0
+Pf3D7_07_v3	728696	INDEL	-3	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	729073	INDEL	-66	0.027	STR	33	2.24	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	inframe_deletion	0.0
+Pf3D7_07_v3	729550	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	734523	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	734886	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	735180	INDEL	-2	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	735406	INDEL	9	0.233				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	735710	INDEL	-4	0.027				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	735950	INDEL	4	0.116	polyA	8	2.38	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	736978	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	737421	SNP	1	0	polyA	1	16.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	737920	INDEL	-19	0.027	STR	2	17.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	738432	INDEL	-5	0.027	STR	2	8.0	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	739255	INDEL	14	0.375				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	739448	INDEL	-4	0.027				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	739611	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	740168	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	740184	SNP	1	0	polyA	1	15.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	740359	INDEL	6	0.175	STR	4	5.75	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	740363	SNP	1	0	STR	4	5.75	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	740941	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	740959	INDEL	16	0.415	STR	8	2.38	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	740963	SNP	1	0	STR	8	2.38	2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	intergenic		0.0
+Pf3D7_07_v3	741241	INDEL	-10	0.027	STR	15	2.0	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	741267	SNP	1	0	STR	2	14.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	741504	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	741607	SNP	1	0				2	1.0	0.0	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	742921	INDEL	18	0.413				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	disruptive_inframe_insertion	0.0
+Pf3D7_07_v3	743191	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	743384	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	coding	missense_variant	0.0
+Pf3D7_07_v3	744613	SNP	1	0				2	1.0	0.516	0	0	0	0	0	0	0	0	0	0	coding	synonymous_variant	0.0
+Pf3D7_07_v3	744750	SNP	1	0	STR	2	13.0	2	1.0	0.516	1	0	1	1	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	745417	INDEL	-30	0.027	STR	28	2.68	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	745457	SNP	1	0	STR	2	6.5	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	745459	SNP	1	0				2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0
+Pf3D7_07_v3	746945	INDEL	16	0.415				2	1.0	0.516	1	0	0	0	0	1	1	0	1	0	intergenic		0.0
+Pf3D7_07_v3	747110	SNP	1	0	polyA	3	5.67	2	1.0	0.516	1	0	0	0	0	0	0	0	1	0	intergenic		0.0

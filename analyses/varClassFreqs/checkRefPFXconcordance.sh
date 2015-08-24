@@ -160,7 +160,7 @@ REALVCFPOST=${REALVCF/.vcf/.2D4FDK.GoldWirth.FdkCONC.2D4CONC.FdkXCONC.2D4XCONC.v
 perl $DISCO1/scripts/vcf/countFilters.pl ${REALVCFPOST} >  ${REALVCF/.vcf/.discord.comb.txt}
 
 
-cp ${REALVCF/.vcf/.2D4FDK.GoldWirth.FdkCONC.2D4CONC.FdkXCONC.vcf} ../${OUTFILE}.PASS.RefPFXConc.vcf
+cp ${REALVCF/.vcf/.2D4FDK.GoldWirth.FdkCONC.2D4CONC.FdkXCONC.2D4XCONC.vcf} ../${OUTFILE}.PASS.RefPFXConc.vcf
 cp  ${REALVCF/.PASS.vcf/.failtab.comb.txt} ../${OUTFILE}.failtab.comb.txt
 cp  ${REALVCF/.vcf/.discord.comb.txt} ../${OUTFILE}.discord.comb.txt
 cp  ${REALVCF/.vcf/.RefPFXConc.txt} ../${OUTFILE}.RefPFXConc.txt
