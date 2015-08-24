@@ -65,6 +65,7 @@ print >>sys.stdout, "\t".join(
             #                    '.'.join(alleles),
             "varlen",
             "vcomplex",
+             "strType",
             "alleles",
             "call_rate",
             "nuc_div"]+
@@ -136,6 +137,7 @@ for rec in reader:
 #                    '.'.join(alleles),
                     varlen,
                     bcomplex,
+                    STRtype,
                     alleleCount,
                     round(rec.call_rate,3),
                     round(diversity,3)]+
