@@ -84,6 +84,8 @@ for rec in reader:
     else:
         print >>sys.stderr, rec.CHROM+":"+str(rec.POS)+"-"+rec.REF+'/'.join(rec.ALT)+" is neither SNP or INDEL"
     STRtype=""
+    STRP=""
+    STRE=""
     if 'STR' in rec.INFO:
         baseComp = rec.INFO['STRatcg'][0]
 #        print baseComp
@@ -93,6 +95,8 @@ for rec in reader:
             STRtype="polyA"
         elif fa >= 0.4 and ft >= 0.4:
             STRtype="TArep"
+        STRP=['STRP']
+        STRE=['STRE']
     consequence=""
     coding="intergenic"
     if 'ANN' in rec.INFO:        
@@ -138,6 +142,8 @@ for rec in reader:
                     varlen,
                     bcomplex,
                     STRtype,
+                    STRP,
+                    STRE,
                     alleleCount,
                     round(rec.call_rate,3),
                     round(diversity,3)]+
