@@ -98,13 +98,26 @@ f.create_dataset("chromosomes", data=[c for c,s,e in chroms])
 print f
 f.close()
 
-exit(0)
+## for ci in range(0,karyo):
+##     c,s,e = chroms[ci]
+##     doneCount = np.sum(np.equal(done[:,ci,:],1))
+##     total = np.sum(np.greater(done[:,ci,:],-1))
+##     print "\t".join(map(str,[c,doneCount,total,round(total/doneCount,5)]))
 
+print "MB remaining:"
+print "CHR",
+for si in range(0,sno):
+    s,l,d = samples[si]
+    s = s+"_"+l
+    print "\t"+s,
+print ''
 for ci in range(0,karyo):
     c,s,e = chroms[ci]
-    for p in range(0,e+2):
-        print c+"\t"+str(p),
-        for s in range(0,sno):
-            print "\t"+str(done[s,ci,p]),
-        print ''
+    print c,
+    for si in range(0,sno):
+        doneCount = np.sum(np.equal(done[si,ci,:],1))
+        total = np.sum(np.greater(done[si,ci,:],-1))
+#        print "\t"+str(round(total/doneCount,5)),
+        print "\t"+str(round((total-doneCount)/1e6,3)),
+    print ''
 
