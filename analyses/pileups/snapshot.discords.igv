@@ -1,0 +1,38 @@
+genome Plasmodium_falciparum_3D7
+load Dd2-2D4_1.bam
+load Dd2-Fidock1_1.bam
+load Dd2-Fidock2_1.bam
+# load Dd2-Fidock3_1.bam
+goto Pf3D7_07_v3:452947-452997
+collapse
+snapshot vars1.png
+goto Pf3D7_07_v3:469466-469516
+collapse
+snapshot vars2.png
+goto Pf3D7_07_v3:477166-477216
+collapse
+snapshot vari1.png
+goto Pf3D7_07_v3:498891-498941
+collapse
+snapshot vari2.png
+goto Pf3D7_07_v3:653404-653454
+collapse
+snapshot vars3.png
+goto Pf3D7_07_v3:673107-673157
+collapse
+snapshot vari3.png
+goto Pf3D7_07_v3:675234-675284
+collapse
+snapshot vari4.png
+goto Pf3D7_07_v3:675629-675679
+collapse
+snapshot vars4.png
+goto Pf3D7_07_v3:693343-693393
+collapse
+snapshot vari5.png
+goto Pf3D7_07_v3:697591-697641
+collapse
+snapshot vari6.png
+goto Pf3D7_07_v3:746920-746970
+collapse
+snapshot vari7.png
