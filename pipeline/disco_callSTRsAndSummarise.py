@@ -333,6 +333,8 @@ for thisdataset in datasets:
         print >>sys.stderr, " remain: "+str(len(toDo)),
 
         commands = toDo
+    else:
+        commands = commands.values()
 
     #make and change into dataset subdir
     if not os.path.exists("./"+thisdataset):

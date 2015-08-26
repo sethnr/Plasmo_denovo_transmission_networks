@@ -145,19 +145,29 @@ then
 	NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
     rc=$?;
-    if [[ $rc != 0 ]];
+    if [[ $rc == 1 ]];
 	then
 	echo "DISCOVAR ERROR";
+	#catch instances where finished with no output
+	#why doesn't disco output 0?
+	if [[ -f ${NAME}.final.fasta ]]
+	    then
+	    ls -l ${NAME}.final*
+	    echo "DISCOVAR FINISHED WITH ERROR CODE",$rc;
+	    exit 0
+	fi
+	exit $rc;
+    fi
+    elif [[ $rc != 0 ]];
+	then
+	echo "DISCOVAR ERROR CODE",$rc;
 	exit $rc;
     fi
 
-#    ls ${NAME}.final.variant.filtered.vcf
-#    rc=$?;
-#    if [[ $rc != 0 ]];
-    if [[ -f ${NAME}.final.variant.filtered.vcf ]]
+    #if error code is zero:
+    if [[ ! -f ${NAME}.final.variant.filtered.vcf ]]
 	then
-	echo "DISCOVAR FINISHED WITHOUT OUTPUT";
-#    exit $rc;
+	echo "DISCOVAR FINISHED, BUT WITHOUT OUTPUT";
 	exit 0
     fi
 fi

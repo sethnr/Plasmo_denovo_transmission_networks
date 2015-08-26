@@ -118,6 +118,12 @@ for ci in range(0,karyo):
         doneCount = np.sum(np.equal(done[si,ci,:],1))
         total = np.sum(np.greater(done[si,ci,:],-1))
 #        print "\t"+str(round(total/doneCount,5)),
-        print "\t"+str(round((total-doneCount)/1e6,3)),
+        remain = total-doneCount
+        if remain > 1e5:
+            print "\t"+str(round((total-doneCount)/1e6,2))+"m",
+        elif remain > 1e2:
+            print "\t"+str(round((total-doneCount)/1e3,2))+"k",
+        else:
+            print "\t"+str(round((total-doneCount),3)),
     print ''
 
