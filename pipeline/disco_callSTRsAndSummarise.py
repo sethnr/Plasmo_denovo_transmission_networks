@@ -344,6 +344,7 @@ for thisdataset in datasets:
     
     (jobNo, subdcommand) = subarray(commands, jobname, args.mem, args.nodes, args.queue, args.jobtime, maxconc=args.maxconc, nobsub=args.nobsub)
     #return jobNo
+    os.chdir("../")
 
     joblog(jobNo, subdcommand, args.prefix)
     

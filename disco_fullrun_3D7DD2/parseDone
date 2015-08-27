@@ -7,10 +7,13 @@ if [[ $rc != 0 ]]; then
  exit $rc
 fi
 
-cat 3D7DD2/done_commands_15* | sort -u > 3D7DD2/done_commands.cat.txt
+cat 3D7DD2/done_commands.15* | sort -u > 3D7DD2/done_commands.cat.txt
 cut -d\  -f 10-12 3D7DD2/done_commands.cat.txt > done_sample_region.txt
 python $DISCO1/pipeline/getCompletedRegions.py \
        -f $WORK/refs/Pf3D7_v3.fasta \
        -s $DISCO1/samples/3D7DD2.samples.txt \
        -F ./done_sample_region.txt
-rm 3D7DD2/sub_commands.out.log
+
+
+
+#rm 3D7DD2/sub_commands.out.log

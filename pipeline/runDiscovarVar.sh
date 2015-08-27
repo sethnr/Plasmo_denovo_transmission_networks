@@ -112,20 +112,32 @@ mkdir ${NAME}_${LANE}
 cd ${NAME}_${LANE}
 mkdir tmp_${NAME}
 
+echo "WORKING DIR"
+pwd
 
 if [[ ! -f ${NAME}.final.variant.filtered.vcf ]];
 then
     echo "LINK/INDEX BAM..."
 
 #check if bam index file already present
-    ls ${NAME}.bam.bai
-    rc=$?;
-    if [[ $rc != 0 ]];
-	then
-	ln -s $BAMFILE ${NAME}.bam
-	echo samtools index ${NAME}.bam
-	samtools index ${NAME}.bam
+##    ls ${NAME}.bam.bai
+##    rc=$?;
+##    if [[ $rc != 0 ]];
+##	then
+##	ln -s $BAMFILE ${NAME}.bam
+##	echo samtools index ${NAME}.bam
+##	samtools index ${NAME}.bam
+##    fi
+    #remove old bams - some are wrong
+    if [[ -e ${NAME}.bam ]]; then
+	echo "REMOVING OLD BAM"
+	rm ${NAME}.bam;
+	rm ${NAME}.bam.bai
     fi
+
+    ln -s $BAMFILE ${NAME}.bam
+    echo samtools index ${NAME}.bam
+    samtools index ${NAME}.bam
     
 #mkdir tmp_${NAME}
 
@@ -157,7 +169,6 @@ then
 	    exit 0
 	fi
 	exit $rc;
-    fi
     elif [[ $rc != 0 ]];
 	then
 	echo "DISCOVAR ERROR CODE",$rc;
