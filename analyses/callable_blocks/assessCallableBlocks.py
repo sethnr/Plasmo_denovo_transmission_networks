@@ -14,6 +14,7 @@ parser = argparse.ArgumentParser(description='call STRs ')
 #INPUTS:
 parser.add_argument('-d','--depth', action="store", dest='dp', type=str, help='tabixed depth file for region', nargs='?', default=None)
 parser.add_argument('-s','--swfile', action="store", dest='sw', type=str, help='tabixed sw file for region', nargs='?', default=None)
+parser.add_argument('-D','--dict', action="store", dest='dict', type=str, help='dict file with chr lengths', nargs='?', default=None)
 parser.add_argument('-r','--region','--regions', action="store", dest='region', type=str, help='region to call exhaustively across', nargs='?', default=None)
 parser.add_argument('-b','--blocksize', action="store", dest='blocksize', type=int, default=1000, help='calc depth/SW in blocks of N')
 
@@ -32,6 +33,19 @@ if args.region is not None:
     else:
         (rch,rst,ren) = re.split('\W',args.region)
         locs += [(rch,int(rst),int(ren))]
+elif args.dict is not None:
+    print >>sys.stderr, args.dict
+    seqdict = open(args.dict,'r')
+    for line in seqdict:
+        snres = re.search('SN:(\S+)', line)
+        if snres is not None:
+            seqname = snres.group(1)
+            seqlen = re.search('LN:(\d+)', line).group(1)
+#            print >>sys.stderr, seqname, seqlen
+            locs += [(seqname,1,int(seqlen))]
+
+
+
 
 bl = args.blocksize
 for ch,st,en in locs:
@@ -88,7 +102,9 @@ for ch,st,en in locs:
             if int(dp) > dmax: df +=1
             if int(dp) < dmin: df +=1
         Dpass=True
-        if df/float(dn) > dFailLim: Dpass=False
+        
+        if dn==0: Dpass=False
+        elif df/float(dn) > dFailLim: Dpass=False
 
         multiPass = (NMpass & RSpass & Dpass)
         if args.basewise:
