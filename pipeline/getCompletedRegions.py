@@ -10,6 +10,8 @@ import re
 import numpy as np
 import h5py as h5
 
+from discomods import * 
+
 
 parser = argparse.ArgumentParser(description='get completed regions from done_jobs file')
 
@@ -21,34 +23,11 @@ parser.add_argument('-F','--File', action="store", dest='done', type=str, help='
 args = parser.parse_args()
 
 
-
-def _parse_chrs_from_dict(fasta):
-    seqdictF = fasta.replace(".fasta",".dict")
-    print >>sys.stderr, seqdictF
-    seqdict = open(seqdictF,'r')
-    locs = []
-    for line in seqdict:
-        snres = re.search('SN:(\S+)', line)
-        if snres is not None:
-            seqname = snres.group(1)
-            seqlen = re.search('LN:(\d+)', line).group(1)
-#            print >>sys.stderr, seqname, seqlen
-            locs += [(seqname,1,int(seqlen))]
-    return locs
-
-def _parse_samples_from_tab(samplesFile):
-    samples = dict()
-    for line in open(samplesFile,'r'):
-        F = line.strip().split("\t")
-        [seqid, lane, dataset] = F[0:3]
-        bamfile = F[4]
-        samples[(seqid,lane,dataset)] = bamfile
-    return samples
-
-chroms = _parse_chrs_from_dict(args.refFasta)
-samples = _parse_samples_from_tab(args.samples)
+chroms = parse_chrs_from_dict(args.refFasta)
+samples = parse_samples_from_tab(args.samples)
 samples = samples.keys()
 samples.sort()
+
 
 longest = max([e for c,s,e in chroms])
 karyo = len(chroms)
@@ -118,6 +97,12 @@ for ci in range(0,karyo):
         doneCount = np.sum(np.equal(done[si,ci,:],1))
         total = np.sum(np.greater(done[si,ci,:],-1))
 #        print "\t"+str(round(total/doneCount,5)),
-        print "\t"+str(round((total-doneCount)/1e6,3)),
+        remain = total-doneCount
+        if remain > 1e5:
+            print "\t"+str(round((total-doneCount)/1e6,2))+"m",
+        elif remain > 1e2:
+            print "\t"+str(round((total-doneCount)/1e3,2))+"k",
+        else:
+            print "\t"+str(round((total-doneCount),3)),
     print ''
 

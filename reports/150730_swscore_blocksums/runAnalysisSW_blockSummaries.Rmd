@@ -187,3 +187,11 @@ colnames(outm) <- c("chr","blocks",paste("x",limits,sep=""))
 outm
 
 ```
+
+```{r}
+#halfmeg region, failing percentage
+ggplot(subset(blocksumD,chr=="Pf3D7_07_v3" & mid > 45e4 & mid < 75e4),aes(x=mid,y=LDF)) + 
+  ggtitle(paste("LD-failing percentage, ",(blocksize/1000),"kb blocks")) +
+  geom_point()
+
+```

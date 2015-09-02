@@ -12,8 +12,9 @@ from time import sleep
 # import pythongrid as grid
 from string import *
 import h5py as h5 
+
 #from sub_lsf import *
-from sub_sge import *
+#from sub_sge import *
 
 #SET VARS
 PIPELINE='/seq/plasmodium/sredmond/pfdisco/pipeline'
@@ -69,7 +70,16 @@ parser.add_argument('--bam_direct', action="store_false", dest='bylane', default
 
 parser.add_argument('-W','--jobtime', action="store", dest='jobtime', type=str, help='time for job', nargs='?', default=None)
 
+parser.add_argument('--lsf', action="store_true", dest='lsf', default=False, help='sub with lsf rather than sge')
+
 args = parser.parse_args()
+
+if args.lsf:
+    from sub_lsf import *
+else: 
+    from sub_sge import *
+
+
 
 
 
@@ -310,6 +320,7 @@ for thisdataset in datasets:
             ctoi[h5chromosomes[i]]=i
 
         done = h5f['completed']
+        callmat = h5f['callable']
         
         toDo = list()
         toNotDo=list()
@@ -317,9 +328,13 @@ for thisdataset in datasets:
             c,s,e = re.split('\W',region)
             s = int(s); e = int(e)
             jobdone = done[stoi[smp],ctoi[c],s:e]
+            iscallable = callmat[ctoi[c],s:e]
 #            print sum(jobdone)
 #            print len(jobdone)
-            if sum(jobdone) == len(jobdone):
+            if sum(iscallable) != len(jobdone):
+                toNotDo += [commands[(smp,region)]]
+                pass
+            elif sum(jobdone) == len(jobdone):
                 toNotDo += [commands[(smp,region)]]
                 pass
 
@@ -333,6 +348,8 @@ for thisdataset in datasets:
         print >>sys.stderr, " remain: "+str(len(toDo)),
 
         commands = toDo
+    else:
+        commands = commands.values()
 
     #make and change into dataset subdir
     if not os.path.exists("./"+thisdataset):
@@ -342,6 +359,7 @@ for thisdataset in datasets:
     
     (jobNo, subdcommand) = subarray(commands, jobname, args.mem, args.nodes, args.queue, args.jobtime, maxconc=args.maxconc, nobsub=args.nobsub)
     #return jobNo
+    os.chdir("../")
 
     joblog(jobNo, subdcommand, args.prefix)
     

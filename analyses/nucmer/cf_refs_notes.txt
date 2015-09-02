@@ -586,3 +586,9 @@ perl variant-effect-predictor/variant_effect_predictor.pl \
  -i  disco_fullrun_DD2v3D7.vcf.gz \
  -o output.vcf \
  --species plasmodium_falciparum --force_overwrite --verbose --offline --cache --vcf --most_severe
+
+
+perl variant-effect-predictor/variant_effect_predictor.pl \
+ -i 3D7DD2_all_10k.vcf \
+ -o 3D7DD2_all_10k.vep \
+ --species plasmodium_falciparum --force_overwrite --verbose --offline --cache
