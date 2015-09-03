@@ -47,11 +47,26 @@ nuccfs <- nuccfs[which(nuccfs$concordance!="MISMATCH"),]
 #method concordance
 ##left align
 ```{r}
+
+ctable <- as.data.frame(table(subset(nuccfs,concordance != "MATCH0",c(matched,type))))
+ctable$x <- c(0,1,2,3,1,1,2,4)
+ctable$y <- c(0,1,2,3,2,3,3,4)
+ctable$x <- factor(ctable$x,labels=c("none","NUCMER","DISCO","HAPLO","ALL"))
+ctable$y <- factor(ctable$y,labels=c("none","NUCMER","DISCO","HAPLO","ALL"))
+
+ggplot(subset(ctable,x!="none"),aes(x,y,fill=Freq)) + 
+  geom_tile() + scale_fill_gradient(low="white",high="red") +
+  stat_bin2d(geom="text", aes(label=Freq)) +
+  facet_grid(type ~ .) + ggtitle("concordance, aligned indels")
+```
+
+```{r}
 ctable <- as.data.frame(table(subset(nuccfs,concordance != "MATCH0",c(matched,type,STRtype))))
 ctable$x <- c(0,1,2,3,1,1,2,4)
 ctable$y <- c(0,1,2,3,2,3,3,4)
 ctable$x <- factor(ctable$x,labels=c("none","NUCMER","DISCO","HAPLO","ALL"))
 ctable$y <- factor(ctable$y,labels=c("none","NUCMER","DISCO","HAPLO","ALL"))
+
 ggplot(subset(ctable,x!="none"),aes(x,y,fill=Freq)) + 
   geom_tile() + scale_fill_gradient(low="white",high="red") +
   stat_bin2d(geom="text", aes(label=Freq)) +
