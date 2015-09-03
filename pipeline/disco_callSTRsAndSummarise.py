@@ -292,7 +292,8 @@ for thisdataset in datasets:
     jobname = thisdataset+"_disco"
 
     
-    
+    totalCommands = len(commands)
+
     if args.donejobs is not None:
         commands = commands.values()
         done = open(args.donejobs,'r')
@@ -319,33 +320,42 @@ for thisdataset in datasets:
         for i in range(0,len(h5chromosomes)):
             ctoi[h5chromosomes[i]]=i
 
-        done = h5f['completed']
+        callableJobs = dict()
+        uncallable = list()
+        alreadyDone=list()
+        toDo=list()
+
         callmat = h5f['callable']
+        done = h5f['completed']
         
-        toDo = list()
-        toNotDo=list()
+        minCallablePC = 0.5
+        print >>sys.stderr, "removing inacessible regions"
+        for smp, region in commands:
+            c,s,e = re.split('\W',region)
+            s = int(s); e = int(e)
+            iscallable = callmat[ctoi[c],s:e]
+            jobdone = done[stoi[smp],ctoi[c],s:e]
+            if sum(iscallable) <= (e-s)*minCallablePC:
+                uncallable += [commands[(smp,region)]]
+                pass
+            else:
+                callableJobs[(smp,region)] = commands[(smp,region)]
+        commands = callableJobs
+
+        print >>sys.stderr, "removing called jobs"
         for smp, region in commands:
             c,s,e = re.split('\W',region)
             s = int(s); e = int(e)
             jobdone = done[stoi[smp],ctoi[c],s:e]
-            iscallable = callmat[ctoi[c],s:e]
-#            print sum(jobdone)
-#            print len(jobdone)
-            if sum(iscallable) != len(jobdone):
-                toNotDo += [commands[(smp,region)]]
+            if sum(jobdone) == len(jobdone):
+                alreadyDone += [commands[(smp,region)]]
                 pass
-            elif sum(jobdone) == len(jobdone):
-                toNotDo += [commands[(smp,region)]]
-                pass
-
-#                print "DONE"
             else:
-                #print "NOT DONE: "+str(sum(jobdone))+"/"+str(len(jobdone)),
-                #print "\t"+commands[(smp,region)][-50:]
                 toDo += [commands[(smp,region)]]
-        print >>sys.stderr, "commands: "+str(len(commands.keys())),
-        print >>sys.stderr, " kills: "+str(len(toNotDo)),
-        print >>sys.stderr, " remain: "+str(len(toDo)),
+        print >>sys.stderr, "commands: "+str(totalCommands), 
+        print >>sys.stderr, "inaccess: "+str(len(uncallable)),
+        print >>sys.stderr, "    done: "+str(len(alreadyDone)),
+        print >>sys.stderr, "  remain: "+str(len(toDo)),
 
         commands = toDo
     else:
@@ -368,7 +378,7 @@ for thisdataset in datasets:
 #    print >>killscript,"bkill ",jobNo
 #    #print seqid, lane, name, dataset, jobNo
     jobs[thisdataset] = jobNo
-    os.chdir("../")
+    #os.chdir("../")
 #    sublog.close()
 #    killscript.close()
 #os.chmod(killscriptname,000755)
@@ -417,7 +427,19 @@ for dataset in datasets:
         ## print >>sublog, '#',jobNo
         ## print >>sublog, repr(subdcommand)
         ## print >>killscript,"bkill ",jobNo
+        print >>sys.stderr,"MERGECOMMAND: "+mergeCommand
+        print >>sys.stderr,"SUB'DCOMMAND: "+subdcommand
+        print >>sys.stderr,"PWD: "+os.getcwd()
+        
         joblog(jobNo, subdcommand, args.prefix) 
+
+
+
+
+####
+# remove all below? 
+####
+
                 
 for dataset in datasets:
     print >>sys.stderr, "getting bam depths ",dataset
@@ -464,7 +486,7 @@ for dataset in datasets:
                 ## print >>sublog, repr(subdcommand)
                 ## print >>killscript,"bkill ",jobNo
                 joblog(jobNo, subdcommand, args.prefix) 
-                
+            
     # Parse bed file STRs
     if args.strLocs is not None:
         if not args.dryrun:

@@ -17,23 +17,23 @@ then
 fi
 
 
-if [[ $SAMPLE_NO != $VCF_NO ]]
-   then
-       for SAMPLE in `ls $OUT `
+#if [[ $SAMPLE_NO != $VCF_NO ]]
+#   then
+   for SAMPLE in `ls $OUT `
        do
 	   if [[ -d "${OUT}/${SAMPLE}/" ]]
 	       then
 	       echo "concatting"
-	       cat ${OUT}/${SAMPLE}/*final.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fasta
+	       cat ${OUT}/${SAMPLE}/*/*final.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fasta
 	       perl ~/bin/fasta_to_fastq.pl ${OUT}/${SAMPLE}/${SAMPLE}.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fastq
-#	       bwa mem $REF ${OUT}/${SAMPLE}/${SAMPLE}.fastq | \
-#		   samtools view -b - > ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
-#	       samtools sort -T ${SAMPLE}.tmp -O bam -o ${OUT}/${SAMPLE}/${SAMPLE}.edges.s.bam ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
+	       bwa mem $REF ${OUT}/${SAMPLE}/${SAMPLE}.fastq | \
+		   samtools view -b - > ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
+	       samtools sort -T ${SAMPLE}.tmp -O bam -o ${OUT}/${SAMPLE}/${SAMPLE}.edges.s.bam ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
 
 	   fi
        done
    TODEPTH=`ls ${OUT}/*/*edges.s.bam`
-fi
+#fi
 
 SAMPLES=""
 EDGEBAMS=""
@@ -61,3 +61,8 @@ samtools depth $EDGEBAMS > ${OUT}/${OUT}.edges.depth
 #cat ${OUT}/${OUT}.header.txt ${OUT}/${OUT}.edges.depth > ${OUT}/${OUT}.edges.h.depth
 
 perl -i -pe "print \"${HEADER}\n\" if 1..1;" ${OUT}/${OUT}.edges.depth
+
+
+echo "now run:"
+echo "\$DISCO1/scripts/vcf/fillRefWhereDepthVCF.py -d ${OUT}/${OUT}.edges.depth -v MY_VCF
+

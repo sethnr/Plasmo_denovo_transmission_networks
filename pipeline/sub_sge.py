@@ -40,8 +40,10 @@ def subarray(joblist, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, d
 def subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None, dependency=None, outname=None, arrayjobs=-1, maxconc=-1, nobsub=False):
 #    resource =  'select[mem>'+str(mem)+'] rusage[mem='+str(mem)+']  span[ptile='+str(nodes)+']'
     resource =  [
-                 '-l','m_mem_free='+str(floor(mem/1000))+'G',
-#                 '-l','mem='+str(floor(mem/1000))+'G',
+#                 UGER only:
+#                 '-l','m_mem_free='+str(floor(mem/1000))+'G',
+                 '-l','h_vmem='+str(floor(mem/1000))+'G',
+
         
                  '-l','m_core='+str(nodes)]                        
     if jobtime is not None: resource += ['-l','h_rt='+jobtime]

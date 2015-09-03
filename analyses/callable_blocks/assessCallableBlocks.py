@@ -50,8 +50,8 @@ elif args.dict is not None:
 bl = args.blocksize
 for ch,st,en in locs:
     for i in range(st,en,bl):
-        ist = i+1
-        ien = i+bl
+        ist = i
+        ien = i+bl-1
         region = ch+":"+str(ist)+"-"+str(ien)
         swfile = open('tmp_sw.txt','w')
         dpfile = open('tmp_dp.txt','w')
