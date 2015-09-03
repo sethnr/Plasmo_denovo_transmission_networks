@@ -18,7 +18,11 @@ parser.add_argument('-i','--infoname', action="store", dest='valname', type=str,
 
 args = parser.parse_args()
 
+
+
 vcfFile1 = open(args.vcfFile,'r')
+print >>sys.stderr, args.vcfFile, vcfFile1
+
 vcfReader=vcf.Reader(vcfFile1)
 
 

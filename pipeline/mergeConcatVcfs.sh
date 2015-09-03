@@ -3,10 +3,10 @@
 OUT=$1
 shift
 
-SAMPLE_NO=`ls $OUT | wc -l`
-VCF_NO=`find $OUT | grep vcf.gz$ | wc -l`
+#SAMPLE_NO=`ls $OUT | wc -l`
+#VCF_NO=`find $OUT | grep vcf.gz$ | wc -l`
 
-TOMERGE=`find $OUT | grep vcf.gz$ `
+#TOMERGE=`find $OUT | grep vcf.gz$ `
 
 
 #check if it is already there (i.e. SNPs already calculated)
@@ -19,23 +19,29 @@ then
 fi
 
 
-if [[ $SAMPLE_NO != $VCF_NO ]]
-   then
-       for SAMPLE in `ls $OUT `
-       do
-	   if [[ -d "${OUT}/${SAMPLE}/" ]]
-	       then
-	       echo "concatting"
-	       ls ${OUT}/${SAMPLE}/*vcf.gz
-	       echo "to" ${OUT}"/"${SAMPLE}"_concat.vcf.gz"
-	       
-	       vcf-concat -s 1 ${OUT}/${SAMPLE}/*vcf.gz | vcf-sort > ${OUT}/${SAMPLE}_concat.vcf
-	       bgzip ${OUT}/${SAMPLE}_concat.vcf
-	       tabix -pvcf ${OUT}/${SAMPLE}_concat.vcf.gz
-	   fi
-       done
-   TOMERGE=`ls ${OUT}/*concat.vcf.gz`
-fi
+#if [[ $SAMPLE_NO != $VCF_NO ]]
+#   then
+cd $OUT
+SAMPLES=`ls -d */`
+cd ../
+
+for SAMPLE in $SAMPLES
+do
+    SAMPLE=${SAMPLE/\/}
+    if [[ -d "${OUT}/${SAMPLE}" ]]
+    then
+	echo "concatting"
+	ls ${OUT}/${SAMPLE}/*vcf.gz | head -n 10
+	echo '...'
+	echo "to ${OUT}/${SAMPLE}_concat.vcf.gz"
+	
+	vcf-concat -s 1 ${OUT}/${SAMPLE}/*vcf.gz | vcf-sort > ${OUT}/${SAMPLE}_concat.vcf
+	bgzip -f ${OUT}/${SAMPLE}_concat.vcf
+	tabix -pvcf ${OUT}/${SAMPLE}_concat.vcf.gz
+    fi
+done
+TOMERGE=`ls ${OUT}/*concat.vcf.gz`
+#fi
 
 
 
