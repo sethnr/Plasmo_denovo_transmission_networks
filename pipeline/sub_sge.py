@@ -44,8 +44,11 @@ def subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None,
 #                 '-l','m_mem_free='+str(floor(mem/1000))+'G',
                  '-l','h_vmem='+str(floor(mem/1000))+'G',
 
-        
-                 '-l','m_core='+str(nodes)]                        
+#                 UGER ONLY
+#                 '-l','m_core='+str(nodes)
+#                 GRIDENGINE8
+                 '-pe','smp_pe',str(nodes)
+                 ]                        
     if jobtime is not None: resource += ['-l','h_rt='+jobtime]
 
     if outname is None: outname=jobname
@@ -60,6 +63,8 @@ def subjob(commandline, jobname, mem=2000, nodes=1, queue="bhour", jobtime=None,
     if re.match('\d',jobname[0]): jobname = 'j'+jobname
     qsub_command = ["qsub",'-terse',
                     "-N", jobname,
+                    "-V",
+                    "-cwd",
 #                    "-e", RUNDIR+"/out/"+outname+".${SGE_TASK_ID}.e",
 #                    "-o", RUNDIR+"/out/"+outname+".${SGE_TASK_ID}.o",
                     "-e", RUNDIR+"/out/",

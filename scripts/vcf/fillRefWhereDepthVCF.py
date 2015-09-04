@@ -59,7 +59,7 @@ dns = []
 
 outGenoCalldata = vcf.model.make_calldata_tuple("GT")
 
-
+print >>sys.stderr, "parsing depth file"
 for vline in valfile:
     rs = vline.split()
     c,p = rs[:2]
@@ -76,7 +76,7 @@ for vline in valfile:
             vals[(c,int(p),dn)] = ds[i]
 
 
-
+print >>sys.stderr, "parsing VCF file"
 for rec in vcfReader:
     #if rec.is_indel:
 
