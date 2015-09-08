@@ -30,7 +30,7 @@ if args.filter:
 
 
 vcfoutF1 = replace(args.vcfFile1,'.vcf','.HYPF.vcf')
-vcfoutF1 = replace(vcfoutF1,'.vcf.gz','.HYPF.vcf')
+vcfoutF1 = replace(vcfoutF1,'.vcf.gz','.vcf')
 vcfoutF1 = open(vcfoutF1,'w')
 vcfout1=vcf.Writer(vcfoutF1,reader1)
 
@@ -104,7 +104,7 @@ for rec in reader1:
         ii = 1
         for i in passIndex.tolist():
             i = i+1
-            rec.ALT[i]
+            #rec.ALT[i]
             allLookup[i]=ii
             ii+=1
 #            print str(i)+"-"+str(ii)
