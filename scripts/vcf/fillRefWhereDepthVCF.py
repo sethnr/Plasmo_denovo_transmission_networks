@@ -6,7 +6,13 @@ import argparse
 from string import *
 #from statistics import mean, stdev
 from numpy import mean, std
-import collections 
+import collections
+import tabix
+import subprocess
+
+
+
+
 parser = argparse.ArgumentParser(description='from CHR : POS : 1/0 file, add true/false to VCF')
 
 parser.add_argument('-v','-vcf', action="store", dest='vcfFile', type=str, help='vcf file', nargs='?', default=None)
@@ -52,34 +58,54 @@ vcfoutF1 = replace(vcfoutF1,'.vcf','.REFCALL.vcf')
 vcfoutF1 = open(vcfoutF1,'w')
 vcfout1=vcf.Writer(vcfoutF1,vcfReader)
 
-valfile = open(args.valueFile,'r')
+valfile = tabix.open(args.valueFile)
 
 vals = dict()
 dns = []
 
 outGenoCalldata = vcf.model.make_calldata_tuple("GT")
 
-print >>sys.stderr, "parsing depth file"
-for vline in valfile:
-    rs = vline.split()
-    c,p = rs[:2]
-    ds = rs[2:]
+#header = subprocess.check_output(["zcat",args.valueFile,"|","head","-n","1"],shell=True)
+#dns = header[2:]
 
-#    print c,"!",p
-    if c == "CHR":
-        dns = ds
-    else:
+zcat = subprocess.Popen(['zcat',args.valueFile], stdout=subprocess.PIPE)
+header = subprocess.check_output(['head','-n','1'], stdin=zcat.stdout)
+print header
+dns=split(header)[2:]
+print dns
+
+
+
+def _getDepthForChrom(chrom):
+    print >>sys.stderr, "parsing depth file for chr "+chrom
+    vals = dict()
+
+    for rs in valfile.query(chrom,0,10000000):
+#        rs = vline.split()
+#        print >>sys.stderr, rs
+
+        c,p = rs[:2]
+        ds = rs[2:]
+        
+#        if c == "CHR":
+#            dns = ds
+#        else:
         ds = map(int,ds)
-    #if p == 451480: print c,p,v,bool(v) 
         for i in range(0,len(ds)):
             dn = dns[i]
             vals[(c,int(p),dn)] = ds[i]
+    print vals.keys()[:10]
+    return vals
 
+thisChrom=""
 
 print >>sys.stderr, "parsing VCF file"
 for rec in vcfReader:
     #if rec.is_indel:
 
+    if thisChrom != rec.CHROM:
+        vals = _getDepthForChrom(rec.CHROM)
+        thisChrom = rec.CHROM
     samples = rec.samples
 
     allDepths = []
@@ -98,8 +124,11 @@ for rec in vcfReader:
             #make array of required vals (record, samplename, calldata)
             # samples += [vcf.model._Call(rec,call.sample,cd)] 
             samples[i] = vcf.model._Call(rec,call.sample,cd) 
+#            print >>sys.stderr, '.',
         elif call.gt_type is None and depth == -1:
-           print >>sys.stderr, "warning: ",rec.CHROM+":"+str(rec.POS)+" "+call.sample+" not found in valfile and GT is null"
+            print >>sys.stderr, "warning: ",rec.CHROM+":"+str(rec.POS)+" "+call.sample+" not found in valfile and GT is null"
+#            print >>sys.stderr, '+',
+            pass
             #leave as null
             # cd = outGenoCalldata("./.")
             # samples[i] = [vcf.model._Call(rec,call.sample,cd)] 
