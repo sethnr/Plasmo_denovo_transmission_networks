@@ -4,6 +4,7 @@ VCFtools - v0.1.12b
 
 Parameters as interpreted:
 	--vcf GATK_calls_daniels_Thies.vcf
+	--out GATK_calls_daniels_Thies
 	--plink
 
 After filtering, kept 18 out of 18 Individuals
