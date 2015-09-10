@@ -77,6 +77,9 @@ for rec in reader:
         rec.INFO['STRS']=size
         rec.INFO['STRC']=complexity
         rec.INFO['STRatcg']=basePC
+    vartype="SNP"
+    if rec.is_indel: vartype="INDEL"
+    rec.INFO['type']=vartype
         
     writer.write_record(rec)
 
