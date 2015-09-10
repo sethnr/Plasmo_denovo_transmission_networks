@@ -136,6 +136,10 @@ for rec in reader:
         else:
             fvals+=[0]
 
+    DD2MAF=-1
+    if 'DD2FDKMAF' in rec.INFO:
+        DD2MAF=rec.INFO['DD2FDKMAF']
+
     print >>sys.stdout, "\t".join(map(str,[
                     rec.CHROM,
                     rec.POS,
@@ -152,6 +156,6 @@ for rec in reader:
                     fvals+
                     [coding,
                     consequence,
-                    rec.INFO['DD2FDKMAF'],
+                    DD2MAF,
                     ]))
                      
