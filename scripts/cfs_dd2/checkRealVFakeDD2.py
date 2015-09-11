@@ -41,12 +41,24 @@ vcfoutF1 = replace(vcfoutF1,'.vcf.gz','.'+args.prefix+'CONC.vcf')
 vcfoutF1 = open(vcfoutF1,'w')
 vcfout1=vcf.Writer(vcfoutF1,realReader)
 
-samples = set()
-for s in realReader.samples:
-    sample, lane = s.split('_')
-    samples.add(sample)
-samples = list(samples)
-samples = sorted(samples)
+#samples = set()
+#for s in realReader.samples:
+#    sample, lane = s.split('_')
+#    samples.add(sample)
+#samples = list(samples)
+#samples = sorted(samples)
+
+if args.samples is None:    
+    samples = set()
+    for s in reader1.samples:
+        sample, lane = s.split('_')
+        samples.add(sample)
+    samples = list(samples)
+    samples = sorted(samples)
+else:
+    samples = args.samples
+
+
 
 fakecall = dict()
 for rec in fakeReader:

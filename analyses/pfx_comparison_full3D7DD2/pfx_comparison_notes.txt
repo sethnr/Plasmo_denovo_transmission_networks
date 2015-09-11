@@ -1,0 +1,22 @@
+java -jar ${GATK}/GenomeAnalysisTK.jar \
+   -R $WORK/refs/Pf3D7_v3.fasta \
+   -T SelectVariants \
+   -V 3d7_hb3_dd2.combined.final.vcf \
+   -o 3D7_dd2_parents.vcf  \
+   -sn 3D7/PG0051-C/ERR019061 \
+   -sn DD2/PG0008-CW/ERR012840 \
+   -env \
+   -ef \
+   -trimAlternates
+
+#echo sample names to be 3D7/DD2
+
+checkPFXconcordance.sh... 
+
+checkVarClassVariability.sh majorAndMinor.PFXCONC.PASS.DD2CONC.vcf STRs_mreps_Pf3D7_v3.R0.txt ../SNPconsequences/SNPeff/Pf3D7_v3_a25/  passVars.varClasscount
+
+
+
+
+
+python ../../scripts/vcf/summariseVarClassesVCF.py -v passVars.varClasscount.STRs.ANN.vcf.gz

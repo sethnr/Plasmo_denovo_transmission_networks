@@ -1,0 +1,21 @@
+java -jar ${GATK}/GenomeAnalysisTK.jar \
+   -R $WORK/refs/Pf3D7_v3.fasta \
+   -T SelectVariants \
+   -V 3d7_hb3_dd2.combined.final.vcf \
+   -o 3D7_dd2_parents.vcf  \
+   -sn 3D7/PG0051-C/ERR019061 \
+   -sn DD2/PG0008-CW/ERR012840 \
+   -env \
+   -ef \
+   -trimAlternates
+
+#echo sample names to be 3D7/DD2
+
+$DISCO1/scripts/runCfVcfsMulti.sh \
+  -c Pf3D7_07_v3 -s 450000 -e 750000 \
+   -b $DISCO1/analyses/nucmer/leftAlign/nucmer.Pf3D7_07_v3xPfDd2_07_TT.bed \
+   -o cfNucmerDiscoHaplo_150729_leftAlignGATKSPLIT \
+   NUCMER:::$DISCO1/analyses/nucmer/leftAlign/nucmer.Pf3D7_07_v3xPfDd2_07_TT.vcf.gz \
+   DISCO:::$DISCO1/disco_halfmeg_fakeNGS/fakev3D7_all.PfDD2v3D7.vcf.gz  \
+   HAPLO:::$DISCO1/gatkHaplo_halfmeg_fakeNGS/haplo.r3D7.ALL.PfDD2.vcf.gz 
+
