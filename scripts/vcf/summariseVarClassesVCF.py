@@ -56,6 +56,13 @@ def stringComplex(mystring):
     bcomplex = float(len(mystring))/len(comp)
     return bcomplex
 
+def _basecomp(allele):
+    Apc = sum([1 for i in allele if i in ('a','A')])/float(len(allele))
+    Tpc = sum([1 for i in allele if i in ('t','T')])/float(len(allele))
+    Cpc = sum([1 for i in allele if i in ('c','C')])/float(len(allele))
+    Gpc = sum([1 for i in allele if i in ('g','G')])/float(len(allele))
+    basePC = ":".join([str(round(i,2)) for i in [Apc,Tpc,Cpc,Gpc]])
+    return (Apc,Tpc,Cpc,Gpc)
 
 #print header:
 print >>sys.stdout, "\t".join(
@@ -65,7 +72,8 @@ print >>sys.stdout, "\t".join(
             #                    '.'.join(alleles),
             "varlen",
             "vcomplex",
-            "strType",
+            "STRtype",
+            "INDtype",
             "DUST",
             "STRP",
             "STRE",
@@ -119,6 +127,7 @@ for rec in reader:
         consequence=Annotation
     
         
+    INDtype = ""
     #get indel complexity
     varlen = 1
     bcomplex=0
@@ -130,6 +139,29 @@ for rec in reader:
         comp = bz2.compress(maxallele)
         bcomplex = round(stringComplex(maxallele),3)
         varlen=altlen-reflen
+
+        if varlen < 0:
+            delseq = alleles[0]
+            basecomp = _basecomp(delseq[1:])
+        elif varlen >0:
+            inseq = maxallele
+            basecomp = _basecomp(inseq[1:])
+
+        fa,ft,fc,fg = basecomp
+        if fa == 1:
+            INDtype="polyA"
+        elif ft == 1:
+            INDtype="polyA"
+        elif fa >= 0.4 and ft >= 0.4:
+            INDtype="TArep"
+        elif fc == 0 and fg==0:
+            INDtype="TArich"
+  
+            
+    #else:
+    #    basecomp=_basecomp(alleles[1])
+
+    
 
     #get no of alleles
     alleleCount=len(alleles)
@@ -150,6 +182,8 @@ for rec in reader:
     if 'DD2FDKMAF' in rec.INFO:
         DD2MAF=rec.INFO['DD2FDKMAF']
 
+
+
     print >>sys.stdout, "\t".join(map(str,[
                     rec.CHROM,
                     rec.POS,
@@ -158,6 +192,7 @@ for rec in reader:
                     varlen,
                     bcomplex,
                     STRtype,
+                    INDtype,
                     dust,
                     STRP,
                     STRE,
