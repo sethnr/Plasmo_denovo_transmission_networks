@@ -31,14 +31,19 @@ ln -s $VCF_ABS
 ln -s $STR_ABS
 ln -s $CONS_ABS
 
+DUST=$DISCO1/analyses/dust/Pf3D7_v3.dust.bed.gz
+
 REF="${WORK}/refs/Pf3D7_v3.fasta"
 GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
 
 echo "ADDING STR INFO TO VCF"
 python $DISCO1/scripts/cfs/addSTRsToVCF.py -s $STR -v $VCF
 
+echo "ADDING DUST INFO TO VCF"
+python $DISCO1/scripts/cfs/addDustToVCF.py -d $DUST -v ${VCF/.vcf/.STRs.vcf}
+
 echo "ADDING GENE/CONS INFO TO VCF"
-snpEff eff $CONSDB ${VCF/.vcf/.STRs.vcf} \
+snpEff eff $CONSDB ${VCF/.vcf/.STRs.DUST.vcf} \
        -no-downstream -no-upstream -no-intron -no-intergenic \
        > ${VCF/.vcf/.STRs.ANN.vcf}
 cp ${VCF/.vcf/.STRs.ANN.vcf} ../${OUTFILE}.STRs.ANN.vcf

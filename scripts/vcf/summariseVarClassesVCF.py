@@ -66,6 +66,7 @@ print >>sys.stdout, "\t".join(
             "varlen",
             "vcomplex",
             "strType",
+            "DUST",
             "STRP",
             "STRE",
             "alleles",
@@ -95,10 +96,19 @@ for rec in reader:
         STRtype="STR"
         if fa == 1:
             STRtype="polyA"
+        elif ft == 1:
+            STRtype="polyA"
         elif fa >= 0.4 and ft >= 0.4:
             STRtype="TArep"
+        elif fc == 0 and fg==0:
+            STRtype="TArich"
+        
         STRP=rec.INFO['STRP'][0]
         STRE=rec.INFO['STRE'][0]
+    dust=0
+    if 'DUST' in rec.INFO:
+        dust=1
+
     consequence=""
     coding="intergenic"
     if 'ANN' in rec.INFO:        
@@ -148,6 +158,7 @@ for rec in reader:
                     varlen,
                     bcomplex,
                     STRtype,
+                    dust,
                     STRP,
                     STRE,
                     alleleCount,
