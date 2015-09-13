@@ -460,14 +460,16 @@ indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","c
 ## 22812                  non_coding_exon_variant
 ```
 
+
 ```r
+#NO APPRECIABLE DIFFERENCE WITH PRIOR STR PRESENCE
 ggplot(vartypes,aes(x=effect,fill=STRtype,group=STRtype)) + 
   ggtitle(paste("consequence v STR presence (coding only)")) +
   geom_bar() + facet_grid(anyDiscord ~ vartype, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ```r
 ggplot(subset(vartypes,coding=="coding"),aes(x=STRtype,fill=effect,group=effect)) + 
@@ -482,13 +484,53 @@ ggplot(subset(vartypes,coding=="coding"),aes(x=STRtype,fill=effect,group=effect)
 
 
 ```r
+#VAST MAJORITY OF TA/polyA in intergenic sequence
+ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type")) +
+  geom_bar() + facet_grid(. ~ coding, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+
+```r
+ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type")) +
+  geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+
+```r
+#NO MAJOR DIFFERENCES IN CONCORDANT/DISCORDANT RATIOS
+ggplot(indels,aes(x=maxcons,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type (discordant v concordant)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png) 
+
+```r
+ggplot(subset(indels,coding==1),aes(x=maxcons,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type (coding only)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-4.png) 
+
+
+
+```r
 ggplot(indels,aes(x=abslen,y=vcomplex,colour=maxcons)) + 
   ggtitle(paste("var length v complexity")) +
   geom_point(size=3,alpha=0.7,position="jitter") + 
   facet_grid(effect ~ STRtype)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
 ```r
 ggplot(indels,aes(x=varlen)) + 
@@ -501,7 +543,7 @@ ggplot(indels,aes(x=varlen)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
 
 ```r
 ggplot(indels,aes(x=varlen)) + 
@@ -514,7 +556,7 @@ ggplot(indels,aes(x=varlen)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png) 
 
 
 
@@ -540,7 +582,7 @@ ggplot(indels,aes(x=varlen)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
 ```r
 ggplot(indels,aes(x=varlen)) + 
@@ -553,5 +595,5 @@ ggplot(indels,aes(x=varlen)) +
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png) 
 

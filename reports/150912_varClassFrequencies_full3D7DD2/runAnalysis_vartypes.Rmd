@@ -105,7 +105,10 @@ ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) +
   xlim(0,50)
 
 indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
+```
 
+```{r}
+#NO APPRECIABLE DIFFERENCE WITH PRIOR STR PRESENCE
 ggplot(vartypes,aes(x=effect,fill=STRtype,group=STRtype)) + 
   ggtitle(paste("consequence v STR presence (coding only)")) +
   geom_bar() + facet_grid(anyDiscord ~ vartype, scale="free_y") + 
@@ -118,6 +121,32 @@ ggplot(subset(vartypes,coding=="coding"),aes(x=STRtype,fill=effect,group=effect)
   theme(axis.text.x=element_text(angle=-90,size=14))
 
 ```
+
+```{r}
+#VAST MAJORITY OF TA/polyA in intergenic sequence
+ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type")) +
+  geom_bar() + facet_grid(. ~ coding, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type")) +
+  geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+#NO MAJOR DIFFERENCES IN CONCORDANT/DISCORDANT RATIOS
+ggplot(indels,aes(x=maxcons,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type (discordant v concordant)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+ggplot(subset(indels,coding==1),aes(x=maxcons,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type (coding only)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+
+```
+
 
 ```{r}
 
