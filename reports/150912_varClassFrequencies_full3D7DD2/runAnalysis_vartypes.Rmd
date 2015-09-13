@@ -1,0 +1,157 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+# matchlevels <- c("",     "NUCMER","DISCO","HAPLO","NUCMER,DISCO","NUCMER,HAPLO","DISCO,HAPLO","NUCMER,DISCO,HAPLO")
+# colours <-     c("black","green", "red",  "blue", "yellow",      "cyan",        "magenta",     "white")
+# names(colours) <- matchlevels
+
+``` 
+
+```{r}
+#vartypes <- read.table("pfx_v_3D7DD2fullrun_miss0callable.PASS.DD2CONC.R3.varClass.txt",stringsAsFactors = F,sep='\t',header=T)
+vartypes <- read.table("pfx_v_3D7DD2fullrun_miss0callable.PASS.DD2CONC.VARCLASS.varClass.txt",stringsAsFactors = F,sep='\t',header=T)
+#3D7 only:
+vartypes$refsAbsent = vartypes$FDKRefAbsent
+vartypes$anyDiscord = vartypes$X2D4Discord | vartypes$FDKDiscord | vartypes$FDK2D4Incons
+vartypes$anyDiscord <- as.numeric(vartypes$anyDiscord)
+vartypes$abslen = abs(vartypes$varlen)
+
+vartypes$STR = 0
+vartypes$STR[vartypes$STRtype != ""] <- 1
+
+vartypes$coding[vartypes$coding=="intergenic"] <- 0
+vartypes$coding[vartypes$coding=="coding"] <- 1
+#head(vartypes$coding,50)
+vartypes$coding <- as.numeric(vartypes$coding)
+#head(vartypes$coding,50)
+
+
+#set max call length to read length (only one above this)
+vartypes <- subset(vartypes,abslen < 500)
+vartypes$maxcons = vartypes$consequence
+vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
+vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
+
+vartypes$effect="NONE"
+vartypes$effect[vartypes$maxcons %in% c("frameshift_variant","stop_lost","start_lost","stop_gained","exon_loss_variant")] <- "NONSENSE"
+vartypes$effect[vartypes$maxcons %in% c("missense_variant","disruptive_inframe_insertion","disruptive_inframe_deletion","splice_region_variant")] <- "MISSENSE"
+vartypes$effect[vartypes$maxcons %in% c("inframe_insertion","inframe_deletion","synonymous_variant","intergenic","intragenic_variant","non_coding_exon_variant")] <- "NEUTRAL"
+
+                           
+
+indels <- subset(vartypes,vartype=="INDEL")
+snps <- subset(vartypes,vartype=="SNP")
+```
+
+```{r}
+# #subset(vartypes,anyDiscord)
+# #summary(indels[,c("STR","DUST","coding","anyDiscord","effect")])
+# colMeans(indels[,c("STR","DUST","coding","anyDiscord")])
+# #no appreciable drop in discordance with STRs
+# colMeans(subset(indels,STR==1)[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(indels,STRtype=="STR")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(indels,STRtype=="polyA")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(indels,STRtype=="TArich")[,c("STR","DUST","coding","anyDiscord")])
+# #large increase in discordance with TA-repeats
+# colMeans(subset(indels,STRtype=="TArep")[,c("STR","DUST","coding","anyDiscord")])
+# 
+# colMeans(subset(snps,STR==1)[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="STR")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="polyA")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="TArich")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="TArep")[,c("STR","DUST","coding","anyDiscord")])
+
+```
+
+
+```{r}
+
+#aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)
+#aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = sum)
+
+#where TA-repeats can be called, may have much higher freqs of discordance?
+cbind(aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
+      "n"=aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
+      "discord"=aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = sum)[,3],
+      "discord_f"=round(aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
+
+#vast majority of discordant mutations are TA repeat INDELS
+cbind(aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
+      "n"=aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
+      "discord"=aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = sum)[,3],
+      "discord_f"=round(aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
+
+#most discordant loci in indels, over half in low-complexity regions
+cbind(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
+      "n"=aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
+      "discord"=aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = sum)[,3],
+      "discord_f"=round(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
+
+
+```
+
+#INDELS ONLY
+#dd2 concordance
+```{r}
+
+#indels are longer in STRs
+ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) + 
+  ggtitle(paste("indel length by STR presence / type")) +
+  geom_density(size=1,alpha=0.7) +
+  xlim(0,50)
+
+indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
+
+ggplot(vartypes,aes(x=effect,fill=STRtype,group=STRtype)) + 
+  ggtitle(paste("consequence v STR presence (coding only)")) +
+  geom_bar() + facet_grid(anyDiscord ~ vartype, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+
+ggplot(subset(vartypes,coding=="coding"),aes(x=STRtype,fill=effect,group=effect)) + 
+  ggtitle(paste("consequence v STR presence (coding only)")) +
+  geom_bar() + facet_grid(vartype ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+```
+
+```{r}
+
+
+ggplot(indels,aes(x=abslen,y=vcomplex,colour=maxcons)) + 
+  ggtitle(paste("var length v complexity")) +
+  geom_point(size=3,alpha=0.7,position="jitter") + 
+  facet_grid(effect ~ STRtype)
+
+ggplot(indels,aes(x=varlen)) + 
+  ggtitle(paste("var length v coding")) +
+  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
+
+ggplot(indels,aes(x=varlen)) + 
+  ggtitle(paste("var length v coding")) +
+  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
+
+```
+
+
+```{r}
+
+ggplot(subset(indels,coding=="coding"),aes(x=STRtype,group=effect,fill=effect)) + 
+  ggtitle(paste("STRtype v DD2 difference")) +
+  geom_histogram() + 
+  facet_grid(anyDiscord ~ ., scale="free_y")
+
+ggplot(indels,aes(x=varlen)) + 
+  ggtitle(paste("var length v coding")) +
+  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
+
+ggplot(indels,aes(x=varlen)) + 
+  ggtitle(paste("var length v coding")) +
+  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
+
+```
+
