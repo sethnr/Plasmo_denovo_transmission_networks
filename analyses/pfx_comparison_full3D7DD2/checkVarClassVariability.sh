@@ -37,20 +37,20 @@ REF="${WORK}/refs/Pf3D7_v3.fasta"
 GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
 
 echo "ADDING STR INFO TO VCF"
-#python $DISCO1/scripts/cfs/addSTRsToVCF.py -s $STR -v $VCF
+python $DISCO1/scripts/cfs/addSTRsToVCF.py -s $STR -v $VCF
 
 echo "ADDING DUST INFO TO VCF"
-#python $DISCO1/scripts/cfs/addDustToVCF.py -d $DUST -v ${VCF/.vcf/.STRs.vcf}
+python $DISCO1/scripts/cfs/addDustToVCF.py -d $DUST -v ${VCF/.vcf/.STRs.vcf}
 
 echo "ADDING GENE/CONS INFO TO VCF"
-#snpEff eff $CONSDB ${VCF/.vcf/.STRs.DUST.vcf} \
-#       -no-downstream -no-upstream -no-intron -no-intergenic \
-#       > ${VCF/.vcf/.STRs.ANN.vcf}
+snpEff eff $CONSDB ${VCF/.vcf/.STRs.DUST.vcf} \
+       -no-downstream -no-upstream -no-intron -no-intergenic \
+       > ${VCF/.vcf/.STRs.ANN.vcf}
 cp ${VCF/.vcf/.STRs.ANN.vcf} ../${OUTFILE}.STRs.ANN.vcf
 
 
-# echo "BLOCK SUMMARISE VCF"
-# python $DISCO1/scripts/vcf/blockSummariseVCF.py \
+#echo "BLOCK SUMMARISE VCF"
+#python $DISCO1/scripts/vcf/blockSummariseVCF.py \
 #    -i ANN:Count -i STR:Count -i DD2ALLMAF:Mean \
 #    -v ${VCF/.vcf/.STRs.ANN.vcf}
 
