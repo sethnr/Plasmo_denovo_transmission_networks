@@ -104,7 +104,18 @@ ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) +
   geom_density(size=1,alpha=0.7) +
   xlim(0,50)
 
+#SOME V LONG INDELS
 indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
+  ggtitle(paste("long indels: length v complexity")) +
+  geom_point(size=2,alpha=1)
+
+#RELATIVELY SMALL NUMBER ARE TA REPEATS (possible difficulties in calling really long TA repeats?)
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=INDtype)) + 
+  ggtitle(paste("long indels: length v complexity")) +
+  geom_point(size=2,alpha=1)
+
+
 ```
 
 ```{r}
