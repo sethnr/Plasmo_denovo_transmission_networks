@@ -32,7 +32,7 @@ vartypes$coding <- as.numeric(vartypes$coding)
 
 
 #set max call length to read length (only one above this)
-vartypes <- subset(vartypes,abslen < 500)
+#vartypes <- subset(vartypes,abslen < 500)
 vartypes$maxcons = vartypes$consequence
 vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
 vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
@@ -68,68 +68,7 @@ snps <- subset(vartypes,vartype=="SNP")
 # colMeans(subset(snps,STRtype=="TArep")[,c("STR","DUST","coding","anyDiscord")])
 ```
 
-
-
-```r
-#aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)
-#aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = sum)
-
-#where TA-repeats can be called, may have much higher freqs of discordance?
-cbind(aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
-      "n"=aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
-      "discord"=aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = sum)[,3],
-      "discord_f"=round(aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
-```
-
-```
-##    STRtype vartype    n discord discord_f
-## 1            INDEL 8213     382     0.047
-## 2    polyA   INDEL  238      12     0.050
-## 3      STR   INDEL 2635      79     0.030
-## 4    TArep   INDEL   14       3     0.214
-## 5   TArich   INDEL   23       2     0.087
-## 6              SNP 8196     191     0.023
-## 7    polyA     SNP  158      11     0.070
-## 8      STR     SNP 3303     107     0.032
-## 9    TArep     SNP    7       0     0.000
-## 10  TArich     SNP   37       0     0.000
-```
-
-```r
-#vast majority of discordant mutations are TA repeat INDELS
-cbind(aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
-      "n"=aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
-      "discord"=aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = sum)[,3],
-      "discord_f"=round(aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
-```
-
-```
-##   INDtype vartype     n discord discord_f
-## 1           INDEL  1789      49     0.027
-## 2   polyA   INDEL   713      19     0.027
-## 3   TArep   INDEL  6754     355     0.053
-## 4  TArich   INDEL  1867      55     0.029
-## 5             SNP 11701     309     0.026
-```
-
-```r
-#most discordant loci in indels, over half in low-complexity regions
-cbind(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
-      "n"=aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
-      "discord"=aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = sum)[,3],
-      "discord_f"=round(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
-```
-
-```
-##   DUST vartype    n discord discord_f
-## 1    0   INDEL 4897     222     0.045
-## 2    1   INDEL 6226     256     0.041
-## 3    0     SNP 7962     213     0.027
-## 4    1     SNP 3739      96     0.026
-```
-
-#INDELS ONLY
-#dd2 concordance
+#INDEL SIZE DISTRIBUTION
 
 ```r
 #indels are longer in STRs
@@ -140,7 +79,7 @@ ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) +
 ```
 
 ```
-## Warning: Removed 63 rows containing non-finite values (stat_density).
+## Warning: Removed 64 rows containing non-finite values (stat_density).
 ```
 
 ```
@@ -151,9 +90,10 @@ ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) +
 ## Warning: Removed 82 rows containing non-finite values (stat_density).
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 ```r
+#SOME V LONG INDELS
 indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
 ```
 
@@ -270,6 +210,7 @@ indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","c
 ## 16737 Pf3D7_12_v3 1892630   INDEL             54      1
 ## 16949 Pf3D7_12_v3 2036986   INDEL             54      1
 ## 17139 Pf3D7_13_v3  103931   INDEL            330      1
+## 17419 Pf3D7_13_v3  241485   INDEL          -1748      1
 ## 17544 Pf3D7_13_v3  375083   INDEL             54      1
 ## 17553 Pf3D7_13_v3  379458   INDEL     STR     84      1
 ## 17634 Pf3D7_13_v3  473991   INDEL     STR    -72      1
@@ -420,6 +361,7 @@ indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","c
 ## 16737             disruptive_inframe_insertion
 ## 16949                        inframe_insertion
 ## 17139             disruptive_inframe_insertion
+## 17419                        exon_loss_variant
 ## 17544             disruptive_inframe_insertion
 ## 17553                        inframe_insertion
 ## 17634                         inframe_deletion
@@ -460,140 +402,257 @@ indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","c
 ## 22812                  non_coding_exon_variant
 ```
 
+```r
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
+  ggtitle(paste("long indels: length v complexity")) +
+  xlim(50,400) +
+  geom_point(size=3,alpha=1)
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png) 
 
 ```r
-#NO APPRECIABLE DIFFERENCE WITH PRIOR STR PRESENCE
-ggplot(vartypes,aes(x=effect,fill=STRtype,group=STRtype)) + 
-  ggtitle(paste("consequence v STR presence (coding only)")) +
-  geom_bar() + facet_grid(anyDiscord ~ vartype, scale="free_y") + 
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
+  ggtitle(paste("long indels: length v complexity")) +
+  xlim(1600,2000) +
+  geom_point(size=3,alpha=1)
+```
+
+```
+## Warning: Removed 149 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-3.png) 
+
+```r
+#RELATIVELY SMALL NUMBER ARE TA REPEATS (possible difficulties in calling really long TA repeats?)
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=consequence)) + 
+  ggtitle(paste("long indels: coding consequences")) +
+  xlim(50,400) +theme(legend.position="bottom")+guides(col = guide_legend(nrow = 2))+
+  geom_point(size=3,alpha=1)
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-4.png) 
+
+```r
+#RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
+table(indels[,c("maxcons","STRtype")])
+```
+
+```
+##                               STRtype
+## maxcons                             polyA  STR TArep TArich
+##   disruptive_inframe_deletion   576     7  277     0     10
+##   disruptive_inframe_insertion  299     2  141     0      5
+##   exon_loss_variant               1     0    0     0      0
+##   frameshift_variant             39     0    3     0      1
+##   inframe_deletion              336     1  145     0      0
+##   inframe_insertion             299     5  139     0      1
+##   intergenic                   6634   223 1921    14      6
+##   intragenic_variant              8     0    4     0      0
+##   non_coding_exon_variant        21     0    5     0      0
+##   stop_gained                     1     0    0     0      0
+```
+
+```r
+#RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
+table(indels[,c("maxcons","INDtype")])
+```
+
+```
+##                               INDtype
+## maxcons                             polyA TArep TArich
+##   disruptive_inframe_deletion   444    10    27    389
+##   disruptive_inframe_insertion  273     1     7    166
+##   exon_loss_variant               1     0     0      0
+##   frameshift_variant              9    18    14      2
+##   inframe_deletion              279     1     9    193
+##   inframe_insertion             227     1    20    196
+##   intergenic                    555   670  6652    921
+##   intragenic_variant              0     0    12      0
+##   non_coding_exon_variant         1    12    13      0
+##   stop_gained                     1     0     0      0
+```
+
+#tables of STR types and discordance
+
+```r
+#aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)
+#aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = sum)
+
+#where TA-repeats can be called, may have much higher freqs of discordance?
+cbind(aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
+      "n"=aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
+      "discord"=aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = sum)[,3],
+      "discord_f"=round(aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
+```
+
+```
+##    STRtype vartype    n discord discord_f
+## 1            INDEL 8214     382     0.047
+## 2    polyA   INDEL  238      12     0.050
+## 3      STR   INDEL 2635      79     0.030
+## 4    TArep   INDEL   14       3     0.214
+## 5   TArich   INDEL   23       2     0.087
+## 6              SNP 8196     191     0.023
+## 7    polyA     SNP  158      11     0.070
+## 8      STR     SNP 3303     107     0.032
+## 9    TArep     SNP    7       0     0.000
+## 10  TArich     SNP   37       0     0.000
+```
+
+```r
+#vast majority of discordant mutations are TA repeat INDELS
+cbind(aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
+      "n"=aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
+      "discord"=aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = sum)[,3],
+      "discord_f"=round(aggregate(anyDiscord ~ INDtype + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
+```
+
+```
+##   INDtype vartype     n discord discord_f
+## 1           INDEL  1790      49     0.027
+## 2   polyA   INDEL   713      19     0.027
+## 3   TArep   INDEL  6754     355     0.053
+## 4  TArich   INDEL  1867      55     0.029
+## 5             SNP 11701     309     0.026
+```
+
+```r
+#most discordant loci in indels, over half in low-complexity regions
+cbind(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,1:2],
+      "n"=aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {sum(!is.na(x))})[,3],
+      "discord"=aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = sum)[,3],
+      "discord_f"=round(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = mean)[,"anyDiscord"],3))
+```
+
+```
+##   DUST vartype    n discord discord_f
+## 1    0   INDEL 4897     222     0.045
+## 2    1   INDEL 6227     256     0.041
+## 3    0     SNP 7962     213     0.027
+## 4    1     SNP 3739      96     0.026
+```
+
+
+
+```r
+#most indels intergenic or neutral
+ggplot(vartypes,aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v var type")) +
+  geom_bar() + facet_grid(. ~ vartype, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk fig.height7](figure/fig.height7-1.png) 
+
+
+```r
+#TA rich STRs more likely to generate missense/nonsense mutations?
+ggplot(vartypes,aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v STR type")) +
+  geom_bar() + facet_grid(STRtype ~ vartype, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ```r
-ggplot(subset(vartypes,coding=="coding"),aes(x=STRtype,fill=effect,group=effect)) + 
-  ggtitle(paste("consequence v STR presence (coding only)")) +
-  geom_bar() + facet_grid(vartype ~ ., scale="free_y") + 
+ggplot(subset(vartypes,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v STR type (coding only)")) +
+  geom_bar() + facet_grid(STRtype ~ vartype, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
-```
-## Error in `[.data.frame`(base, names(rows)): undefined columns selected
-```
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
 
+
+##TA-RICH INDELS MORE LIKELY TO CAUSE CODING CHANGES?
 
 ```r
-#VAST MAJORITY OF TA/polyA in intergenic sequence
-ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+#most indels intergenic or neutral
+#TA rich STRs more likely to generate missense/nonsense mutations?
+ggplot(indels,aes(x=effect,fill=maxcons,group=maxcons)) + 
   ggtitle(paste("consequence v INDEL type")) +
-  geom_bar() + facet_grid(. ~ coding, scale="free_y") + 
+  geom_bar() + facet_grid(INDtype ~ ., scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 ```r
-ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
-  ggtitle(paste("consequence v INDEL type")) +
-  geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+#MOST CODING DIFFS ARE POLY-A INSERTIONS
+ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v INDEL type (coding only)")) +
+  geom_bar() + facet_grid(INDtype ~ ., scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
 
+##VAST MAJORITY OF TA/polyA in intergenic sequence
+
 ```r
-#NO MAJOR DIFFERENCES IN CONCORDANT/DISCORDANT RATIOS
-ggplot(indels,aes(x=maxcons,fill=INDtype,group=INDtype)) + 
-  ggtitle(paste("consequence v INDEL type (discordant v concordant)")) +
-  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type")) +
+  geom_bar() + facet_grid(. ~ coding, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
-```
-
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png) 
-
-```r
-ggplot(subset(indels,coding==1),aes(x=maxcons,fill=INDtype,group=INDtype)) + 
-  ggtitle(paste("consequence v INDEL type (coding only)")) +
-  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
-  theme(axis.text.x=element_text(angle=-90,size=14))
-```
-
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-4.png) 
-
-
-
-```r
-ggplot(indels,aes(x=abslen,y=vcomplex,colour=maxcons)) + 
-  ggtitle(paste("var length v complexity")) +
-  geom_point(size=3,alpha=0.7,position="jitter") + 
-  facet_grid(effect ~ STRtype)
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
-```r
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
+##NO MORE LIKELY TO BE DISCORDANT
 
 ```r
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
-```
+# ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+#   ggtitle(paste("consequence v INDEL type")) +
+#   geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+#   theme(axis.text.x=element_text(angle=-90,size=14))
 
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png) 
-
-
-
-```r
-ggplot(subset(indels,coding=="coding"),aes(x=STRtype,group=effect,fill=effect)) + 
-  ggtitle(paste("STRtype v DD2 difference")) +
-  geom_histogram() + 
-  facet_grid(anyDiscord ~ ., scale="free_y")
-```
-
-```
-## Error in `[.data.frame`(base, names(rows)): undefined columns selected
-```
-
-```r
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+#NO MAJOR DIFFERENCES IN RATIOS FOR CONCORDANT/DISCORDANT VARS
+ggplot(subset(indels),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (all)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png) 
 
 ```r
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (coding)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png) 
+
+
+```r
+#NO MAJOR DIFFERENCES IN RATIOS FOR LOW-COMPLEXITY SEQ
+ggplot(subset(indels),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (all)")) +
+  geom_bar() + facet_grid(DUST ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+
+```r
+#NO MAJOR DIFFERENCES IN RATIOS FOR LOW-COMPLEXITY SEQ
+ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (all)")) +
+  geom_bar() + facet_grid(DUST ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png) 
 

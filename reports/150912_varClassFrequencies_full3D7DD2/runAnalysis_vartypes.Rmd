@@ -31,7 +31,7 @@ vartypes$coding <- as.numeric(vartypes$coding)
 
 
 #set max call length to read length (only one above this)
-vartypes <- subset(vartypes,abslen < 500)
+#vartypes <- subset(vartypes,abslen < 500)
 vartypes$maxcons = vartypes$consequence
 vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
 vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
@@ -67,7 +67,41 @@ snps <- subset(vartypes,vartype=="SNP")
 
 ```
 
+#INDEL SIZE DISTRIBUTION
+```{r}
 
+#indels are longer in STRs
+ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) + 
+  ggtitle(paste("indel length by STR presence / type")) +
+  geom_density(size=1,alpha=0.7) +
+  xlim(0,50)
+
+#SOME V LONG INDELS
+indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
+  ggtitle(paste("long indels: length v complexity")) +
+  xlim(50,400) +
+  geom_point(size=3,alpha=1)
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
+  ggtitle(paste("long indels: length v complexity")) +
+  xlim(1600,2000) +
+  geom_point(size=3,alpha=1)
+
+#RELATIVELY SMALL NUMBER ARE TA REPEATS (possible difficulties in calling really long TA repeats?)
+ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=consequence)) + 
+  ggtitle(paste("long indels: coding consequences")) +
+  xlim(50,400) +theme(legend.position="bottom")+guides(col = guide_legend(nrow = 2))+
+  geom_point(size=3,alpha=1)
+
+#RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
+table(indels[,c("maxcons","STRtype")])
+
+#RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
+table(indels[,c("maxcons","INDtype")])
+
+```
+
+#tables of STR types and discordance
 ```{r}
 
 #aggregate(anyDiscord ~ STRtype + vartype, data=vartypes,FUN = mean)
@@ -94,104 +128,92 @@ cbind(aggregate(anyDiscord ~ DUST + vartype, data=vartypes,FUN = function(x) {su
 
 ```
 
-#INDELS ONLY
-#dd2 concordance
-```{r}
 
-#indels are longer in STRs
-ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) + 
-  ggtitle(paste("indel length by STR presence / type")) +
-  geom_density(size=1,alpha=0.7) +
-  xlim(0,50)
-
-#SOME V LONG INDELS
-indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
-ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
-  ggtitle(paste("long indels: length v complexity")) +
-  geom_point(size=2,alpha=1)
-
-#RELATIVELY SMALL NUMBER ARE TA REPEATS (possible difficulties in calling really long TA repeats?)
-ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=INDtype)) + 
-  ggtitle(paste("long indels: length v complexity")) +
-  geom_point(size=2,alpha=1)
+```{r, fig.width=10,fig.height7}
 
 
+#most indels intergenic or neutral
+ggplot(vartypes,aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v var type")) +
+  geom_bar() + facet_grid(. ~ vartype, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
-```{r}
-#NO APPRECIABLE DIFFERENCE WITH PRIOR STR PRESENCE
-ggplot(vartypes,aes(x=effect,fill=STRtype,group=STRtype)) + 
-  ggtitle(paste("consequence v STR presence (coding only)")) +
-  geom_bar() + facet_grid(anyDiscord ~ vartype, scale="free_y") + 
+```{r,fig.width=10,fig.height=12}
+
+#TA rich STRs more likely to generate missense/nonsense mutations?
+ggplot(vartypes,aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v STR type")) +
+  geom_bar() + facet_grid(STRtype ~ vartype, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 
-
-ggplot(subset(vartypes,coding=="coding"),aes(x=STRtype,fill=effect,group=effect)) + 
-  ggtitle(paste("consequence v STR presence (coding only)")) +
-  geom_bar() + facet_grid(vartype ~ ., scale="free_y") + 
+ggplot(subset(vartypes,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v STR type (coding only)")) +
+  geom_bar() + facet_grid(STRtype ~ vartype, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 
 ```
 
-```{r}
-#VAST MAJORITY OF TA/polyA in intergenic sequence
+
+##TA-RICH INDELS MORE LIKELY TO CAUSE CODING CHANGES?
+```{r, fig.width=7,fig.height=12}
+
+#most indels intergenic or neutral
+#TA rich STRs more likely to generate missense/nonsense mutations?
+ggplot(indels,aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v INDEL type")) +
+  geom_bar() + facet_grid(INDtype ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+#MOST CODING DIFFS ARE POLY-A INSERTIONS
+ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v INDEL type (coding only)")) +
+  geom_bar() + facet_grid(INDtype ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+```
+
+##VAST MAJORITY OF TA/polyA in intergenic sequence
+```{r,fig.width=10,fig.height=7}
 ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
   ggtitle(paste("consequence v INDEL type")) +
   geom_bar() + facet_grid(. ~ coding, scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
-ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
-  ggtitle(paste("consequence v INDEL type")) +
-  geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
-  theme(axis.text.x=element_text(angle=-90,size=14))
+```
 
-#NO MAJOR DIFFERENCES IN CONCORDANT/DISCORDANT RATIOS
-ggplot(indels,aes(x=maxcons,fill=INDtype,group=INDtype)) + 
-  ggtitle(paste("consequence v INDEL type (discordant v concordant)")) +
+##NO MORE LIKELY TO BE DISCORDANT
+```{r,fig.width=10,fig.height=10}
+# ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+#   ggtitle(paste("consequence v INDEL type")) +
+#   geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+#   theme(axis.text.x=element_text(angle=-90,size=14))
+
+#NO MAJOR DIFFERENCES IN RATIOS FOR CONCORDANT/DISCORDANT VARS
+ggplot(subset(indels),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (all)")) +
   geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 
-ggplot(subset(indels,coding==1),aes(x=maxcons,fill=INDtype,group=INDtype)) + 
-  ggtitle(paste("consequence v INDEL type (coding only)")) +
+ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (coding)")) +
   geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
   theme(axis.text.x=element_text(angle=-90,size=14))
 
-
 ```
 
+```{r, fig.width=10, fig.height=7}
 
-```{r}
+#NO MAJOR DIFFERENCES IN RATIOS FOR LOW-COMPLEXITY SEQ
+ggplot(subset(indels),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (all)")) +
+  geom_bar() + facet_grid(DUST ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
 
-
-ggplot(indels,aes(x=abslen,y=vcomplex,colour=maxcons)) + 
-  ggtitle(paste("var length v complexity")) +
-  geom_point(size=3,alpha=0.7,position="jitter") + 
-  facet_grid(effect ~ STRtype)
-
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
-
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
-
-```
-
-
-```{r}
-
-ggplot(subset(indels,coding=="coding"),aes(x=STRtype,group=effect,fill=effect)) + 
-  ggtitle(paste("STRtype v DD2 difference")) +
-  geom_histogram() + 
-  facet_grid(anyDiscord ~ ., scale="free_y")
-
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
-
-ggplot(indels,aes(x=varlen)) + 
-  ggtitle(paste("var length v coding")) +
-  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
+#NO MAJOR DIFFERENCES IN RATIOS FOR LOW-COMPLEXITY SEQ
+ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v concordance (all)")) +
+  geom_bar() + facet_grid(DUST ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
 
 ```
 
