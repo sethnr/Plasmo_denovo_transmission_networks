@@ -77,7 +77,7 @@ ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) +
   xlim(0,50)
 
 #SOME V LONG INDELS
-indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
+#indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
 ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
   ggtitle(paste("long indels: length v complexity")) +
   xlim(50,400) +
@@ -97,7 +97,15 @@ ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=consequence)) 
 table(indels[,c("maxcons","STRtype")])
 
 #RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
-table(indels[,c("maxcons","INDtype")])
+table(indels[,c("maxcons","vartype")])
+
+
+table(vartypes[,c("coding","vartype")])
+table(vartypes[,c("DUST","vartype")])
+
+#MODE INDELS V SHORT
+sum(indels$varlen <= 1) / dim(indels)[[1]]
+sum(indels$varlen <= 5) / dim(indels)[[1]]
 
 ```
 
