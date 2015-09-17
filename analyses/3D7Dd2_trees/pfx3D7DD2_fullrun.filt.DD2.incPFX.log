@@ -7,12 +7,12 @@ Parameters as interpreted:
 	--max-missing 1
 	--out pfx3D7DD2_fullrun.filt.DD2.incPFX
 	--recode
-	--remove-indv 3D7-Gold
 	--remove-indv 3D7-PFX
+	--remove-indv 3d7-Gold
 	--remove-indv 3d7-Wirth
 
 Excluding individuals in 'exclude' list
-After filtering, kept 4 out of 6 Individuals
+After filtering, kept 3 out of 6 Individuals
 Outputting VCF file...
 After filtering, kept 7647 out of a possible 35198 Sites
 Run Time = 2.00 seconds
