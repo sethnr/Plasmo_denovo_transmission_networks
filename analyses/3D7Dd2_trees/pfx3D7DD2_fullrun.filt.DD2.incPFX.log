@@ -4,6 +4,7 @@ VCFtools - v0.1.12
 
 Parameters as interpreted:
 	--vcf pfx3D7DD2_fullrun.filt.incPFX.RENAME.vcf
+	--max-missing 1
 	--out pfx3D7DD2_fullrun.filt.DD2.incPFX
 	--recode
 	--remove-indv 3D7-PFX
@@ -13,5 +14,5 @@ Parameters as interpreted:
 Excluding individuals in 'exclude' list
 After filtering, kept 3 out of 6 Individuals
 Outputting VCF file...
-After filtering, kept 35198 out of a possible 35198 Sites
-Run Time = 3.00 seconds
+After filtering, kept 7647 out of a possible 35198 Sites
+Run Time = 1.00 seconds
