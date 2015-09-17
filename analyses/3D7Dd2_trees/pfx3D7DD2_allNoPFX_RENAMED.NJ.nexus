@@ -1,0 +1,21 @@
+#NEXUS
+[R-package APE, Thu Sep 17 13:28:56 2015]
+
+BEGIN TAXA;
+	DIMENSIONS NTAX = 4;
+	TAXLABELS
+		Dd2-FDK
+		Dd2-2D4
+		3d7-Gold
+		3d7-Wirth
+	;
+END;
+BEGIN TREES;
+	TRANSLATE
+		1	Dd2-FDK,
+		2	Dd2-2D4,
+		3	3d7-Gold,
+		4	3d7-Wirth
+	;
+	TREE * UNTITLED = [&U] (4:3,3:31,(1:94,2:174):21866);
+END;

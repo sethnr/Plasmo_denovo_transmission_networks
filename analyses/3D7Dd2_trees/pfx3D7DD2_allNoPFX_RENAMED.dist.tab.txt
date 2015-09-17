@@ -1,0 +1,5 @@
+Dd2-FDK	Dd2-2D4	3d7-Gold	3d7-Wirth
+Dd2-FDK	0	268	21991	21963
+Dd2-2D4		0	22071	22043
+3d7-Gold			0	34
+3d7-Wirth				0
