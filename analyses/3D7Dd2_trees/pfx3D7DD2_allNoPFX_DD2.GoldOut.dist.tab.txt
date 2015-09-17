@@ -1,0 +1,4 @@
+Dd2-FDK	Dd2-2D4	3d7-Gold
+Dd2-FDK	0	263	21544
+Dd2-2D4		0	21625
+3d7-Gold			0
