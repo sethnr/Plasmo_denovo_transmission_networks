@@ -1,0 +1,13 @@
+
+VCFtools - v0.1.12
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf pfx3D7DD2_fullrun.filt.incPFX.RENAME.vcf
+	--max-missing 1
+	--recode
+
+After filtering, kept 6 out of 6 Individuals
+Outputting VCF file...
+After filtering, kept 1552 out of a possible 35198 Sites
+Run Time = 1.00 seconds

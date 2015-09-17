@@ -99,6 +99,7 @@ python $DISCO1/scripts/cfs_dd2/checkRealVFakeDD2.py \
     -s SM-7LV8O -s SM-7LV8P -s SM-7LV8Q  \
     -p FDK \
     > ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.txt}
+if [[ $? != 0 ]]; then exit 1 ; fi
 
 echo "DD22D4 V REF (PFX) DD2 PASS ONLY" 
 python $DISCO1/scripts/cfs_dd2/checkRealVFakeDD2.py \
@@ -106,6 +107,26 @@ python $DISCO1/scripts/cfs_dd2/checkRealVFakeDD2.py \
     -s SM-7LV8R \
     -p 2D4 \
     > ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.txt}
+if [[ $? != 0 ]]; then exit 1 ; fi
+
+echo "CHECK SAMPLE CONSISTENCY 3D7DD2 PASS"
+echo python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
+    -v ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.vcf} -p 3D72D4 \
+    -s SM-7LV8S -s SM-7LV8T -s SM-7LV8U  -s SM-7LV8R
+python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
+    -v ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.vcf} -p 3D72D4 \
+    -s SM-7LV8S -s SM-7LV8T -s SM-7LV8U  -s SM-7LV8R
+if [[ $? != 0 ]]; then exit 1 ; fi
+
+echo "CHECK SAMPLE CONSISTENCY 3D7DD2 PASS"
+echo python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
+    -v ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.3D72D4.vcf} -p 3D7FDK \
+    -s SM-7LV8S -s SM-7LV8T -s SM-7LV8U  -s SM-7LV8R
+python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
+    -v ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.3D72D4.vcf} -p 3D7FDK \
+    -s SM-7LV8S -s SM-7LV8T -s SM-7LV8U  -s SM-7LV8R
+if [[ $? != 0 ]]; then exit 1 ; fi
+
 
 #echo "REAL V FAKE DD2 ALL" 
 #python $DISCO1/scripts/cfs_dd2/checkRealVFakeDD2.py \
@@ -115,7 +136,7 @@ python $DISCO1/scripts/cfs_dd2/checkRealVFakeDD2.py \
 
 
 #cp ${SAMPLE/.vcf/.PASS.DD2CONC.vcf} ../${OUTFILE}.PASS.DD2CONC.vcf
-cp ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.vcf} ../${OUTFILE}.PASS.FDK2D4.FDKCONC.2D4CONC.vcf
+cp ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.3D72D4.3D7FDK.vcf} ../${OUTFILE}.PASS.FDK2D4.FDKCONC.2D4CONC.3D7.vcf
 cp  ${SAMPLE/.vcf/.failtab.comb.txt} ../${OUTFILE}.failtab.comb.txt
 cp  ${SAMPLE/.vcf/.PASS.FDK2D4.FDKCONC.2D4CONC.txt} ../${OUTFILE}.DD2CONC.txt
 
