@@ -1,0 +1,9 @@
+
+
+
+python $DISCO1/scripts/SWvalidateVars.py \
+    -v $DISCO1/analyses/pfx_comparison_full3D7DD2/3D7DD2_all.REFCALL.MISS0.CALLABLE.vcf.gz \
+    -r1 $WORK/refs/Pf3D7_v3.fasta -r2 $WORK/refs/PfDD2_v1.fasta \
+    -v2 DD2FDK2D4Discords.RENAME.Dd2-FDK.vcf -I  \
+    -t tmp_dd2FDK_diffs_SW_validation_1000 -F 1000 \
+    > dd2FDK_diffs_SW_validation.1000bp.txt

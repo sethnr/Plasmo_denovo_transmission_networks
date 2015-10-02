@@ -1,0 +1,23 @@
+load /seq/plasmodium/sredmond/pfdisco/analyses/wetlab_validation/Dd22D4_DD2ref_realigns.bam 
+load /seq/plasmodium/sredmond/pfdisco/analyses/wetlab_validation/Dd2FDK_DD2ref_realigns.bam 
+
+goto PfDd2_02_TT:632165-634365
+sort base
+collapse
+snapshot Pf3D7_02_v3_739897.png
+
+goto PfDd2_06_TL:721748-723948
+sort base
+collapse
+snapshot Pf3D7_06_v3_755058.png
+
+goto PfDd2_06_TL:1088303-1090503
+sort base
+collapse
+snapshot Pf3D7_06_v3_1120632.png
+
+goto PfDd2_06_TL:1090262-1090503
+sort base
+collapse
+snapshot Pf3D7_06_v3_1120632.png
+

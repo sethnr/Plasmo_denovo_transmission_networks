@@ -1,0 +1,61 @@
+#get discord and full run sets
+#lanemerge and parse out each samples:
+
+# NB - HAVE TO USE VERSION WITHOUT DIFF CALLS (ALTERNATE REF WALKER
+#  WILL ONLY USE PASS VARIABLES)
+
+./mergeSamplesAndHaploidify.sh \
+        3D7DD2_all.REFCALL.MISS0.CALLABLE.PASS.vcf.gz \
+	../3D7Dd2_trees/3D7DD2.samples.lookup.txt \
+	/seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta
+
+./mergeSamplesAndHaploidify.sh \
+	DD2FDK2D4Discords.vcf \
+	../3D7Dd2_trees/3D7DD2.samples.lookup.txt \
+	/seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta
+
+# for SMP in FDK 2D4 
+# do 
+#    bgzip DD2FDK2D4Discords.RENAME.Dd2-${SMP}.vcf
+#    tabix -pvcf DD2FDK2D4Discords.RENAME.Dd2-${SMP}.vcf.gz
+# done 
+#
+#vcf-merge DD2FDK2D4Discords.RENAME.Dd2-FDK.vcf.gz
+#DD2FDK2D4Discords.RENAME.Dd2-2D4.vcf.gz > DD2FDK
+
+
+python $DISCO1/scripts/SWvalidateVars.py \
+    -v 3D7DD2_all.REFCALL.MISS0.CALLABLE.PASS.LMRG.RENAME.Dd2-FDK.vcf.gz \
+    -r1 $WORK/refs/Pf3D7_v3.fasta -r2 $WORK/refs/PfDD2_v1.fasta \
+    -v2 DD2FDK2D4Discords.RENAME.vcf -I  \
+    -t tmp_dd2FDK_diffs_SW_validation_1000 -F 1000 \
+    > dd2FDK_diffs_SW_validation.1000bp.txt
+
+python $DISCO1/scripts/SWvalidateVars.py \
+    -v 3D7DD2_all.REFCALL.MISS0.CALLABLE.PASS.LMRG.RENAME.Dd2-2D4.vcf.gz \
+    -r1 $WORK/refs/Pf3D7_v3.fasta -r2 $WORK/refs/PfDD2_v1.fasta \
+    -v2 DD2FDK2D4Discords.RENAME.vcf -I  \
+    -t tmp_dd22D4_diffs_SW_validation_1000 -F 1000 \
+    > dd22D4_diffs_SW_validation.1000bp.txt
+
+cp tmp_dd22D4_diffs_SW_validation_1000/PfDD2_v1.sam
+./Dd22D4_DD2ref_realigns.sam
+cp tmp_dd2FDK_diffs_SW_validation_1000/PfDD2_v1.sam ./Dd2FDK_DD2ref_realigns.sam
+
+
+for SAMP in *ref_realigns.sam ; 
+do
+ perl -lane 'print join("\t",$F[2],$F[3],$F[3]+2200,$F[0]) unless $F[0] eq "\@SQ"' $SAMP > ${SAMP/.sam/.bed}
+ samtools view -Sb $SAMP > ${SAMP/.sam/.bam}
+ samtools sort ${SAMP/.sam/.bam} ${SAMP/.sam/.s}
+ mv ${SAMP/.sam/.s.bam} ${SAMP/.sam/.bam}
+ samtools index ${SAMP/.sam/.bam}
+
+done
+
+bedtools intersect -a Dd22D4_DD2ref_realigns.bed -b Dd2FDK_DD2ref_realigns.bed > Dd2_DD2ref_realigns.bed
+
+
+perl getIGVPics.pl $WORK/refs/PfDD2_v1.fasta  Dd2_DD2ref_realigns.bed Dd22D4_DD2ref_realigns.sam Dd2FDK_DD2ref_realigns.sam
+
+bsub48 IGVimages ~/software/IGV_2.3.59/igv.sh -b Dd2_DD2ref_realigns.igv
