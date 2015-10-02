@@ -40,6 +40,6 @@ java -jar ${GATK}/GenomeAnalysisTK.jar \
    -o $OUT  \
    -sn $SAMPLE \
    -env \
-   -ef \
    -trimAlternates
+#   -ef \
 done

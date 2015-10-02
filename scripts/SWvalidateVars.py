@@ -42,7 +42,8 @@ if args.vcfTargets is None:
 if not args.snpsOnly and not args.indelsOnly:
     args.indelsOnly=True
 
-print >>sys.stderr, args.vcfTargets
+print >>sys.stderr, "TARGETS = ",args.vcfTargets
+print >>sys.stderr, "VARS = ",args.vcfFull
 targetsFile = open(args.vcfTargets,'r')
 targets=vcf.Reader(targetsFile)
 
@@ -260,7 +261,8 @@ print '#'+args.vcfFull
 #for name in names:
 #    print "\t".join([""] + [i+"."+name for i in ["N","AS","NM","XS"]]),
 
-print "\t".join(["i","block","L","LD","N","AS","RS","NM","XS"])
+print "\t".join(["i","aligned_region","var_length","distance_to_telomere","block_length","LevDist (pre)","No. alignments","Alignment Score","prop. total score","LevDist (post)","Subopt align score"])
+print "\t".join(["i","block","L","TD","IL","LD","N","AS","RS","NM","XS"])
 #print ""
 for b in blockI:
     block = blockI[b]
