@@ -21,6 +21,7 @@ primvals={
     'PRIMER_PICK_LEFT_PRIMER':1,
     'PRIMER_PICK_RIGHT_PRIMER':1,
 #    'PRIMER_PICK_ANYWAY': 1,
+    'PRIMER_LOWERCASE_MASKING': 1,
     'PRIMER_OPT_SIZE': 20,
     'PRIMER_MIN_SIZE': 18,
     'PRIMER_MAX_SIZE': 25,
@@ -48,6 +49,7 @@ parser = argparse.ArgumentParser(description='identify primer pairs for STR apli
 
 parser.add_argument('-v','--vcf', action="store", dest='vcf', type=str, help='vcf file of INDEL calls', nargs='?', default=None)
 parser.add_argument('-f','--fasta', action="store", dest='fasta', type=str, help='fasta file (ref)', nargs='?', default=None)
+parser.add_argument('--fout','--fasta_out', action="store", dest='fastaOut', type=str, help='fasta file for dusted sequence', nargs='?', default=None)
 parser.add_argument('-d','--dust', action="store", dest='dust', type=str, help='dust file (1/0 file of low-complexity regions)', nargs='?', default=None)
 
 parser.add_argument('-o','--out', action="store", dest='outFile', type=str, help='outFile', nargs='?', default=None)
@@ -65,6 +67,8 @@ if not path.exists(TMP):
 
 name = path.basename(args.fasta).replace('.fasta','')
 dustfile = tabix.open(args.dust)
+if args.fastaOut is not None:
+    fastaOut = open(args.fastaOut,'w')
 fasta = Fasta(args.fasta)
 
 def _parse_chrlens_from_dict(fasta):
@@ -116,14 +120,18 @@ def _merge_regions(locs, joinflank=0):
 def _get_dusted_seq(c,st,en):
     dust =_getDustRegion(c,st,en)    
     seq = list(fasta[c][st:en].seq)
+    smseq = list(fasta[c][st:en].seq)
 #    print >>sys.stderr, vst,ven,(regst-regen)
 #    print >>sys.stderr, ''.join(seq)
     for c,p in dust:
         i = p-st-1
         seq[i]='n'
+        smseq[i] = smseq[i].lower()
     print >>sys.stderr, str(round(float(len(dust))/len(seq),2))+"% flanking seq dusted"
+    smseq = str(''.join(smseq))
+    print >>sys.stderr, smseq
     seq = str(''.join(seq))
-    return seq
+    return smseq
 
 
 def _find_nearest_primers(var, flank=1000, increment=100):
@@ -134,9 +142,13 @@ def _find_nearest_primers(var, flank=1000, increment=100):
     regst = vst-flank
     regen = ven+flank
     #get dusted sequence
-    seq = _get_dusted_seq(c,regst,regen)
     name=c+":"+str(vst)
+    seq = _get_dusted_seq(c,regst,regen)
 
+    if args.fastaOut is not None:
+        print >>fastaOut, "\t".join(map(str,[name,regst,regen]))
+        print >>fastaOut, seq
+        
     seqvals={'SEQUENCE_ID': name,
              'SEQUENCE_TEMPLATE': seq,
              'SEQUENCE_INCLUDED_REGION': [1,(2*flank)],
