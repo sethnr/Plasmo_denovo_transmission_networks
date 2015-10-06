@@ -2,7 +2,7 @@
 
 VCF=$1
 
-$DISCO1/scripts/haploidifyVCF.py -v $VCF
+$DISCO1/scripts/diploidifyVCF.py -v $VCF
 VCF=${VCF/.gz/}
 
 vcftools --012 --vcf ${VCF/.vcf/.HAPLOID.vcf} --out ${VCF/.vcf/}
