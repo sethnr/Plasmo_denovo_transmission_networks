@@ -38,10 +38,10 @@ vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
 vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
 
 vartypes$effect="NONE"
-vartypes$effect[vartypes$maxcons %in% c("frameshift_variant","stop_lost","start_lost","stop_gained","exon_loss_variant")] <- "NONSENSE"
+vartypes$effect[vartypes$maxcons %in% c("inframe_insertion","inframe_deletion","synonymous_variant","intergenic","intragenic_variant","non_coding_exon_variant")] <- "SILENT"
 vartypes$effect[vartypes$maxcons %in% c("missense_variant","disruptive_inframe_insertion","disruptive_inframe_deletion","splice_region_variant")] <- "MISSENSE"
-vartypes$effect[vartypes$maxcons %in% c("inframe_insertion","inframe_deletion","synonymous_variant","intergenic","intragenic_variant","non_coding_exon_variant")] <- "NEUTRAL"
-
+vartypes$effect[vartypes$maxcons %in% c("frameshift_variant","stop_lost","start_lost","stop_gained","exon_loss_variant")] <- "NONSENSE"
+vartypes$effect <- factor(vartypes$effect,levels =c("SILENT","MISSENSE","NONSENSE"))
                            
 
 indels <- subset(vartypes,vartype=="INDEL")
@@ -97,7 +97,7 @@ ggplot(indels,aes(x=abslen,colour=STRtype,group=STRtype)) +
 #indels[indels$abslen > 50,c("chr","pos","vartype","STRtype","varlen","coding","consequence")]
 ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) + 
   ggtitle(paste("long indels: length v complexity")) +
-  xlim(50,400) +
+  xlim(50,400) + theme(legend.position="none") + 
   geom_point(size=3,alpha=1)
 ```
 
@@ -121,10 +121,10 @@ ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=STRtype)) +
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-3.png) 
 
 ```r
-#RELATIVELY SMALL NUMBER ARE TA REPEATS (possible difficulties in calling really long TA repeats?)
+#RELATIVELY SMALL NUMBER ARE NON-CODING (possible difficulties in calling really long TA repeats?)
 ggplot(indels[indels$abslen > 50,],aes(x=abslen,y=vcomplex,colour=consequence)) + 
   ggtitle(paste("long indels: coding consequences")) +
-  xlim(50,400) +theme(legend.position="bottom")+guides(col = guide_legend(nrow = 2))+
+  xlim(50,400) +theme(legend.position="none")+guides(col = guide_legend(nrow = 2))+
   geom_point(size=3,alpha=1)
 ```
 
@@ -340,7 +340,8 @@ ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) +
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
 
-##NO MORE LIKELY TO BE DISCORDANT
+##DISCORDANT CONSEQUENCES SIMILAR
+###CODING NO LESS LIKELY TO BE DISCORDANT
 
 ```r
 # ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
@@ -366,6 +367,59 @@ ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) +
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png) 
 
+##DISCORDANT STRtypes SIMILAR
+
+```r
+# ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+#   ggtitle(paste("consequence v INDEL type")) +
+#   geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+#   theme(axis.text.x=element_text(angle=-90,size=14))
+
+#NO MAJOR DIFFERENCES IN RATIOS FOR CONCORDANT/DISCORDANT VARS
+ggplot(subset(indels),aes(x=effect,fill=STRtype,group=STRtype)) + 
+  ggtitle(paste("consequence v STR type (all)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+
+```r
+ggplot(subset(indels,coding==1),aes(x=effect,fill=STRtype,group=STRtype)) + 
+  ggtitle(paste("consequence v STR type (coding)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png) 
+
+##DISCORDANT INDELtypes SIMILAR
+
+```r
+# ggplot(indels,aes(x=effect,fill=INDtype,group=INDtype)) + 
+#   ggtitle(paste("consequence v INDEL type")) +
+#   geom_bar() + facet_grid(anyDiscord ~ coding, scale="free_y") + 
+#   theme(axis.text.x=element_text(angle=-90,size=14))
+
+#NO MAJOR DIFFERENCES IN RATIOS FOR CONCORDANT/DISCORDANT VARS
+ggplot(subset(indels),aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type (all)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+
+```r
+ggplot(subset(indels,coding==1),aes(x=effect,fill=INDtype,group=INDtype)) + 
+  ggtitle(paste("consequence v INDEL type (coding)")) +
+  geom_bar() + facet_grid(anyDiscord ~ ., scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-2.png) 
+
+
 
 ```r
 #NO MAJOR DIFFERENCES IN RATIOS FOR LOW-COMPLEXITY SEQ
@@ -375,7 +429,7 @@ ggplot(subset(indels),aes(x=effect,fill=maxcons,group=maxcons)) +
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
 
 ```r
 #NO MAJOR DIFFERENCES IN RATIOS FOR LOW-COMPLEXITY SEQ
@@ -385,5 +439,5 @@ ggplot(subset(indels,coding==1),aes(x=effect,fill=maxcons,group=maxcons)) +
   theme(axis.text.x=element_text(angle=-90,size=14))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-2.png) 
 
