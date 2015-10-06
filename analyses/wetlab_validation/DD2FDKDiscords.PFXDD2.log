@@ -3,7 +3,7 @@ VCFtools - v0.1.10
 (C) Adam Auton 2009
 
 Parameters as interpreted:
-	--vcf DD2FDKDiscords.PFXDD2.HAPLOID.vcf
+	--vcf DD2FDKDiscords.PFXDD2.DIPLOID.vcf
 	--012
 	--out DD2FDKDiscords.PFXDD2
 
