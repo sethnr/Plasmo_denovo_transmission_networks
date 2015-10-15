@@ -80,14 +80,14 @@ bsub48 IGVimages ~/software/IGV_2.3.59/igv.sh -b Dd2_DD2ref_realigns.igv
 	/seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta
 
 python $DISCO1/scripts/SWvalidateVars.py \
-    -v  pfx_v_3D7DD2fullrun_miss0callable.FDK2D4Discords.noPFX.Dd2-FDK.vcf.gz \
+    -v  pfx_v_3D7DD2fullrun_miss0callable.FDK2D4Discords.noPFX.LMRG.RENAME.Dd2-FDK.vcf.gz \
     -r1 $WORK/refs/Pf3D7_v3.fasta -r2 $WORK/refs/PfDD2_v1.fasta \
     -v2 pfx_v_3D7DD2fullrun_miss0callable.FDK2D4Discords.noPFX.vcf.gz -I  \
     -t tmp_dd2FDK_diffs_SW_validation_1000 -F 1000 \
     > dd2FDK_diffs_noPFX_SW_validation.1000bp.txt
 
 python $DISCO1/scripts/SWvalidateVars.py \
-    -v pfx_v_3D7DD2fullrun_miss0callable.FDK2D4Discords.noPFX.Dd2-2D4.vcf.gz \
+    -v pfx_v_3D7DD2fullrun_miss0callable.FDK2D4Discords.noPFX.LMRG.RENAME.Dd2-2D4.vcf.gz \
     -r1 $WORK/refs/Pf3D7_v3.fasta -r2 $WORK/refs/PfDD2_v1.fasta \
     -v2 pfx_v_3D7DD2fullrun_miss0callable.FDK2D4Discords.noPFX.vcf.gz -I  \
     -t tmp_dd22D4_diffs_SW_validation_1000 -F 1000 \
