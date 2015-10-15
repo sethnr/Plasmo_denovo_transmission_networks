@@ -71,11 +71,14 @@ parser.add_argument('--bam_direct', action="store_false", dest='bylane', default
 parser.add_argument('-W','--jobtime', action="store", dest='jobtime', type=str, help='time for job', nargs='?', default=None)
 
 parser.add_argument('--lsf', action="store_true", dest='lsf', default=False, help='sub with lsf rather than sge')
+parser.add_argument('--uger', action="store_true", dest='uger', default=False, help='sub with uger rather than sge')
 
 args = parser.parse_args()
 
 if args.lsf:
     from sub_lsf import *
+if args.uger:
+    from sub_uger import *
 else: 
     from sub_sge import *
 

@@ -7,4 +7,4 @@ VCF=${VCF/.gz/}
 
 vcftools --012 --vcf ${VCF/.vcf/.DIPLOID.vcf} --out ${VCF/.vcf/}
 
-#Rscript $DISCO1/scripts/R/plotHaplotypes.R ${VCF/.vcf/.012/} ${VCF/.vcf/.012.indv/}  ${VCF/.vcf/.012.pos/}
+Rscript $DISCO1/scripts/R/plotHaplotypes.R ${VCF/.vcf/}

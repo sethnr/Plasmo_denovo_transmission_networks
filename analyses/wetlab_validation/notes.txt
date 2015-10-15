@@ -59,3 +59,8 @@ bedtools intersect -a Dd22D4_DD2ref_realigns.bed -b Dd2FDK_DD2ref_realigns.bed >
 perl getIGVPics.pl $WORK/refs/PfDD2_v1.fasta  Dd2_DD2ref_realigns.bed Dd22D4_DD2ref_realigns.sam Dd2FDK_DD2ref_realigns.sam
 
 bsub48 IGVimages ~/software/IGV_2.3.59/igv.sh -b Dd2_DD2ref_realigns.igv
+
+
+#get genes in var clusters:
+./getGenesInVarClusters.sh  DD2FDKDiscords.PFXDD2.vcf /seq/plasmodium/sredmond/refs/PlasmoDB-25_Pfalciparum3D7.GENES.gff
+
