@@ -6,7 +6,7 @@ FASTA=$3
 
 
 echo python $DISCO1/scripts/vcf/mergeLanesVCF.py -v $VCF
-python $DISCO1/scripts/vcf/mergeLanesVCF.py -v $VCF
+#python $DISCO1/scripts/vcf/mergeLanesVCF.py -v $VCF
 
 VCF=${VCF/.gz/}
 

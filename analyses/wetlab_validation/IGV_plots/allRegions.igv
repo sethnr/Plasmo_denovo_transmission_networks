@@ -4,6 +4,7 @@ load DD22D4_reads_rDD2.bam
 load DD22D4_pacBio_rDD2.bam 
 load DD2FDK_disco_rDD2.bam 
 load DD2FDK_reads_rDD2.bam 
+maxPanelHeight 120
 goto PfDd2_02_TT:632164-634174
 sort base
 collapse
