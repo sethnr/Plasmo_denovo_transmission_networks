@@ -18,6 +18,8 @@ reader1=vcf.Reader(vcfFile1)
 
 print "\t".join(["chr","pos","type","alleles"]+reader1.samples)
 for rec in reader1:
+    if rec.num_unknown > 2: continue
+
     alleles = "/".join([rec.REF] + map(str,rec.ALT))
     vartype="SNP";
     if rec.is_indel: vartype="INDEL"

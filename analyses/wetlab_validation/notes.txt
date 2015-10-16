@@ -103,3 +103,8 @@ mergeSamplesAndHaploidify.sh  \
   ../3D7Dd2_trees/3D7DD2.samples.lookup.txt \
   /seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta
 
+vcf-merge  pfx_v_3D7DD2fullrun_miss0callable.DD2DISCORD.LMRG.RENAME.HAPLOID.vcf.gz \
+  ../pfx_comparison_full3D7DD2/3D7_DD2_parents.DD2.vcf.gz \
+  > pfx_v_3D7DD2fullrun.DD2DISCORD.incPFXcalls.LMRG.RENAME.HAPLOID.vcf
+
+plotHaplotypes.sh pfx_v_3D7DD2fullrun.DD2DISCORD.incPFXcalls.LMRG.RENAME.HAPLOID.vcf
