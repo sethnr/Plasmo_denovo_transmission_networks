@@ -2,9 +2,10 @@
 
 VCF=$1
 
-$DISCO1/scripts/diploidifyVCF.py -v $VCF
+python $DISCO1/scripts/vcf/haploidifyVCF.py -v $VCF
 VCF=${VCF/.gz/}
 
-vcftools --012 --vcf ${VCF/.vcf/.DIPLOID.vcf} --out ${VCF/.vcf/}
+#vcftools --012 --vcf ${VCF/.vcf/.DIPLOID.vcf} --out ${VCF/.vcf/}
+python getAlleleTableVCF.py -v ${VCF/.vcf/.HAPLOID.vcf} > ${VCF/.vcf/.alleles.tab.txt}
 
-Rscript $DISCO1/scripts/R/plotHaplotypes.R ${VCF/.vcf/}
+Rscript $DISCO1/scripts/R/plotHaplotypes.R ${VCF/.vcf/.alleles.tab.txt}
