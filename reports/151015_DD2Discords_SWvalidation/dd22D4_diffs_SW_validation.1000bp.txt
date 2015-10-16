@@ -1,6 +1,6 @@
 #/seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
-#3D7DD2_all.REFCALL.MISS0.CALLABLE.PASS.LMRG.RENAME.Dd2-2D4.vcf.gz
-i	aligned_region	var_length	distance_to_telomere	block_length	LevDist (pre)	No. alignments	Alignment Score	prop. total score	LevDist (post)	Subopt align score
+#../3D7DD2_all.REFCALL.MISS0.CALLABLE.PASS.LMRG.RENAME.Dd2-2D4.vcf.gz
+#i	aligned_region	var_length	distance_to_telomere	block_length	LevDist (pre)	No. alignments	Alignment Score	prop. total score	LevDist (post)	Subopt align score
 i	block	L	TD	IL	LD	N	AS	RS	NM	XS
 1	Pf3D7_02_v3:739897 	-12	207205	2014	13	1	1966	0.976	10	45 
 2	Pf3D7_04_v3:257036 	-9	257036	2005	19	1	2005	1.0	0	0 
