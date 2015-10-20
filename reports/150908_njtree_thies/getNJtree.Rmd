@@ -1,0 +1,136 @@
+library(ggplot2)
+library(reshape2)
+setwd("/Users/snr_admin/Desktop/sang_home/Rodents/data_noVivax/")
+data_dir <-  "/Users/snr_admin/Desktop/sang_home/Rodents/data_noVivax/"
+#data_dir <-  "/Users/snr_admin/Desktop/pcs5b/Rodents/data"
+
+
+#setwd("~/Google Drive/Sanger/Rodents/")
+#data_dir <-  "/Users/seth/Google Drive/Sanger/Rodents/data/"
+
+#get lookup file
+lookup <- read.table("../lookup.2.txt",sep="\t",col.names=c("spp_code","sample_name","seq_id","tree_index"),comment.char="!",stringsAsFactors = F)
+# lookup$group <- c(rep("vinckei",4),rep("yoelii",6),rep("chabaudi",4))
+# lookup$colour <- c(rep("blue",4),rep("green",6),rep("red",4))
+
+rownames(lookup) <- lookup$seq_id
+
+lookup$seq_id <- as.character(lookup$seq_id)
+# chabPops <- lookup$seq_id[lookup$group=="chabaudi"]
+# yoelPops <- lookup$seq_id[lookup$group=="yoelii"]
+# vinkPops <- lookup$seq_id[lookup$group=="vinckei"]
+# 
+# 
+# tradpops = list("yoel"=yoelPops,
+#                 "vink"=vinkPops,
+#                 "chab"=chabPops)
+
+newYoelPops <- lookup$seq_id[lookup$sample_name %in% c("Pyy2CL", "Pyy1AR", "Pyy3AE", "Pyy33X", "Pyyy1.1","Pyoelii_kilicki_193")]
+newVinkPops <- lookup$seq_id[lookup$sample_name %in% c("Pvinckei_brucechwatti","Pyoelii_killicki")]
+newChabPops <- lookup$seq_id[lookup$sample_name %in% c("PchCB","PcAJ","PcDS","PcDK","PcAS","Pvinckei_vinckei","Vinckei_petteri")]
+#newChabPops <- lookup$seq_id[lookup$sample_name %in% c("PchCB","PcDS","PcDK","Pvinckei_vinckei","Vinckei_petteri")]
+
+bergPops <- lookup$seq_id[lookup$sample_name %in% c("PBK173","PBSP11")]
+vivax <- lookup$seq_id[lookup$sample_name %in% c("Pv")]
+
+
+newPops = list("yoel" = newYoelPops,
+               "vink" = newVinkPops,
+               "chab" = newChabPops,
+                "berg" = bergPops
+#                 "vivax" = vivax
+               )
+
+pops = newPops
+
+
+winSize = 5000
+stepSize = 1000
+
+
+
+
+
+#do each chromosome 
+chr_files = list.files(data_dir)
+rm(fstcf)
+for (chr in chr_files){
+  
+  vcf_dir <- paste(data_dir,"/",chr,"/vcf/",sep="")
+  gff_dir <-  paste(data_dir,"/",chr,"/gff/",sep="")
+  
+  write(paste("reading vcf / gff",vcf_dir),stderr())
+  vcf <- readData(vcf_dir,format="VCF",gffpath=gff_dir)
+  
+  
+  vcf.sw <- sliding.window.transform(vcf, winSize, stepSize,type=2)
+  
+  #get div stats & fst against all
+  div.all <- get.diversity(F_ST.stats(vcf.sw,new.populations=list(pops$yoel, pops$chab, pops$vink, pops$berg),FAST=T))
+#   for (i in c(1:4)) {
+#     write.table(div.all[[1]][50:55,],sep="\t",quote=F,stderr())}
+
+  names(div.all) <- c("yoel","chab","vink","berg")
+
+  fst.chab.yoel <- get.F_ST(F_ST.stats(vcf.sw,list(pops$yoel,pops$chab),FAST=T),mode="nucleotide")
+  fst.chab.vink <- get.F_ST(F_ST.stats(vcf.sw,list(pops$chab,pops$vink),FAST=T),mode="nucleotide")
+  fst.yoel.berg <- get.F_ST(F_ST.stats(vcf.sw,list(pops$yoel,pops$berg),FAST=T),mode="nucleotide")
+
+  fst.chab.yoel <- as.vector(fst.chab.yoel)
+  fst.chab.vink <- as.vector(fst.chab.vink)
+  fst.yoel.berg <- as.vector(fst.yoel.berg)
+
+
+  pos.sw <- as.numeric(c(0:(length(vcf.sw@region.names)-1)) * stepSize + winSize/2)
+  chrs = rep(chr,length(pos.sw))
+  
+#   pi.sw <- data.frame("chr" = chrs,
+#                  "pos" = pos.sw,
+#                  "yoel" = div.all$yoel[,3] / vcf.sw@n.sites,
+#                  "chab" = div.all$chab[,3] / vcf.sw@n.sites,
+#                  "vink" = div.all$vink[,3] / vcf.sw@n.sites
+#   )
+#   fst.sw <- data.frame("chr" = chrs,
+#                   "pos" = pos.sw,
+#                 "yoel" = div.all$yoel[,5],
+#                 "chab" = div.all$chab[,5],
+#                 "vink" = div.all$vink[,5]
+#                 ,
+#                 "chab-yoel"=fst.chab.yoel,
+#                 "chab-vink"=fst.chab.vink,
+#                 "yoel-vink"=fst.yoel.vink              
+#   )
+
+fstcf_chr <- data.frame("chr" = chrs,
+                    "pos" = pos.sw,
+                    "yoel.pi" = div.all$yoel[,3] / vcf.sw@n.sites,
+                    "chab.pi" = div.all$chab[,3] / vcf.sw@n.sites,
+                    "vink.pi" = div.all$vink[,3] / vcf.sw@n.sites,
+                    "berg.pi" = div.all$berg[,3] / vcf.sw@n.sites,
+                    
+                    "yoel.fst.all" = div.all$yoel[,5],
+                    "chab.fst.all" = div.all$chab[,5],
+                    "vink.fst.all" = div.all$vink[,5],
+                    "berg.fst.all" = div.all$berg[,5],
+                    
+                    "chab.fst.yoel"=fst.chab.yoel,
+                    "chab.fst.vink"=fst.chab.vink,
+                    "yoel.fst.berg"=fst.yoel.berg              
+)
+
+
+#   com_cols <- c("chr","pos")
+#   fstcf_chr <- merge(melt(pi.sw,id=com_cols,variable.name ="pop",value.name ="pi"),
+#                     melt(fst.sw,id=com_cols,variable.name ="pop",value.name="fst"),
+#                     by=c(com_cols,"pop"),all=T)
+#   fstcf_chr <- fstcf_chr[order(fstcf_chr$pos),]  
+
+  if(exists("fstcf")) {
+    fstcf <- rbind(fstcf,fstcf_chr)
+  } else {
+    fstcf <- fstcf_chr
+  }
+}
+
+write.table(fstcf,file="div_fST_values_allchrs.txt",sep="\t",quote=F,col.names=T)
+

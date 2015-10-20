@@ -1,0 +1,65 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+``` 
+
+```{r}
+#vartypes <- read.table("pfx_v_3D7DD2fullrun_miss0callable.PASS.DD2CONC.R3.varClass.txt",stringsAsFactors = F,sep='\t',header=T)
+calcols <- c("ch","st","en","NV","LDfails","LDpass","RSfails","RSpass","df","dn","Dpass","multipass")
+callable <- read.table("qDD2vr3D7.callable.blocks5k.tab.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+
+callable$multipass=NULL
+callable$LDpass = callable$LDpass=="True"
+callable$Dpass = callable$Dpass=="True"
+callable$RSpass = callable$RSpass=="True"
+
+callable$SWpass = (callable$LDpass & callable$RSpass)
+
+callable$multipass=factor(rep(NA,4676),levels=c("SW","Depth","SW+Depth"))
+callable[!callable$SWpass,"multipass"]="SW"
+callable[!callable$Dpass,"multipass"]="Depth"
+callable[!callable$SWpass & !callable$Dpass,"multipass"]="SW+Depth"
+
+head(callable)
+
+callable <- subset(callable,!ch %in% c("M76611","PFC10_API_IRAB"))
+```
+
+```{r}
+
+
+#INDELS ONLY
+#dd2 concordance
+```{r}
+
+ggplot(subset(callable,ch="Pf3D7_01_v3"),aes(xmin=st,xmax=en,ymin=0,ymax=1,fill=SWpass)) + 
+  ggtitle(paste("failed blocks (SW test)")) +
+  geom_rect() + 
+  facet_grid(ch ~ .)
+
+ggplot(subset(callable,ch="Pf3D7_01_v3"),aes(xmin=st,xmax=en,ymin=0,ymax=1,fill=Dpass)) + 
+  ggtitle(paste("failed blocks (depth)")) +
+  geom_rect() + 
+  facet_grid(ch ~ .)
+
+ggplot(callable,aes(xmin=st,xmax=en,ymin=0,ymax=1,fill=multipass)) + 
+  ggtitle(paste("callable regions (5kb windows)")) +
+  geom_rect() + scale_fill_manual(values=c("red","blue","purple"))+
+  facet_grid(ch ~ .)
+
+
+```
+
+```{r, fig.width=6,fig.height7}
+
+ggplot(callable,aes(xmin=st,xmax=en,ymin=0,ymax=1,fill=multipass)) + 
+  ggtitle(paste("callable regions (5kb windows)")) +
+  geom_rect() + scale_fill_manual(values=c("red","blue","purple"))+
+  facet_grid(ch ~ .)
+
+
+```

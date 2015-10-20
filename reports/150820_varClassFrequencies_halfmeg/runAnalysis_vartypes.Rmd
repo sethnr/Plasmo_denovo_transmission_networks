@@ -1,0 +1,61 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+# matchlevels <- c("",     "NUCMER","DISCO","HAPLO","NUCMER,DISCO","NUCMER,HAPLO","DISCO,HAPLO","NUCMER,DISCO,HAPLO")
+# colours <-     c("black","green", "red",  "blue", "yellow",      "cyan",        "magenta",     "white")
+# names(colours) <- matchlevels
+
+``` 
+
+```{r}
+vartypes <- read.table("passVars.varClass.txt",stringsAsFactors = F,sep='\t',header=T)
+#3D7 only:
+vartypes$refsAbsent = vartypes$FdkXRefAbsent & vartypes$X2D4RefAbsent
+vartypes$all2D4Discord = vartypes$X2D4XDiscord | vartypes$X2D4Discord
+vartypes$allFdkDiscord = vartypes$FdkXDiscord | vartypes$FdkDiscord
+
+indels <- subset(vartypes,vartype=="INDEL")
+snps <- subset(vartypes,vartype=="SNP")
+
+subset(vartypes,all2D4Discord | allFdkDiscord)
+
+```
+
+
+
+#INDELS ONLY
+#dd2 concordance
+```{r}
+
+ggplot(indels,aes(x=varlen,y=STRP,colour=consequence)) + 
+  ggtitle(paste("var length v complexity")) +
+  geom_point(size=3,alpha=0.7,position="jitter")
+
+ggplot(indels,aes(x=varlen)) + 
+  ggtitle(paste("var length v coding")) +
+  geom_histogram(position="dodge") + facet_grid(coding ~ ., scale="free_y")
+
+ggplot(indels,aes(x=varlen)) + 
+  ggtitle(paste("var length v coding")) +
+  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ ., scale="free_y")
+
+
+
+#ggplot(indels,aes(x=consequence,fill=consequence)) + 
+ggplot(subset(indels,coding=="coding"),aes(x=consequence,fill=consequence)) + 
+  ggtitle(paste("consequence v STR presence (coding only)")) +
+  geom_histogram(position="dodge") + facet_grid(vartype ~ strType, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+ggplot(vartypes,aes(x=consequence,fill=consequence)) + 
+  ggtitle(paste("consequence v ref match")) +
+  geom_histogram(position="dodge") + facet_grid(refsAbsent ~ vartype, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+
+
+```
+
