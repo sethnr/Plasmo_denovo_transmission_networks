@@ -1,0 +1,30 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+
+``` 
+
+```{r}
+incomplete <- read.table("incompleteRegions.tab.txt",stringsAsFactors = F,sep='\t',header=F,col.names=c("chrom","s","e","access","failed"))
+#3D7 only:
+
+```
+
+
+
+#INDELS ONLY
+#dd2 concordance
+```{r}
+
+ggplot(incomplete,aes(x=i,y=failed)) + 
+  ggtitle(paste("failed blocks")) +
+  geom_line() + 
+  facet_grid(chrom ~ .)
+
+
+```
+
