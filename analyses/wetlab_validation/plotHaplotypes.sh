@@ -7,6 +7,6 @@ VCF=$1
 
 #vcftools --012 --vcf ${VCF/.vcf/.DIPLOID.vcf} --out ${VCF/.vcf/}
 #python getAlleleTableVCF.py -v ${VCF/.vcf/.HAPLOID.vcf} > ${VCF/.vcf/.alleles.tab.txt}
-python getAlleleTableVCF.py -v ${VCF} > ${VCF/.vcf/.alleles.tab.txt}
+python getAlleleTableVCF.py -v ${VCF} | sort -u > ${VCF/.vcf/.alleles.tab.txt}
 
 Rscript $DISCO1/scripts/R/plotHaplotypes.R ${VCF/.vcf/.alleles.tab.txt}
