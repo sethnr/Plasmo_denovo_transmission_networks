@@ -687,7 +687,7 @@ python ../pipeline/disco_callSTRsAndSummarise.py \
        --mem 16000 --nodes 4   \
        -f $WORK/refs/Pf3D7_v3.fasta       \
        --shallow -Q gaag  \
-       -W 6:00:00 --splitsize 10000 --splitregions      \
+       -W 6:00:00 --splitsize 2500 --splitregions      \
        --genome --prefix Thies.10k.m48 --maxconc 200 \
        --doneH5 completed.hdf5 \
        --dryrun
@@ -708,6 +708,16 @@ python ../pipeline/disco_callSTRsAndSummarise.py \
        --shallow -Q short  \
        -W 2:00:00 --splitsize 30000 --splitregions      \
        --genome --prefix HFGR.30k --maxconc 2000 \
+       --doneH5 completed.hdf5 \
+       --dryrun
+
+python ../pipeline/disco_callSTRsAndSummarise.py \
+       -s ../samples/HFGR.samples.txt      \
+       --mem 4000 --nodes 1   \
+       -f $WORK/refs/Pf3D7_v3.fasta       \
+       --shallow -Q short  \
+       -W 4:00:00 --splitsize 10000 --splitregions      \
+       --genome --prefix HFGR.10k --maxconc 2000 \
        --doneH5 completed.hdf5 \
        --dryrun
 
