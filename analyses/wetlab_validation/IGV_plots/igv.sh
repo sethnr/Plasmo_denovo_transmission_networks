@@ -1,1 +1,0 @@
-/home/unix/sredmond/software/IGV_2.3.59/igv.sh

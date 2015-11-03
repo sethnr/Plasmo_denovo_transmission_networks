@@ -26,21 +26,16 @@ _Filter = collections.namedtuple('Filter', ['id', 'desc'])
 _Alt = collections.namedtuple('Alt', ['id', 'desc'])
 _Format = collections.namedtuple('Format', ['id', 'num', 'type', 'desc'])
 
+#new INFO fields
 reader1.infos[args.prefix+'MISS'] = _Info(id=args.prefix+'MISS', num=1, type='Float', desc=args.prefix+' missingness', source="checkLaneConcordance.py", version=1)
+reader1.infos[args.prefix+'LNERR'] = _Info(id=args.prefix+'LNERR', num=1, type='Integer', desc=args.prefix+' lane errors', source="checkLaneConcordance.py", version=1)
+
+#new FILTERs
 reader1.filters[args.prefix+'LaneErr'] = _Filter(id=args.prefix+'LaneErr', desc=args.prefix+' lanes not concordant')
 
 
-reader1.infos['ED'] = _Info(id='ED', num=1, type='Float', desc='Discovar mean edge depth across all samples', source="Discovar", version=1)
-reader1.infos['EDS'] = _Info(id='EDS', num=1, type='Float', desc='Discovar edge depth std dev across all samples', source="Discovar", version=1)
-
-
-# for i in reader1.infos:
-#    info = reader1.infos[i]
-#    print "INFO: "+i+" "+str(info)
-#for format in reader1.formats:
-#    print "FORMAT: "+format
-#for filt in reader1.filters:
-#    print "FILTER: "+filt
+#reader1.infos['ED'] = _Info(id='ED', num=1, type='Float', desc='Discovar mean edge depth across all samples', source="Discovar", version=1)
+#reader1.infos['EDS'] = _Info(id='EDS', num=1, type='Float', desc='Discovar edge depth std dev across all samples', source="Discovar", version=1)
 
 
 vcfoutF1 = replace(args.vcfFile1,'.vcf','.'+args.prefix+'LCHK.vcf')
@@ -94,6 +89,8 @@ for rec in reader1:
 #                        [calls[(s,-1)] for s in samples])
 
     rec.INFO[args.prefix+'MISS']=round(missing/len(rec.samples),4)
+#    rec.INFO[args.prefix+'LNERR']=round(float(laneError)/len(rec.samples),4)
+    rec.INFO[args.prefix+'LNERR']=laneError
     if laneError > 0:
 #        print len(rec.FILTER)
         if len(rec.FILTER) == -1:

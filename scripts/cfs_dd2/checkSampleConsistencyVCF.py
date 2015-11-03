@@ -92,7 +92,7 @@ for rec in reader1:
     MAF = -1
     if genos > 0:
         MAF = (genos-majorC)/float(genos)
-    MISS = missing/float(len(samples))
+    MISS = missing/float(len(samples)*2)
     rec.INFO[args.prefix+'MAF'] = MAF
     rec.INFO[args.prefix+'MISS'] = MISS
     

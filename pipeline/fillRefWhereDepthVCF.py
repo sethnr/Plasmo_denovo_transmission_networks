@@ -9,7 +9,7 @@ from numpy import mean, std
 import collections
 import tabix
 import subprocess
-
+from math import floor, ceil
 
 
 
@@ -74,13 +74,15 @@ print header
 dns=split(header)[2:]
 print dns
 
-
-
 def _getDepthForChrom(chrom):
-    print >>sys.stderr, "parsing depth file for chr "+chrom
+    vals = _getDepthForRegion(chrom,0,10000000)
+    return vals
+
+def _getDepthForRegion(chrom,st,en):
+    print >>sys.stderr, "parsing depth file for "+chrom+":"+str(st)+"-"+str(en)
     vals = dict()
 
-    for rs in valfile.query(chrom,0,10000000):
+    for rs in valfile.query(chrom,st,en):
 #        rs = vline.split()
 #        print >>sys.stderr, rs
 
@@ -94,19 +96,32 @@ def _getDepthForChrom(chrom):
         for i in range(0,len(ds)):
             dn = dns[i]
             vals[(c,int(p),dn)] = ds[i]
-    print vals.keys()[:10]
+    #print vals.keys()[:10]
     return vals
 
 thisChrom=""
+thisMax=0
+blockSize=1e5
 
 print >>sys.stderr, "parsing VCF file"
 for rec in vcfReader:
     #if rec.is_indel:
 
     if thisChrom != rec.CHROM:
-        vals = _getDepthForChrom(rec.CHROM)
+        newMax = int(ceil(rec.POS/blockSize)*blockSize)
+        vals = _getDepthForRegion(rec.CHROM,0,newMax)
         thisChrom = rec.CHROM
+        thisMax = newMax
+    elif rec.POS > thisMax:
+        newMax = int(ceil(rec.POS/blockSize)*blockSize)
+        vals = _getDepthForRegion(rec.CHROM,thisMax,newMax)
+        thisChrom = rec.CHROM
+        thisMax = newMax
+
     samples = rec.samples
+
+    
+
 
     allDepths = []
     for i in range(0,len(samples)):
@@ -126,7 +141,7 @@ for rec in vcfReader:
             samples[i] = vcf.model._Call(rec,call.sample,cd) 
 #            print >>sys.stderr, '.',
         elif call.gt_type is None and depth == -1:
-            print >>sys.stderr, "warning: ",rec.CHROM+":"+str(rec.POS)+" "+call.sample+" not found in valfile and GT is null"
+            # print >>sys.stderr, "warning: ",rec.CHROM+":"+str(rec.POS)+" "+call.sample+" not found in valfile and GT is null"
 #            print >>sys.stderr, '+',
             pass
             #leave as null
