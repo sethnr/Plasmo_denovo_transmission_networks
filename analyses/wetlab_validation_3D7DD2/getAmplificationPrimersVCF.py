@@ -207,6 +207,7 @@ if args.outFile is not None:
 else:
     outfile = sys.stdout
 rvars=dict()
+rfilts=dict()
 for rec in reader:
     #print rec.CHROM,str(rec.POS),str(rec.is_indel)
     if not rec.is_indel:
@@ -266,6 +267,11 @@ for rec in reader:
         rvars[(var["chrom"],pStart,pEnd)]=[]
     rvars[(var["chrom"],pStart,pEnd)] += [var]
 
+    if (var["chrom"],pStart,pEnd) not in rfilts:
+        rfilts[(var["chrom"],pStart,pEnd)]=[]
+    for f in rec.FILTER:
+        rfilts[(var["chrom"],pStart,pEnd)] += [f]
+
 #    print >>outfile, "\t".join(map(str,[var["chrom"],
     print >>sys.stderr, "\t".join(map(str,[var["chrom"],
                     var["vstart"],
@@ -296,9 +302,9 @@ for c,s,e in sorted(rvars):
 
     print >>outfile, "\t".join(map(str,[outvar["chrom"],
                     "/".join(map(str,outvar["vstart"])),
-                    #rec.REF,
                     outvar["pStart"],
                     outvar["pEnd"],
+                    ",".join(list(set(rfilts[(c,s,e)]))),
                     #"/".join(map(str,outvar["vSizes"])),
                     "/".join(map(str,outvar["prodSizes"])),
                     pcDiff,
