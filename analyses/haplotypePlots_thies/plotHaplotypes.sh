@@ -1,0 +1,1 @@
+/seq/plasmodium/sredmond/pfdisco/scripts/plotHaplotypes.sh
