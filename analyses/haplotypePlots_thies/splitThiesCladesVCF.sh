@@ -31,6 +31,8 @@ java -jar $GATK/GenomeAnalysisTK.jar \
    -sn Th230.12 -sn Th074.13 \
    -trimAlternates
 
+vcftools  --vcf ${VCF/.vcf/.clade3.vcf} --maf 0.1 --max-maf 0.9 \
+  --out  ${VCF/.vcf/.clade3} --recode 
 
 java -jar $GATK/GenomeAnalysisTK.jar \
    -T SelectVariants \
@@ -42,6 +44,9 @@ java -jar $GATK/GenomeAnalysisTK.jar \
    -sn Th246.13 \
    -trimAlternates
 
+vcftools  --vcf ${VCF/.vcf/.clade2.vcf} --maf 0.1 --max-maf 0.9 \
+  --out  ${VCF/.vcf/.clade2} --recode 
+
 
 java -jar $GATK/GenomeAnalysisTK.jar \
    -T SelectVariants \
@@ -51,4 +56,7 @@ java -jar $GATK/GenomeAnalysisTK.jar \
    -env \
    -sn Th068.12 -sn Th061.13 -sn Th095.13 \
    -trimAlternates
+
+vcftools  --vcf ${VCF/.vcf/.clade1.vcf} --maf 0.1 --max-maf 0.9 \
+  --out  ${VCF/.vcf/.clade1} --recode 
 
