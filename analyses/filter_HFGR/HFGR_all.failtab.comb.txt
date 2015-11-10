@@ -1,0 +1,56 @@
+INDIVIDUAL FILTERS
+	LaneErr	241809
+	PhredFilter10	78148
+	RefCallOnly	76380
+	NoAllelesPassPhred23	30055
+	PASS	14572
+	Hypervariable	1215
+	TooManyCalls	1114
+
+
+COMBINED FILTERS
+	Hypervariable	1
+	Hypervariable;LaneErr	1
+	LaneErr	144314
+	NoAllelesPassPhred23	2036
+	NoAllelesPassPhred23;Hypervariable	1
+	NoAllelesPassPhred23;Hypervariable;LaneErr	56
+	NoAllelesPassPhred23;LaneErr	13001
+	NoAllelesPassPhred23;PhredFilter10	619
+	NoAllelesPassPhred23;PhredFilter10;Hypervariable;LaneErr	456
+	NoAllelesPassPhred23;PhredFilter10;LaneErr	9164
+	NoAllelesPassPhred23;RefCallOnly	126
+	NoAllelesPassPhred23;RefCallOnly;Hypervariable	1
+	NoAllelesPassPhred23;RefCallOnly;Hypervariable;LaneErr	31
+	NoAllelesPassPhred23;RefCallOnly;LaneErr	1431
+	NoAllelesPassPhred23;RefCallOnly;PhredFilter10	76
+	NoAllelesPassPhred23;RefCallOnly;PhredFilter10;Hypervariable;LaneErr	243
+	NoAllelesPassPhred23;RefCallOnly;PhredFilter10;LaneErr	2691
+	NoAllelesPassPhred23;RefCallOnly;TooManyCalls;LaneErr	2
+	NoAllelesPassPhred23;RefCallOnly;TooManyCalls;PhredFilter10;Hypervariable;LaneErr	12
+	NoAllelesPassPhred23;RefCallOnly;TooManyCalls;PhredFilter10;LaneErr	36
+	NoAllelesPassPhred23;TooManyCalls;LaneErr	7
+	NoAllelesPassPhred23;TooManyCalls;PhredFilter10;Hypervariable;LaneErr	10
+	NoAllelesPassPhred23;TooManyCalls;PhredFilter10;LaneErr	56
+	PASS	14572
+	PhredFilter10	10874
+	PhredFilter10;Hypervariable	3
+	PhredFilter10;Hypervariable;LaneErr	105
+	PhredFilter10;LaneErr	40470
+	RefCallOnly	40443
+	RefCallOnly;Hypervariable	11
+	RefCallOnly;Hypervariable;LaneErr	27
+	RefCallOnly;LaneErr	18105
+	RefCallOnly;PhredFilter10	2187
+	RefCallOnly;PhredFilter10;Hypervariable	12
+	RefCallOnly;PhredFilter10;Hypervariable;LaneErr	216
+	RefCallOnly;PhredFilter10;LaneErr	10390
+	RefCallOnly;TooManyCalls;Hypervariable;LaneErr	2
+	RefCallOnly;TooManyCalls;LaneErr	97
+	RefCallOnly;TooManyCalls;PhredFilter10;Hypervariable;LaneErr	22
+	RefCallOnly;TooManyCalls;PhredFilter10;LaneErr	219
+	TooManyCalls	5
+	TooManyCalls;LaneErr	359
+	TooManyCalls;PhredFilter10	1
+	TooManyCalls;PhredFilter10;Hypervariable;LaneErr	5
+	TooManyCalls;PhredFilter10;LaneErr	281

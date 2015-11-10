@@ -208,7 +208,7 @@ cd ../
 bgzip ${NAME}.final.variant.filtered.vcf
 tabix ${NAME}.final.variant.filtered.vcf.gz
 
-$tabrc=$?
+tabrc=$?
 if [[ $tabrc -ne 0 ]];
 then
     echo "TABIX/BGZIP ERROR";

@@ -20,6 +20,7 @@ genotab.m$value <- as.factor(genotab.m$value)
 #sort levels
 genotab.m$indv <- factor(genotab.m$indv,levels=sort(levels(genotab.m$indv)))
 
-haploPlot <- ggplot(genotab.m,aes(x=pos,y=indv,colour=value,group=indv)) + geom_point() + facet_grid(chr ~ .)
+haploPlot <- ggplot(genotab.m,aes(x=pos,y=indv,colour=value,group=indv)) + 
+  geom_point() + facet_grid(chr ~ .) + xlim(0,3.5e6)
 
 ggsave(paste(alleleFile,".png",sep=""),haploPlot,width=400,height=300,units='mm')
