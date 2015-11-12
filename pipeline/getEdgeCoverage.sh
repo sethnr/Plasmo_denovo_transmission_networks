@@ -19,20 +19,24 @@ fi
 
 #if [[ $SAMPLE_NO != $VCF_NO ]]
 #   then
-   for SAMPLE in `ls $OUT `
-       do
-	   if [[ -d "${OUT}/${SAMPLE}/" ]]
-	       then
-	       echo "concatting"
-	       cat ${OUT}/${SAMPLE}/*/*final.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fasta
-	       perl ~/bin/fasta_to_fastq.pl ${OUT}/${SAMPLE}/${SAMPLE}.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fastq
-	       bwa mem $REF ${OUT}/${SAMPLE}/${SAMPLE}.fastq | \
-		   samtools view -b - > ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
-	       samtools sort -T ${SAMPLE}.tmp -O bam -o ${OUT}/${SAMPLE}/${SAMPLE}.edges.s.bam ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
-
-	   fi
-       done
-   TODEPTH=`ls ${OUT}/*/*edges.s.bam`
+for SAMPLE in `ls $OUT `
+do
+    if [[ -d "${OUT}/${SAMPLE}/" ]]
+    then
+	if [[ ! -f ${OUT}/${SAMPLE}/${SAMPLE}.edges.s.bam ]]
+	then
+	    echo "concatting"
+	    cat ${OUT}/${SAMPLE}/*/*final.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fasta
+	    perl ~/bin/fasta_to_fastq.pl ${OUT}/${SAMPLE}/${SAMPLE}.fasta > ${OUT}/${SAMPLE}/${SAMPLE}.fastq
+	    bwa mem $REF ${OUT}/${SAMPLE}/${SAMPLE}.fastq | \
+		samtools view -b - > ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
+	    samtools sort -T ${SAMPLE}.tmp -O bam -o ${OUT}/${SAMPLE}/${SAMPLE}.edges.s.bam ${OUT}/${SAMPLE}/${SAMPLE}.edges.bam
+	else
+	    echo "${OUT}/${SAMPLE}/${SAMPLE}.edges.s.bam found"
+	fi
+    fi
+done
+TODEPTH=`ls ${OUT}/*/*edges.s.bam`
 #fi
 
 SAMPLES=""
@@ -52,9 +56,10 @@ do
 done
 echo $SAMPLES
 
-echo "depthifying"
+echo "depthifying:"
 #echo $TODEPTH
-echo `ls $OUT `
+#echo `ls $OUT `
+echo $EDGEBAMS
 samtools depth $EDGEBAMS > ${OUT}/${OUT}.edges.depth
 
 #echo "${HEADER}" > ${OUT}/${OUT}.header.txt

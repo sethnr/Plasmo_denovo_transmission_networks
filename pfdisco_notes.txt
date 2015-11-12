@@ -721,3 +721,13 @@ python ../pipeline/disco_callSTRsAndSummarise.py \
        --doneH5 completed.hdf5 \
        --dryrun
 
+
+
+#######
+
+CREATE HFGR FILE, with DD2
+isolate DD2 from 2D7DD2 set:
+  vcftools --max-missing 0.6  --indv SM-7LV8R_1 --indv SM-7LV8R_2 \
+    --recode --out 3D7DD2.2D4ONLY \
+    --gzvcf $DISCO1/disco_fullrun_3D7DD2/3D7DD2_all.vcf.gz
+    
