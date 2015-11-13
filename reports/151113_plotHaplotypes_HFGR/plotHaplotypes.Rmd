@@ -109,15 +109,15 @@ ggplot(subset(genotabH2,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo
 #HFGR - GIII
 
 #all vars
-ggplot(genotabH2,aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(size=3) + 
-  geom_line(data=subset(genotabH2,value!=0)) + facet_grid(chr ~ .) + xlim(0,3.5e6) +colsc
+ggplot(genotabH3,aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(size=3) + 
+  geom_line(data=subset(genotabH3,value!=0)) + facet_grid(chr ~ .) + xlim(0,3.5e6) +colsc
 
 #SNPs only
-ggplot(subset(genotabH2,type=="SNP"),aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(alpha=0.6,size=3) + 
-  geom_line(data=subset(genotabH2,value!=0 & type=="SNP")) + facet_grid(chr ~ type) + xlim(0,3.5e6) +colsc
+ggplot(subset(genotabH3,type=="SNP"),aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(alpha=0.6,size=3) + 
+  geom_line(data=subset(genotabH3,value!=0 & type=="SNP")) + facet_grid(chr ~ type) + xlim(0,3.5e6) +colsc
 #INDELs only
-ggplot(subset(genotabH2,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(alpha=0.6,size=3) + 
-  geom_line(data=subset(genotabH2,value!=0 & type=="INDEL")) + facet_grid(chr ~ type) + xlim(0,3.5e6) +colsc
+ggplot(subset(genotabH3,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(alpha=0.6,size=3) + 
+  geom_line(data=subset(genotabH3,value!=0 & type=="INDEL")) + facet_grid(chr ~ type) + xlim(0,3.5e6) +colsc
 
 ```
 
