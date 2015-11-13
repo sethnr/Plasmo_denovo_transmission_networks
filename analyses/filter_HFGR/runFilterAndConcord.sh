@@ -66,14 +66,28 @@ java -jar $GATK/GenomeAnalysisTK.jar \
 
 echo "CHECK SAMPLE CONSISTENCY (whole dataset)"
 echo python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
-    -v ${SAMPLE/.vcf/.PASS.vcf} -p HFGR
+    -v ${SAMPLE/.vcf/.PASS.vcf} -p HF2 \
+    -s SM-7LV8E -s SM-7LV8F -s SM-7LV8G  -s SM-7LV8H -s SM-7LV8I
+    
 python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
-    -v ${SAMPLE/.vcf/.PASS.vcf} -p HFGR 
+    -v ${SAMPLE/.vcf/.PASS.vcf} -p HF2 \
+    -s SM-7LV8E -s SM-7LV8F -s SM-7LV8G  -s SM-7LV8H -s SM-7LV8I
+if [[ $? != 0 ]]; then exit 1 ; fi
+
+echo "CHECK SAMPLE CONSISTENCY (whole dataset)"
+echo python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
+    -v ${SAMPLE/.vcf/.PASS.HF2.vcf} -p HF3 \
+    -s SM-7LV8K -s SM-7LV8L  -s SM-7LV8M -s SM-7LV8N
+
+python $DISCO1/scripts/cfs_dd2/checkSampleConsistencyVCF.py $MINOR \
+    -v ${SAMPLE/.vcf/.PASS.HF2.vcf} -p HF3 \
+    -s SM-7LV8K -s SM-7LV8L  -s SM-7LV8M -s SM-7LV8N
 if [[ $? != 0 ]]; then exit 1 ; fi
 
 
+
 #cp ${SAMPLE/.vcf/.PASS.DD2CONC.vcf} ../${OUTFILE}.PASS.DD2CONC.vcf
-cp ${SAMPLE/.vcf/.PASS.HFGR.vcf} ../${OUTFILE}.PASS.HFGR.vcf
+cp ${SAMPLE/.vcf/.PASS.HF2.HF3.vcf} ../${OUTFILE}.PASS.HFGR.vcf
 cp  ${SAMPLE/.vcf/.failtab.comb.txt} ../${OUTFILE}.failtab.comb.txt
 cp  ${SAMPLE/.vcf/.HYPF.LCHK.vcf} ../${OUTFILE}.FILTERS.vcf
 
