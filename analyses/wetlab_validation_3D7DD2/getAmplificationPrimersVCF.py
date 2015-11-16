@@ -121,12 +121,13 @@ def _get_dusted_seq(c,st,en):
     dust =_getDustRegion(c,st,en)    
     seq = list(fasta[c][st:en].seq)
     smseq = list(fasta[c][st:en].seq)
-#    print >>sys.stderr, vst,ven,(regst-regen)
-#    print >>sys.stderr, ''.join(seq)
+#    print >>sys.stderr, len(dust),len(seq)
     for c,p in dust:
+#        print c,p
         i = p-st-1
-        seq[i]='n'
-        smseq[i] = smseq[i].lower()
+        if i > 0 and i <= len(seq):
+            seq[i]='n'
+            smseq[i] = smseq[i].lower()
     print >>sys.stderr, str(round(float(len(dust))/len(seq),2))+"% flanking seq dusted"
     smseq = str(''.join(smseq))
     print >>sys.stderr, smseq
@@ -140,10 +141,19 @@ def _find_nearest_primers(var, flank=1000, increment=100):
     vrlen=var["vend"]-var["vstart"]
     c =var["chrom"]
     regst = vst-flank
-    regen = ven+flank
+    regen = ven+flank-1
     #get dusted sequence
     name=c+":"+str(vst)
+#    print >>sys.stderr, c, regst, regen
+    if regst <= 0: 
+        flank=flank+regst
+        regst=1
+    if regen > chrlens[c]: 
+        regen=chrlens[c]-1
+#    print >>sys.stderr, c, regst, regen
+
     seq = _get_dusted_seq(c,regst,regen)
+#    print >>sys.stderr, len(seq)
 
     if args.fastaOut is not None:
         print >>fastaOut, "\t".join(map(str,[name,regst,regen]))
@@ -151,10 +161,11 @@ def _find_nearest_primers(var, flank=1000, increment=100):
         
     seqvals={'SEQUENCE_ID': name,
              'SEQUENCE_TEMPLATE': seq,
-             'SEQUENCE_INCLUDED_REGION': [1,(2*flank)],
+#             'SEQUENCE_INCLUDED_REGION': [1,(2*flank)],
+             'SEQUENCE_INCLUDED_REGION': [0,len(seq)],
              'SEQUENCE_TARGET': [flank,vrlen]
 }
-#    print >>sys.stderr, seqvals
+    #print >>sys.stderr, seqvals
 
     p3res=dict()
 
@@ -170,6 +181,7 @@ def _find_nearest_primers(var, flank=1000, increment=100):
         increment += increment
         print >>sys.stderr, maxS
         if minS > flank: break
+        if maxS > len(seq): break
                                                  
     #for i in range(0,5):
     #    i = str(i)
@@ -179,7 +191,7 @@ def _find_nearest_primers(var, flank=1000, increment=100):
     if not 'PRIMER_PAIR_'+i+'_PRODUCT_SIZE' in p3res:
         print >>sys.stderr, "no primer found within "+str(flank)+"bp"
 #        print >>sys.stderr, p3res["PRIMER_PAIR_EXPLAIN"]
-        return -1,-1,-1,"",""
+        return -1,-1,-1,"","",-1,-1
     else:
         pLpos, pLlen = map(int,p3res['PRIMER_LEFT_'+i])
         pRpos, pRlen = map(int,p3res['PRIMER_RIGHT_'+i])
@@ -188,7 +200,10 @@ def _find_nearest_primers(var, flank=1000, increment=100):
         pRpos = pRpos + regst
         pL = p3res['PRIMER_LEFT_'+i+"_SEQUENCE"]
         pR = p3res['PRIMER_RIGHT_'+i+"_SEQUENCE"]
-        return pLpos, pRpos, pSize, pL, pR
+#        print >>sys.stderr, p3res
+        pLtm = p3res['PRIMER_LEFT_'+i+'_TM']
+        pRtm = p3res['PRIMER_RIGHT_'+i+'_TM']
+        return pLpos, pRpos, pSize, pL, pR, pLtm, pRtm
 #        print >>sys.stderr, pLpos, pLlen, pSize
 #        print >>sys.stderr, pRpos, pRlen, pSize
     
@@ -234,7 +249,7 @@ for rec in reader:
     while pStart == -1 and srchFlank < maxFlank:
         srchFlank += args.flank
         print >>sys.stderr, srchFlank
-        pStart,pEnd,prodSize,p1,p2 = _find_nearest_primers(var,srchFlank)
+        pStart,pEnd,prodSize,p1,p2,pt1,pt2 = _find_nearest_primers(var,srchFlank)
 #    if prodSize > -1:
 #        pSizes = [prodSize] + [prodSize+l for l in var["vlen"]]
 #        pSizes = map(str,pSizes)
@@ -262,7 +277,8 @@ for rec in reader:
     var["prodSizes"]=pSizes
     var["p5"]=p1
     var["p3"]=p2
-
+    var["pt5"]=pt1
+    var["pt3"]=pt2
     if (var["chrom"],pStart,pEnd) not in rvars:
         rvars[(var["chrom"],pStart,pEnd)]=[]
     rvars[(var["chrom"],pStart,pEnd)] += [var]
@@ -308,5 +324,6 @@ for c,s,e in sorted(rvars):
                     #"/".join(map(str,outvar["vSizes"])),
                     "/".join(map(str,outvar["prodSizes"])),
                     pcDiff,
-                    outvar["p5"],outvar["p3"]])
+                    outvar["p5"],outvar["p3"],
+                    outvar["pt5"],outvar["pt3"]])
                     )
