@@ -21,11 +21,19 @@ distmat = matrix(nrow=length(inds),ncol=length(inds))
 colnames(distmat) = inds
 rownames(distmat) = inds
 
+write("calculating distance matrix",stderr())
 for (i in rownames(genos)){
     for (j in rownames(genos)){
-    distmat[i,j] = sum(genos[i,]!=genos[j,])
+    filled = intersect(which(genos[i,] != 0), which(genos[j,] !=0))
+    write(paste("calculating",i,"v",j),stderr())
+    write(length(filled),stderr())
+    
+#    distmat[i,j] = sum(genos[i,]!=genos[j,])
+    distmat[i,j] = sum(genos[i,filled]!=genos[j,filled])
     }
 }
+
+write.table(distmat,stderr())
             
 #make NJ trees and save as Nexus
 njtree <- nj(as.dist(distmat))
