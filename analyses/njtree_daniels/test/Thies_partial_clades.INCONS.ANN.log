@@ -1,0 +1,17 @@
+
+VCFtools - v0.1.10
+(C) Adam Auton 2009
+
+Parameters as interpreted:
+	--vcf Thies_partial_clades.INCONS.ANN.vcf
+	--012
+	--out Thies_partial_clades.INCONS.ANN
+
+Reading Index file.
+File contains 839 entries and 36 individuals.
+Applying Required Filters.
+After filtering, kept 36 out of 36 Individuals
+After filtering, kept 839 out of a possible 839 Sites
+Writing 012 matrix file ... 	012: Only outputting biallelic loci.
+Writing 012 positions file ... Done.
+Run Time = 0.00 seconds
