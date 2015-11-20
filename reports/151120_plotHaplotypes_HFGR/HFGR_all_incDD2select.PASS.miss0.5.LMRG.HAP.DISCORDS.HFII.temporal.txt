@@ -1,0 +1,7 @@
+Pf3D7_02_v3	287739	INDEL	['CAT', 'C'] 	0 	1 	1 	1 	1 	1 mut1	0.833
+Pf3D7_06_v3	870784	INDEL	['AAT', 'A'] 	0 	1 	1 	1 	1 	1 mut1	0.833
+Pf3D7_07_v3	697252	INDEL	['T', 'TTATAA'] 	0 	1 	. 	. 	1 	1 mut1	0.75
+Pf3D7_10_v3	1547111	SNP	['G', 'A'] 	0 	1 	1 	1 	1 	1 mut1	0.833
+Pf3D7_10_v3	1547122	SNP	['T', 'C'] 	0 	1 	1 	1 	1 	1 mut1	0.833
+Pf3D7_10_v3	1547125	SNP	['A', 'C'] 	0 	1 	1 	1 	1 	1 mut1	0.833
+Pf3D7_13_v3	1598144	INDEL	['T', 'TCTTTTTCTTTTCCTTTTTCTTTTTCTTTTTCTTTTC'] 	0 	1 	1 	1 	1 	0 revertant	0.667
