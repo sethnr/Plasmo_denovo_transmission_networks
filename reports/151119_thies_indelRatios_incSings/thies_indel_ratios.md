@@ -20,6 +20,13 @@ sym <- function(M) {
   M
 }
 
+
+ggcolour <- function(n) {
+  hues = seq(15, 375, length=n+1)
+  hcl(h=hues, l=65, c=100)[1:n]
+}
+
+
 tree_order <- c(
 "Th166.12", "Th246.13", "Th245.13", "Th211.13" ,"Th092.13" ,
 "Th086.07", "Th106.09",  "Th230.12","Th074.13", "Th132.11","Th162.12","Th196.12", "Th106.11", "Th117.11", "Th134.11",
@@ -249,10 +256,23 @@ ggplot(distances,aes(x=total,y=ratio,colour=total,group=related,label=clades)) +
 
 ```r
 #SNP vs INDEL distances, all samples
-ggplot(distances,aes(x=snp,y=indel,colour=related,group=related,label=clades)) + geom_text(size=4) + unrelatedLM
+
+ggplot(distances,aes(x=snp,y=indel,colour=related,group=related,label=clades)) + geom_text(size=4) + unrelatedLM + geom_abline(slope=0.5,linetype="dashed")
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-5.png) 
+
+```r
+ggplot(subset(distances,related=="RELATED"),aes(x=snp,y=indel,colour=related,group=related,label=clades)) + geom_text(size=4) + unrelatedLM + geom_abline(linetype="dashed",slope=0.5)
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-6.png) 
+
+```r
+ggplot(subset(distances,related=="UNRELATED"),aes(x=snp,y=indel,colour=related,group=related,label=clades)) + geom_text(size=4,colour=ggcolour(2)[[2]]) + unrelatedLM + geom_abline(linetype="dashed",slope=0.5)
+```
+
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-7.png) 
 
 ```r
 #ggplot(distances,aes(x=snp,y=indel,colour=related,group=related,label=clades)) + geom_text(size=4) + unrelatedLM + facet_grid(. ~ related,scale="free")
