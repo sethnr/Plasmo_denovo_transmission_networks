@@ -153,20 +153,22 @@ for(i in 1:dim(distances)[[1]]){
 
 ```r
 relcol <- scale_color_manual(values=c("white","black"))
-ggplot(distances,aes(x=Var1,y=Var2,fill=total,label=total,colour=related)) + geom_tile() + scale_fill_gradient(trans="log") + geom_text(size=3) + relcol
+vxlab <- theme(axis.text.x = element_text(angle = 90, hjust = 1))  
+
+ggplot(distances,aes(x=Var1,y=Var2,fill=total,label=total,colour=related)) + geom_tile() + scale_fill_gradient(trans="log") + geom_text(size=3) + relcol + vxlab
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ```r
-ggplot(distances,aes(x=Var1,y=Var2,fill=interval_yrs)) + geom_tile()
+ggplot(distances,aes(x=Var1,y=Var2,fill=interval_yrs)) + geom_tile() + vxlab
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
 
 ```r
 sigcol <- scale_color_manual(values=c("white","red"))
-ggplot(distances,aes(x=Var1,y=Var2,fill=ratio,label=ratio)) + geom_tile(size=1) + geom_text(aes(colour=ratioP < 0.01),size=4) + sigcol
+ggplot(distances,aes(x=Var1,y=Var2,fill=ratio,label=ratio)) + geom_tile(size=1) + geom_text(aes(colour=ratioP < 0.01),size=4) + sigcol + vxlab
 ```
 
 ```
@@ -178,7 +180,7 @@ ggplot(distances,aes(x=Var1,y=Var2,fill=ratio,label=ratio)) + geom_tile(size=1) 
 ```r
 ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=ratio,label=ratio_t)) + geom_tile(size=1) + 
   geom_text(aes(colour=ratioP < 0.01),size=4) + 
-  geom_text(data=subset(distances,related=="UNRELATED"),size=4) + sigcol
+  geom_text(data=subset(distances,related=="UNRELATED"),size=4) + sigcol + vxlab
 ```
 
 ```
