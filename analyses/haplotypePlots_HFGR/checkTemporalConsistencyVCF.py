@@ -36,8 +36,8 @@ if args.filter:
 vcfoutF1 = replace(args.vcfFile1,'.vcf','.'+args.prefix+'.vcf')
 vcfoutF1 = replace(vcfoutF1,'.vcf.gz','.'+args.prefix+'.vcf')
 #print >>sys.stdout, "VCFOUT1",vcfoutF1
-vcfoutF1 = open(vcfoutF1,'w')
-vcfout1=vcf.Writer(vcfoutF1,reader1)
+#vcfoutF1 = open(vcfoutF1,'w')
+#vcfout1=vcf.Writer(vcfoutF1,reader1)
 
 if args.samples is None:    
     samples = list()
