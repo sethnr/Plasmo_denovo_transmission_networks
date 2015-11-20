@@ -1,0 +1,20 @@
+python checkTemporalConsistencyVCF.py \
+  -v HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.vcf \
+  -s DD2-2D4 -s HFGRII.2-10x -s HFGRII.1-30x \
+  -s HFGRII.1-200x -s HFGRII.2-200x -s HFGRII.2-300x | \
+  grep -v -e revertant -e none | \
+  perl -lane 'print $_ if $F[5] eq "0/0" && $F[12] > 0.5'> \
+  HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.HF2.temporal.txt
+
+
+python checkTemporalConsistencyVCF.py \
+  -v HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.vcf \
+  -s DD2-2D4 -s HFGRIII.1-30x -s HFGRIII.1-60x \
+  -s HFGRIII.2-60x -s HFGRIII.3-200x | \
+  grep -v -e revertant -e none | \
+  perl -lane 'print $_ if $F[5] eq "0/0" && $F[12] > 0.5'> \
+  HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.HF3.temporal.txt
+
+
+cat HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.HF3.temporal.txt | \
+ grep -v -e revertant -e none | perl -lane 'print $_ if $F[5] eq "0/0" && $F[12] > 0.5'
