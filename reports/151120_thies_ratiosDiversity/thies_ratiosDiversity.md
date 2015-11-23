@@ -69,7 +69,7 @@ chrLens <- read.table("chrLens.txt",sep="\t",row.names=1,col.names=c("name","pos
 
 
 ```r
-window=100
+window=25
 
 allalleles <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.tab.txt",sep="\t",header=T)
 allalleles$cumpos <- allalleles$pos + chrLens[as.character(allalleles$chr),"increment"]
@@ -82,14 +82,7 @@ allratios <- data.frame("pos"=rollapply(allalleles$cumpos,FUN=mean,width=window)
   "chrCol"=rollapply(allalleles$chr,FUN=function(x) {as.numeric(x[1]) %% 2},width=window),
   "dataset"="all"
 )
-```
 
-```
-## Warning in rollmean.zoo(data, width, fill = fill, align = align): integer
-## overflow in 'cumsum'; use 'cumsum(as.numeric(.))'
-```
-
-```r
 betweenalleles <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.MKSNGL.alleles.tab.txt",sep="\t",header=T)
 betweenalleles$cumpos <- betweenalleles$pos + chrLens[as.character(betweenalleles$chr),"increment"]
 
@@ -100,14 +93,7 @@ betweenratios <- data.frame("pos"=rollapply(betweenalleles$cumpos,FUN=mean,width
   "chrCol"=rollapply(betweenalleles$chr,FUN=function(x) {as.numeric(x[1]) %% 2},width=window),
   "dataset"="between"
 )
-```
 
-```
-## Warning in rollmean.zoo(data, width, fill = fill, align = align): integer
-## overflow in 'cumsum'; use 'cumsum(as.numeric(.))'
-```
-
-```r
 withinalleles <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.MKSNGL.DISCORD.alleles.tab.txt",sep="\t",header=T)
 withinalleles$cumpos <- withinalleles$pos + chrLens[as.character(withinalleles$chr),"increment"]
 
@@ -156,56 +142,23 @@ clade3ratios <- data.frame("pos"=rollapply(clade3alleles$cumpos,FUN=mean,width=w
 )
 ```
 
+#between and within clades
 
 ```r
-ratios <-rbind(allratios,betweenratios,withinratios,clade1ratios,clade2ratios,clade3ratios)
-
+ratios <-rbind(allratios,betweenratios,withinratios)
 ratios <- subset(ratios,chrNo==1)
-ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .)
-```
-
-```
-## Warning: Removed 709 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 290 rows containing missing values (geom_point).
+ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .) + xlim(0,24e6)
 ```
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
-```r
-clade1ratios <- subset(clade1ratios,chrNo==1)
-clade2ratios <- subset(clade2ratios,chrNo==1)
-clade3ratios <- subset(clade3ratios,chrNo==1)
-
-
-
-ggplot(allratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-```
-
-```
-## Warning: Removed 709 rows containing missing values (geom_point).
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
+#within clades only
 
 ```r
-ggplot(clade1ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
+ratios <-rbind(clade1ratios,clade2ratios,clade3ratios)
+ratios <- subset(ratios,chrNo==1)
+ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .) + xlim(0,24e6)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png) 
-
-```r
-ggplot(clade2ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png) 
-
-```r
-ggplot(clade3ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-5.png) 
-
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 

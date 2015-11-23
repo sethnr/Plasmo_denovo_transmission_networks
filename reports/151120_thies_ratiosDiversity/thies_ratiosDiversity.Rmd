@@ -61,7 +61,7 @@ chrLens <- read.table("chrLens.txt",sep="\t",row.names=1,col.names=c("name","pos
 
 ```{r}
 
-window=100
+window=25
 
 allalleles <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.tab.txt",sep="\t",header=T)
 allalleles$cumpos <- allalleles$pos + chrLens[as.character(allalleles$chr),"increment"]
@@ -137,26 +137,19 @@ clade3ratios <- data.frame("pos"=rollapply(clade3alleles$cumpos,FUN=mean,width=w
 
 ```
 
+#between and within clades
 ```{r}
-ratios <-rbind(allratios,betweenratios,withinratios,clade1ratios,clade2ratios,clade3ratios)
-
+ratios <-rbind(allratios,betweenratios,withinratios)
 ratios <- subset(ratios,chrNo==1)
-ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .)
-
-clade1ratios <- subset(clade1ratios,chrNo==1)
-clade2ratios <- subset(clade2ratios,chrNo==1)
-clade3ratios <- subset(clade3ratios,chrNo==1)
-
-
-
-ggplot(allratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-
-ggplot(clade1ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-ggplot(clade2ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-ggplot(clade3ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + scale_y_log10()
-
-
+ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .) + xlim(0,24e6)
 
 ```
 
+#within clades only
+```{r}
+ratios <-rbind(clade1ratios,clade2ratios,clade3ratios)
+ratios <- subset(ratios,chrNo==1)
+ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .) + xlim(0,24e6)
+
+```
 
