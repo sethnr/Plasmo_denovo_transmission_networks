@@ -6,7 +6,7 @@ library(zoo)
 
 
 ```r
-opts_chunk$set(fig.width=10, fig.height=9)
+opts_chunk$set(fig.width=14, fig.height=8)
 ```
 
 
