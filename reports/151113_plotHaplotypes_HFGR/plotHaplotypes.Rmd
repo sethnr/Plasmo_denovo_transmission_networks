@@ -91,6 +91,7 @@ ggplot(subset(genotab1,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo,
 
 ```{r}
 #HFGR - GII
+tempH2 <- read.table("../../analyses/haplotypePlots_HFGR/HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.HF2.temporal.txt")
 
 #all vars
 ggplot(genotabH2,aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(size=3) + 
@@ -107,6 +108,7 @@ ggplot(subset(genotabH2,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo
 
 ```{r}
 #HFGR - GIII
+tempH3 <- read.table("../../analyses/haplotypePlots_HFGR/HFGR_all.incDD2.PASS.HFGR.LMRG.RENAME.HF3.temporal.txt")
 
 #all vars
 ggplot(genotabH3,aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(size=3) + 
