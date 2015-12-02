@@ -75,7 +75,7 @@ allratios <- data.frame("pos"=rollapply(allalleles$cumpos,FUN=mean,width=window)
   "dataset"="all"
 )
 
-betweenalleles <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.MKSNGL.alleles.tab.txt",sep="\t",header=T)
+betweenalleles <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.MKSNGL.CONCORD.alleles.tab.txt",sep="\t",header=T)
 betweenalleles$cumpos <- betweenalleles$pos + chrLens[as.character(betweenalleles$chr),"increment"]
 
 betweenratios <- data.frame("pos"=rollapply(betweenalleles$cumpos,FUN=mean,width=window),
@@ -140,7 +140,7 @@ clade3ratios <- data.frame("pos"=rollapply(clade3alleles$cumpos,FUN=mean,width=w
 #between and within clades
 ```{r}
 ratios <-rbind(allratios,betweenratios,withinratios)
-ratios <- subset(ratios,chrNo==1)
+#ratios <- subset(ratios,chrNo==1)
 ggplot(ratios,aes(x=pos,y=ratio,colour=chrCol)) + geom_point() + geom_hline(aes(yintercept=2)) + scale_y_log10() + facet_grid(dataset ~ .) + xlim(0,24e6)
 
 ```
