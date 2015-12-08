@@ -29,7 +29,11 @@ for (i in rownames(genos)){
     write(length(filled),stderr())
     
 #    distmat[i,j] = sum(genos[i,]!=genos[j,])
-    distmat[i,j] = sum(genos[i,filled]!=genos[j,filled])
+    if(length(filled) > 0) {
+        distmat[i,j] = sum(genos[i,filled]!=genos[j,filled])
+      }else {
+    	  distmat[i,j]=-1
+      }
     }
 }
 
