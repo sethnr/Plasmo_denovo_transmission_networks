@@ -16,7 +16,7 @@ for BAM in *.bam;
 do
     for FRACT in 0.2 0.4 0.5 0.6 0.8;
     do
-	samtools view -s $FRACT -b $BAM Pf3D7_04_v3 > data/${BAM/.bam/.c4.$FRACT.bam}
+#	samtools view -s $FRACT -b $BAM Pf3D7_04_v3 > data/${BAM/.bam/.c4.$FRACT.bam}
     done
 done
 
@@ -37,3 +37,6 @@ samtools cat -o data/Dd2comb_2D40.6_L12  data/Dd22D4_1.c4.0.6.bam data/Dd2FDK2_1
     data/Dd22D4_2.c4.0.6.bam data/Dd2FDK2_2.c4.0.4.bam
 samtools cat -o data/Dd2comb_2D40.8_L12  data/Dd22D4_1.c4.0.8.bam data/Dd2FDK2_1.c4.0.2.bam \
     data/Dd22D4_2.c4.0.8.bam data/Dd2FDK2_2.c4.0.2.bam
+
+
+

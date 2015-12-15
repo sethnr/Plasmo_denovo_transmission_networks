@@ -48,7 +48,9 @@ if args.bottle:
 if args.multip:
     F = F+".mtp"
 
-outfile = open("allele_frequencies.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".txt","w")
+outfile = open("qstages.AF.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".txt","w")
+afreqs = open("qstages.AF.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".AFs.txt","w")
+
 
 SNPmutRate=SNPmutRate*m
 INDELmutRate=INDELmutRate*m
@@ -118,10 +120,9 @@ def _printGen():
     print "detectable:",noDMutations, # detSIratio,
     print hist #,histI
 
-    clones = pop.get_clone_sizes()
-    clones.sort()
-    print clones #,histI
+    posAf.sort()
     print >>outfile, "\t".join(map(str,[pop.generation,pop.N] + hist.tolist() + [noMaxMutations]))
+    print >>afreqs, "\t".join(map(str,[pop.generation] + posAf.tolist()))
 
 detLimit=0.05
 
@@ -144,15 +145,16 @@ while pop.generation < maxgen:
 
     # save allele frequencies and time
     # every 200 generations, make one of the deleterious mutations beneficial
-    if pop.generation<10:
+#    if pop.generation<10:
+    if pop.generation in [14,90,180]:
         allele_frequencies.append(pop.get_allele_frequencies()) 
         tp.append(pop.generation)
         _printGen()
 
-    if (pop.generation % 10 == 0):
-        allele_frequencies.append(pop.get_allele_frequencies()) 
-        tp.append(pop.generation)
-        _printGen()
+#    if (pop.generation % 10 == 0):
+#        allele_frequencies.append(pop.get_allele_frequencies()) 
+#        tp.append(pop.generation)
+#        _printGen()
     pcMax = float(pop.N)/pop.carrying_capacity
     if pcMax > BN and args.bottle:        
 #        print "bottlenecking: "+" ".join(map(str,[args.C,pop.N,round(pcMax,2),int(pop.N*(1-(BN*pcMax)))]))
