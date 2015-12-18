@@ -40,6 +40,7 @@ echo java -jar $PICARD AddOrReplaceReadGroups \
     RGPL=$RGPLATFORM \
     RGPU=$RGPLATUNIT \
     RGSM=$RGSAMPLE \
+    VALIDATION_STRINGENCY=SILENT \
     RGCN=BI \
     RGPI=$RGINSERT 
 
@@ -51,6 +52,7 @@ java -jar $PICARD AddOrReplaceReadGroups \
     RGPL=$RGPLATFORM \
     RGPU=$RGPLATUNIT \
     RGSM=$RGSAMPLE \
+    VALIDATION_STRINGENCY=SILENT \
     RGCN=BI \
     RGPI=$RGINSERT
 

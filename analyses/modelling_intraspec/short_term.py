@@ -13,7 +13,7 @@ L = int(1e4)  #no_loci
 lowC=int(1.5e6)    #capacity
 highC=1e8    #capacity
 C=int(highC)
-N=1       #init pop
+N=36       #init pop
 
 
 parser = argparse.ArgumentParser(description='run drift model of within-host allele frequencies')
@@ -48,8 +48,8 @@ if args.bottle:
 if args.multip:
     F = F+".mtp"
 
-outfile = open("qstages.AF.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".txt","w")
-afreqs = open("qstages.AF.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".AFs.txt","w")
+outfile = open("qstages.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".allgen.txt","w")
+# afreqs = open("qstages.AF.C"+str(args.C/1e6)+"m.L"+str(args.L/1e6)+"mb.G"+str(args.G)+F+".AFs.txt","w")
 
 
 SNPmutRate=SNPmutRate*m
@@ -57,10 +57,13 @@ INDELmutRate=INDELmutRate*m
 
 # set up population
 pop = h.haploid_highd(args.L)                        # produce an instance of haploid_highd with L loci
-pop.growth_rate=36
+pop.growth_rate=args.G
 pop.carrying_capacity = args.C                       # set the average population size to 50000
 
-pop.outcrossing_rate = 0                        # remove outcrossing
+pop.outcrossing_rate = 1                        # remove outcrossing
+
+#pop.recombination_model = 1                        # remove outcrossing
+
 pop.crossover_rate = 0                          # set the crossover rate to zero (core genome)
 pop.mutation_rate = SNPmutRate + INDELmutRate   # per locus mutation rate equal to 0.1/N
 #pop.mutation_rate = INDELmutRate   # per locus mutation rate equal to 0.1/N
@@ -68,6 +71,10 @@ selection_coefficients = 0.0*np.ones(pop.L)     # most loci are neutral
 pop.set_trait_additive(selection_coefficients)  # trait 0 is by default fitness
 initial_allele_frequencies = np.zeros(pop.L)    # set all alleles to zero (clonal founder)
 pop.set_wildtype(N)
+
+
+print "growth:",pop.growth_rate, 
+print "fitness:",pop.get_fitness_statistics(), 
 
 
 # popI = h.haploid_highd(L)                        # produce an instance of haploid_highd with L loci
@@ -113,6 +120,7 @@ def _printGen():
 
     print "generation:", pop.generation, "days:",pop.generation*2,"\t",
     print "N:",pop.N, 
+    print "G:",pop.growth_rate, 
     print "%:",round(pop.N/float(pop.carrying_capacity),2), 
     print "part_ratio:",round(pop.participation_ratio,2),
 ##    print "clones:",pop.number_of_clones,
@@ -122,9 +130,10 @@ def _printGen():
 
     posAf.sort()
     print >>outfile, "\t".join(map(str,[pop.generation,pop.N] + hist.tolist() + [noMaxMutations]))
-    print >>afreqs, "\t".join(map(str,[pop.generation] + posAf.tolist()))
+#    if pop.generation in [1,14,90,180]:
+#        print >>afreqs, "\t".join(map(str,[pop.generation] + posAf.tolist()))
 
-detLimit=0.05
+detLimit=0.02
 
 # evolve for 2000 generations and track the allele frequencies
 maxgen = 150
@@ -135,7 +144,7 @@ popStep=1
 #nb: no of generation to KILL
 BN=0.8
 
-maxAF =0.25
+maxAF =0.2
 
 
 while pop.generation < maxgen:
@@ -143,18 +152,17 @@ while pop.generation < maxgen:
     pop.evolve(popStep)
 #    popI.evolve(popStep)
 
-    # save allele frequencies and time
-    # every 200 generations, make one of the deleterious mutations beneficial
-#    if pop.generation<10:
-    if pop.generation in [14,90,180]:
-        allele_frequencies.append(pop.get_allele_frequencies()) 
-        tp.append(pop.generation)
-        _printGen()
-
-#    if (pop.generation % 10 == 0):
+    if pop.generation < 10:
 #        allele_frequencies.append(pop.get_allele_frequencies()) 
 #        tp.append(pop.generation)
-#        _printGen()
+        _printGen()
+
+    if (pop.generation % 14 == 0):
+#        allele_frequencies.append(pop.get_allele_frequencies()) 
+#        tp.append(pop.generation)
+        _printGen()
+        popStep=14
+
     pcMax = float(pop.N)/pop.carrying_capacity
     if pcMax > BN and args.bottle:        
 #        print "bottlenecking: "+" ".join(map(str,[args.C,pop.N,round(pcMax,2),int(pop.N*(1-(BN*pcMax)))]))

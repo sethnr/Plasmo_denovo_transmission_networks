@@ -15,7 +15,6 @@ while getopts "B:b:R:l:p:o:V" opt; do
   case $opt in
     b) BAM=${OPTARG} ;;
     B) BAMSFILE=$OPTARG ;;
-#    l) LOCUS=$OPTARG ;;
     l) LOCIFILE=$OPTARG ;;
     p) PLOIDY=$OPTARG;;
     R) REF=$OPTARG;;
@@ -42,6 +41,16 @@ if [[ $LOCIFILE == *"bed" ]]
   perl -lane 'print $F[0].":".$F[1]."-".$F[2]' $LOCIFILE > ${LOCIFILE//.bed/.intervals}
   LOCIFILE=${LOCIFILE//.bed/.intervals}
 fi
+echo java -jar  ${GATK}/GenomeAnalysisTK.jar \
+    -T UnifiedGenotyper \
+    -I ${BAM} \
+    -ploidy ${PLOIDY} -glm GENERALPLOIDYSNP \
+    -o ${OUTFILE} \
+    -pnrm EXACT_GENERAL_PLOIDY \
+    -R ${REF} \
+    -L ${LOCIFILE} \
+    -gt_mode DISCOVERY \
+    ${VARONLY}
 
 java -jar  ${GATK}/GenomeAnalysisTK.jar \
     -T UnifiedGenotyper \
