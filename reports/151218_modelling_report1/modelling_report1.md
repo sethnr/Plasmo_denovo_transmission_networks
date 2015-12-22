@@ -3,7 +3,7 @@ library(reshape2)
 library(knitr)
 
 ```r
-opts_chunk$set(fig.width=10, fig.height=9)
+opts_chunk$set(fig.width=12, fig.height=6)
 ```
 
 
