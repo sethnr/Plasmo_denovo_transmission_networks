@@ -7,6 +7,7 @@ BAMSFILE="NULL"
 PLOIDY=1
 OUTFILE="GATK_out.vcf"
 VARONLY="-out_mode EMIT_ALL_SITES"
+MODE="DISCOVERY"
 
 PICARD=/seq/software/picard/1.99/bin
 GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
@@ -18,6 +19,7 @@ while getopts "B:b:R:l:p:o:V" opt; do
     l) LOCIFILE=$OPTARG ;;
     p) PLOIDY=$OPTARG;;
     R) REF=$OPTARG;;
+    m) MODE=$OPTARG;;
     o) OUTFILE=$OPTARG;;
     V) VARONLY="";;
    \?) echo "Invalid option: -$OPTARG" >&2 ;;
@@ -49,7 +51,7 @@ echo java -jar  ${GATK}/GenomeAnalysisTK.jar \
     -pnrm EXACT_GENERAL_PLOIDY \
     -R ${REF} \
     -L ${LOCIFILE} \
-    -gt_mode DISCOVERY \
+    -gt_mode ${MODE} \
     ${VARONLY}
 
 java -jar  ${GATK}/GenomeAnalysisTK.jar \
@@ -60,5 +62,5 @@ java -jar  ${GATK}/GenomeAnalysisTK.jar \
     -pnrm EXACT_GENERAL_PLOIDY \
     -R ${REF} \
     -L ${LOCIFILE} \
-    -gt_mode DISCOVERY \
+    -gt_mode ${MODE} \
     ${VARONLY}
