@@ -1,6 +1,7 @@
 library(ggplot2)
 library(reshape2)
 library(knitr)
+library(splines)
 
 ```r
 opts_chunk$set(fig.width=12, fig.height=6)
@@ -31,8 +32,10 @@ idcols <- key$colour
 names(idcols) <- key$id
 daycols <- key$colour
 names(daycols) <- key$day
+```
 
 
+```r
 ggplot(afcfs_m,aes(x=MAF,group=id,colour=days)) + geom_density(adjust=0.5) + xlim(0,0.1) +  ggtitle("sfs short/ long term infections") + scale_colour_manual(values=daycols)
 ```
 
@@ -126,7 +129,7 @@ ggplot(afcfs_m,aes(x=MAF,group=id,colour=days)) + geom_density(adjust=0.5) + xli
 ## values (stat_density).
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
 
 ```r
 ggplot(subset(afcfs_m,MAF>0.01),aes(x=MAF,group=id,colour=days)) + geom_density(adjust=0.8) + xlim(0,0.1)+scale_colour_manual(values=daycols) + ggtitle("sfs  short/ long term infections (af > 1pc)")
@@ -222,7 +225,7 @@ ggplot(subset(afcfs_m,MAF>0.01),aes(x=MAF,group=id,colour=days)) + geom_density(
 ## values (stat_density).
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png) 
 
 ```r
 ggplot(subset(afcfs_m,MAF>0.01),aes(x=MAF,group=days,colour=days)) + geom_density(adjust=1.5) + xlim(0,0.5)+scale_colour_manual(values=daycols) + ggtitle("sfs  short/ long term infections (af > 1pc)")
@@ -238,7 +241,7 @@ ggplot(subset(afcfs_m,MAF>0.01),aes(x=MAF,group=days,colour=days)) + geom_densit
 ## values (stat_density).
 ```
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png) 
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-3.png) 
 
 
 
@@ -254,7 +257,7 @@ histo$pc10 <- apply(histo[,13:25],1,FUN=sum)
 ggplot(histo,aes(x=gen,y=pc2,colour=run)) + geom_point()
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 ```r
 detects <- aggregate(histo[,c("pc2","pc5","pc10")],list("gen"=histo$gen),FUN=mean)
@@ -263,8 +266,52 @@ colnames(detects) <- c("gen","MAF","mean")
 levels(detects$MAF) <- c(">0.02",">0.05",">0.1")
 detects$days <- detects$gen*2
 
-ggplot(detects,aes(x=days,y=mean,colour=MAF))+ geom_smooth(adjust=0.8) + geom_point() +
-   geom_vline(xintercept=28,linetype=2) + geom_vline(xintercept=180,linetype=2)
+#LOESS
+ggplot(detects,aes(x=days,y=mean,colour=MAF))+ geom_point() +
+  geom_smooth(method = "loess" ) + 
+   geom_vline(xintercept=28,linetype=2) + geom_vline(xintercept=180,linetype=2)+
+  ggtitle("LOESS")
 ```
 
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-2.png) 
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png) 
+
+```r
+#GLM
+ggplot(detects,aes(x=days,y=mean,colour=MAF))+ geom_point() +
+#  geom_smooth(method = "lm", formula = y ~ ns(x,3)) + 
+  geom_smooth(method = "glm", formula = y ~ ns(x,4) ) + 
+   geom_vline(xintercept=28,linetype=2) + geom_vline(xintercept=180,linetype=2)+
+  ggtitle("GLM")
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-3.png) 
+
+```r
+#LOESS, lim 120 days
+ggplot(detects,aes(x=days,y=mean,colour=MAF))+ geom_point() +
+  geom_smooth(method = "loess") + xlim(0,130) +
+   geom_vline(xintercept=28,linetype=2) + geom_vline(xintercept=120,linetype=2)+
+  ggtitle("LOESS, lim 130, samp 120")
+```
+
+```
+## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (stat_smooth).
+```
+
+```
+## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (stat_smooth).
+```
+
+```
+## Warning in loop_apply(n, do.ply): Removed 26 rows containing missing
+## values (stat_smooth).
+```
+
+```
+## Warning in loop_apply(n, do.ply): Removed 78 rows containing missing
+## values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-4.png) 

@@ -42,7 +42,7 @@ colnames(callable5k_disco)[[4]] <- "disco"
 colnames(callable5k_haplo)[[4]] <- "haplo"
 
 callable5k<-merge(callable5k_disco,callable5k_haplo)
-callable5k$accessible <- NULL
+callable5k$accessible <- NULL # "accessible"
 callable5k[callable5k$disco=="True" & callable5k$haplo=="False","accessible"] <- "DISCOVAR only"
 callable5k[callable5k$disco=="False" & callable5k$haplo=="True","accessible"] <- "haplo only"
 callable5k[callable5k$disco=="False" & callable5k$haplo=="False","accessible"] <- "inacessible"
@@ -52,24 +52,38 @@ callable5k <- subset(callable5k,!ch %in% c("MIT","API"))
 ```
 
 
+```r
+chrnames <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
+chrlen <- data.frame("ch"=chrnames,"st"=rep(0,length(chrnames)),"en"=aggregate(callable5k_disco$en,list(callable5k_disco$ch),FUN=max)[,2])
+chrlen <- subset(chrlen,!ch %in% c("MIT","API"))
+```
 
 
 
 ```r
-ggplot(callable5k,aes(xmin=st,xmax=en,ymin=0,ymax=1,fill=accessible)) + 
-  ggtitle(paste("callable regions (5kb windows)")) +
-  geom_rect() + scale_fill_manual(values=c("red","blue","purple"))+
-  facet_grid(ch ~ .)    #+ theme(strip.text.y = element_text(angle=0)) 
+blank_theme <-   theme(axis.line.y=element_blank(), axis.ticks.y=element_blank(),axis.text.y=element_blank(),
+        panel.background=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        legend.position="bottom")
+
+ggplot(callable5k,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
+  ggtitle(paste("accessible regions (5kb windows)")) +
+  geom_rect(aes(fill=accessible)) + scale_fill_manual(values=c("blue","orange","grey"))+
+  geom_rect(data=chrlen, fill=NA,colour="black")+
+  facet_grid(ch ~ .)  + blank_theme
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
 
 ```r
-ggplot(callable1k,aes(xmin=st,xmax=en,ymin=0,ymax=1,fill=accessible)) + 
-  ggtitle(paste("callable regions (1kb windows)")) +
-  geom_rect() + scale_fill_manual(values=c("red","blue","purple"))+
-  facet_grid(ch ~ .)    #+ theme(strip.text.y = element_text(angle=0)) 
+ #+ theme(strip.text.y = element_text(angle=0)) 
+
+
+ggplot(callable1k,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
+  ggtitle(paste("accessible regions (1kb windows)")) +
+  geom_rect(aes(fill=accessible)) + scale_fill_manual(values=c("blue","orange","grey"))+
+  geom_rect(data=chrlen, fill=NA,colour="black")+
+  facet_grid(ch ~ .)  + blank_theme
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png) 
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png) 
 
