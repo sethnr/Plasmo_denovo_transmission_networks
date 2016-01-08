@@ -22,5 +22,6 @@ popSizes$smooth <- predict(smoothmax,data.frame(t=popSizes$t))
 #popSizes$smooth*5e6
 m=5e6
 ggplot(popSizes,aes(x=t,y=smooth*m)) + geom_line() + geom_line(aes(x=t,y=max*m),colour="red") + scale_y_log10()
-maxtab <- cbind(popSizes$t,predict(smoothmax,data.frame(t=popSizes$t))*m)
+maxtab <- cbind(popSizes$t,round(predict(smoothmax,data.frame(t=popSizes$t))*m))
 colnames(maxtab) <- c("T","C")
+write.table(maxtab,"popSize_max_loess.txt", col.names=T,row.names=F,sep="\t",quote=F)
