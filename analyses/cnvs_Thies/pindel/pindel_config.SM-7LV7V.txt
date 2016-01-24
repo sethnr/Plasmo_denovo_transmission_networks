@@ -1,0 +1,2 @@
+/seq/plasmodium/sredmond/pfdisco/analyses/cnvs/pindel/data/SM-7LV7V_1.bam	450	SM-7LV7V
+/seq/plasmodium/sredmond/pfdisco/analyses/cnvs/pindel/data/SM-7LV7V_2.bam	450	SM-7LV7V
