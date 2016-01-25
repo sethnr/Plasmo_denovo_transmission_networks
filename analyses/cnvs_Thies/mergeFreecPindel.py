@@ -69,10 +69,13 @@ def readPINDEL(pinfile):
             line = pinfile.readline()
 #            print line
             F = line.split()
+#            print "\t".join(F[0:15])
             if F[1]=="D": cnv="loss"; cn=0
             elif F[1]=="TD": cnv="gain"; cn=2
-            (chr,st,en) = (F[7],F[9],F[10])
+#            (chr,st,en) = (F[7],F[9],F[10])
+            (chr,st,en) = (F[7],F[12],F[13])   #use largest pindel range
             st = int(st); en=int(en); 
+#            print "\t".join(map(str,[chr,st,en,(en-st),cnv,cn]))
             return (chr,st,en,cn,cnv)
         else:
             pass
@@ -92,10 +95,20 @@ def readPINDEL(pinfile):
 
 (chrF,stF,enF,cnF,cnvF) = readFREEC(freec)
 
-while (chrF is not None and chrP is not None):
-#    print "\t".join(map(str,[chrF,stF,enF,chrP,stP,enP,cnF,cnP,cnvF,cnvP]))
+lastP=(None,None,None,None,None)
+lastF=(None,None,None,None,None)
 
-    if chrF == chrP and (enF > stP and stF < enP):
+while (chrF is not None and chrP is not None):
+
+    if 1==2:
+        if (chrP,stP,enP,cnP,cnvP) == lastP:
+            print "\t".join(map(str,[chrF,stF,enF,"   .   ","   .   ","   .   ",cnF,cnP,cnvF,cnvP]))
+        elif (chrF,stF,enF,cnF,cnvF) == lastF:
+            print "\t".join(map(str,["   .   ","   .   ","   .   ",chrP,stP,enP,cnF,cnP,cnvF,cnvP]))
+        else:
+            print "\t".join(map(str,[chrF,stF,enF,chrP,stP,enP,cnF,cnP,cnvF,cnvP]))
+
+    if chrF == chrP and (enF > stP and stF < enP) and (cnvF==cnvP):
         pcOl = round((int(enF)-int(stF))/(float(enP)-int(stP)),2)        
 #        print pcOl,
         minst = min(stF,stP)
@@ -105,6 +118,7 @@ while (chrF is not None and chrP is not None):
         meanst=(stF+stP)/2
         meanen=(enF+enP)/2
         meancn=(cnF+cnP)/2
+        
         if args.mean:
             print "\t".join(map(str,[chrF,meanst,meanen,meancn,cnvF,pcOl]))
         elif args.max:
@@ -117,6 +131,9 @@ while (chrF is not None and chrP is not None):
     else:
 #        print ".",
         pass
+
+    lastP=(chrP,stP,enP,cnP,cnvP)
+    lastF=(chrF,stF,enF,cnF,cnvF)
     
     if chrF > chrP:
 #        print "F>P",
