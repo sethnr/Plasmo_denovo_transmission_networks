@@ -56,19 +56,27 @@ def readPINDEL(pinfile):
     #if len(line)==0: line = None
 #    if line is not None:
     line="INIT"; cn=1;cnv="."
-    while len(line) > 0:
-        line = pinfile.readline()
-        if re.match('\#*', line):
-            print "header found"
-            line = pinfile.readline()
-            print line
-            F = line.split()
-            if F[2]=="D": cnv="loss"; cn=0
-            elif F[2]=="TD": cnv="gain"; cn=2
+    header=False
 
+    line = pinfile.readline()
+    while line:
+        isheader=re.match('#', line)
+#        print line, len(line),isheader
+        if isheader:
+#            print "header found"
+            header=True
+            line = pinfile.readline()
+#            print line
+            F = line.split()
+            if F[1]=="D": cnv="loss"; cn=0
+            elif F[1]=="TD": cnv="gain"; cn=2
             (chr,st,en) = (F[7],F[9],F[10])
             st = int(st); en=int(en); 
             return (chr,st,en,cn,cnv)
+        else:
+            pass
+#            print "no header"
+        line = pinfile.readline()
     return (None,None,None,None,None)
 
 
@@ -84,18 +92,18 @@ def readPINDEL(pinfile):
 (chrF,stF,enF,cnF,cnvF) = readFREEC(freec)
 
 while (chrF is not None and chrP is not None):
-#    print "\t".join(map(str,[chrF,stF,enF,chrP,stP,enP,cnF,cnP,cnvF,cnvP])),
+#    print "\t".join(map(str,[chrF,stF,enF,chrP,stP,enP,cnF,cnP,cnvF,cnvP]))
 
     if chrF == chrP and (enF > stP and stF < enP):
-        pcOl = round((int(enF)-int(stF))/(float(enP)-int(stP)),P)        
+        pcOl = round((int(enF)-int(stF))/(float(enP)-int(stP)),2)        
 #        print pcOl,
         minst = min(stF,stP)
         maxst = max(stF,stP)
         minen = min(enF,enP)
         maxen = max(enF,enP)
-        meanst=(stF+stP)/P
-        meanen=(enF+enP)/P
-        meancn=(cnF+cnP)/P
+        meanst=(stF+stP)/2
+        meanen=(enF+enP)/2
+        meancn=(cnF+cnP)/2
         if args.mean:
             print "\t".join(map(str,[chrF,meanst,meanen,meancn,cnvF,pcOl]))
         elif args.max:
@@ -113,15 +121,15 @@ while (chrF is not None and chrP is not None):
         (chrP,stP,enP,cnP,cnvP) = readPINDELS(pindelD,pindelTD)
     elif chrP > chrF:
 #        print "P>F",
-        (chrF,stF,enF,cnF,cnvF) = readFREEC(fileF)
+        (chrF,stF,enF,cnF,cnvF) = readFREEC(freec)
     elif chrF == chrP and (stF > stP or (stF==stP and enF>enP)):
 #        print "F>P",
         (chrP,stP,enP,cnP,cnvP) = readPINDELS(pindelD,pindelTD)
     elif chrP == chrF and (stP > stF or (stF==stP and enP>enF)):
 #        print "P>F",
-        (chrF,stF,enF,cnF,cnvF) = readFREEC(fileF)
+        (chrF,stF,enF,cnF,cnvF) = readFREEC(freec)
     elif chrF == chrP and stF == stP and enF==enP:
 #        print "P=F",
-        (chrF,stF,enF,cnF,cnvF) = readFREEC(fileF)
+        (chrF,stF,enF,cnF,cnvF) = readFREEC(freec)
         (chrP,stP,enP,cnP,cnvP) = readPINDELS(pindelD,pindelTD)
 #    print ""
