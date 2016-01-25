@@ -1,0 +1,64 @@
+
+
+for SAMPLE in `cut -f 1 /seq/plasmodium/sredmond/pfdisco/samples/Thies.samples.txt | uniq`:
+do 
+    bsub13 cnator_${SAMPLE}  $WORK/idi_broad_scripts/wrappers/runCNVNATOR.sh -o $SAMPLE data/${SAMPLE}*bam
+done
+for SAMPLE in `cut -f 1 /seq/plasmodium/sredmond/pfdisco/samples/Thies.samples.txt | uniq`
+do 
+    python mergeFreecLanes.py -f1 freec/${SAMPLE}_1_CNVs -max \
+   	  -f2 freec/${SAMPLE}_2_CNVs >  freec/${SAMPLE}_CNVs
+done
+
+
+FPS=""
+FCS=""
+PCS=""
+for SAMPLE in `cut -f 1 /seq/plasmodium/sredmond/pfdisco/samples/3D7DD2.samples.txt | uniq`
+do 
+    python mergeCNVcalls.py --mean \
+       -f freec/${SAMPLE}_CNVs \
+       -pD pindel/pindel_${SAMPLE}_D  -pTD pindel/pindel_${SAMPLE}_TD \
+       > comb_${SAMPLE}_FP.CNVs
+    python mergeCNVcalls.py --mean \
+       -f freec/${SAMPLE}_CNVs \
+       -c cnvnator/${SAMPLE}_CNVs \
+       > comb_${SAMPLE}_FC.CNVs
+    python mergeCNVcalls.py --mean \
+       -pD pindel/pindel_${SAMPLE}_D  -pTD pindel/pindel_${SAMPLE}_TD \
+       -c cnvnator/${SAMPLE}_CNVs \
+       > comb_${SAMPLE}_PC.CNVs
+    FPS="${FPS} -f comb_${SAMPLE}_FP.CNVs"
+    FCS="${FCS} -f comb_${SAMPLE}_FC.CNVs"
+    PCS="${PCS} -f comb_${SAMPLE}_PC.CNVs"
+done
+python mergeCNVSamples.py $FPS > comb_FPs.CNVs.tab
+python mergeCNVSamples.py $FCS > comb_FCs.CNVs.tab
+python mergeCNVSamples.py $PCS > comb_PCs.CNVs.tab
+
+
+FPS=""
+FCS=""
+PCS=""
+for SAMPLE in `cut -f 1 /seq/plasmodium/sredmond/pfdisco/samples/Thies.samples.txt | uniq`
+do 
+    python mergeCNVcalls.py --mean \
+       -f freec/${SAMPLE}_CNVs \
+       -pD pindel/pindel_${SAMPLE}_D  -pTD pindel/pindel_${SAMPLE}_TD \
+       > comb_${SAMPLE}_FP.CNVs
+    python mergeCNVcalls.py --mean \
+       -f freec/${SAMPLE}_CNVs \
+       -c cnvnator/${SAMPLE}_CNVs \
+       > comb_${SAMPLE}_FC.CNVs
+    python mergeCNVcalls.py --mean \
+       -pD pindel/pindel_${SAMPLE}_D  -pTD pindel/pindel_${SAMPLE}_TD \
+       -c cnvnator/${SAMPLE}_CNVs \
+       > comb_${SAMPLE}_PC.CNVs
+    FPS="${FPS} -f comb_${SAMPLE}_FP.CNVs"
+    FCS="${FCS} -f comb_${SAMPLE}_FC.CNVs"
+    PCS="${PCS} -f comb_${SAMPLE}_PC.CNVs"
+done
+python mergeCNVSamples.py $FPS > comb_FPs.CNVs.tab
+python mergeCNVSamples.py $FCS > comb_FCs.CNVs.tab
+python mergeCNVSamples.py $PCS > comb_PCs.CNVs.tab
+
