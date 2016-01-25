@@ -30,7 +30,8 @@ def readFREEC(cnvfile):
     if len(line)==0:
         (chr,st,en,cn,cnv) = (None,None,None,None,None)
     else:
-        (chr,st,en,cn,cnv) = line.split()
+        F = line.split()
+        (chr,st,en,cn,cnv) = F[0:5]
         st = int(st); en=int(en); cn=int(cn)
     return (chr,st,en,cn,cnv)
 
@@ -112,6 +113,7 @@ while (chrF is not None and chrP is not None):
             print "\t".join(map(str,[chrF,maxst,minen,meancn,cnvF,pcOl]))
         else:
             print "\t".join(map(str,[chrF,maxst,minen,minst,maxen,cnF,cnP,cnvF,pcOl]))
+            print "\t".join([chrF,str(stF)+"-"+str(enF),str(enF-stF),str(stP)+"-"+str(enP),str(enP-stP),str(pcOl)])
     else:
 #        print ".",
         pass
