@@ -4,6 +4,8 @@ for SAMPLE in `cut -f 1 /seq/plasmodium/sredmond/pfdisco/samples/Thies.samples.t
 do 
     bsub13 cnator_${SAMPLE}  $WORK/idi_broad_scripts/wrappers/runCNVNATOR.sh -o $SAMPLE data/${SAMPLE}*bam
 done
+
+
 for SAMPLE in `cut -f 1 /seq/plasmodium/sredmond/pfdisco/samples/Thies.samples.txt | uniq`
 do 
     python mergeFreecLanes.py -f1 freec/${SAMPLE}_1_CNVs -max \
