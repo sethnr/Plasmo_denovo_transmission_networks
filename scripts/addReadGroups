@@ -12,7 +12,8 @@ RGDESCRIPTION='fake read group added by picard AddOrReplaceReadGroups'
 RGINSERT=250
 
 PICARD=/seq/software/picard/current/bin/picard.jar
-GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
+#GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
+GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.5-0-g36282e4
 
 OUTPUT="addReadGroups.bam"
 

@@ -2,6 +2,7 @@ genome /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
 load clipped_sanger_seqs.2D4.bam 
 load clipped_sanger_seqs.3D7.bam 
 load clipped_sanger_seqs.FDK.bam 
+load clipped_sanger_seqs.bam 
 maxPanelHeight 120
 goto Pf3D7_02_v3:442873-443767
 sort base
