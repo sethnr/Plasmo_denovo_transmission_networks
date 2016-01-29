@@ -22,3 +22,7 @@ perl $DISCO1/scripts/getIGVPics.pl $PFREF target_posns.bed `ls clipped*bam `
 
 use .igv-2.3.18
 igv -b target_posns.igv
+
+
+perl -lane 'print join("\t",$F[1],$F[2]-50,$F[2]+50,"F".$F[0]."_".$F[2]);' validation_var_loci.txt > validation_var_loci.bed
+perl $DISCO1/scripts/getIGVPics.pl $PFREF validation_var_loci.bed `ls clipped*bam `
