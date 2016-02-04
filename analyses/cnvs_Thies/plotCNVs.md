@@ -77,11 +77,11 @@ cnvs_core$indv <- factor(cnvs_core$indv,levels=tree_order)
 
 ```r
 cols=c("red","green")
-names(cols)<-c("+","-")
+names(cols)<-c("-","+")
 colsc <- scale_color_manual(values = cols)
 
 dkcols=c("dark red","dark green")
-names(dkcols)<-c("+","-")
+names(dkcols)<-c("-","+")
 dkcolsc <- scale_color_manual(values = dkcols)
 ```
 
