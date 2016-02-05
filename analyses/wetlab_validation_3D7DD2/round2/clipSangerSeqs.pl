@@ -22,9 +22,9 @@ while (<PRIMERS>) {
 
 
 foreach $PRIM (keys(%clip)) { 
-#    print $PRIM;
+    print $PRIM;
     @files = `ls *${PRIM}.seq`;
-#    print @files;
+    print @files;
     foreach $FILE (@files) {
 	chomp($FILE);
 #        print STDERR $FILE;
