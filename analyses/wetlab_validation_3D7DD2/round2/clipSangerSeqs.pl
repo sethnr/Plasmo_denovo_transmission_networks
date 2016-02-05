@@ -22,7 +22,7 @@ while (<PRIMERS>) {
 
 
 foreach $PRIM (keys(%clip)) { 
-    print $PRIM;
+    print $PRIM."\n";
     @files = `ls *${PRIM}.seq`;
     print @files;
     foreach $FILE (@files) {
@@ -30,7 +30,8 @@ foreach $PRIM (keys(%clip)) {
 #        print STDERR $FILE;
 #	print STDERR "fasta_formatter -i $FILE | fastx_clipper -d1 -a $clip{$PRIM}\n";
         $unclipped=`fasta_formatter -i $FILE`;
-        $clipped=`fasta_formatter -i $FILE | fastx_clipper -d1 -a $clip{$PRIM}`;
+        $clipped=`fasta_formatter -i $FILE | fastx_clipper -d1 -n -a $clip{$PRIM}`;
+        
 	if (length($unclipped) == length($clipped)) {
 #		print $unclipped;
 #		print "TRUNCATED\t".$cut{$PRIM}."\n";
