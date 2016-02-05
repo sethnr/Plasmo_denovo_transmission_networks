@@ -8,23 +8,23 @@ my $primerfile = shift;
 open(PRIMERS,$primerfile);
 
 while (<PRIMERS>) {
-  print $_;
+#  print $_;
   ($id, $chr, $var, $len, $F, $R) = split(/\s+/,$_);
   $clip{$id."F"}=$F;
   $cut{$id."F"}=$len;
-  print join("\t",$id,$F,$R)."\n";
+#  print join("\t",$id,$F,$R)."\n";
   $R =~ tr /atcgATCG/tagcTAGC/; $R = reverse($R);
   $clip{$id."R"}=$R;
   $cut{$id."R"}=$len;
-  print join("\t",$id,$F,$R)."\n";
+#  print join("\t",$id,$F,$R)."\n";
     
 }
 
 
 foreach $PRIM (keys(%clip)) { 
-    print $PRIM."\n";
+#    print $PRIM."\n";
     @files = `ls *${PRIM}.seq`;
-    print @files;
+#    print @files;
     foreach $FILE (@files) {
 	chomp($FILE);
 #        print STDERR $FILE;
