@@ -2,11 +2,12 @@ library(ggplot2)
 library(reshape2)
 library(knitr)
 ```{r setup}
-opts_chunk$set(fig.width=12, fig.height=6)
+#opts_chunk$set(fig.width=12, fig.height=6)
+opts_chunk$set(fig.width=8, fig.height=6,dev='postscript')
 
 ``` 
 
-```{r}
+#```{r}
 
 onemth <- read.table("all_AFs_28days.txt",sep="\t",row.names=1)
 sixmth <- read.table("all_AFs_180days.txt",sep="\t",row.names=1)
@@ -44,7 +45,7 @@ ggplot(subset(afcfs_m,MAF>0.01),aes(x=MAF,group=days,colour=days)) + geom_densit
 
 ```{r}
 
-histo <- read.table("all_histograms.txt",header=F,sep="\t")
+histo <- read.table("all_histograms_nohead.txt",header=F,sep="\t")
 edges <- seq(0,0.25,length.out=20)
 colnames(histo) <- c("run","gen","N","maxN",edges,1)
 
@@ -61,9 +62,8 @@ colnames(detects) <- c("gen","MAF","mean")
 levels(detects$MAF) <- c(">0.02",">0.05",">0.1")
 detects$days <- detects$gen*2
 
-ggplot(detects,aes(x=days,y=mean,colour=MAF))+ geom_smooth(adjust=0.8) + geom_point() +
-   geom_vline(xintercept=28,linetype=2) + geom_vline(xintercept=180,linetype=2)
-
-
+mafplot <- ggplot(detects,aes(x=days,y=mean,colour=MAF))+ geom_smooth(adjust=0.8) + geom_point() +
+   geom_vline(xintercept=28,linetype=2) + geom_vline(xintercept=180,linetype=2) + theme(legend.position="bottom")
+mafplot
 
 ```
