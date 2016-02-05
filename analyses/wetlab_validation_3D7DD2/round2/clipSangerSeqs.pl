@@ -2,50 +2,28 @@
 
 #my %clip, %cut;
 
-$clip{"1F"}="GgaaaaaaAACAAGAGGGGGAGT";
-$clip{"1R"}="CCCCCTCGACGATGTAGTTG";
-$clip{"2F"}="GGACATGTCTCCCAAGGTCG";
-$clip{"2R"}="AACGCTTTGACCTTAAAAGATGT";
-$clip{"3F"}="AAGCACGTTCCCTTAAGTGT";
-$clip{"3R"}="TGCGACCTGAAATTACACCTCA";
-$clip{"4F"}="TTGGGGTACAGGGAAATCTATATTT";
-$clip{"4R"}="TGATGCAAAAAAGGGATTGAATTTG";
-$clip{"5F"}="TGTGGGGGTCCTTATGATCT";
-$clip{"5R"}="ACCCCCTTTGGATGGTTCAG";
-$clip{"6F"}="CATTCCTCCCACCAATGGCT";
-$clip{"6R"}="TGTTGTAAGGCAGTGTGTTGC";
-$clip{"7F"}="CGTATGTTCGTCTTCTTCATTCCA";
-$clip{"7R"}="TGCAAAGAATTCGAAAGTTCAGA";
-$clip{"8F"}="ATTCAATTGCTGCGTGACCC";
-$clip{"8R"}="AGAACATCGCGATTTATGTACTTCT";
-$clip{"9F"}="TTCACGCCAAGTTTCATCAAC";
-$clip{"9R"}="TGCATGTATATGGTTCTTTCCCG";
-$clip{"10F"}="TCCCGAAGAAGAAGTTGTCACA";
-$clip{"10R"}="GTGTTTACACAACTGTGGATGAGA";
-$cut{"1F"}=894;
-$cut{"2F"}=286;
-$cut{"3F"}=789;
-$cut{"4F"}=351;
-$cut{"5F"}=1006;
-$cut{"6F"}=223;
-$cut{"7F"}=173;
-$cut{"8F"}=315;
-$cut{"9F"}=221;
-$cut{"10F"}=197;
-$cut{"1R"}=894;
-$cut{"2R"}=286;
-$cut{"3R"}=789;
-$cut{"4R"}=351;
-$cut{"5R"}=1006;
-$cut{"6R"}=223;
-$cut{"7R"}=173;
-$cut{"8R"}=315;
-$cut{"9R"}=221;
-$cut{"10R"}=197;
+
+my $primerfile = shift;
+
+open(PRIMERS,$primerfile);
+
+while (<PRIMERS>) {
+  print $_;
+  ($id, $chr, $var, $len, $F, $R) = split(/\s+/,$_);
+  $clip{$id."F"}=$F;
+  $cut{$id."F"}=$len;
+  print join("\t",$id,$F,$R)."\n";
+  $R =~ tr /atcgATCG/tagcTAGC/; $R = reverse($R);
+  $clip{$id."R"}=$R;
+  $cut{$id."R"}=$len;
+  print join("\t",$id,$F,$R)."\n";
+    
+}
+
 
 foreach $PRIM (keys(%clip)) { 
 #    print $PRIM;
-    @files = `ls *${PRIM}.ab1.seq`;
+    @files = `ls *${PRIM}.seq`;
 #    print @files;
     foreach $FILE (@files) {
 	chomp($FILE);
