@@ -1,0 +1,111 @@
+genome /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
+load clipped_sanger_seqs.3D7.bam 
+load clipped_sanger_seqs.DD22D4.bam 
+load clipped_sanger_seqs.DD2FDK.bam 
+load clipped_sanger_seqs.bam 
+maxPanelHeight 120
+goto Pf3D7_02_v3:443456-443656
+sort base
+collapse
+snapshot 1a.png
+
+goto Pf3D7_02_v3:443479-443679
+sort base
+collapse
+snapshot 1b.png
+
+goto Pf3D7_13_v3:1092064-1092264
+sort base
+collapse
+snapshot 2.png
+
+goto Pf3D7_09_v3:1341983-1342183
+sort base
+collapse
+snapshot 3.png
+
+goto Pf3D7_13_v3:1133732-1133932
+sort base
+collapse
+snapshot 4.png
+
+goto Pf3D7_05_v3:417684-417884
+sort base
+collapse
+snapshot 5.png
+
+goto Pf3D7_12_v3:142999-143199
+sort base
+collapse
+snapshot 6.png
+
+goto Pf3D7_12_v3:578620-578820
+sort base
+collapse
+snapshot 7.png
+
+goto Pf3D7_06_v3:1120532-1120732
+sort base
+collapse
+snapshot 8.png
+
+goto Pf3D7_10_v3:92432-92632
+sort base
+collapse
+snapshot 9.png
+
+goto Pf3D7_04_v3:870541-870741
+sort base
+collapse
+snapshot 10.png
+
+goto Pf3D7_04_v3:126953-127153
+sort base
+collapse
+snapshot 11.png
+
+goto Pf3D7_06_v3:1133750-1133950
+sort base
+collapse
+snapshot 12.png
+
+goto Pf3D7_10_v3:106331-106531
+sort base
+collapse
+snapshot 13.png
+
+goto Pf3D7_11_v3:1653468-1653668
+sort base
+collapse
+snapshot 14.png
+
+goto Pf3D7_11_v3:1664142-1664342
+sort base
+collapse
+snapshot 15.png
+
+goto Pf3D7_11_v3:1667039-1667239
+sort base
+collapse
+snapshot 16.png
+
+goto Pf3D7_12_v3:1608377-1608577
+sort base
+collapse
+snapshot 17.png
+
+goto Pf3D7_12_v3:1687681-1687881
+sort base
+collapse
+snapshot 18.png
+
+goto Pf3D7_13_v3:2515777-2515977
+sort base
+collapse
+snapshot 19.png
+
+goto Pf3D7_14_v3:681722-681922
+sort base
+collapse
+snapshot 20.png
+
