@@ -1,0 +1,6 @@
+rppr min_adcl_tree --leaves 35 \
+      daniels.thies.newick > remove_nodes_35.txt
+
+rppr min_adcl_tree --leaves 53 \
+      --always-include disco_samples.txt \
+      daniels.thies.newick > remove_nodes_53_incDisco.txt
