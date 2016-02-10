@@ -10,5 +10,11 @@ do
   bsub13 adcl_${C} \
   getADCLrange.sh -t daniels.thies.newick \
   -C culture_adapted_list.daniels.nodisco.txt \
-  -c ${C} -n 35 -i100
+  -c ${C} -n 40 -i100
+
+  bsub13 adcl_${C} \
+  getADCLrange.sh -t daniels.thies.newick \
+  -C culture_adapted_list.daniels.nodisco.txt \
+  -c ${C} -n 45 -i100
+
 done
