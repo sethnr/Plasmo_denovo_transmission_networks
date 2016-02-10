@@ -4,3 +4,11 @@ rppr min_adcl_tree --leaves 35 \
 rppr min_adcl_tree --leaves 53 \
       --always-include disco_samples.txt \
       daniels.thies.newick > remove_nodes_53_incDisco.txt
+
+for C in {0..35} ; 
+do 
+  bsub13 adcl_${C} \
+  getADCLrange.sh -t daniels.thies.newick \
+  -C culture_adapted_list.daniels.nodisco.txt \
+  -c ${C} -n 35 -i100
+done
