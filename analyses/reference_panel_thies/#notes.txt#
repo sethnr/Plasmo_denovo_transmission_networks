@@ -1,0 +1,27 @@
+rppr min_adcl_tree --leaves 35 \
+      daniels.thies.newick > remove_nodes_35.txt
+
+rppr min_adcl_tree --leaves 53 \
+      --always-include disco_samples.txt \
+      daniels.thies.newick > remove_nodes_53_incDisco.txt
+
+for C in {0..35} ; 
+do 
+  bsub13 adcl_${C} \
+  getADCLrange.sh -t daniels.thies.newick \
+  -C culture_adapted_list.daniels.nodisco.txt \
+  -c ${C} -n 40 -i100
+
+  bsub13 adcl_${C} \
+  getADCLrange.sh -t daniels.thies.newick \
+  -C culture_adapted_list.daniels.nodisco.txt \
+  -c ${C} -n 45 -i100
+
+done
+
+
+for I in 35 40 45; 
+do
+  perl -lane 'BEGIN{$i=0; $min=10; $minI=-1;} $i++; if($F[2] < $min)
+  {$min=$F[2]; $minI=$ARGV} END{print $ARGV."\t".$minI."\t".$min}'  ${I}_sub_10.adcls
+done 
