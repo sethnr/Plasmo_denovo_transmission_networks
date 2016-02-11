@@ -1,0 +1,72 @@
+library(knitr)
+library(ggplot2)
+```{r setup}
+opts_chunk$set(fig.width=13, fig.height=5)
+
+
+``` 
+
+total nos of reference samples: 35,40,45
+0-42 (all) culture adapted samples used. 
+100 iterations (boot selections of cultured parasites) per condition
+
+```{r fig.width=13, fig.height=8}
+adcls <- read.table("all_iters_panel.txt")
+colnames(adcls)<-c("N","cultureAdapted","adcl")
+adcls$RAND <- adcls$cultureAdapted>=50
+adcls$cultureAdapted <- factor(adcls$cultureAdapted,labels=c(as.character(seq(0,45)),"R_35","R_40","R_50"))
+adcls$N <- factor(adcls$N)
+adcls <- adcls[!adcls$cultureAdapted %in% c(43:45),]
+adcls$group=paste(adcls$N,adcls$cultureAdapted)
+ggplot(adcls,aes(x=cultureAdapted,y=adcl,group=group,colour=N)) + geom_boxplot() + 
+  facet_grid(. ~ RAND,scale="free_x",space= "free_x",)
+```
+
+
+```{r}
+
+adcl_groups <- read.table("daniels.thies.CA.txt",sep="\t",header=T)
+adcl_groups$sum=apply(adcl_groups[,6:8],1,FUN=sum)
+
+set35 <- subset(adcl_groups,ADCL_35==1,c("name","year"))
+set35$set="35"
+set35 <- subset(adcl_groups,ADCL_35==1,c("name","year"))
+set35$set="35"
+set40 <- subset(adcl_groups,ADCL_40==1,c("name","year"))
+set40$set="40"
+set45 <- subset(adcl_groups,ADCL_45==1,c("name","year"))
+set45$set="45"
+setAll <- adcl_groups[,c("name","year")]
+setAll$set="All"
+setDisco <- subset(adcl_groups,DISCO==1,c("name","year"))
+setDisco$set="Disco"
+sets <- rbind(set35,set40,set45,setAll,setDisco)
+rm(set35,set40,set45,setAll)
+cols<-c("black","#000088","#4444AA","#9999FF","grey")
+names(cols)<-c("All","35","40","45","Disco")
+ggplot(sets,aes(x=year,group=set,colour=set)) + geom_density() + scale_color_manual(values=cols)
+ggplot(sets,aes(x=year,group=set,fill=set)) + geom_histogram(position="dodge") + scale_fill_manual(values=cols)
+
+subset(adcl_groups,sum==3)
+
+
+
+```
+
+
+excess of singletons explains underrepresentation of 2007 in ADCL sets?
+```{r}
+haplo_dist <- melt(table(adcl_groups[,c("year","haplotype.number")]))
+haplo_dist <- subset(haplo_dist,value>0)
+ggplot(haplo_dist,aes(x=year,y=value,group=year,colour=year)) + geom_violin()
+#ggplot(haplo_dist,aes(x=year,y=value,group=year,colour=year)) + geom_jitter()
+#ggplot(subset(haplo_dist,value>1),aes(x=year,y=value,group=year,colour=year)) + geom_jitter()
+
+```
+
+```{r}
+haplos <- table(adcl_groups[,c("year","haplotype.number")])
+haplos <- data.frame(year=rownames(haplos),"multi"=apply(haplos[,1:dim(haplos)[[2]]]>1,1,FUN=sum),"all"=apply(haplos[,1:dim(haplos)[[2]]]>0,1,FUN=sum))
+haplos$prop <- haplos$multi/haplos$all
+haplos
+```
