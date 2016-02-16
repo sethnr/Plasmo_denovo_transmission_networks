@@ -25,3 +25,4 @@ do
   perl -lane 'BEGIN{$i=0; $min=10; $minI=-1;} $i++; if($F[2] < $min)
   {$min=$F[2]; $minI=$ARGV} END{print $ARGV."\t".$minI."\t".$min}'  ${I}_sub_10.adcls
 done 
+
