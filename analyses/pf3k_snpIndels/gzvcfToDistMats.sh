@@ -28,4 +28,5 @@ Rscript $PEDTOTREE ${VCF/.vcf/}
 if [[ $? != 0 ]]; then exit 1 ; fi
 
 
+
 cp *.tab.txt ../

@@ -1,0 +1,38 @@
+use FASTX-Toolkit
+fasta_formatter -i round2_validation_consensus.fasta | perl -pe 's/>/\n>/gi' > round2_validation_consensus.format.fasta
+
+for SAMPLE in 2D4 3d7 Fid ;
+do 
+   grep -a1 $SAMPLE round2_validation_consensus.format.fasta > ${SAMPLE}.fasta
+done
+
+for SAMPLE in 2D4 3d7 Fid ;
+do 
+   bwa bwasw -b1 -q1 -r1 $PFREF ${SAMPLE}.fasta > ${SAMPLE}.sam; 
+   samtools view -Sb ${SAMPLE}.sam > ${SAMPLE}.bam; 
+   samtools sort -o ${SAMPLE}.bam -T ${SAMPLE}.S ${SAMPLE}.bam
+   samtools index ${SAMPLE}.bam; 
+done
+
+for SAMPLE in 2D4 3d7 Fid ;
+do 
+   addReadGroups -b ${SAMPLE}.bam \
+     -o ${SAMPLE}.RG.bam \
+     -s $SAMPLE -i $SAMPLE ; 
+   mv ${SAMPLE}.RG.bam ${SAMPLE}.bam; 
+done
+
+for SAMPLE in 2D4 3d7 Fid ;
+do 
+   LeftAlignINDELsBAM -b ${SAMPLE}.bam; 
+   rm ${SAMPLE}.bam.bai  ${SAMPLE}.bai
+   samtools index ${SAMPLE}.bam
+done
+
+perl $DISCO1/scripts/getIGVPics.pl $PFREF var_posns.bed `ls *bam `
+
+use .igv-2.3.18
+igv -b target_posns.igv
+
+
+perl -lane 'print join("\t",$F[1],$F[2]-50,$F[2]+50,"F".$F[0]."_".$F[2]);' validation_var_loci.txt > validation_var_loci.bed

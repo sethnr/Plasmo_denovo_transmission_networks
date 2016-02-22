@@ -25,3 +25,12 @@ done
 
 vcf-concat *_ghana_1K.vcf.gz > SNP_INDEL_Pf3kGhana_1K.vcf
 vcf-concat *_cambodia_1K.vcf.gz > SNP_INDEL_Pf3kCambodia_1K.vcf
+
+python fillVCFcalculationsH5.py -H ghana/SNP_INDEL_Pf3kGhana_1K.H5 > ghana_subs.txt
+
+qsub -N snpIndelGHANA -o out/ -j y -e out/ \
+     -l h_vmem=16.0G -l h_rt=12:00:00 \
+     -q gaag -pe smp_pe 4 \
+     -V -cwd -t 1:325 \
+     $DISCO1/pipeline/runJobInArray.sh $DISCO1/analyses/pf3k_snpIndels/ghana_subs.txt
+     
