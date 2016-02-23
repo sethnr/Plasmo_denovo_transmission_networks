@@ -1,0 +1,32 @@
+CLUSTAL 2.0.12 multiple sequence alignment
+
+
+v-10F                 TTTAATATATTTCTCATCCACAGTTGTGTAAACACAGTTTTTTTTTTCTTTTTTTTTTTT
+3d7-10F.ab1_          ------------------------------------GTTTTTTTTTTCTTTTTTTTTTTT
+Dd2-Fid-10F.ab1_      ------------------------------------------------------TTTNTT
+Dd2-2D4-10F.ab1_      ---------------------------------------GTAAACACAGTTATTTTTTTT
+                                                                            *** **
+
+v-10F                 CTTCTCTTTATAAATATTTTATTTATAAATATTTTATTTATAAAT-ATTTTATTTATATC
+3d7-10F.ab1_          CTTCTCTTTATAAATATTTTATTTATAAATATTTTATTTATAAAT-ATTTTATTTATATC
+Dd2-Fid-10F.ab1_      TTTTTCTTT-------TTTTTTTT-----TCTTCTCTTTATAAAT-ATTTTATTTATATC
+Dd2-2D4-10F.ab1_      CTTTTTTTT-------TTTTCNNT-------TCTCATTTATAAATCATTTTATTTATATC
+                       ** * ***       ****   *       *    ********* **************
+
+v-10F                 T--TTTTTTTTTTTTTGATATTTA--AATAAATA-ATATATATAAATATG-GATGATGAT
+3d7-10F.ab1_          T--TTTTTTTTTTTTTGATATTTA--AATAAATA-ATATATATAAATATG-GATGATGAT
+Dd2-Fid-10F.ab1_      T--TTTTTTTTTTTTTGATATTTA--AATAAATA-ATATATATAAATATG-GATGATGAT
+Dd2-2D4-10F.ab1_      TATTTCTTTTTTTTTTGATATATATAAATAAATATATATATATAAATATGTGATGATGAT
+                      *  ** *************** **  ******** *************** *********
+
+v-10F                 AAG-AATGACTACAATCCCGAAGAAGAAGTTGTCACAGGAAATTGGAATACTCCAAAGGT
+3d7-10F.ab1_          AAG-AATGACTACAATCCCGAAGAAGAAGTTGTCACAGGAA-------------------
+Dd2-Fid-10F.ab1_      AAG-AATGACTACAATCCCGAAGAAGAAGTTGTCACAGGAAA------------------
+Dd2-2D4-10F.ab1_      AAGGAATGACTACATTCCNGAGGGAAGGAGGGTNGGAG----------------------
+                      *** ********** *** ** * *      **   **                      
+
+v-10F                 AATAAAATAAAAAAGAA--
+3d7-10F.ab1_          -------------------
+Dd2-Fid-10F.ab1_      -------------------
+Dd2-2D4-10F.ab1_      -------------------
+                                         

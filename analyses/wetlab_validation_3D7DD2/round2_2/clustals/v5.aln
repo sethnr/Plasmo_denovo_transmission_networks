@@ -1,0 +1,32 @@
+CLUSTAL 2.0.12 multiple sequence alignment
+
+
+3d7-5F.ab1_          --------------------------------------AAAAAAAAAAAAAAAATGGAAA
+Dd2-Fid-5F.ab1_      ---------------------------------------AAAAAAAAAAAAAAATGGAAA
+v-5F                 ATTTATGGTGAACATATGTTTATGTATCAATTGTACAAAAAAAAAAAAAAAAAAATGAAA
+Dd2-2D4-5F.ab1_      ---------------------------------------AAAAAAAAAAAAAAAATGAAA
+                                                            ***************  ****
+
+3d7-5F.ab1_          ATAATAAAACAGAAAAAATATAAAAC-AANGAAGCAATAAATT-AATGAAATAATAAAAN
+Dd2-Fid-5F.ab1_      ATAATAAAACAGAAAAAATATAAAACCAAAGAAGCAATAAATTTAANGAAATAATAAAAT
+v-5F                 ATAATAAAACAGAAAAAATATAAAAC-AATGAAGCAATAAATTAATG-AAATAATAAAAT
+Dd2-2D4-5F.ab1_      ATAATAAAACNGAAAAAATATAAAAC-AATGNAGNAATAAATTAATGGAAATAATAAA--
+                     ********** *************** ** * ** ******** *   **********  
+
+3d7-5F.ab1_          TATTCAAANTATTCAAATATTNCAAATATTCCAAATATNGTNTNTATATATATATATATA
+Dd2-Fid-5F.ab1_      ANTTCAAANTATTCAAATATTC----------AAATATGTTATATATATATATATATATA
+v-5F                 ATTC--AAATATTCAAATATTCAAA-TATTC-AAATATG-TATATATATATATATATATA
+Dd2-2D4-5F.ab1_      -------ANTATTCAAATATTCAAAATATTC-AAATATG-TATATATATATATATATATA
+                            * ************           ******  * * ****************
+
+3d7-5F.ab1_          TATATATATAATATTATTATCTATTTTACTTGTTATTTTTGTTAANAAATTTATTTTTTC
+Dd2-Fid-5F.ab1_      TATA------ATATTATTANCNTTTTACTTGGTTATTTTTGGTTATACATT-ATTTTTTC
+v-5F                 TATATATATAATATTATTATCATTTTACTTG-TTATTTTTGTT-ATACATT-ATATTTTT
+Dd2-2D4-5F.ab1_      TATA---ATATTATTATC--CATTTTACTTGGTTNTTTTTGTT-ATACATT-ATNTTTTC
+                     ****       ******   *  ***   *  ** ****** * * * *** ** **** 
+
+3d7-5F.ab1_          CCGGNTTTTCCCA---------------------------------------
+Dd2-Fid-5F.ab1_      CCGGGCNTT-------------------------------------------
+v-5F                 CCTGGCATTTACAATTTAATATATACACACAAATAAATTATGCTTTCTTC--
+Dd2-2D4-5F.ab1_      CCGGGCNTTTCC----------------------------------------
+                     ** *   **                                           

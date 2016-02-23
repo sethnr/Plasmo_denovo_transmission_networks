@@ -26,7 +26,7 @@ for SAMPLE in 2D4 3d7 Fid ;
 do 
    LeftAlignINDELsBAM -b ${SAMPLE}.bam; 
    rm ${SAMPLE}.bam.bai  ${SAMPLE}.bai
-   samtools index ${SAMPLE}.bam
+   samtools index ${SAMPL    E}.bam
 done
 
 perl $DISCO1/scripts/getIGVPics.pl $PFREF var_posns.bed `ls *bam `
@@ -36,3 +36,17 @@ igv -b target_posns.igv
 
 
 perl -lane 'print join("\t",$F[1],$F[2]-50,$F[2]+50,"F".$F[0]."_".$F[2]);' validation_var_loci.txt > validation_var_loci.bed
+
+
+for B in {1..5}; do
+  for Q in {1..5}; do
+    for R in {1..5}; do
+      bwa bwasw -b${B} -q${Q} -r${R} $PFREF 2D4.fasta > 2D4.b${B}q${Q}r${R}.sam
+done; done; done
+
+for B in {1..5}; do
+  for Q in {1..5}; do
+    for R in {1..5}; do
+      perl cigarStats.pl 2D4.b${B}q${Q}r${R}.sam
+done; done; done
+
