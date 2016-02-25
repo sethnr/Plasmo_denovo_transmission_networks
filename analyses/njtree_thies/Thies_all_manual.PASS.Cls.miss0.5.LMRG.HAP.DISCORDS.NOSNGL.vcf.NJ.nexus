@@ -1,49 +1,114 @@
 #NEXUS
-[R-package APE, Wed Nov 18 17:55:26 2015]
+begin taxa;
+	dimensions ntax=18;
+	taxlabels
+	'Th061.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=24,year=2013]
+	'Th068.12'[&ADCL_53_v1=1,culture_adapted=1,"haplotype number"=24,year=2012]
+	'Th074.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2013]
+	'Th086.07'[&ADCL_53_v1=1,culture_adapted=1,"haplotype number"=29,year=2007]
+	'Th092.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=26,year=2013]
+	'Th095.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=24,year=2013]
+	'Th106.09'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2009]
+	'Th106.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2011]
+	'Th117.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2011]
+	'Th132.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2011]
+	'Th134.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2011]
+	'Th162.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2012]
+	'Th166.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=26,year=2012]
+	'Th196.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2012]
+	'Th211.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=26,year=2013]
+	'Th230.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"=29,year=2012]
+	'Th245.13'[&ADCL_53_v1=0,culture_adapted=0,"haplotype number"=26,year=2013]
+	'Th246.13'[&ADCL_53_v1=0,culture_adapted=0,"haplotype number"=26,year=2013]
+;
+end;
 
-BEGIN TAXA;
-	DIMENSIONS NTAX = 18;
-	TAXLABELS
-		Th086.07
-		Th106.09
-		Th106.11
-		Th117.11
-		Th132.11
-		Th134.11
-		Th162.12
-		Th196.12
-		Th230.12
-		Th074.13
-		Th166.12
-		Th092.13
-		Th211.13
-		Th245.13
-		Th246.13
-		Th068.12
-		Th061.13
-		Th095.13
-	;
-END;
-BEGIN TREES;
-	TRANSLATE
-		1	Th086.07,
-		2	Th106.09,
-		3	Th106.11,
-		4	Th117.11,
-		5	Th132.11,
-		6	Th134.11,
-		7	Th162.12,
-		8	Th196.12,
-		9	Th230.12,
-		10	Th074.13,
-		11	Th166.12,
-		12	Th092.13,
-		13	Th211.13,
-		14	Th245.13,
-		15	Th246.13,
-		16	Th068.12,
-		17	Th061.13,
-		18	Th095.13
-	;
-	TREE * UNTITLED = [&U] (7:23.74511719,(5:9.296875,8:10.703125):5.754882812,(((2:0.37578125,10:18.62421875):10.32486979,(((3:13.67480469,4:20.32519531):0.9581473214,6:7.541852679):80.38476562,((((((11:27.29464286,12:17.70535714):5.466346154,13:32.53365385):13.65885417,15:32.34114583):14.33664773,14:46.78835227):122.7296875,((17:65.75,18:51.25):39.6,16:63.9):96.9109375):54.32378472,1:118.1371528):96.63476562):200.4348958):4.809570312,9:6.903320312):2.096679688);
-END;
+begin trees;
+	tree UNTITLED = [&U] ('Th162.12'[&!color=#0000ff]:23.745117,('Th132.11'[&!color=#0000ff]:9.296875,'Th196.12'[&!color=#0000ff]:10.703125)[&!color=#0000ff]:5.754883,((('Th106.09'[&!color=#0000ff]:0.375781,'Th074.13'[&!color=#0000ff]:18.624219)[&!color=#0000ff]:10.32487,((('Th106.11'[&!color=#ff0000]:13.674805,'Th117.11'[&!color=#ff0000]:20.325195)[&!color=#ff0000]:0.958147,'Th134.11'[&!color=#ff0000]:7.541853):80.384766,(((((('Th166.12'[&!color=#00ff00]:27.294643,'Th092.13'[&!color=#00ff00]:17.705357)[&!color=#00ff00]:5.466346,'Th211.13'[&!color=#00ff00]:32.533654)[&!color=#00ff00]:13.658854,'Th246.13'[&!color=#00ff00]:32.341146)[&!color=#00ff00]:14.336648,'Th245.13'[&!color=#00ff00]:46.788352)[&!color=#00ff00]:122.729688,(('Th061.13'[&!color=#00ff00]:65.75,'Th095.13'[&!color=#00ff00]:51.25)[&!color=#00ff00]:39.6,'Th068.12'[&!color=#00ff00]:63.9)[&!color=#00ff00]:96.910938)[&!color=#00ff00]:54.323785,'Th086.07'[&!color=#00ff00]:118.137153):96.634766):200.434896)[&!color=#0000ff]:4.80957,'Th230.12'[&!color=#0000ff]:6.90332)[&!color=#0000ff]:2.09668);
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=2.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="Branch times";
+	set branchLabels.fontName="sansserif";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set colour.order.year="year:2007,2009,2011,2012,2013";
+	set colour.scheme.year="year:HSBDiscrete{hue,1,0.663,1.0,0.81,1.0,0.505,0.799}";
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=0;
+	set legend.attribute=null;
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute=null;
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="Node ages";
+	set nodeLabels.fontName="sansserif";
+	set nodeLabels.fontSize=8;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=false;
+	set nodeLabels.significantDigits=4;
+	set nodeShape.colourAttribute="User selection";
+	set nodeShape.isShown=false;
+	set nodeShape.minSize=10.0;
+	set nodeShape.scaleType=Width;
+	set nodeShape.shapeType=Circle;
+	set nodeShape.size=4.0;
+	set nodeShape.sizeAttribute="Fixed";
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set tipLabels.colorAttribute="year";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="Arial";
+	set tipLabels.fontSize=14;
+	set tipLabels.fontStyle=1;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=false;
+	set trees.orderType="increasing";
+	set trees.rooting=false;
+	set trees.rootingType="Midpoint";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+

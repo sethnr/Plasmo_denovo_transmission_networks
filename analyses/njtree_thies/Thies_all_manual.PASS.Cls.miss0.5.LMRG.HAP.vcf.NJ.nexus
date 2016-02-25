@@ -1,49 +1,114 @@
 #NEXUS
-[R-package APE, Thu Feb 25 17:48:32 2016]
+begin taxa;
+	dimensions ntax=18;
+	taxlabels
+	'Th061.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="24",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th068.12'[&ADCL_53_v1=1,culture_adapted=1,"haplotype number"="24",year="2012",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th074.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th086.07'[&ADCL_53_v1=1,culture_adapted=1,"haplotype number"="29",year="2007",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th092.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="26",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th095.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="24",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th106.09'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2009",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th106.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2011",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th117.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2011",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th132.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2011",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th134.11'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2011",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th162.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2012",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th166.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="26",year="2012",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th196.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2012",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th211.13'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="26",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
+	'Th230.12'[&ADCL_53_v1=0,culture_adapted=1,"haplotype number"="29",year="2012",ADCL_35=1,ADCL_35_lab="Th230.12",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=111,SET_40_v1=110,SET_45_v1=110]
+	'Th245.13'[&ADCL_53_v1=0,culture_adapted=0,"haplotype number"="26",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=10,SET_40_v1=10,SET_45_v1=10]
+	'Th246.13'[&ADCL_53_v1=0,culture_adapted=0,"haplotype number"="26",year="2013",ADCL_35=0,ADCL_35_lab="",ADCL_40=0,ADCL_40_lab="",ADCL_45=0,ADCL_45_lab="",DISCO=1,SET_35_v1=10,SET_40_v1=10,SET_45_v1=10]
+;
+end;
 
-BEGIN TAXA;
-	DIMENSIONS NTAX = 18;
-	TAXLABELS
-		Th086.07
-		Th106.09
-		Th106.11
-		Th117.11
-		Th132.11
-		Th134.11
-		Th162.12
-		Th196.12
-		Th230.12
-		Th074.13
-		Th166.12
-		Th092.13
-		Th211.13
-		Th245.13
-		Th246.13
-		Th068.12
-		Th061.13
-		Th095.13
-	;
-END;
-BEGIN TREES;
-	TRANSLATE
-		1	Th086.07,
-		2	Th106.09,
-		3	Th106.11,
-		4	Th117.11,
-		5	Th132.11,
-		6	Th134.11,
-		7	Th162.12,
-		8	Th196.12,
-		9	Th230.12,
-		10	Th074.13,
-		11	Th166.12,
-		12	Th092.13,
-		13	Th211.13,
-		14	Th245.13,
-		15	Th246.13,
-		16	Th068.12,
-		17	Th061.13,
-		18	Th095.13
-	;
-	TREE * UNTITLED = [&U] (9:47.32226562,8:76.67773438,((((2:26.01484375,10:61.98515625):7.721679688,(((3:56.30957031,4:54.69042969):5.698102679,6:46.80189732):74.80794271,((((((11:92.57142857,14:130.4285714):18.73076923,13:119.2692308):20.86458333,15:90.88541667):14.9375,12:76.4375):6462.759375,((17:151.59375,18:130.40625):67.51666667,16:117.9833333):7056.490625):5070.116319,1:200.9149306):126.422526):191.8076172):9.809895833,7:95.81315104):8.396484375,5:57.62890625):2.87109375);
-END;
+begin trees;
+	tree UNTITLED = [&U] ('Th230.12'[&!color=#00ff00]:47.322266,'Th196.12'[&!color=#00ff00]:76.677734,(((('Th106.09'[&!color=#00ff00]:26.014844,'Th074.13'[&!color=#00ff00]:61.985156)[&!color=#00ff00]:7.72168,((('Th106.11'[&!color=#00ff00]:56.30957,'Th117.11'[&!color=#00ff00]:54.69043)[&!color=#00ff00]:5.698103,'Th134.11'[&!color=#00ff00]:46.801897)[&!color=#00ff00]:74.807943,(((((('Th166.12'[&!color=#0000ff]:92.571429,'Th245.13'[&!color=#0000ff]:130.428571)[&!color=#0000ff]:18.730769,'Th211.13'[&!color=#0000ff]:119.269231)[&!color=#0000ff]:20.864583,'Th246.13'[&!color=#0000ff]:90.885417)[&!color=#0000ff]:14.9375,'Th092.13'[&!color=#0000ff]:76.4375):6462.759375,(('Th061.13'[&!color=#ff0000]:151.59375,'Th095.13'[&!color=#ff0000]:130.40625)[&!color=#ff0000]:67.516667,'Th068.12'[&!color=#ff0000]:117.983333):7056.490625):5070.116319,'Th086.07'[&!color=#00ff00]:200.914931)[&!color=#00ff00]:126.422526)[&!color=#00ff00]:191.807617)[&!color=#00ff00]:9.809896,'Th162.12'[&!color=#00ff00]:95.813151)[&!color=#00ff00]:8.396484,'Th132.11'[&!color=#00ff00]:57.628906)[&!color=#00ff00]:2.871094);
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=3.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="Branch times";
+	set branchLabels.fontName="sansserif";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set colour.order.year="year:2007,2009,2011,2012,2013";
+	set colour.scheme.year="year:HSBDiscrete{hue,1,0.658,0.946,0.864,1.0,0.543,0.8}";
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=0;
+	set legend.attribute=null;
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute=null;
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="Node ages";
+	set nodeLabels.fontName="sansserif";
+	set nodeLabels.fontSize=8;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=false;
+	set nodeLabels.significantDigits=4;
+	set nodeShape.colourAttribute="User selection";
+	set nodeShape.isShown=false;
+	set nodeShape.minSize=10.0;
+	set nodeShape.scaleType=Width;
+	set nodeShape.shapeType=Circle;
+	set nodeShape.size=4.0;
+	set nodeShape.sizeAttribute="Fixed";
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=false;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=700.0;
+	set tipLabels.colorAttribute="year";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="Arial";
+	set tipLabels.fontSize=14;
+	set tipLabels.fontStyle=1;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=false;
+	set trees.orderType="decreasing";
+	set trees.rooting=true;
+	set trees.rootingType="Midpoint";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+
