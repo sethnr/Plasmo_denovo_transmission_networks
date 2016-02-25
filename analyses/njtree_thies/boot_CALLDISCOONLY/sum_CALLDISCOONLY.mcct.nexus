@@ -131,10 +131,10 @@ Execution Information
 ---------------------
 Executed on node1749.broadinstitute.org by sredmond@node1749.broadinstitute.org
 Working directory: '/seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies'
-Started at: 2016-02-25 17:55:20.596934
-Ended at: 2016-02-25 17:55:21.825784
-Total elapsed time: 1.22885 seconds
-Actual analysis time: 1.127681 seconds
+Started at: 2016-02-25 18:26:32.401294
+Ended at: 2016-02-25 18:26:33.921266
+Total elapsed time: 1.519972 seconds
+Actual analysis time: 0.792639 seconds
 
 Citation Information
 --------------------
