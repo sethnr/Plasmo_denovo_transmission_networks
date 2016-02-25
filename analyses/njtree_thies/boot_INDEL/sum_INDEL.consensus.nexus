@@ -129,12 +129,12 @@ Running under Python 2.7.1 (r271:86832, Jul 22 2014, 14:28:47) (GCC 4.4.7 201203
 
 Execution Information
 ---------------------
-Executed on node1756 by sredmond@node1756
+Executed on node1749.broadinstitute.org by sredmond@node1749.broadinstitute.org
 Working directory: '/seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies'
-Started at: 2016-02-25 17:32:28.277997
-Ended at: 2016-02-25 17:32:31.147607
-Total elapsed time: 2.86961 seconds
-Actual analysis time: 2.758279 seconds
+Started at: 2016-02-25 17:55:05.411310
+Ended at: 2016-02-25 17:55:06.653995
+Total elapsed time: 1.242685 seconds
+Actual analysis time: 1.146975 seconds
 
 Citation Information
 --------------------
