@@ -129,12 +129,12 @@ Running under Python 2.7.1 (r271:86832, Jul 22 2014, 14:28:47) (GCC 4.4.7 201203
 
 Execution Information
 ---------------------
-Executed on node1749.broadinstitute.org by sredmond@node1749.broadinstitute.org
+Executed on node1761 by sredmond@node1761
 Working directory: '/seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies'
-Started at: 2016-02-25 18:26:01.827006
-Ended at: 2016-02-25 18:26:03.819456
-Total elapsed time: 1.99245 seconds
-Actual analysis time: 1.131246 seconds
+Started at: 2016-02-25 20:04:47.791162
+Ended at: 2016-02-25 20:04:48.794547
+Total elapsed time: 1.003385 seconds
+Actual analysis time: 0.86214 seconds
 
 Citation Information
 --------------------
@@ -151,41 +151,41 @@ BEGIN TAXA;
     DIMENSIONS NTAX=18;
     TAXLABELS
         Th086.07
-[&ADCL_45=0,culture_adapted=1,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=1,"haplotype number"=29,year=2007,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=]
+[&culture_adapted=1,"haplotype number"=29,year=2007,ADCL_35=0,ADCL_35_lab=,ADCL_45_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_53_v1=1,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
         Th106.09
-[&DISCO=1,culture_adapted=1,SET_35_v1=110,"haplotype number"=29,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,year=2009,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=]
+[&year=2009,culture_adapted=1,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,SET_35_v1=110,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,DISCO=1,ADCL_53_v1=0,SET_40_v1=110,SET_45_v1=110,"haplotype number"=29]
         Th106.11
-[&SET_35_v1=110,culture_adapted=1,SET_40_v1=110,year=2011,SET_45_v1=110,"haplotype number"=29,ADCL_53_v1=0,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,DISCO=1]
+[&ADCL_35=0,culture_adapted=1,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,SET_40_v1=110,ADCL_45_lab=,DISCO=1,SET_35_v1=110,ADCL_53_v1=0,SET_45_v1=110,"haplotype number"=29,year=2011]
         Th117.11
-[&SET_35_v1=110,culture_adapted=1,SET_40_v1=110,SET_45_v1=110,"haplotype number"=29,ADCL_53_v1=0,year=2011,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,DISCO=1]
+[&ADCL_35_lab=,culture_adapted=1,ADCL_40=0,ADCL_40_lab=,SET_40_v1=110,ADCL_45=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,ADCL_53_v1=0,SET_45_v1=110,"haplotype number"=29,year=2011,ADCL_35=0]
         Th132.11
-[&SET_40_v1=110,culture_adapted=1,SET_45_v1=110,DISCO=1,"haplotype number"=29,year=2011,ADCL_53_v1=0,ADCL_35=0,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,ADCL_35_lab=,SET_35_v1=110]
+[&ADCL_35_lab=,culture_adapted=1,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,ADCL_53_v1=0,SET_45_v1=110,"haplotype number"=29,year=2011,ADCL_35=0]
         Th134.11
-[&ADCL_45=0,culture_adapted=1,DISCO=1,ADCL_40_lab=,year=2011,ADCL_53_v1=0,SET_35_v1=110,SET_40_v1=110,ADCL_40=0,"haplotype number"=29,ADCL_45_lab=,ADCL_35=0,ADCL_35_lab=,SET_45_v1=110]
+[&culture_adapted=1,year=2011,SET_45_v1=110,ADCL_45=0,SET_35_v1=110,ADCL_40_lab=,ADCL_53_v1=0,SET_40_v1=110,"haplotype number"=29,ADCL_35=0,ADCL_35_lab=,ADCL_45_lab=,ADCL_40=0,DISCO=1]
         Th162.12
-[&SET_35_v1=110,culture_adapted=1,ADCL_40=0,ADCL_35=0,DISCO=1,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=29,ADCL_45=0,ADCL_35_lab=,ADCL_40_lab=,ADCL_45_lab=,SET_40_v1=110,year=2012]
+[&culture_adapted=1,ADCL_35_lab=,ADCL_45_lab=,SET_35_v1=110,ADCL_45=0,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=29,ADCL_35=0,ADCL_40_lab=,ADCL_40=0,year=2012,SET_40_v1=110,DISCO=1]
         Th196.12
-[&ADCL_40_lab=,culture_adapted=1,ADCL_45=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=29,year=2012,ADCL_35=0,ADCL_35_lab=,ADCL_40=0]
+[&ADCL_40=0,culture_adapted=1,DISCO=1,SET_40_v1=110,ADCL_45=0,ADCL_35=0,SET_35_v1=110,SET_45_v1=110,ADCL_53_v1=0,ADCL_40_lab=,ADCL_45_lab=,ADCL_35_lab=,year=2012,"haplotype number"=29]
         Th230.12
-[&ADCL_45=0,culture_adapted=1,ADCL_45_lab=,DISCO=1,SET_35_v1=111,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=29,year=2012,ADCL_35=1,ADCL_35_lab=Th230.12,ADCL_40=0,ADCL_40_lab=]
+[&culture_adapted=1,SET_35_v1=111,year=2012,ADCL_40_lab=,SET_40_v1=110,ADCL_40=0,ADCL_35=1,SET_45_v1=110,ADCL_53_v1=0,ADCL_35_lab=Th230.12,"haplotype number"=29,ADCL_45=0,ADCL_45_lab=,DISCO=1]
         Th074.13
-[&ADCL_40_lab=,culture_adapted=1,ADCL_45=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=29,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0]
+[&culture_adapted=1,ADCL_45=0,"haplotype number"=29,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_53_v1=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
         Th166.12
-[&culture_adapted=1,DISCO=1,ADCL_35_lab=,SET_40_v1=110,"haplotype number"=26,ADCL_35=0,ADCL_40_lab=,ADCL_53_v1=0,ADCL_45=0,ADCL_45_lab=,SET_35_v1=110,SET_45_v1=110,year=2012,ADCL_40=0]
+[&DISCO=1,culture_adapted=1,ADCL_35=0,ADCL_45_lab=,SET_45_v1=110,SET_35_v1=110,"haplotype number"=26,ADCL_53_v1=0,SET_40_v1=110,ADCL_40=0,ADCL_35_lab=,ADCL_40_lab=,ADCL_45=0,year=2012]
         Th092.13
-[&ADCL_45=0,culture_adapted=1,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=26,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=]
+[&"haplotype number"=26,culture_adapted=1,year=2013,ADCL_35=0,ADCL_45_lab=,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_53_v1=0,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
         Th211.13
-[&ADCL_45=0,culture_adapted=1,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=26,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=]
+[&ADCL_40_lab=,culture_adapted=1,ADCL_35=0,"haplotype number"=26,DISCO=1,year=2013,ADCL_35_lab=,ADCL_53_v1=0,SET_45_v1=110,SET_40_v1=110,SET_35_v1=110,ADCL_45_lab=,ADCL_45=0,ADCL_40=0]
         Th245.13
-[&ADCL_45_lab=,culture_adapted=0,DISCO=1,SET_35_v1=10,SET_40_v1=10,SET_45_v1=10,ADCL_53_v1=0,"haplotype number"=26,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0]
+[&SET_35_v1=10,culture_adapted=0,ADCL_40=0,ADCL_35_lab=,ADCL_40_lab=,year=2013,"haplotype number"=26,ADCL_53_v1=0,SET_45_v1=10,ADCL_35=0,ADCL_45=0,ADCL_45_lab=,SET_40_v1=10,DISCO=1]
         Th246.13
-[&DISCO=1,culture_adapted=0,SET_35_v1=10,SET_40_v1=10,SET_45_v1=10,"haplotype number"=26,ADCL_53_v1=0,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=]
+[&year=2013,culture_adapted=0,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,SET_35_v1=10,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,DISCO=1,ADCL_53_v1=0,SET_40_v1=10,SET_45_v1=10,"haplotype number"=26]
         Th068.12
-[&ADCL_40=0,culture_adapted=1,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=1,"haplotype number"=24,year=2012,ADCL_35=0,ADCL_35_lab=]
+[&culture_adapted=1,ADCL_40_lab=,"haplotype number"=24,year=2012,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_53_v1=1,ADCL_45=0,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110]
         Th061.13
-[&ADCL_35_lab=,culture_adapted=1,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,SET_45_v1=110,ADCL_45_lab=,DISCO=1,SET_35_v1=110,SET_40_v1=110,ADCL_53_v1=0,"haplotype number"=24,year=2013,ADCL_35=0]
+[&culture_adapted=1,"haplotype number"=24,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_53_v1=0,ADCL_40_lab=,SET_35_v1=110,ADCL_45=0,ADCL_45_lab=,DISCO=1,ADCL_40=0,SET_40_v1=110,SET_45_v1=110]
         Th095.13
-[&ADCL_45_lab=,culture_adapted=1,DISCO=1,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,ADCL_53_v1=0,"haplotype number"=24,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0]
+[&"haplotype number"=24,culture_adapted=1,year=2013,ADCL_35=0,ADCL_35_lab=,ADCL_40=0,ADCL_40_lab=,ADCL_45=0,ADCL_45_lab=,ADCL_53_v1=0,SET_35_v1=110,SET_40_v1=110,SET_45_v1=110,DISCO=1]
   ;
 END;
 
