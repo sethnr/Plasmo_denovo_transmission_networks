@@ -1,7 +1,7 @@
 library(ggplot2)
 library(reshape2)
 
-
+options(bitmapType = 'cairo')
 #fileroot <- commandArgs(TRUE)[1]
 
 #pos <- read.table(paste(fileroot,"012","pos",sep="."))
