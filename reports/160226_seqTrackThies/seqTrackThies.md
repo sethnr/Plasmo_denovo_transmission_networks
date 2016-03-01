@@ -1,0 +1,88 @@
+#seqtrack tutorial  
+
+```r
+library(ape)
+library(adegenet)
+library(knitr)
+#library(igraph)
+
+opts_chunk$set(fig.width=6, fig.height=6)
+opts_chunk$set(dev=c('png','pdf'))
+
+
+sym <- function(M) {
+  M[lower.tri(M)] = t(M)[lower.tri(M)]
+  M
+}
+```
+
+```r
+#read in distance matrix
+mat <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf.dist.tab.txt",sep="\t")
+D <- as.dist(sym(mat))
+names <- colnames(distmat)
+
+#tre <- nj(D)
+#tre <- ladderize(tre)
+#plot(tre,edge.width=2, tip.col=num2col(weeks, col.pal=seasun))
+
+#make into clusters
+clust <- gengraph(D,ngrp=3)
+plot(clust$g, main="gengraph clusters")
+```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png) 
+
+```r
+distmat <- as.matrix(D)
+```
+
+
+```r
+meta <- read.table("daniels.thies.CA.txt",sep="\t",header=T)
+rownames(meta) <- meta$name
+meta <- meta[names,]
+coll <- as.Date(paste("1","jan",meta$year,sep=""),"%d%b%Y")
+names(coll)<-meta$name
+
+weeks <- as.integer(difftime(coll, min(coll), unit="weeks"))
+
+
+
+name1 <- names[clust$clust$membership==1]
+dist1 <- distmat[name1,name1]
+coll1 <- coll[name1]
+
+name2 <- names[clust$clust$membership==2]
+dist2 <- distmat[name2,name2]
+coll2 <- coll[name2]
+
+name3 <- names[clust$clust$membership==3]
+dist3 <- distmat[name3,name3]
+coll3 <- coll[name3]
+```
+
+
+```r
+#res1 <- seqTrack(distmat, x.names=name1, x.dates=coll1)
+#res$clust <- clust$clust$membership[rownames(res)]
+
+res1 <- seqTrack(dist1, x.names=name1, x.dates=coll1)
+plot(res1,y=NULL,col.pal=flame)
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+
+```r
+dev.res2 <- seqTrack(dist2, x.names=name2, x.dates=coll2)
+plot(res2,y=NULL,col.pal=flame)
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png) 
+
+```r
+res3 <- seqTrack(dist3, x.names=name3, x.dates=coll3)
+plot(res3,y=NULL,col.pal=flame)
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-3.png) 
