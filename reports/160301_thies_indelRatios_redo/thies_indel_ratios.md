@@ -62,11 +62,7 @@ total_dist <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf.dist.ta
 INDEL_dist <- reorder(INDEL_dist,tree_order)
 SNP_dist <- reorder(SNP_dist,tree_order)
 total_dist <- reorder(total_dist,tree_order)
-discord_dist <- reorder(discord_dist,tree_order)
-```
-
-```
-## Error in t(M): object 'discord_dist' not found
+#discord_dist <- reorder(discord_dist,tree_order)
 ```
 
 
@@ -218,7 +214,7 @@ ggplot(hets,aes(x=INDV,y=hets)) + geom_bar(stat="identity") + coord_flip()
 
 ```r
 sings <- read.table("Thies_all_manual_2.PASS.Cls.miss0.5.LMRG.singletons",header=T)
-#sings <- subset(sings,SINGLETON.DOUBLETON=="S")
+sings <- subset(sings,SINGLETON.DOUBLETON=="D")
 #sings$vartype<-"SNP"
 #sings$vartype[apply(sings$ALLELE,1,FUN=length)>1]<-"INDEL"
 #table(sings[,c("INDV","vartype")])
@@ -241,3 +237,61 @@ ggplot(cftab,aes(x=INDV,y=value,fill=clade)) + geom_bar(stat="identity") + coord
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+
+
+
+```r
+distcfs <- melt(distances[,c("snp","indel","total")],id.vars=c("total"))
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + scale_y_log10() + scale_x_log10()
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+
+```r
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(method = "lm", se = FALSE)+ xlim(0,1000)+ylim(0,1000)
+```
+
+```
+## Warning: Removed 95 rows containing missing values (stat_smooth).
+```
+
+```
+## Warning: Removed 95 rows containing missing values (stat_smooth).
+```
+
+```
+## Warning: Removed 190 rows containing missing values (geom_point).
+```
+
+```
+## Warning: Removed 3 rows containing missing values (geom_path).
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
+
+```r
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(se = FALSE)+ xlim(0,750)+ylim(0,750)
+```
+
+```
+## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
+```
+
+```
+## Warning: Removed 95 rows containing missing values (stat_smooth).
+```
+
+```
+## Warning: Removed 95 rows containing missing values (stat_smooth).
+```
+
+```
+## Warning: Removed 190 rows containing missing values (geom_point).
+```
+
+```
+## Warning: Removed 1 rows containing missing values (geom_path).
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png) 
+

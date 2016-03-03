@@ -50,6 +50,9 @@ weeks <- as.integer(difftime(coll, min(coll), unit="weeks"))
 name1 <- names[clust$clust$membership==1]
 name2 <- names[clust$clust$membership==2]
 name3 <- names[clust$clust$membership==3]
+year1 <- meta$year[clust$clust$membership==1]
+year2 <- meta$year[clust$clust$membership==2]
+year3 <- meta$year[clust$clust$membership==3]
 coll1 <- coll[name1]
 coll2 <- coll[name2]
 coll3 <- coll[name3]
@@ -170,9 +173,12 @@ plot(res3SNP,y=NULL,col.pal=flame)
 
 
 ```r
+cols <- rev(brewer.pal(7, "RdBu") )
+
 ts=1 #textsize
 ig <- as.igraph(res1)
 V(ig)$name <- name1
+V(ig)$color <- cols[year1-min(year1)+1]
 V(ig)$label.cex <- ts
 plot(ig,main="all vars",vertex.size=25)
 ```
@@ -182,6 +188,7 @@ plot(ig,main="all vars",vertex.size=25)
 ```r
 igSNP <- as.igraph(res1SNP)
 V(igSNP)$name <- name1
+V(igSNP)$color <- cols[year1-min(year1)+1]
 V(igSNP)$label.cex <- ts
 plot(igSNP,main="SNPs",vertex.size=25)
 ```
@@ -191,6 +198,7 @@ plot(igSNP,main="SNPs",vertex.size=25)
 ```r
 igINDEL <- as.igraph(res1INDEL)
 V(igINDEL)$name <- name1
+V(igINDEL)$color <- cols[year1-min(year1)+1]
 V(igINDEL)$label.cex <- ts
 plot(igINDEL,main="INDELs",vertex.size=25,)
 ```

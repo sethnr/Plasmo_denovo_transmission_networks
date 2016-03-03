@@ -54,7 +54,7 @@ total_dist <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf.dist.ta
 INDEL_dist <- reorder(INDEL_dist,tree_order)
 SNP_dist <- reorder(SNP_dist,tree_order)
 total_dist <- reorder(total_dist,tree_order)
-discord_dist <- reorder(discord_dist,tree_order)
+#discord_dist <- reorder(discord_dist,tree_order)
 
 
 
@@ -175,3 +175,23 @@ ggplot(cftab,aes(x=INDV,y=value,fill=clade)) + geom_bar(stat="identity") + coord
 
 
 ```
+
+
+```{r}
+distances$ratPSig <- distances$ratioP<0.01
+distcfs <- melt(distances[,c("snp","indel","total","ratPSig")],id.vars=c("total","ratPSig"))
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + scale_y_log10() + scale_x_log10()
+#ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(method = "lm", se = FALSE)+ xlim(0,1000)+ylim(0,1000)
+
+maxv = 750
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)) + geom_point() + 
+  geom_smooth(se = FALSE) + 
+  geom_smooth(method="lm",se = FALSE,colour="grey")+  
+  xlim(0,maxv)+ylim(0,maxv)
+maxv = 400
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)) + geom_point() + 
+  geom_smooth(se = FALSE) + 
+  geom_smooth(method="lm",se = FALSE,colour="grey")+  
+  xlim(0,maxv)+ylim(0,maxv)
+```
+
