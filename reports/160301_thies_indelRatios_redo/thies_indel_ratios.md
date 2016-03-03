@@ -78,35 +78,143 @@ distances <- merge(
   melt(as.matrix(total_dist),value.name ="total"),
   by=c("Var1","Var2")
 )
+```
 
+```
+## Error in merge(melt(as.matrix(INDEL_dist), value.name = "indel"), melt(as.matrix(SNP_dist), : could not find function "melt"
+```
 
+```r
 #distances <- distances[distances$Var1!=distances$Var2,]
 distances <- distances[!is.na(distances$total),]
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
 distances$clade1 <- clades[distances$Var1]
-distances$clade2 <- clades[distances$Var2]
-distances$clades <- paste(clades[distances$Var1],clades[distances$Var2])
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
+distances$clade2 <- clades[distances$Var2]
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
+distances$clades <- paste(clades[distances$Var1],clades[distances$Var2])
+```
+
+```
+## Error in paste(clades[distances$Var1], clades[distances$Var2]): object 'distances' not found
+```
+
+```r
 distances$interval_yrs <- abs(as.numeric(substr(as.character(distances$Var1),7,8)) - as.numeric(substr(as.character(distances$Var2),7,8)))
+```
+
+```
+## Error in substr(as.character(distances$Var1), 7, 8): object 'distances' not found
+```
+
+```r
 #distances$related <- distances$total < 10000
 distances$related[distances$total >= 10000] <- "UNRELATED"
+```
+
+```
+## Error in distances$related[distances$total >= 10000] <- "UNRELATED": object 'distances' not found
+```
+
+```r
 distances$related[distances$total < 10000] <- "RELATED"
+```
 
+```
+## Error in distances$related[distances$total < 10000] <- "RELATED": object 'distances' not found
+```
+
+```r
 distances$IBD <- distances$total < 2100
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
 
+```r
 distances$ratio <- round(distances$indel/distances$snp,2)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
 distances$logratio <- log2(distances$ratio)
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
 distances$Var1 <- factor(distances$Var1,levels=rev(tree_order))
+```
+
+```
+## Error in factor(distances$Var1, levels = rev(tree_order)): object 'distances' not found
+```
+
+```r
 distances$Var2 <- factor(distances$Var2,levels=rev(tree_order))
+```
 
+```
+## Error in factor(distances$Var2, levels = rev(tree_order)): object 'distances' not found
+```
+
+```r
 distances$ratio_t <- paste(round(distances$snp/distances$indel),1,sep=":")
+```
+
+```
+## Error in paste(round(distances$snp/distances$indel), 1, sep = ":"): object 'distances' not found
+```
+
+```r
 distances$ratio_t[is.na(distances$ratio)] <- NA
+```
 
+```
+## Error in distances$ratio_t[is.na(distances$ratio)] <- NA: object 'distances' not found
+```
 
+```r
 snpRatioLM <- coef(lm(indel ~ snp, data = subset(distances,related=="UNRELATED")))
-unrelatedLM <- geom_abline(intercept=snpRatioLM[[1]],slope=snpRatioLM[[2]])
+```
 
+```
+## Error in subset(distances, related == "UNRELATED"): object 'distances' not found
+```
+
+```r
+unrelatedLM <- geom_abline(intercept=snpRatioLM[[1]],slope=snpRatioLM[[2]])
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "geom_abline"
+```
+
+```r
 #distances[as.numeric(distances$Var1) <= as.numeric(distances$Var2),]
 #flip all to top half
 #distances[as.numeric(distances$Var1) > as.numeric(distances$Var2),c("Var1","Var2")] <- distances[as.numeric(distances$Var1) > as.numeric(distances$Var2),c("Var2","Var1")]
@@ -115,17 +223,54 @@ unrelatedLM <- geom_abline(intercept=snpRatioLM[[1]],slope=snpRatioLM[[2]])
 
 ```r
 distances$ratioP <- NA
+```
+
+```
+## Error in distances$ratioP <- NA: object 'distances' not found
+```
+
+```r
 ID_unrelated <- c(sum(distances$indel[distances$related=="UNRELATED"]),sum(distances$snp[distances$related=="UNRELATED"]))
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
 ID_related <- c(sum(distances$indel[distances$related=="RELATED"]),sum(distances$snp[distances$related=="RELATED"]))
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
 tab <- cbind(ID_unrelated,ID_related)
+```
+
+```
+## Error in cbind(ID_unrelated, ID_related): object 'ID_unrelated' not found
+```
+
+```r
 colnames(tab)<-c("unrelated","related"); rownames(tab) <- c("indel","snp")
+```
+
+```
+## Error in colnames(tab) <- c("unrelated", "related"): object 'tab' not found
+```
+
+```
+## Error in rownames(tab) <- c("indel", "snp"): object 'tab' not found
+```
+
+```r
 tab
 ```
 
 ```
-##       unrelated related
-## indel    392037    4931
-## snp      794860   12794
+## Error in eval(expr, envir, enclos): object 'tab' not found
 ```
 
 ```r
@@ -133,17 +278,7 @@ fisher.test(tab)
 ```
 
 ```
-## 
-## 	Fisher's Exact Test for Count Data
-## 
-## data:  tab
-## p-value < 2.2e-16
-## alternative hypothesis: true odds ratio is not equal to 1
-## 95 percent confidence interval:
-##  1.237996 1.323040
-## sample estimates:
-## odds ratio 
-##   1.279747
+## Error in is.data.frame(x): object 'tab' not found
 ```
 
 ```r
@@ -151,29 +286,66 @@ for(i in 1:dim(distances)[[1]]){
   t <- fisher.test(t(rbind(ID_unrelated,distances[i,c("indel","snp")])))
   distances[i,"ratioP"] <- t$p.value
   }
+```
 
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
 distances$ratio[is.nan(distances$ratio)] <- NA
+```
+
+```
+## Error in distances$ratio[is.nan(distances$ratio)] <- NA: object 'distances' not found
+```
+
+```r
 #distances
 ```
 
 
 ```r
 relcol <- scale_color_manual(values=c("white","black"))
-vxlab <- theme(axis.text.x = element_text(angle = 90, hjust = 1))  
+```
 
+```
+## Error in eval(expr, envir, enclos): could not find function "scale_color_manual"
+```
+
+```r
+vxlab <- theme(axis.text.x = element_text(angle = 90, hjust = 1))  
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "theme"
+```
+
+```r
 ggplot(distances,aes(x=Var1,y=Var2,fill=total,label=total,colour=related)) + geom_tile() + scale_fill_gradient(trans="log") + geom_text(size=3) + relcol + vxlab
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
+```
 
 ```r
 ggplot(distances,aes(x=Var1,y=Var2,fill=interval_yrs)) + geom_tile() + vxlab
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
+```
 
 ```r
 sigcol <- scale_color_manual(values=c("white","red"))
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "scale_color_manual"
+```
+
+```r
 #ggplot(distances,aes(x=Var1,y=Var2,fill=ratio,label=ratio)) + geom_tile(size=1) + geom_text(aes(colour=ratioP < 0.01),size=4) + sigcol + vxlab
 ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=ratio,label=ratio_t)) + geom_tile(size=1) + 
   geom_text(aes(colour=ratioP < 0.01),size=4) + 
@@ -181,10 +353,8 @@ ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=ratio,label=r
 ```
 
 ```
-## Warning: Removed 18 rows containing missing values (geom_text).
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
 ```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png) 
 
 ```r
 # ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=total,label=ratio_t)) + geom_tile(size=1) + 
@@ -196,10 +366,8 @@ ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=interval_yrs,
 ```
 
 ```
-## Warning: Removed 18 rows containing missing values (geom_text).
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
 ```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png) 
 
 
 ```r
@@ -210,7 +378,9 @@ hets <- hets[tree_order,]
 ggplot(hets,aes(x=INDV,y=hets)) + geom_bar(stat="identity") + coord_flip()
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
+```
 
 ```r
 sings <- read.table("Thies_all_manual_2.PASS.Cls.miss0.5.LMRG.singletons",header=T)
@@ -228,70 +398,66 @@ cftab <- melt(hets[,c("INDV","clade","hets","sings")],id.vars=c("INDV","clade"))
 ```
 
 ```
-## Warning: attributes are not identical across measure variables; they will
-## be dropped
+## Error in eval(expr, envir, enclos): could not find function "melt"
 ```
 
 ```r
 ggplot(cftab,aes(x=INDV,y=value,fill=clade)) + geom_bar(stat="identity") + coord_flip() + facet_grid(. ~ variable,scales ="free_y") + scale_fill_manual(values=c("red","blue","green"))
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
+```
 
 
 
 ```r
-distcfs <- melt(distances[,c("snp","indel","total")],id.vars=c("total"))
+distances$ratPSig <- distances$ratioP<0.01
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'distances' not found
+```
+
+```r
+distcfs <- melt(distances[,c("snp","indel","total","ratPSig")],id.vars=c("total","ratPSig"))
+```
+
+```
+## Error in eval(expr, envir, enclos): could not find function "melt"
+```
+
+```r
 ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + scale_y_log10() + scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+```
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
+```
 
 ```r
-ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(method = "lm", se = FALSE)+ xlim(0,1000)+ylim(0,1000)
+#ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(method = "lm", se = FALSE)+ xlim(0,1000)+ylim(0,1000)
+
+maxv = 750
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)) + geom_point() + 
+  geom_smooth(se = FALSE) + 
+  geom_smooth(method="lm",se = FALSE,colour="grey")+  
+  xlim(0,maxv)+ylim(0,maxv)
 ```
 
 ```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
 ```
-
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 190 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 3 rows containing missing values (geom_path).
-```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
 
 ```r
-ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(se = FALSE)+ xlim(0,750)+ylim(0,750)
+maxv = 400
+ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)) + geom_point() + 
+  geom_smooth(se = FALSE) + 
+  geom_smooth(method="lm",se = FALSE,colour="grey")+  
+  xlim(0,maxv)+ylim(0,maxv)
 ```
 
 ```
-## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
+## Error in eval(expr, envir, enclos): could not find function "ggplot"
 ```
-
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 190 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 1 rows containing missing values (geom_path).
-```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png) 
 
