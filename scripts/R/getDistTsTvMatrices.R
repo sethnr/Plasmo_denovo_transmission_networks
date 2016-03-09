@@ -14,6 +14,8 @@ outtab_tstv=paste(fileroot,'tstv.tab.txt',sep='.')
 outtab_id=paste(fileroot,'in-del.tab.txt',sep='.')
 outtab_IS=paste(fileroot,'indel-snp.tab.txt',sep='.')
 outtab_taat=paste(fileroot,'taat.tab.txt',sep='.')
+outtab_I=paste(fileroot,'INDEL.tab.txt',sep='.')
+outtab_S=paste(fileroot,'SNP.tab.txt',sep='.')
 
 #read in ped file and get hamming distances:
 genos <- read.table(ped,colClasses="character")
@@ -24,6 +26,12 @@ rownames(genos)=inds
 distmat = matrix(nrow=length(inds),ncol=length(inds))
 colnames(distmat) = inds
 rownames(distmat) = inds
+Imat = matrix(nrow=length(inds),ncol=length(inds))
+colnames(Imat) = inds
+rownames(Imat) = inds
+Smat = matrix(nrow=length(inds),ncol=length(inds))
+colnames(Smat) = inds
+rownames(Smat) = inds
 
 #write("calculating distance matrix",stderr())
 #for (i in rownames(genos)){
@@ -106,11 +114,15 @@ for (i in rownames(genos)){
 	    }
 	}
     
-	write(paste(i,j,distmat[i,j],ts,tv,IN,DEL,na,sep="\t"),stderr())
+	write(paste(i,j,distmat[i,j],ts,tv,IN,DEL,na,sep="\t"),stdout())
     	tstvmat[i,j] = round(tv/ts,2)
     	idmat[i,j] = round(IN/DEL,2)
 	ISmat[i,j] = round((tv+ts)/(IN+DEL),2)
     	TAATmat[i,j] = round(taat/(tv+ts),2)
+	Imat[i,j]=IN+DEL
+	Smat[i,j]=ts+tv
+	
+	
     }
 }
 
@@ -120,6 +132,9 @@ write.table(tstvmat,sep="\t",file=outtab_tstv,quote=F)
 write.table(idmat,sep="\t",file=outtab_id,quote=F)
 write.table(ISmat,sep="\t",file=outtab_IS,quote=F)
 write.table(TAATmat,sep="\t",file=outtab_taat,quote=F)
+
+write.table(Imat,sep="\t",file=outtab_I,quote=F)
+write.table(Smat,sep="\t",file=outtab_S,quote=F)
 
 
 
