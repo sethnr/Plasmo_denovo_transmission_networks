@@ -1,0 +1,17 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf Thies_all.manual.REFCALL.vcf.gz
+	--het
+	--out Thies_all.manual.REFCALL
+
+Using zlib version: 1.2.3
+Versions of zlib >= 1.2.4 will be *much* faster when reading zipped VCF files.
+After filtering, kept 36 out of 36 Individuals
+Outputting Individual Heterozygosity
+	Individual Heterozygosity: Only using biallelic SNPs.
+	Individual Heterozygosity: Only using fully diploid SNPs.
+After filtering, kept 654449 out of a possible 654449 Sites
+Run Time = 13.00 seconds

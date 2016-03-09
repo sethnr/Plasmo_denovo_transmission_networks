@@ -1,0 +1,13 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Thies_all_manual_2.PASS.Cls.miss0.5.LMRG.RENAME.vcf
+	--out Thies_all_manual_2.PASS.Cls.miss0.5.LMRG
+	--singletons
+
+After filtering, kept 18 out of 18 Individuals
+Outputting Singleton Locations
+After filtering, kept 35940 out of a possible 35940 Sites
+Run Time = 0.00 seconds
