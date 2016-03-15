@@ -16,13 +16,13 @@ loss3H$P1_F1_pc[is.na(loss3H$P1_F1_pc)]<-0
 loss3H$P2_F1_pc<-as.numeric(as.character(loss3H$P2_F1_pc))
 loss3H$P2_F1_pc[is.na(loss3H$P2_F1_pc)]<-0
 
-
 loss7G <- read.table("7g8_gb4.gatk.final.F1pc.txt",header=T,sep="\t")
 loss7G <- subset(loss7G, P1!="None" & P2!="None")
 loss7G$P1_F1_pc<-as.numeric(as.character(loss7G$P1_F1_pc))
 loss7G$P1_F1_pc[is.na(loss7G$P1_F1_pc)]<-0
 loss7G$P2_F1_pc<-as.numeric(as.character(loss7G$P2_F1_pc))
 loss7G$P2_F1_pc[is.na(loss7G$P2_F1_pc)]<-0
+
 
 lossHD <- read.table("hb3_dd2.gatk.final.F1pc.txt",header=T,sep="\t")
 lossHD <- subset(lossHD, P1!="None" & P2!="None")
@@ -36,9 +36,24 @@ lossHD$P2_F1_pc[is.na(lossHD$P2_F1_pc)]<-0
 
 
 ```{r}
-ggplot(lossHD,aes(x=P1_F1_pc,group=type,colour=type)) + geom_density()
 ggplot(loss7G,aes(x=P1_F1_pc,group=type,colour=type)) + geom_density()
 ggplot(loss3H,aes(x=P2_F1_pc,group=type,colour=type)) + geom_density()
+ggplot(lossHD,aes(x=P1_F1_pc,group=type,colour=type)) + geom_density()
+
+loss3H$lost <- loss3H$P1_F1_pc==0 | loss3H$P1_F1_pc==1
+loss7G$lost <- loss7G$P1_F1_pc==0 | loss7G$P1_F1_pc==1
+lossHD$lost <- lossHD$P1_F1_pc==0 | lossHD$P1_F1_pc==1
+loss3H$set <- "3D7xHB3"
+loss7G$set <- "7G8xGB4"
+lossHD$set <- "HB3xDD2"
+
+loss <- rbind(loss3H,loss7G,lossHD)
+ggplot(loss,aes(x=type,group=lost,fill=lost)) + geom_bar() + facet_grid(. ~ set)
+
+ggplot(loss,aes(x=type,group=lost,fill=lost)) + geom_bar(position="fill") + facet_grid(. ~ set)
+
+
 
 
 ```
+
