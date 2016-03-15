@@ -47,7 +47,6 @@ print >>sys.stderr, "VARS = ",args.vcfFull
 targetsFile = open(args.vcfTargets,'r')
 targets=vcf.Reader(targetsFile)
 
-name = path.basename(args.fasta_align).replace('.fasta','')
 
 i=0
 se = [] #set ends
@@ -216,6 +215,7 @@ for s in range(0,len(se)):
             print >>fasta2, '>'+blockFP[(s,ID)]
         else:
             print >>fasta2,line,
+    call(["rm",TMP+'var.'+str(s)+'.intervals.fasta'])
 fasta2.close()
 
 tags=['AS', #alignment score (no matched bases?)
@@ -225,34 +225,81 @@ tags=['AS', #alignment score (no matched bases?)
       'XE'  #no supporting seeds
       ]
 
-bwa_command = ['bwa','bwasw',
-               args.fasta_align, TMP+'var.intervals.IDs.fasta']
-print >>sys.stderr, " ".join(bwa_command)
-samfilename = TMP+name+'.sam'
-#    samfilename = TMP+"realigns.sam"
-realigns = open(samfilename,"w")
-retval = call(bwa_command,stdout=realigns)
-print >>sys.stderr, "RETURN: ",str(retval)
-realigns.close()
+
+name1 = path.basename(args.fasta_cons).replace('.fasta','')
+bwa_command1 = ['bwa','bwasw', args.fasta_cons, TMP+'var.intervals.IDs.fasta']
+samfilename1 = TMP+name1+'.sam'
+print >>sys.stderr, " ".join(bwa_command1+[">",samfilename1])
+realigns1 = open(samfilename1,"w")
+retval1 = call(bwa_command1,stdout=realigns1)
+realigns1.close()
+
+name2 = path.basename(args.fasta_align).replace('.fasta','')
+bwa_command2 = ['bwa','bwasw', args.fasta_align, TMP+'var.intervals.IDs.fasta']
+samfilename2 = TMP+name2+'.sam'
+print >>sys.stderr, " ".join(bwa_command2+[">",samfilename2])
+realigns2 = open(samfilename2,"w")
+retval2 = call(bwa_command2,stdout=realigns2)
+realigns2.close()
+
+
+def _getCigarILen(cigarLine):
+    retStr = ""
+    iSize=0
+    for (cigarType,cigarLength) in cigarLine:
+        
+        if(cigarType == 0): retStr += "M"+str(cigarLength) #match                  
+        elif(cigarType == 1): 
+            retStr += "I"+str(cigarLength) #insertions
+            iSize += cigarLength
+        elif(cigarType == 2): 
+            retStr += "D"+str(cigarLength) #deletion
+            iSize -= cigarLength
+        elif(cigarType == 3): retStr += "N"+str(cigarLength) #skip
+        elif(cigarType == 4): retStr += "S"+str(cigarLength) #soft clipping
+        elif(cigarType == 5): retStr += "H"+str(cigarLength) #hard clipping
+        elif(cigarType == 6): retStr += "P"+str(cigarLength) #padding
+    return (retStr,iSize)
 
 
     #doesn't need sorting, should be in read order
     #pysam.sort("-S","-n", TMP+"realigns.sam", TMP+"realigns.sam")
-samfile = pysam.AlignmentFile(samfilename, "r").fetch()
-print >>sys.stderr, samfilename, samfile
-for a in samfile:
-    print >>sys.stderr, "HERE HERE HERE!!!!",
-    print >>sys.stderr, a.qname,
-    print >>sys.stderr,  a.is_secondary,
-    print >>sys.stderr,  a.qual
+samfile1 = pysam.AlignmentFile(samfilename1, "r").fetch()
+print >>sys.stderr, samfilename1, samfile1
+for a in samfile1:
+#    print >>sys.stderr, a.qname,
+#    print >>sys.stderr,  a.is_secondary,
+#    print >>sys.stderr,  a.qual
     q = str(a.qname)
-    if (q,'N') not in quals:
-        quals[(q,'N')]=0
+    if (q,'N1') not in quals:
+        quals[(q,'N1')]=0
         for tag in tags:
-            quals[(q,tag)]=0
-    quals[(q,'N')]+=1  # count No of aligns
+            quals[(q,tag+"1")]=0
+        (cigar,ilen) = _getCigarILen(a.cigar)
+        quals[(q,"C1")]=cigar
+        quals[(q,"L1")]=ilen
+
+    quals[(q,'N1')]+=1  # count No of aligns
     for tag,val in a.tags:
-        quals[(q,tag)] += val
+        quals[(q,tag+"1")] += val
+
+samfile2 = pysam.AlignmentFile(samfilename2, "r").fetch()
+for a in samfile2:
+#    print >>sys.stderr, a.qname,
+#    print >>sys.stderr,  a.is_secondary,
+#    print >>sys.stderr,  a.qual
+    q = str(a.qname)
+    if (q,'N2') not in quals:
+        quals[(q,'N2')]=0
+        for tag in tags:
+            quals[(q,tag+"2")]=0
+        (cigar,ilen) = _getCigarILen(a.cigar)
+        quals[(q,"C2")]=cigar
+        quals[(q,"L2")]=ilen
+    quals[(q,'N2')]+=1  # count No of aligns
+    for tag,val in a.tags:
+        quals[(q,tag+"2")] += val
+
 
 #print results
 blocks = [blockI[b] for b in blockI]
@@ -268,70 +315,60 @@ print '#'+args.vcfFull
 
 print "\t".join(["i","aligned_region","var_length","distance_to_telomere","block_length",
                  "variantCount","LevDist (pre)","No. alignments","Alignment Score","prop. total score","LevDist (post)","Subopt align score"])
-print "\t".join(["i","block","L","TD","IL","V","LD","N","AS","RS","NM","XS"])
+print "\t".join(["i","block","L","TD","VC","LD","N1","C1","L1","NM1","N2","C2","L2","NM2",])
 #print ""
 for b in blockI:
     block = blockI[b]
     print str(b)+"\t"+block,
     #for name in names:
-    if (block, 'N') not in quals:
+    if (block, 'N1') not in quals:
         print "\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],
-                                 quals[(block,'IL')],
+#                                 quals[(block,'IL')],
                                  quals[(block,'VC')],
                                  quals[(block,'LD')],
+
                                  0,
                                  0,
                                  0,
                                  0,
+#                                 0,
+
+                                 0,
+                                 0,
+                                 0,
+#                                 0,
                                  0
                                  ])),
+
         
     else:
         maxscore = float(quals[(block,'IL')])
-        score = round(int(quals[(block,'AS')])/maxscore,3)
+        score1 = round(int(quals[(block,'AS1')])/maxscore,3)
+        score2 = round(int(quals[(block,'AS2')])/maxscore,3)
         print "\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],
-                                 quals[(block,'IL')],
+#                                 quals[(block,'IL')],
                                  quals[(block,'VC')],
                                  quals[(block,'LD')],
-                                 quals[(block,'N')],
-                                 quals[(block,'AS')],
-                                 score,
-                                 quals[(block,'NM')],
-                                 quals[(block,'XS')]
+
+                                 quals[(block,'N1')],
+                                 quals[(block,'C1')],
+                                 quals[(block,'L1')],
+#                                 score1,
+                                 quals[(block,'NM1')],
+#                                 quals[(block,'XS1')],
+
+                                 quals[(block,'N2')],
+                                 quals[(block,'C2')],
+                                 quals[(block,'L2')],
+#                                 score2,
+                                 quals[(block,'NM2')] #,
+#                                 quals[(block,'XS2')]
                                  ])),
     print "" 
 
 exit(0)
 
-#REMOVE EXIT COMMAND TO WRITE VCF (PROB NOT THAT USEFUL YET)
-
-#write out new VCF
-#reget full vcf
-fullVarsFile = open(args.vcfFull,'r')
-fullVcf=vcf.Reader(fullVarsFile)
-
-vcfout = args.vcfFull
-vcfout = vcfout.replace('vcf.gz','vcf')
-vcfout = vcfout.replace('.vcf','.SW.vcf')
-vcfoutF = open(vcfout,'w')
-vcfwriter=vcf.Writer(vcfoutF,fullVcf)
-
-for rec in fullVcf:
-    block = rec.CHROM+":"+str(rec.POS)
-    if block in blocks:
-        maxscore = float(quals[(block,'IL')])
-        rec.INFO['LD'] = quals[(block,'LD')]
-        if (block,'AS') in quals:            
-            score = round(int(quals[(block,'AS')])/maxscore,3)
-            rec.INFO['NM'] = quals[(block,'NM')]
-            rec.INFO['RS'] = score
-        else:
-            rec.INFO['NM'] = 0
-            rec.INFO['RS'] = 0
-        
-    vcfwriter.write_record(rec)
-vcfoutF.close()
