@@ -1,0 +1,42 @@
+library(knitr)
+library(ggplot2)
+```{r setup}
+opts_chunk$set(fig.width=13, fig.height=5)
+
+
+``` 
+
+```{r}
+access <- read.table("DD2-2D4.align_cf.3D7_DD2.ACCESS.bed")
+colnames(access) <- c("chrom","st","en","var","IS","TD","VC","LD","N1","C1","L1","NM1","N2","C2","L2","MN2")
+access$Imatch <- (access$IS == (access$L2-access$L1))
+
+dim(subset(access,VC==1))
+dim(subset(access,VC==1 & access$Imatch))
+dim(access)
+
+```
+
+
+```{r}
+inaccess <- read.table("DD2-2D4.align_cf.3D7_DD2.INACCESS.bed")
+colnames(inaccess) <- c("chrom","st","en","var","IS","TD","VC","LD","N1","C1","L1","NM1","N2","C2","L2","MN2")
+inaccess$Imatch <- (inaccess$IS == (inaccess$L2-inaccess$L1))
+
+dim(subset(inaccess,VC==1))
+dim(subset(inaccess,VC==1 & inaccess$Imatch))
+dim(inaccess)
+
+```
+
+
+
+```{r}
+allvars <- read.table("DD2-2D4.align_cf.3D7_DD2.bed")
+colnames(allvars) <- c("chrom","st","en","var","IS","TD","VC","LD","N1","C1","L1","NM1","N2","C2","L2","MN2")
+allvars$Imatch <- (allvars$IS == (allvars$L2-allvars$L1))
+
+dim(subset(allvars,VC==1))
+dim(subset(allvars,VC==1 & allvars$Imatch))
+dim(allvars)
+```
