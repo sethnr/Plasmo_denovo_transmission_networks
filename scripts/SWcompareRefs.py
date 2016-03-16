@@ -300,20 +300,22 @@ for a in samfile2:
     for tag,val in a.tags:
         quals[(q,tag+"2")] += val
 
+print >>sys.stderr, "TARGETS = ",args.fasta_align
+print >>sys.stderr, "VARS = ",args.vcfFull
 
 #print results
 blocks = [blockI[b] for b in blockI]
 # names = [n for b,n,t in quals]
 # names = list(set(names))
 
-print '#'+args.fasta_cons
-print '#'+args.vcfFull
+print >>sys.stdout,'#'+args.fasta_cons
+print >>sys.stdout, '#'+args.fasta_align
 
 #print "block",
 #for name in names:
 #    print "\t".join([""] + [i+"."+name for i in ["N","AS","NM","XS"]]),
 
-print "\t".join(["i","aligned_region","var_length","distance_to_telomere","block_length",
+print "\t".join(["#i","aligned_region","var_length","distance_to_telomere","block_length",
                  "variantCount","LevDist (pre)","No. alignments","Alignment Score","prop. total score","LevDist (post)","Subopt align score"])
 print "\t".join(["i","block","L","TD","VC","LD","N1","C1","L1","NM1","N2","C2","L2","NM2",])
 #print ""
