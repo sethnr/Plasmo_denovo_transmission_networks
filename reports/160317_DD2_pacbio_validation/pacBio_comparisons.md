@@ -2,7 +2,7 @@ library(knitr)
 library(ggplot2)
 
 ```r
-opts_chunk$set(fig.width=13, fig.height=5)
+opts_chunk$set(fig.width=13, fig.height=8)
 ```
 
 
