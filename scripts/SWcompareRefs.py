@@ -110,6 +110,7 @@ for var in targets:
     vname = chrom+":"+str(var.POS)
 
     quals[vname,"L"] = varlen
+    quals[vname,"VT"] = var.var_type
     quals[vname,"TD"] = telodist
 
 
@@ -259,6 +260,7 @@ def _getCigarILen(cigarLine):
         elif(cigarType == 4): retStr += "S"+str(cigarLength) #soft clipping
         elif(cigarType == 5): retStr += "H"+str(cigarLength) #hard clipping
         elif(cigarType == 6): retStr += "P"+str(cigarLength) #padding
+    if retStr == "": retStr="."
     return (retStr,iSize)
 
 
@@ -327,7 +329,7 @@ for b in blockI:
         print "\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],
-#                                 quals[(block,'IL')],
+                                 quals[(block,'VT')],
                                  quals[(block,'VC')],
                                  quals[(block,'LD')],
 
@@ -352,7 +354,7 @@ for b in blockI:
         print "\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],
-#                                 quals[(block,'IL')],
+                                 quals[(block,'VT')],
                                  quals[(block,'VC')],
                                  quals[(block,'LD')],
 
