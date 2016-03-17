@@ -45,21 +45,27 @@ sum(allvars$VC==1 & allvars$Imatch) / sum(allvars$VC==1)
 allvars$accessible = allvars$var %in% access$var
 allvars$noFVars = allvars$VC==1
 
-#predicted/aligned length differences (accessible vs inaccessible genome)
-ggplot(subset(allvars,VC==1),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(accessible ~ .) + xlim(-100,100)
+#predicted/aligned length differences (noFlankVars:T vs hasFlankVars:F)
+ggplot(subset(allvars,accessible),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(noFVars ~ .) + xlim(-100,100)
 
-#predicted insert length distribution (accessible vs inaccessible)
-ggplot(subset(allvars,VC==1),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(accessible ~ .,scale="free_y") + xlim(-100,100)
+#predicted insert length distribution (no_flank_vars:T vs flank_vars:F)
+ggplot(subset(allvars,accessible),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(noFVars ~ .,scale="free_y") + xlim(-100,100)
 
 #insert calling better than del, both unmatched > 20bp
 ggplot(subset(allvars,Imatch & noFVars),aes(x=IS,fill=accessible)) + geom_bar()
 
-ggplot(subset(allvars,noFVars),aes(x=IS,fill=Imatch)) + geom_bar(position="fill") + xlim(-50,50)
-ggplot(subset(allvars,noFVars),aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50)
+ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar(position="fill") + xlim(-50,50)
+ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50)
 
 
-ggplot(subset(allvars,VC==1),aes(x=TD,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(accessible ~ .)
+#ggplot(subset(allvars,VC==1),aes(x=TD,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(accessible ~ .)
 
+```
+
+```{r}
+#no clear chr effects of accessibility
+ggplot(subset(allvars,noFVars & accessible),aes(x=chrom,fill=Imatch)) + geom_bar()
+ggplot(subset(allvars,noFVars & accessible),aes(x=chrom,fill=Imatch)) + geom_bar(position="fill")
 
 ```
 

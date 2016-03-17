@@ -101,12 +101,12 @@ sum(allvars$VC==1 & allvars$Imatch) / sum(allvars$VC==1)
 allvars$accessible = allvars$var %in% access$var
 allvars$noFVars = allvars$VC==1
 
-#predicted/aligned length differences (accessible vs inaccessible genome)
-ggplot(subset(allvars,VC==1),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(accessible ~ .) + xlim(-100,100)
+#predicted/aligned length differences (noFlankVars:T vs hasFlankVars:F)
+ggplot(subset(allvars,accessible),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(noFVars ~ .) + xlim(-100,100)
 ```
 
 ```
-## Warning: Removed 7 rows containing missing values (geom_point).
+## Warning: Removed 3 rows containing missing values (geom_point).
 ```
 
 ```
@@ -116,8 +116,8 @@ ggplot(subset(allvars,VC==1),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + f
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 ```r
-#predicted insert length distribution (accessible vs inaccessible)
-ggplot(subset(allvars,VC==1),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(accessible ~ .,scale="free_y") + xlim(-100,100)
+#predicted insert length distribution (no_flank_vars:T vs flank_vars:F)
+ggplot(subset(allvars,accessible),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(noFVars ~ .,scale="free_y") + xlim(-100,100)
 ```
 
 ```
@@ -139,7 +139,7 @@ ggplot(subset(allvars,Imatch & noFVars),aes(x=IS,fill=accessible)) + geom_bar()
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-3.png) 
 
 ```r
-ggplot(subset(allvars,noFVars),aes(x=IS,fill=Imatch)) + geom_bar(position="fill") + xlim(-50,50)
+ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar(position="fill") + xlim(-50,50)
 ```
 
 ```
@@ -149,7 +149,7 @@ ggplot(subset(allvars,noFVars),aes(x=IS,fill=Imatch)) + geom_bar(position="fill"
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-4.png) 
 
 ```r
-ggplot(subset(allvars,noFVars),aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50)
+ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50)
 ```
 
 ```
@@ -159,10 +159,22 @@ ggplot(subset(allvars,noFVars),aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-5.png) 
 
 ```r
-ggplot(subset(allvars,VC==1),aes(x=TD,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(accessible ~ .)
+#ggplot(subset(allvars,VC==1),aes(x=TD,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(accessible ~ .)
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-6.png) 
+
+```r
+#no clear chr effects of accessibility
+ggplot(subset(allvars,noFVars & accessible),aes(x=chrom,fill=Imatch)) + geom_bar()
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+
+```r
+ggplot(subset(allvars,noFVars & accessible),aes(x=chrom,fill=Imatch)) + geom_bar(position="fill")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png) 
 
 
 ```r
@@ -196,11 +208,11 @@ head(blockcf)
 ggplot(blockcf,aes(x=mid,y=matchpc,colour=accesspc)) + geom_point() + facet_grid(chrom ~ .)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
 
 ```r
 #ggplot(blockcf,aes(x=mid,y=match)) + geom_line(colour="red") + geom_line(aes(y=total)) + facet_grid(chrom ~ .)
 ggplot(blockcf,aes(x=mid,y=match)) + geom_point(colour="red") + geom_point(aes(y=total)) + facet_grid(chrom ~ .)
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
