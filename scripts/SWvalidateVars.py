@@ -177,7 +177,6 @@ for i in intervalsI:
     quals[(vname,'IL')] = (en-st)+1+dist
     quals[(vname,'LD')] = levdist
     quals[(vname,'VC')] = vcount
-    
 
 #PRINT INTO SEPARATE INTERVAL FILES
 for s in range(0,len(se)):

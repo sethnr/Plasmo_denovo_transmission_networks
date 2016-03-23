@@ -10,7 +10,7 @@ from math import ceil,floor
 import pysam
 import vcf
 import re
-
+import tabix
 
 parser = argparse.ArgumentParser(description='SW realign variant-transformed sequence to original reference')
 
@@ -27,6 +27,7 @@ parser.add_argument('-I','--indels', action="store_true", dest='indelsOnly', hel
 
 parser.add_argument('-F','--flank', action="store", dest='flank', type=int, help='flank to parse out around refs (bp)', nargs='?', default=100)
 parser.add_argument('-t','--tmp', action="store", dest='tmp', type=str, help='temp folder for calculations <tmp>', nargs='?', default='tmp')
+parser.add_argument('-d','--dust', action="store", dest='dust', type=str, help='dust file (1/0 file of low-complexity regions)', nargs='?', default=None)
 
 
 args = parser.parse_args()
@@ -64,6 +65,22 @@ intervalsI = dict()
 
 #OUTPUT DICT
 quals = dict()
+
+if args.dust is not None:
+    dustfile = tabix.open(args.dust)
+def _getDustRegion(chrom, st, en):
+    dust = dict()
+    for line in dustfile.query(chrom,st,en):
+        (chrom, start, end) = line
+        start = int(start)
+        end = int(end)
+        if end > en: end =en
+        for p in range(start,end):
+            if p >= st and p <= en:
+                dust[(chrom,p)] = (chrom,start, end)
+    
+    return sorted(dust)
+
 
 def _parse_chrlens_from_dict(fasta):
     seqdictF = fasta.replace(".fasta",".dict")
@@ -112,8 +129,11 @@ for var in targets:
     quals[vname,"L"] = varlen
     quals[vname,"VT"] = var.var_type
     quals[vname,"TD"] = telodist
-
-
+    if args.dust is not None:
+        d = _getDustRegion(chrom,start,end)
+        quals[vname,"DU"] = len(d)/float(end-start)
+    else:
+        quals[vname,"DU"] = -1
     #figure out which non-overlapping set to put it in:
     setfound = False
     s=0
@@ -319,7 +339,7 @@ print >>sys.stdout, '#'+args.fasta_align
 
 print "\t".join(["#i","aligned_region","var_length","distance_to_telomere","block_length",
                  "variantCount","LevDist (pre)","No. alignments","Alignment Score","prop. total score","LevDist (post)","Subopt align score"])
-print "\t".join(["i","block","L","TD","VC","LD","N1","C1","L1","NM1","N2","C2","L2","NM2",])
+print "\t".join(["i","block","L","TD","VC","LD","DU","N1","C1","L1","NM1","N2","C2","L2","NM2",])
 #print ""
 for b in blockI:
     block = blockI[b]
@@ -332,6 +352,7 @@ for b in blockI:
                                  quals[(block,'VT')],
                                  quals[(block,'VC')],
                                  quals[(block,'LD')],
+                                 quals[(block,'DU')],
 
                                  0,
                                  0,
@@ -357,6 +378,7 @@ for b in blockI:
                                  quals[(block,'VT')],
                                  quals[(block,'VC')],
                                  quals[(block,'LD')],
+                                 quals[(block,'DU')],
 
                                  quals[(block,'N1')],
                                  quals[(block,'C1')],
