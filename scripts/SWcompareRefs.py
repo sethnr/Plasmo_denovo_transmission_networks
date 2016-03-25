@@ -193,7 +193,7 @@ for i in intervalsI:
             dist += (len(v.ALT[0])-1)
         else:
             print >>sys.stderr, "unknown var type found: "+str(v)
-            print >>sys.stderr, "                    in: "+intervals[I]
+#            print >>sys.stderr, "                    in: "+intervalsI[v]
     quals[(vname,'IL')] = (en-st)+1+dist
     quals[(vname,'LD')] = levdist
     quals[(vname,'VC')] = vcount
@@ -211,7 +211,7 @@ for s in range(0,len(se)):
 
 
     print >>sys.stderr,"calculating consensus seq "+str(s)
-    altref_command = ['java','-jar','/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428/GenomeAnalysisTK.jar',
+    altref_command = ['java','-jar','/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.5-0-g36282e4/GenomeAnalysisTK.jar',
                   '-T', 'FastaAlternateReferenceMaker',
                   '-R', args.fasta_cons,
                   '-o', TMP+'var.'+str(s)+'.intervals.fasta',
@@ -370,8 +370,10 @@ for b in blockI:
         
     else:
         maxscore = float(quals[(block,'IL')])
+        if maxscore==0: maxscore=1
         score1 = round(int(quals[(block,'AS1')])/maxscore,3)
         score2 = round(int(quals[(block,'AS2')])/maxscore,3)
+        
         print "\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],

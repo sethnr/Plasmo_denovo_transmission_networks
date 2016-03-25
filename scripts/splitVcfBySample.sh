@@ -6,8 +6,7 @@ shift
 FASTA=$1
 shift
 
-GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.4-0-g7e26428
-
+GATK=/humgen/gsa-hpprojects/GATK/bin/GenomeAnalysisTK-3.5-0-g36282e4
 #if any arguments left after vcf file
 if [[ "$#" > 0 ]]
 then
@@ -33,6 +32,15 @@ echo "SAMPLE = " $SAMPLE
 OUT=${VCF/.vcf/.${SAMPLE}.vcf}
 echo $VCF "->" $OUT
 echo "REF " $FASTA
+echo java -jar ${GATK}/GenomeAnalysisTK.jar \
+   -R $FASTA \
+   -T SelectVariants \
+   -V $VCF \
+   -o $OUT  \
+   -sn $SAMPLE \
+   -env \
+#   -ploidy 1 \
+#   -trimAlternates
 java -jar ${GATK}/GenomeAnalysisTK.jar \
    -R $FASTA \
    -T SelectVariants \
@@ -40,6 +48,8 @@ java -jar ${GATK}/GenomeAnalysisTK.jar \
    -o $OUT  \
    -sn $SAMPLE \
    -env \
-   -trimAlternates
+#   -ploidy 1 \
+#   -trimAlternates
+
 #   -ef \
 done
