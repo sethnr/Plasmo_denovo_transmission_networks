@@ -159,6 +159,17 @@ ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar() 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-5.png) 
 
 ```r
+#errors predominantly INDELs > 20bp
+ggplot(access,aes(x=IS,colour=Imatch)) + geom_density() + xlim(-100,100)
+```
+
+```
+## Warning: Removed 14 rows containing non-finite values (stat_density).
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-6.png) 
+
+```r
 #ggplot(subset(allvars,VC==1),aes(x=TD,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(accessible ~ .)
 ```
 
