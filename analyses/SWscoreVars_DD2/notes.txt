@@ -2,3 +2,11 @@ python ../../scripts/vcf/removeUnusedAllelesVCF.py -v 3D7DD2_300100.VQSR.Pass90.
 ../../scripts/splitVcfBySample.sh 3D7DD2_300100.VQSR.Pass90.RENAME.vcf /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
 python SWcompareRefs.py -v 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.Dd2-2D4.vcf.gz -r1 /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -r2 /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta -F50 -t tmp_aligncf_3D7DD2 > DD2-2D4.align_cf.3D7_DD2.txt
 python SWcompareRefs.py -v 3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4.RMV.vcf -r1 /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta -r2 /seq/plasmodium/sredmond/refs/PfDD2_v1.fasta -F50 -t tmp_aligncf_3D7DD2 > DD2-2D4.GATK.align_cf.3D7_DD2.txt
+perl -lane ($CHR,$POS) = split(":",$F[1]); print join("\t",$CHR,$POS,$POS,@F[1..$#F]) unless 1..4; DD2-2D4.GATK.align_cf.3D7_DD2.txt > DD2-2D4.GATK.align_cf.3D7_DD2.bed
+perl -lane ($CHR,$POS) = split(":",$F[1]); print join("\t",$CHR,$POS,$POS,@F[1..$#F]) unless 1..4; DD2-2D4.align_cf.3D7_DD2.txt > DD2-2D4.align_cf.3D7_DD2.bed
+
+
+bedtools intersect -b callable_disco_5k.bed -a DD2-2D4.align_cf.3D7_DD2.bed > DD2-2D4.align_cf.CALL_DISCO.bed
+bedtools intersect -b callable_both_5k.bed -a DD2-2D4.align_cf.3D7_DD2.bed > DD2-2D4.align_cf.CALL_BOTH.bed
+bedtools intersect -b callable_haplo_5k.bed -a DD2-2D4.GATK.align_cf.3D7_DD2.bed > DD2-2D4.GATK.align_cf.CALL_HAPLO.bed
+bedtools intersect -b callable_both_5k.bed -a DD2-2D4.GATK.align_cf.3D7_DD2.bed > DD2-2D4.GATK.align_cf.CALL_BOTH.bed
