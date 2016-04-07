@@ -7,88 +7,107 @@ opts_chunk$set(fig.width=13, fig.height=8)
 ``` 
 
 ```{r}
-access <- read.table("DD2-2D4.align_cf.3D7_DD2.ACCESS.bed",stringsAsFactors = F)
-colnames(access) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","N1","C1","L1","NM1","N2","C2","L2","MN2")
-access$Imatch <- (access$IS == (access$L2-access$L1))
+haploboth <- read.table("DD2-2D4.GATK.align_cf.CALL_BOTH.bed",stringsAsFactors = F)
+colnames(haploboth) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","DUST","N1","C1","L1","NM1","N2","C2","L2","MN2")
+haploboth$Imatch <- (haploboth$IS == (haploboth$L2-haploboth$L1))
 
-sum(access$VC==1)
-sum(access$VC==1 & access$Imatch)
-sum(access$VC==1 & access$Imatch) / sum(access$VC==1)
+haplo <- read.table("DD2-2D4.GATK.align_cf.CALL_HAPLO.bed",stringsAsFactors = F)
+colnames(haplo) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","DUST","N1","C1","L1","NM1","N2","C2","L2","MN2")
+haplo$Imatch <- (haplo$IS == (haplo$L2-haplo$L1))
 
+sum(haplo$Imatch)
+sum(haplo$VC==1 & haplo$Imatch)
+sum(haplo$VC==1 & haplo$Imatch) / sum(haplo$VC==1)
+sum(haplo$Imatch) / dim(haplo)[[1]]
+haplo$accessible = haplo$var %in% haploboth$var
+haplo$method="HAPLO"
 ```
 
 
 ```{r}
-inaccess <- read.table("DD2-2D4.align_cf.3D7_DD2.INACCESS.bed",stringsAsFactors = F)
-colnames(inaccess) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","N1","C1","L1","NM1","N2","C2","L2","MN2")
-inaccess$Imatch <- (inaccess$IS == (inaccess$L2-inaccess$L1))
+discoboth <- read.table("DD2-2D4.align_cf.CALL_BOTH.100.bed",stringsAsFactors = F)
+colnames(discoboth) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","DUST","N1","C1","L1","NM1","N2","C2","L2","MN2")
+head(discoboth)
+discoboth$Imatch <- (discoboth$IS == (discoboth$L2-discoboth$L1))
 
-sum(inaccess$VC==1)
-sum(inaccess$VC==1 & inaccess$Imatch)
-sum(inaccess$VC==1 & inaccess$Imatch) / sum(inaccess$VC==1)
+disco <- read.table("DD2-2D4.align_cf.CALL_DISCO.100.bed",stringsAsFactors = F)
+colnames(disco) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","DUST","N1","C1","L1","NM1","N2","C2","L2","MN2")
+disco$Imatch <- (disco$IS == (disco$L2-disco$L1))
 
+sum(disco$Imatch)
+sum(disco$VC==1 & disco$Imatch)
+sum(disco$VC==1 & disco$Imatch) / sum(disco$VC==1)
+sum(disco$Imatch) / dim(disco)[[1]]
 
+disco$accessible = disco$var %in% discoboth$var
+disco$method="DISCO"
 ```
 
-
-
 ```{r}
-allvars <- read.table("DD2-2D4.align_cf.3D7_DD2.bed",stringsAsFactors = F)
-colnames(allvars) <- c("chrom","st","en","var","IS","TD","VT","VC","LD","N1","C1","L1","NM1","N2","C2","L2","MN2")
-allvars$Imatch <- (allvars$IS == (allvars$L2-allvars$L1))
-
-sum(allvars$VC==1)
-sum(allvars$VC==1 & allvars$Imatch)
-sum(allvars$VC==1 & allvars$Imatch) / sum(allvars$VC==1)
-#sum(allvars$VC!=1 & allvars$Imatch) / sum(allvars$VC!=1)
-
-allvars$accessible = allvars$var %in% access$var
+allvars = rbind(haplo,disco)
 allvars$noFVars = allvars$VC==1
+```
 
+```{r}
 #predicted/aligned length differences (noFlankVars:T vs hasFlankVars:F)
-ggplot(subset(allvars,accessible),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(noFVars ~ .) + xlim(-100,100)
+ggplot(subset(allvars,accessible),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(method ~ .)
+#ggplot(subset(allvars,accessible),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(method ~ noFVars)
+ggplot(subset(allvars),aes(x=IS,y=L2-L1,colour=Imatch)) + geom_point() + facet_grid(method ~ .)
+
+ggplot(subset(allvars),aes(x=dust,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(method ~ .)
+
 
 #predicted insert length distribution (no_flank_vars:T vs flank_vars:F)
-ggplot(subset(allvars,accessible),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(noFVars ~ .,scale="free_y") + xlim(-100,100)
+ggplot(subset(allvars,accessible),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(method ~ .) + xlim(-100,100)
+ggplot(subset(allvars,accessible),aes(x=IS,fill=Imatch)) + geom_bar() + facet_grid(method ~ .,scale="free_y") + xlim(-100,100)
 
 #insert calling better than del, both unmatched > 20bp
-ggplot(subset(allvars,Imatch & noFVars),aes(x=IS,fill=accessible)) + geom_bar()
+ggplot(subset(allvars,Imatch & noFVars),aes(x=IS,fill=accessible)) + geom_bar() + facet_grid(method ~ .) + ggtitle("size distribution, matching vars (access, inaccessible)")
 
-ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar(position="fill") + xlim(-50,50)
-ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50)
+ggplot(subset(allvars,noFVars & accessible),aes(x=IS,fill=Imatch)) + geom_bar(position="fill") + xlim(-50,50) + facet_grid(method ~ .) + ggtitle("match proportion GATK haplo vs DISCO")
+
+ggplot(allvars,aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50) + facet_grid(method ~ accessible) + ggtitle("size dist indels, accessible (both) genome vs accesible disc/hapl only")
+ggplot(allvars,aes(x=IS,fill=Imatch)) + geom_bar() + xlim(-50,50) + facet_grid(method ~ accessible,scale="free_y") + ggtitle("size dist indels, accessible (both) genome vs accesible disc/hapl only")
 
 #errors predominantly INDELs > 20bp
-ggplot(access,aes(x=IS,colour=Imatch)) + geom_density() + xlim(-100,100)
+ggplot(subset(allvars,accessible),aes(x=IS,colour=Imatch)) + geom_density() + xlim(-100,100)+ facet_grid(method ~ .) 
 #ggplot(subset(allvars,VC==1),aes(x=TD,y=IS-(L2-L1),colour=Imatch)) + geom_point() + facet_grid(accessible ~ .)
 
 ```
 
 ```{r}
 #no clear chr effects of accessibility
-ggplot(subset(allvars,noFVars & accessible),aes(x=chrom,fill=Imatch)) + geom_bar()
-ggplot(subset(allvars,noFVars & accessible),aes(x=chrom,fill=Imatch)) + geom_bar(position="fill")
+ggplot(subset(allvars,noFVars),aes(x=chrom,fill=Imatch)) + geom_bar() + facet_grid(method ~ accessible) 
+ggplot(subset(allvars,noFVars),aes(x=chrom,fill=Imatch)) + geom_bar(position="fill") + facet_grid(method ~ accessible) 
 
 ```
 
+
+
 ```{r}
 
-allvars$mid <- allvars$en-(allvars$en-allvars$st)/2
-allvars$block = round(allvars$mid/5000)
-
-blockcf <- data.frame("chrom"=aggregate(allvars$chrom,list(paste(allvars$chrom,allvars$block)),FUN=unique)[[2]],
-            "mid"=aggregate(allvars$mid,list(paste(allvars$chrom,allvars$block)),FUN=mean)[[2]],
-            "block"=aggregate(allvars$block,list(paste(allvars$chrom,allvars$block)),FUN=unique)[[2]],
-            "access"=aggregate(allvars$accessible,list(paste(allvars$chrom,allvars$block)),FUN=sum)[[2]],
-            "match"=aggregate(allvars$Imatch,list(paste(allvars$chrom,allvars$block)),FUN=sum)[[2]],
-            "total"=aggregate(allvars$Imatch,list(paste(allvars$chrom,allvars$block)),FUN=length)[[2]])
-blockcf$matchpc = blockcf$match/blockcf$total
-blockcf$accesspc = blockcf$access/blockcf$total
-blockcf <- subset(blockcf,accesspc==1)
-
-head(blockcf)
-ggplot(blockcf,aes(x=mid,y=matchpc,colour=accesspc)) + geom_point() + facet_grid(chrom ~ .)
-
-#ggplot(blockcf,aes(x=mid,y=match)) + geom_line(colour="red") + geom_line(aes(y=total)) + facet_grid(chrom ~ .)
-ggplot(blockcf,aes(x=mid,y=match)) + geom_point(colour="red") + geom_point(aes(y=total)) + facet_grid(chrom ~ .)
+# allvars$mid <- allvars$en-(allvars$en-allvars$st)/2
+# allvars$block = round(allvars$mid/5000)
+# 
+# blockcf <- data.frame("chrom"=aggregate(allvars$chrom,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=unique)[[2]],
+#             "mid"=aggregate(allvars$mid,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=mean)[[2]],
+#             "block"=aggregate(allvars$block,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=unique)[[2]],
+#             "method"=aggregate(allvars$method,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=unique)[[2]],
+#             "dust"=aggregate(allvars$DUST,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=mean)[[2]],
+#             "access"=aggregate(allvars$accessible,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=sum)[[2]],
+#             "match"=aggregate(allvars$Imatch,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=sum)[[2]],
+#             "total"=aggregate(allvars$Imatch,list(paste(allvars$method,allvars$chrom,allvars$block)),FUN=length)[[2]])
+# blockcf$matchpc = blockcf$match/blockcf$total
+# #blockcf$accesspc = blockcf$access/blockcf$total
+# #blockcf <- subset(blockcf,accesspc==1)
+# 
+# head(blockcf)
+# ggplot(blockcf,aes(x=mid,y=matchpc,colour=dust)) + geom_point() + facet_grid(chrom ~ method)
+# 
+# 
+# ggplot(blockcf,aes(x=access,y=matchpc,colour=dust)) + geom_point() + facet_grid(. ~ method)
+# 
+# #ggplot(blockcf,aes(x=mid,y=match)) + geom_line(colour="red") + geom_line(aes(y=total)) + facet_grid(chrom ~ .)
+# ggplot(blockcf,aes(x=mid,y=match)) + geom_point(colour="red") + geom_point(aes(y=total)) + facet_grid(chrom ~ method)
 
 ```
