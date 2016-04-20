@@ -40,14 +40,14 @@ bluetree <- extract.clade(tree,node=21)
 greentree <- extract.clade(tree,node=25)
 
 
-subtree <- greentree
-sackin.phylo(subtree)
-widths(subtree)
-avgLadder(subtree)
-ILnumber(subtree)
-colless.phylo(subtree)
-ladderSizes(subtree)
-ladderShow(subtree)
+# subtree <- greentree
+# sackin.phylo(subtree)
+# widths(subtree)
+# avgLadder(subtree)
+# ILnumber(subtree)
+# colless.phylo(subtree)
+# ladderSizes(subtree)
+# ladderShow(subtree)
 
 phyloTop(list(bluetree,greentree,redtree))
 
