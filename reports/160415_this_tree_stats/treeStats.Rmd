@@ -3,6 +3,8 @@
 
 library("phyloTop")
 library("phylobase")
+library("ape")
+library("phytools")
 library(knitr)
 library(igraph)
 library("RColorBrewer")
