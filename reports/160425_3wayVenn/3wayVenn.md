@@ -22,13 +22,13 @@ a3 = icnt['001']+icnt['011']+icnt['111']+icnt['101']
 draw.triple.venn(area1 = a1, area2 = a2, area3 = a3, 
                  n12 = icnt['110']+icnt['111'], n23 = icnt['011']+icnt['111'], n13 = icnt['101']+icnt['111'], 
                  n123 = icnt['111'], category = c("Discovar", "Haplo100bp", "Haplo250bp"), lty = "blank", 
-                 fill = c("skyblue", "pink1", "mediumorchid"),euler.d=T,cex=3)
+                 fill = c("skyblue", "pink1", "mediumorchid"),euler.d=T,cex=2)
 ```
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ```
-## (polygon[GRID.polygon.171], polygon[GRID.polygon.172], polygon[GRID.polygon.173], polygon[GRID.polygon.174], polygon[GRID.polygon.175], polygon[GRID.polygon.176], text[GRID.text.177], text[GRID.text.178], text[GRID.text.179], text[GRID.text.180], text[GRID.text.181], text[GRID.text.182], text[GRID.text.183], text[GRID.text.184], text[GRID.text.185], text[GRID.text.186])
+## (polygon[GRID.polygon.203], polygon[GRID.polygon.204], polygon[GRID.polygon.205], polygon[GRID.polygon.206], polygon[GRID.polygon.207], polygon[GRID.polygon.208], text[GRID.text.209], text[GRID.text.210], text[GRID.text.211], text[GRID.text.212], text[GRID.text.213], text[GRID.text.214], text[GRID.text.215], text[GRID.text.216], text[GRID.text.217], text[GRID.text.218])
 ```
 
 SNP counts, disco/haplo100/haplo250
@@ -45,11 +45,11 @@ a3 = scnt['001']+scnt['011']+scnt['111']+scnt['101']
 draw.triple.venn(area1 = a1, area2 = a2, area3 = a3, 
                  n12 = scnt['110']+scnt['111'], n23 = scnt['011']+scnt['111'], n13 = scnt['101']+scnt['111'], 
                  n123 = scnt['111'], category = c("Discovar", "Haplo100bp", "Haplo250bp"), lty = "blank", 
-                 fill = c("skyblue", "pink1", "mediumorchid"))
+                 fill = c("skyblue", "pink1", "mediumorchid"),euler.d=T,cex=2)
 ```
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 ```
-## (polygon[GRID.polygon.187], polygon[GRID.polygon.188], polygon[GRID.polygon.189], polygon[GRID.polygon.190], polygon[GRID.polygon.191], polygon[GRID.polygon.192], text[GRID.text.193], text[GRID.text.194], text[GRID.text.195], text[GRID.text.196], text[GRID.text.197], text[GRID.text.198], text[GRID.text.199], text[GRID.text.200], text[GRID.text.201], text[GRID.text.202])
+## (polygon[GRID.polygon.219], polygon[GRID.polygon.220], polygon[GRID.polygon.221], polygon[GRID.polygon.222], polygon[GRID.polygon.223], polygon[GRID.polygon.224], text[GRID.text.225], text[GRID.text.226], text[GRID.text.227], text[GRID.text.228], text[GRID.text.229], text[GRID.text.230], text[GRID.text.231], text[GRID.text.232], text[GRID.text.233], text[GRID.text.234])
 ```
