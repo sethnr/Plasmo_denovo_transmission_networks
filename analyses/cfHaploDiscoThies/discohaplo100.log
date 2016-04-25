@@ -1,0 +1,19 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf disco.vcf
+	--not-chr M76611
+	--out discohaplo100
+	--diff haplo100.vcf
+	--diff-site
+
+After filtering, kept 36 out of 36 Individuals
+Comparing sites in VCF files...
+Found 39293 sites common to both files.
+Found 97363 sites only in main file.
+Found 81159 sites only in second file.
+Found 6438 non-matching overlapping sites.
+After filtering, kept 143094 out of a possible 143094 Sites
+Run Time = 2.00 seconds
