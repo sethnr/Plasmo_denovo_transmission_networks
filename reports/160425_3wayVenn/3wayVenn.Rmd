@@ -3,7 +3,7 @@
 library(ggplot2)
 library(VennDiagram)
 
-opts_chunk$set(fig.width=9, fig.height=9)
+opts_chunk$set(fig.width=5, fig.height=5)
 opts_chunk$set(dev=c('png'))
 
 ```
