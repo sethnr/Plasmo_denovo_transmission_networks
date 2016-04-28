@@ -3,7 +3,7 @@
 library(ggplot2)
 library(VennDiagram)
 
-opts_chunk$set(fig.width=9, fig.height=9)
+opts_chunk$set(fig.width=5, fig.height=5)
 opts_chunk$set(dev=c('png'))
 ```
 
@@ -28,7 +28,7 @@ draw.triple.venn(area1 = a1, area2 = a2, area3 = a3,
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ```
-## (polygon[GRID.polygon.203], polygon[GRID.polygon.204], polygon[GRID.polygon.205], polygon[GRID.polygon.206], polygon[GRID.polygon.207], polygon[GRID.polygon.208], text[GRID.text.209], text[GRID.text.210], text[GRID.text.211], text[GRID.text.212], text[GRID.text.213], text[GRID.text.214], text[GRID.text.215], text[GRID.text.216], text[GRID.text.217], text[GRID.text.218])
+## (polygon[GRID.polygon.235], polygon[GRID.polygon.236], polygon[GRID.polygon.237], polygon[GRID.polygon.238], polygon[GRID.polygon.239], polygon[GRID.polygon.240], text[GRID.text.241], text[GRID.text.242], text[GRID.text.243], text[GRID.text.244], text[GRID.text.245], text[GRID.text.246], text[GRID.text.247], text[GRID.text.248], text[GRID.text.249], text[GRID.text.250])
 ```
 
 SNP counts, disco/haplo100/haplo250
@@ -51,5 +51,5 @@ draw.triple.venn(area1 = a1, area2 = a2, area3 = a3,
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 ```
-## (polygon[GRID.polygon.219], polygon[GRID.polygon.220], polygon[GRID.polygon.221], polygon[GRID.polygon.222], polygon[GRID.polygon.223], polygon[GRID.polygon.224], text[GRID.text.225], text[GRID.text.226], text[GRID.text.227], text[GRID.text.228], text[GRID.text.229], text[GRID.text.230], text[GRID.text.231], text[GRID.text.232], text[GRID.text.233], text[GRID.text.234])
+## (polygon[GRID.polygon.251], polygon[GRID.polygon.252], polygon[GRID.polygon.253], polygon[GRID.polygon.254], polygon[GRID.polygon.255], polygon[GRID.polygon.256], text[GRID.text.257], text[GRID.text.258], text[GRID.text.259], text[GRID.text.260], text[GRID.text.261], text[GRID.text.262], text[GRID.text.263], text[GRID.text.264], text[GRID.text.265], text[GRID.text.266])
 ```
