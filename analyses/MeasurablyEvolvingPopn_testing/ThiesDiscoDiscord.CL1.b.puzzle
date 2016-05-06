@@ -1,0 +1,213 @@
+TREE-PUZZLE 5.3.rc16
+
+Input file name: ThiesDiscoDiscord.CL1.b
+Type of analysis: likelihood mapping
+Parameter estimation: approximate (faster)
+Parameter estimation uses: neighbor-joining tree (for substitution process and rate variation)
+
+Standard errors (S.E.) are obtained by the curvature method.
+The upper and lower bounds of an approximate 95% confidence interval
+for parameter or branch length x are x-1.96*S.E. and x+1.96*S.E.
+
+
+SEQUENCE ALIGNMENT
+
+Input data: 5 sequences with 761 binary state sites
+Number of constant sites: 0 (= 0.0% of all sites)
+
+Number of site patterns: 75
+Number of constant site patterns: 0 (= 0.0% of all site patterns)
+
+
+Concering parsimony informative sites there are:
+
+Number of parsimony informative sites: 50 (= 6.6% of all sites)
+  - fully informative sites:  43 (= 5.7% of all sites)
+  - partly informative sites: 7 (= 0.9% of all sites)
+Number of parsimony uninformative sites: 711 (= 93.4% of all sites)
+  - variable, but uninformative sites: 711 (= 93.4% of all sites)
+  - completely constant sites: 0 (= 0.0% of all sites)
+  - constant sites (but with gaps/wildcards): 0 (= 0.0% of all sites)
+
+
+For each sequence there are following numbers of parsimony (non-)informative site:
+
+                    informative sites   non-informative sites
+ 1   Th166.12            49 (  6.44%)           712 ( 93.56%)
+ 2   Th092.13            50 (  6.57%)           711 ( 93.43%)
+ 3   Th211.13            46 (  6.04%)           715 ( 93.96%)
+ 4   Th245.13            48 (  6.31%)           713 ( 93.69%)
+ 5   Th246.13            50 (  6.57%)           711 ( 93.43%)
+
+Note: partially informative sites are informative only for some sequences. Hence, the number of informative sites for each sequence can differ.
+
+
+SUBSTITUTION PROCESS
+
+Model of substitution: Two-state model (Felsenstein 1981)
+Binary state frequencies (estimated from data set):
+
+ pi(0) =  75.0%
+ pi(1) =  25.0%
+
+
+AMBIGUOUS CHARACTERS IN THE SEQUENCE (SEQUENCES IN INPUT ORDER)
+
+                   gaps  wildcards        sum   % sequence
+ 1   Th166.12         0        148        148       19.45%   
+ 2   Th092.13         0        130        130       17.08%   
+ 3   Th211.13         0         81         81       10.64%   
+ 4   Th245.13         0         92         92       12.09%   
+ 5   Th246.13         0        108        108       14.19%   
+ -----------------------------------------------------------
+ Sum                  0        559        559       14.69%   
+
+
+The table above shows the amount of gaps ('-') and other 'wildcard'
+characters ('X', '?', etc.) and their percentage of the 761 columns
+in the alignment.
+Sequences with more than 50% ambiguous characters are marked with a '!' and 
+should be checked, whether they have sufficient overlap to other sequences.
+Sequences with 100% ambiguous characters do not hold any phylogenetic
+information and had to be discarded from the analysis.
+
+
+
+SEQUENCE COMPOSITION (SEQUENCES IN INPUT ORDER)
+
+                  5% chi-square test  p-value   chi2-value
+ 1   Th166.12          failed           0.37%     (8.45)  
+ 2   Th092.13          passed          75.82%     (0.09)  
+ 3   Th211.13          passed          79.76%     (0.07)  
+ 4   Th245.13          failed           0.00%     (19.82)  
+ 5   Th246.13          passed           8.35%     (3.00)  
+
+The chi-square tests with 1 degrees of freedom compares the
+binary state composition of each sequence to the frequency
+distribution assumed in the maximum likelihood model.
+
+
+IDENTICAL SEQUENCES
+
+The sequences in each of the following groups are all identical. To speed
+up computation please remove all but one of each group from the data set.
+
+ All sequences are unique.
+
+
+MAXIMUM LIKELIHOOD DISTANCES
+
+Maximum likelihood distances are computed using the selected model of
+substitution and rate heterogeneity.
+
+  5
+Th166.12    0.00000  8.99833  8.99844  8.99852  8.99837
+Th092.13    8.99833  0.00000  8.99846  8.99888  8.99842
+Th211.13    8.99844  8.99846  0.00000  8.99892  8.99847
+Th245.13    8.99852  8.99888  8.99892  0.00000  8.99898
+Th246.13    8.99837  8.99842  8.99847  8.99898  0.00000
+
+Average distance (over all possible pairs of sequences):  8.99858
+                  minimum  : 8.99833,  maximum  : 8.99898
+                  variance : 0.00000,  std.dev. : 0.00025
+
+
+RATE HETEROGENEITY
+
+Model of rate heterogeneity: uniform rate
+
+
+LIKELIHOOD MAPPING ANALYSIS
+
+Number of quartets: 5 (all possible)
+
+Quartet trees are based on approximate maximum likelihood values
+using the selected model of substitution and rate heterogeneity.
+
+
+Sequences are not grouped in clusters.
+
+
+LIKELIHOOD MAPPING STATISTICS
+
+           (a,b)-(c,d)                             (a,b)-(c,d)       
+                /\                                      /\           
+               /  \                                    /  \          
+              /    \                                  /  1 \         
+             /  a1  \                                / \  / \        
+            /\      /\                              /   \/   \       
+           /  \    /  \                            /    /\    \      
+          /    \  /    \                          / 6  /  \  4 \     
+         /      \/      \                        /\   /  7 \   /\    
+        /        |       \                      /  \ /______\ /  \   
+       /   a3    |    a2  \                    / 3  |    5   |  2 \  
+      /__________|_________\                  /_____|________|_____\ 
+(a,d)-(b,c)            (a,c)-(b,d)      (a,b)-(c,d)            (a,c)-(b,d)
+
+
+For more information about likelihood-mapping refer to
+   Strimmer and von Haeseler (1997) PNAS 94:6815-6819
+and/or
+   Schmidt and von Haeseler (2003) Current Protocols in Bioinformatics
+   (by Baxevanis et al., Eds.), Unit 6, Wiley&Sons, New York.
+
+
+
+
+Quartet support of regions a1, a2, a3:
+
+     name       #quartets    a1 (% a1)       a2 (% a2)       a3 (% a3)  
+-----------------------------------------------------------------------------
+  1   Th166.12         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
+  2   Th092.13         4      0 (  0.00)      4 (100.00)      0 (  0.00) 
+  3   Th211.13         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
+  4   Th245.13         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
+  5   Th246.13         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
+-----------------------------------------------------------------------------
+                       5      1 ( 20.00)      4 ( 80.00)      0 (  0.00) 
+
+
+
+Quartet support of areas 1-7:
+
+                              resolved                                        partly                                          unresolved  
+     name       #quartets     1 (% 1)         2 (% 2)         3 (% 3)         4 (% 4)         5 (% 5)         6 (% 6)         7 (% 7)   
+-------------------------------------------------------------------------------------------------------------------------------------------------
+  1   Th166.12         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  2   Th092.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  3   Th211.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  4   Th245.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  5   Th246.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
+-------------------------------------------------------------------------------------------------------------------------------------------------
+                       5      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      5 (100.00) 
+
+
+
+Quartet resolution per sequence:
+
+
+
+     name       #quartets    resolved         partly           unresolved    
+-----------------------------------------------------------------------------
+  1   Th166.12         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  2   Th092.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  3   Th211.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  4   Th245.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  5   Th246.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
+-----------------------------------------------------------------------------
+                       5      0 (  0.00)      0 (  0.00)      5 (100.00) 
+
+
+
+Overall quartet resolution:
+
+Number of resolved        quartets (regions 1+2+3):      0 (=   0.00%)
+Number of partly resolved quartets (regions 4+5+6):      0 (=   0.00%)
+Number of unresolved      quartets (region 7):           5 (= 100.00%)
+
+
+TIME STAMP
+
+Date and time: Fri May  6 19:09:58 2016
+Runtime (excl. input) : 1 seconds (= 0.0 minutes = 0.0 hours)
+Runtime (incl. input) : 5 seconds (= 0.1 minutes = 0.0 hours)
