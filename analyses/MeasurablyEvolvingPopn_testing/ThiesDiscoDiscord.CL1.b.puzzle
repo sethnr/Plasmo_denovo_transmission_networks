@@ -12,20 +12,20 @@ for parameter or branch length x are x-1.96*S.E. and x+1.96*S.E.
 
 SEQUENCE ALIGNMENT
 
-Input data: 5 sequences with 761 binary state sites
+Input data: 10 sequences with 1731 binary state sites
 Number of constant sites: 0 (= 0.0% of all sites)
 
-Number of site patterns: 75
+Number of site patterns: 372
 Number of constant site patterns: 0 (= 0.0% of all site patterns)
 
 
 Concering parsimony informative sites there are:
 
-Number of parsimony informative sites: 50 (= 6.6% of all sites)
-  - fully informative sites:  43 (= 5.7% of all sites)
-  - partly informative sites: 7 (= 0.9% of all sites)
-Number of parsimony uninformative sites: 711 (= 93.4% of all sites)
-  - variable, but uninformative sites: 711 (= 93.4% of all sites)
+Number of parsimony informative sites: 512 (= 29.6% of all sites)
+  - fully informative sites:  386 (= 22.3% of all sites)
+  - partly informative sites: 126 (= 7.3% of all sites)
+Number of parsimony uninformative sites: 1219 (= 70.4% of all sites)
+  - variable, but uninformative sites: 1219 (= 70.4% of all sites)
   - completely constant sites: 0 (= 0.0% of all sites)
   - constant sites (but with gaps/wildcards): 0 (= 0.0% of all sites)
 
@@ -33,11 +33,16 @@ Number of parsimony uninformative sites: 711 (= 93.4% of all sites)
 For each sequence there are following numbers of parsimony (non-)informative site:
 
                     informative sites   non-informative sites
- 1   Th166.12            49 (  6.44%)           712 ( 93.56%)
- 2   Th092.13            50 (  6.57%)           711 ( 93.43%)
- 3   Th211.13            46 (  6.04%)           715 ( 93.96%)
- 4   Th245.13            48 (  6.31%)           713 ( 93.69%)
- 5   Th246.13            50 (  6.57%)           711 ( 93.43%)
+ 1   Th086.07           498 ( 28.77%)          1233 ( 71.23%)
+ 2   Th106.09           508 ( 29.35%)          1223 ( 70.65%)
+ 3   Th230.12           510 ( 29.46%)          1221 ( 70.54%)
+ 4   Th074.13           509 ( 29.40%)          1222 ( 70.60%)
+ 5   Th132.11           505 ( 29.17%)          1226 ( 70.83%)
+ 6   Th162.12           511 ( 29.52%)          1220 ( 70.48%)
+ 7   Th196.12           512 ( 29.58%)          1219 ( 70.42%)
+ 8   Th106.11           504 ( 29.12%)          1227 ( 70.88%)
+ 9   Th117.11           511 ( 29.52%)          1220 ( 70.48%)
+ 10  Th134.11           511 ( 29.52%)          1220 ( 70.48%)
 
 Note: partially informative sites are informative only for some sequences. Hence, the number of informative sites for each sequence can differ.
 
@@ -47,24 +52,29 @@ SUBSTITUTION PROCESS
 Model of substitution: Two-state model (Felsenstein 1981)
 Binary state frequencies (estimated from data set):
 
- pi(0) =  75.0%
- pi(1) =  25.0%
+ pi(0) =  78.3%
+ pi(1) =  21.7%
 
 
 AMBIGUOUS CHARACTERS IN THE SEQUENCE (SEQUENCES IN INPUT ORDER)
 
                    gaps  wildcards        sum   % sequence
- 1   Th166.12         0        148        148       19.45%   
- 2   Th092.13         0        130        130       17.08%   
- 3   Th211.13         0         81         81       10.64%   
- 4   Th245.13         0         92         92       12.09%   
- 5   Th246.13         0        108        108       14.19%   
+ 1   Th086.07         0        215        215       12.42%   
+ 2   Th106.09         0        465        465       26.86%   
+ 3   Th230.12         0        373        373       21.55%   
+ 4   Th074.13         0        312        312       18.02%   
+ 5   Th132.11         0        379        379       21.89%   
+ 6   Th162.12         0        338        338       19.53%   
+ 7   Th196.12         0        327        327       18.89%   
+ 8   Th106.11         0        326        326       18.83%   
+ 9   Th117.11         0        280        280       16.18%   
+ 10  Th134.11         0        441        441       25.48%   
  -----------------------------------------------------------
- Sum                  0        559        559       14.69%   
+ Sum                  0       3456       3456       19.97%   
 
 
 The table above shows the amount of gaps ('-') and other 'wildcard'
-characters ('X', '?', etc.) and their percentage of the 761 columns
+characters ('X', '?', etc.) and their percentage of the 1731 columns
 in the alignment.
 Sequences with more than 50% ambiguous characters are marked with a '!' and 
 should be checked, whether they have sufficient overlap to other sequences.
@@ -76,11 +86,16 @@ information and had to be discarded from the analysis.
 SEQUENCE COMPOSITION (SEQUENCES IN INPUT ORDER)
 
                   5% chi-square test  p-value   chi2-value
- 1   Th166.12          failed           0.37%     (8.45)  
- 2   Th092.13          passed          75.82%     (0.09)  
- 3   Th211.13          passed          79.76%     (0.07)  
- 4   Th245.13          failed           0.00%     (19.82)  
- 5   Th246.13          passed           8.35%     (3.00)  
+ 1   Th086.07          failed           0.00%     (1069.53)  
+ 2   Th106.09          failed           0.00%     (188.14)  
+ 3   Th230.12          failed           0.00%     (163.42)  
+ 4   Th074.13          failed           0.00%     (123.37)  
+ 5   Th132.11          failed           0.00%     (121.26)  
+ 6   Th162.12          failed           0.00%     (77.97)  
+ 7   Th196.12          failed           0.00%     (120.02)  
+ 8   Th106.11          failed           0.00%     (109.00)  
+ 9   Th117.11          failed           0.00%     (112.17)  
+ 10  Th134.11          failed           0.00%     (160.05)  
 
 The chi-square tests with 1 degrees of freedom compares the
 binary state composition of each sequence to the frequency
@@ -100,16 +115,31 @@ MAXIMUM LIKELIHOOD DISTANCES
 Maximum likelihood distances are computed using the selected model of
 substitution and rate heterogeneity.
 
-  5
-Th166.12    0.00000  8.99833  8.99844  8.99852  8.99837
-Th092.13    8.99833  0.00000  8.99846  8.99888  8.99842
-Th211.13    8.99844  8.99846  0.00000  8.99892  8.99847
-Th245.13    8.99852  8.99888  8.99892  0.00000  8.99898
-Th246.13    8.99837  8.99842  8.99847  8.99898  0.00000
+  10
+Th086.07    0.00000  8.99832  8.99852  8.99908  8.99857  8.99893  8.99895
+            0.40909  0.39384  0.38515
+Th106.09    8.99832  0.00000  0.24424  0.19680  0.31501  0.30803  0.35793
+            8.99900  8.99899  8.99889
+Th230.12    8.99852  0.24424  0.00000  0.31642  0.19900  0.28697  0.21081
+            8.99881  8.99882  8.99882
+Th074.13    8.99908  0.19680  0.31642  0.00000  0.38122  0.56199  0.39508
+            8.99882  8.99884  8.99882
+Th132.11    8.99857  0.31501  0.19900  0.38122  0.00000  0.34523  0.25499
+            8.99883  8.99884  8.99883
+Th162.12    8.99893  0.30803  0.28697  0.56199  0.34523  0.00000  0.32395
+            8.99888  8.99886  8.99884
+Th196.12    8.99895  0.35793  0.21081  0.39508  0.25499  0.32395  0.00000
+            8.99885  8.99886  8.99885
+Th106.11    0.40909  8.99900  8.99881  8.99882  8.99883  8.99888  8.99885
+            0.00000  0.09241  0.08820
+Th117.11    0.39384  8.99899  8.99882  8.99884  8.99884  8.99886  8.99886
+            0.09241  0.00000  0.09402
+Th134.11    0.38515  8.99889  8.99882  8.99882  8.99883  8.99884  8.99885
+            0.08820  0.09402  0.00000
 
-Average distance (over all possible pairs of sequences):  8.99858
-                  minimum  : 8.99833,  maximum  : 8.99898
-                  variance : 0.00000,  std.dev. : 0.00025
+Average distance (over all possible pairs of sequences):  4.93627
+                  minimum  : 0.08820,  maximum  : 8.99908
+                  variance : 19.29722,  std.dev. : 4.39286
 
 
 RATE HETEROGENEITY
@@ -119,7 +149,7 @@ Model of rate heterogeneity: uniform rate
 
 LIKELIHOOD MAPPING ANALYSIS
 
-Number of quartets: 5 (all possible)
+Number of quartets: 210 (all possible)
 
 Quartet trees are based on approximate maximum likelihood values
 using the selected model of substitution and rate heterogeneity.
@@ -158,13 +188,18 @@ Quartet support of regions a1, a2, a3:
 
      name       #quartets    a1 (% a1)       a2 (% a2)       a3 (% a3)  
 -----------------------------------------------------------------------------
-  1   Th166.12         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
-  2   Th092.13         4      0 (  0.00)      4 (100.00)      0 (  0.00) 
-  3   Th211.13         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
-  4   Th245.13         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
-  5   Th246.13         4      1 ( 25.00)      3 ( 75.00)      0 (  0.00) 
+  1   Th086.07        84     31 ( 36.90)     34 ( 40.48)     19 ( 22.62) 
+  2   Th106.09        84     24 ( 28.57)     30 ( 35.71)     30 ( 35.71) 
+  3   Th230.12        84     32 ( 38.10)     31 ( 36.90)     21 ( 25.00) 
+  4   Th074.13        84     26 ( 30.95)     31 ( 36.90)     27 ( 32.14) 
+  5   Th132.11        84     25 ( 29.76)     33 ( 39.29)     26 ( 30.95) 
+  6   Th162.12        84     29 ( 34.52)     28 ( 33.33)     27 ( 32.14) 
+  7   Th196.12        84     28 ( 33.33)     24 ( 28.57)     32 ( 38.10) 
+  8   Th106.11        84     33 ( 39.29)     24 ( 28.57)     27 ( 32.14) 
+  9   Th117.11        84     29 ( 34.52)     29 ( 34.52)     26 ( 30.95) 
+ 10   Th134.11        84     31 ( 36.90)     28 ( 33.33)     25 ( 29.76) 
 -----------------------------------------------------------------------------
-                       5      1 ( 20.00)      4 ( 80.00)      0 (  0.00) 
+                     210     72 ( 34.29)     73 ( 34.76)     65 ( 30.95) 
 
 
 
@@ -173,13 +208,18 @@ Quartet support of areas 1-7:
                               resolved                                        partly                                          unresolved  
      name       #quartets     1 (% 1)         2 (% 2)         3 (% 3)         4 (% 4)         5 (% 5)         6 (% 6)         7 (% 7)   
 -------------------------------------------------------------------------------------------------------------------------------------------------
-  1   Th166.12         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  2   Th092.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  3   Th211.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  4   Th245.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  5   Th246.13         4      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  1   Th086.07        84     26 ( 30.95)     29 ( 34.52)     17 ( 20.24)      1 (  1.19)      2 (  2.38)      0 (  0.00)      9 ( 10.71) 
+  2   Th106.09        84     13 ( 15.48)     19 ( 22.62)     19 ( 22.62)      1 (  1.19)      2 (  2.38)      4 (  4.76)     26 ( 30.95) 
+  3   Th230.12        84     21 ( 25.00)     20 ( 23.81)     13 ( 15.48)      3 (  3.57)      4 (  4.76)      4 (  4.76)     19 ( 22.62) 
+  4   Th074.13        84     20 ( 23.81)     25 ( 29.76)     25 ( 29.76)      1 (  1.19)      2 (  2.38)      1 (  1.19)     10 ( 11.90) 
+  5   Th132.11        84     14 ( 16.67)     19 ( 22.62)     17 ( 20.24)      2 (  2.38)      4 (  4.76)      1 (  1.19)     27 ( 32.14) 
+  6   Th162.12        84     19 ( 22.62)     16 ( 19.05)     16 ( 19.05)      3 (  3.57)      6 (  7.14)      3 (  3.57)     21 ( 25.00) 
+  7   Th196.12        84     15 ( 17.86)     15 ( 17.86)     24 ( 28.57)      2 (  2.38)      5 (  5.95)      4 (  4.76)     19 ( 22.62) 
+  8   Th106.11        84     25 ( 29.76)     20 ( 23.81)     21 ( 25.00)      1 (  1.19)      0 (  0.00)      2 (  2.38)     15 ( 17.86) 
+  9   Th117.11        84     23 ( 27.38)     24 ( 28.57)     19 ( 22.62)      1 (  1.19)      1 (  1.19)      1 (  1.19)     15 ( 17.86) 
+ 10   Th134.11        84     24 ( 28.57)     25 ( 29.76)     17 ( 20.24)      1 (  1.19)      2 (  2.38)      0 (  0.00)     15 ( 17.86) 
 -------------------------------------------------------------------------------------------------------------------------------------------------
-                       5      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      0 (  0.00)      5 (100.00) 
+                     210     50 ( 23.81)     53 ( 25.24)     47 ( 22.38)      4 (  1.90)      7 (  3.33)      5 (  2.38)     44 ( 20.95) 
 
 
 
@@ -189,25 +229,30 @@ Quartet resolution per sequence:
 
      name       #quartets    resolved         partly           unresolved    
 -----------------------------------------------------------------------------
-  1   Th166.12         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  2   Th092.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  3   Th211.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  4   Th245.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
-  5   Th246.13         4      0 (  0.00)      0 (  0.00)      4 (100.00) 
+  1   Th086.07        84     72 ( 85.71)      3 (  3.57)      9 ( 10.71) 
+  2   Th106.09        84     51 ( 60.71)      7 (  8.33)     26 ( 30.95) 
+  3   Th230.12        84     54 ( 64.29)     11 ( 13.10)     19 ( 22.62) 
+  4   Th074.13        84     70 ( 83.33)      4 (  4.76)     10 ( 11.90) 
+  5   Th132.11        84     50 ( 59.52)      7 (  8.33)     27 ( 32.14) 
+  6   Th162.12        84     51 ( 60.71)     12 ( 14.29)     21 ( 25.00) 
+  7   Th196.12        84     54 ( 64.29)     11 ( 13.10)     19 ( 22.62) 
+  8   Th106.11        84     66 ( 78.57)      3 (  3.57)     15 ( 17.86) 
+  9   Th117.11        84     66 ( 78.57)      3 (  3.57)     15 ( 17.86) 
+ 10   Th134.11        84     66 ( 78.57)      3 (  3.57)     15 ( 17.86) 
 -----------------------------------------------------------------------------
-                       5      0 (  0.00)      0 (  0.00)      5 (100.00) 
+                     210    150 ( 71.43)     16 (  7.62)     44 ( 20.95) 
 
 
 
 Overall quartet resolution:
 
-Number of resolved        quartets (regions 1+2+3):      0 (=   0.00%)
-Number of partly resolved quartets (regions 4+5+6):      0 (=   0.00%)
-Number of unresolved      quartets (region 7):           5 (= 100.00%)
+Number of resolved        quartets (regions 1+2+3):    150 (=  71.43%)
+Number of partly resolved quartets (regions 4+5+6):     16 (=   7.62%)
+Number of unresolved      quartets (region 7):          44 (=  20.95%)
 
 
 TIME STAMP
 
-Date and time: Fri May  6 19:09:58 2016
-Runtime (excl. input) : 1 seconds (= 0.0 minutes = 0.0 hours)
-Runtime (incl. input) : 5 seconds (= 0.1 minutes = 0.0 hours)
+Date and time: Fri May  6 19:15:19 2016
+Runtime (excl. input) : 0 seconds (= 0.0 minutes = 0.0 hours)
+Runtime (incl. input) : 3 seconds (= 0.1 minutes = 0.0 hours)
