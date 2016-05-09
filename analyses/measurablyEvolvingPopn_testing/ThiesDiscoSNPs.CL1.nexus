@@ -1,12 +1,11 @@
- "  "+str(noSamps)+"  "+str(noVars)
 #NEXUS
 
 [!Data from:
-      sys.argv[1]
+      ThiesDiscoSNPs.CL1.vcf.gz
 ]
 
 begin taxa;
-	dimensions ntax=str(noSamps);
+	dimensions ntax=10;
 	taxlabels
 
 Th086.07
@@ -24,8 +23,9 @@ Th134.11
 end;
 
 begin characters;
-	dimensions nchar=str(noVars);
+	dimensions nchar=1139;
 	Format datatype=standard symbols="012" gap=- missing=-;
+        options gapmode=missing;
 	matrix
 
 Th086.07     1100000010  0000100000  0000000000  0000001111  11111111-1  11101----1  
