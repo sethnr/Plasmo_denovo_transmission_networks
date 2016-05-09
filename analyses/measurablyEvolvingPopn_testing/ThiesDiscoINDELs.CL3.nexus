@@ -17,9 +17,8 @@ end;
 
 begin characters;
 	dimensions nchar=202;
-	Format datatype=standard symbols="012" gap=- missing=-;
-        options gapmode=missing;
-	matrix
+	Format datatype=standard interleave symbols="01234" gap=- missing=-;
+        matrix
 
 Th068.12     0010111111  111110101-  --01111111  00111--010  0000101100  0-11011100  
 Th061.13     1101000000  0000010001  1100000000  0000011001  1110010000  000000-001  

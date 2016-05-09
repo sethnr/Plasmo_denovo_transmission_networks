@@ -1,0 +1,1 @@
+../../../idi_broad_scripts/vcf/vcf2BinNexus.py
