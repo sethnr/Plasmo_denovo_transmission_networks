@@ -1,0 +1,31 @@
+SplitsTree PhiTest (recombination)
+
+Whole set, Cl1
+Executing: analysis characters once PhiTest;
+Found 516 informative sites
+Using windowsize of 100 with k as 30
+Mean:	0.15908030405659668
+Variance	6.19317297763214E-6
+Observed:	0.12614052614052615
+P-value:	0.0
+The phi test did find statistically significant evidence for recombination (p = 0.0)
+
+SNPs, Cl1
+Executing: analysis characters once PhiTest;
+Found 267 informative sites
+Using windowsize of 100 with k as 23
+Mean:	0.22238179718960321
+Variance	2.1743508233244523E-5
+Observed:	0.1751065643648764
+P-value:	0.0
+The phi test did find statistically significant evidence for recombination (p = 0.0)
+
+INDELs, Cl1
+Executing: analysis characters once PhiTest;
+Found 249 informative sites
+Using windowsize of 100 with k as 42
+Mean:	0.08219976680917217
+Variance	1.334791839733435E-5
+Observed:	0.078283621140764
+P-value:	0.1418836972064243
+The phi test did not find statistically significant evidence for recombination (p = 0.1419)
