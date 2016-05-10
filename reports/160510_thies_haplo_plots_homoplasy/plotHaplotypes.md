@@ -16,7 +16,7 @@ getGenoTab <- function(filename) {
   #genotab <- genotab[rowSums(genotab[,5:dim(genotab)[2]],na.rm=T)!=0,]
   
   #colnames(genotab)[1:2]<-c("chr","pos")
-  genotab.m <- melt(genotab,id.vars =c("chr","pos","type","alleles"),variable.name ="indv")
+  genotab.m <- melt(genotab,id.vars =c("chr","pos","type","subtype","alleles"),variable.name ="indv")
   genotab.m$value <- as.factor(genotab.m$value)
   #sort levels
   genotab.m$indv <- factor(genotab.m$indv,levels=sort(levels(genotab.m$indv)))
@@ -47,37 +47,11 @@ treeorder <- c("Th086.07","Th134.11","Th117.11","Th106.11","Th196.12","Th162.12"
 
 clade3F <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.clade3.alleles.tab.txt"
 genotab3 <- getGenoTab(clade3F)
-```
-
-```
-## Warning in getGenoTab(clade3F): NAs introduced by coercion
-```
-
-```
-## Error in if (genotab.m[i, "value"] == 0) {: missing value where TRUE/FALSE needed
-```
-
-```r
 genotab3$indv <- factor(genotab3$indv,levels = treeorder,ordered=T)
 
 clade3NS <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.clade3.NOSNGL.alleles.tab.txt"
-genotab3NS <- getGenoTab(clade3F)
-```
-
-```
-## Warning in getGenoTab(clade3F): NAs introduced by coercion
-```
-
-```
-## Error in if (genotab.m[i, "value"] == 0) {: missing value where TRUE/FALSE needed
-```
-
-```r
-genotab3NS$indv <- factor(genotab3$indv,levels = treeorder,ordered=T)
-```
-
-```
-## Error in `$<-.data.frame`(`*tmp*`, "indv", value = structure(c(8L, 8L, : replacement has 13027 rows, data has 4496
+genotab3NS <- getGenoTab(clade3NS)
+genotab3NS$indv <- factor(genotab3NS$indv,levels = treeorder,ordered=T)
 ```
 
 
@@ -120,7 +94,7 @@ ggplot(subset(genotab3,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo,
 
 
 ```r
-#Clade3NS
+#Clade3 NO SINGLETONS
 
 #all vars
 ggplot(genotab3NS,aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(size=3) + 

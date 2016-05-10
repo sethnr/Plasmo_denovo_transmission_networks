@@ -15,7 +15,7 @@ getGenoTab <- function(filename) {
   #genotab <- genotab[rowSums(genotab[,5:dim(genotab)[2]],na.rm=T)!=0,]
   
   #colnames(genotab)[1:2]<-c("chr","pos")
-  genotab.m <- melt(genotab,id.vars =c("chr","pos","type","alleles"),variable.name ="indv")
+  genotab.m <- melt(genotab,id.vars =c("chr","pos","type","subtype","alleles"),variable.name ="indv")
   genotab.m$value <- as.factor(genotab.m$value)
   #sort levels
   genotab.m$indv <- factor(genotab.m$indv,levels=sort(levels(genotab.m$indv)))
@@ -49,8 +49,8 @@ genotab3 <- getGenoTab(clade3F)
 genotab3$indv <- factor(genotab3$indv,levels = treeorder,ordered=T)
 
 clade3NS <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.clade3.NOSNGL.alleles.tab.txt"
-genotab3NS <- getGenoTab(clade3F)
-genotab3NS$indv <- factor(genotab3$indv,levels = treeorder,ordered=T)
+genotab3NS <- getGenoTab(clade3NS)
+genotab3NS$indv <- factor(genotab3NS$indv,levels = treeorder,ordered=T)
 
 
 ```
@@ -82,7 +82,7 @@ ggplot(subset(genotab3,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=haplo,
 
 
 ```{r}
-#Clade3NS
+#Clade3 NO SINGLETONS
 
 #all vars
 ggplot(genotab3NS,aes(x=pos,y=indv,colour=value,group=haplo,shape=type)) + geom_point(size=3) + 
