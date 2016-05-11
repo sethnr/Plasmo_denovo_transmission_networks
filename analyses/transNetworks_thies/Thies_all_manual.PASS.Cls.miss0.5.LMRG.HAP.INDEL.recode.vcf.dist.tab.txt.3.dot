@@ -5,21 +5,18 @@ digraph {
     dates=0
     year=2012
     color="#2166AC"
-    "label.cex"=1
   ];
   1 [
     name="Th061.13"
     dates=366
     year=2013
     color="#67A9CF"
-    "label.cex"=1
   ];
   2 [
     name="Th095.13"
     dates=366
     year=2013
     color="#67A9CF"
-    "label.cex"=1
   ];
 
   0 -> 1 [
