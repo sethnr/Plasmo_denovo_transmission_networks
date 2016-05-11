@@ -1,0 +1,119 @@
+/* Created by igraph @VERSION@ */
+digraph {
+  0 [
+    name="Th086.07"
+    dates=0
+    year=2007
+    color="#2166AC"
+    "label.cex"=1
+  ];
+  1 [
+    name="Th106.09"
+    dates=731
+    year=2009
+    color="#D1E5F0"
+    "label.cex"=1
+  ];
+  2 [
+    name="Th106.11"
+    dates=1461
+    year=2011
+    color="#FDDBC7"
+    "label.cex"=1
+  ];
+  3 [
+    name="Th117.11"
+    dates=1461
+    year=2011
+    color="#FDDBC7"
+    "label.cex"=1
+  ];
+  4 [
+    name="Th132.11"
+    dates=1461
+    year=2011
+    color="#FDDBC7"
+    "label.cex"=1
+  ];
+  5 [
+    name="Th134.11"
+    dates=1461
+    year=2011
+    color="#FDDBC7"
+    "label.cex"=1
+  ];
+  6 [
+    name="Th162.12"
+    dates=1826
+    year=2012
+    color="#EF8A62"
+    "label.cex"=1
+  ];
+  7 [
+    name="Th196.12"
+    dates=1826
+    year=2012
+    color="#EF8A62"
+    "label.cex"=1
+  ];
+  8 [
+    name="Th230.12"
+    dates=1826
+    year=2012
+    color="#EF8A62"
+    "label.cex"=1
+  ];
+  9 [
+    name="Th074.13"
+    dates=2192
+    year=2013
+    color="#B2182B"
+    "label.cex"=1
+  ];
+
+  0 -> 1 [
+    weight=177
+    label=177
+    color="#FFF5F0"
+  ];
+  0 -> 2 [
+    weight=108
+    label=108
+    color="#FB7B5B"
+  ];
+  0 -> 3 [
+    weight=99
+    label=99
+    color="#FB6B4B"
+  ];
+  1 -> 4 [
+    weight=20
+    label=20
+    color="#67000D"
+  ];
+  0 -> 5 [
+    weight=91
+    label=91
+    color="#F6583F"
+  ];
+  4 -> 6 [
+    weight=23
+    label=23
+    color="#71020E"
+  ];
+  1 -> 7 [
+    weight=26
+    label=26
+    color="#76030E"
+  ];
+  4 -> 8 [
+    weight=19
+    label=19
+    color="#67000D"
+  ];
+  1 -> 9 [
+    weight=24
+    label=24
+    color="#71020E"
+  ];
+}

@@ -101,8 +101,8 @@ ggplot(subset(genotab3NS,type=="INDEL"),aes(x=pos,y=indv,colour=value,group=hapl
 #Clade3 NO SINGLETONS INDEXED
 
 #SNPs only
-ggplot(genotab3NS,aes(x=I,y=indv,colour=value,group=pos,shape=type)) + geom_point(alpha=0.6,size=3) + 
-  geom_line(data=subset(genotab3NS,value != 0)) + facet_grid(type ~ .)  +colsc
+ggplot(genotab3NS,aes(x=I,y=indv,colour=value,group=pos,shape=type)) + geom_line(data=subset(genotab3NS,value != 0)) + geom_point(alpha=0.6,size=3) + 
+  facet_grid(type ~ .)  +colsc
 #INDELs only
 
 ```
