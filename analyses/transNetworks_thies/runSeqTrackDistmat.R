@@ -47,6 +47,7 @@ for (cID in unique(clust$clust$membership)) {
   V(ig)$color <- cols[year-min(year)+1]
 #  V(ig)$label.cex <- ts
   write.graph(ig,paste(distmatF,cID,"dot",sep="."),format="dot")
-  
+  write.graph(ig,paste(distmatF,cID,"gml",sep="."),format="graphml")
+
   plot(ig,main="all vars",vertex.size=25)
 }
