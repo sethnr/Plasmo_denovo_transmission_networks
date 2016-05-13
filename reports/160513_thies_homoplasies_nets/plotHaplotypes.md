@@ -237,17 +237,33 @@ ggplot(genotabNS,aes(x=I,y=indv,colour=HP_INDEL,group=pos,shape=type)) + geom_po
 
 
 ```r
-#SNP net homoplasies
-snpnet <- read.graph("clade29.SNP.graphml.HPLSY.xml",format="graphml")
-plot(snpnet,edge.color="black",edge.label=E(snpnet)$homoplasy_count,edge.label.cex=2)
+opts_chunk$set(fig.width=9, fig.height=9)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+```r
+#SNP net homoplasies
+snpnet <- read.graph("clade29.SNP.graphml.HPLSY.xml",format="graphml")
+plot(snpnet,edge.color="black",edge.label=E(snpnet)$homoplasy_count,edge.label.cex=1.5)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+
+```r
+plot(snpnet,edge.color="black",edge.label=round(E(snpnet)$homoplasy_percent,2),edge.label.cex=1.5)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-2.png)
 
 ```r
 #INDEL net homoplasies
 indelnet <- read.graph("clade29.INDEL.graphml.HPLSY.xml",format="graphml")
-plot(indelnet,edge.color="black",edge.label=E(indelnet)$homoplasy_count,edge.label.cex=2)
+plot(indelnet,edge.color="black",edge.label=E(indelnet)$homoplasy_count,edge.label.cex=1.5)
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-3.png)
+
+```r
+plot(indelnet,edge.color="black",edge.label=round(E(indelnet)$homoplasy_percent,2),edge.label.cex=1.5)
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-4.png)
