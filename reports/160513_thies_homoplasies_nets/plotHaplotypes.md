@@ -219,8 +219,8 @@ ggplot(genotabNS,aes(x=pos,y=indv,colour=HP_INDEL,group=haplo,shape=type)) + geo
 
 #SNP net homoplasies
 genotabNS$indv <- factor(genotabNS$indv,levels = SNPnetworkorder,ordered=T)
-ggplot(genotabNS,aes(x=I,y=indv,colour=HP_SNP,group=pos,shape=type)) + geom_point(alpha=0.6,size=3) + geom_line(data=subset(genotabNS,HP_SNP == 1),colour="red") + 
-  facet_grid(type ~ .)  +colsc
+ggplot(genotabNS,aes(x=I,y=indv,colour=HP_SNP,group=pos,shape=type)) + geom_point(alpha=0.6,size=3) + 
+  geom_line(data=subset(genotabNS,HP_SNP == 1),colour="red") + facet_grid(type ~ .)  +colsc
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
@@ -228,8 +228,8 @@ ggplot(genotabNS,aes(x=I,y=indv,colour=HP_SNP,group=pos,shape=type)) + geom_poin
 ```r
 #INDEL net homoplasies
 genotabNS$indv <- factor(genotabNS$indv,levels = INDELnetworkorder,ordered=T)
-ggplot(genotabNS,aes(x=I,y=indv,colour=HP_INDEL,group=pos,shape=type)) + geom_line(data=subset(genotabNS,HP_INDEL == 1),colour="red") + 
-  geom_point(alpha=0.6,size=3) + facet_grid(type ~ .)  +colsc
+ggplot(genotabNS,aes(x=I,y=indv,colour=HP_INDEL,group=pos,shape=type)) + geom_point(alpha=0.6,size=3) + 
+  geom_line(data=subset(genotabNS,HP_INDEL == 1),colour="red") + facet_grid(type ~ .)  +colsc
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
