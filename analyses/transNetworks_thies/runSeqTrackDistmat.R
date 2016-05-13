@@ -15,6 +15,7 @@ sym <- function(M) {
 
 
 distmatF <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt" 
+distmatF <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt" 
 mat <- read.table(distmatF,sep="\t")
 D <- as.dist(sym(mat))
 

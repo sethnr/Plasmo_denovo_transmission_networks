@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+
+  <!-- property keys -->
+  <key id="key0" for="edge" attr.name="color" attr.type="string" />
+  <key id="key1" for="node" attr.name="color" attr.type="string" />
+  <key id="key2" for="node" attr.name="dates" attr.type="double" />
+  <key id="key3" for="edge" attr.name="homoplasy_count" attr.type="int" />
+  <key id="key4" for="edge" attr.name="homoplasy_percent" attr.type="float" />
+  <key id="key5" for="edge" attr.name="label" attr.type="double" />
+  <key id="key6" for="node" attr.name="name" attr.type="string" />
+  <key id="key7" for="edge" attr.name="weight" attr.type="double" />
+  <key id="key8" for="node" attr.name="year" attr.type="double" />
+
+  <graph id="G" edgedefault="directed" parse.nodeids="free" parse.edgeids="free" parse.order="nodesfirst">
+
+   <!-- graph properties -->
+
+   <!-- vertices -->
+    <node id="n0">
+      <data key="key1">#2166AC</data>
+      <data key="key2">0x0p+0</data>
+      <data key="key6">Th086.07</data>
+      <data key="key8">0xf.aep+7</data>
+    </node>
+    <node id="n1">
+      <data key="key1">#D1E5F0</data>
+      <data key="key2">0xb.6cp+6</data>
+      <data key="key6">Th106.09</data>
+      <data key="key8">0xf.b2p+7</data>
+    </node>
+    <node id="n2">
+      <data key="key1">#FDDBC7</data>
+      <data key="key2">0xb.6ap+7</data>
+      <data key="key6">Th106.11</data>
+      <data key="key8">0xf.b6p+7</data>
+    </node>
+    <node id="n3">
+      <data key="key1">#FDDBC7</data>
+      <data key="key2">0xb.6ap+7</data>
+      <data key="key6">Th117.11</data>
+      <data key="key8">0xf.b6p+7</data>
+    </node>
+    <node id="n4">
+      <data key="key1">#FDDBC7</data>
+      <data key="key2">0xb.6ap+7</data>
+      <data key="key6">Th132.11</data>
+      <data key="key8">0xf.b6p+7</data>
+    </node>
+    <node id="n5">
+      <data key="key1">#FDDBC7</data>
+      <data key="key2">0xb.6ap+7</data>
+      <data key="key6">Th134.11</data>
+      <data key="key8">0xf.b6p+7</data>
+    </node>
+    <node id="n6">
+      <data key="key1">#EF8A62</data>
+      <data key="key2">0xe.44p+7</data>
+      <data key="key6">Th162.12</data>
+      <data key="key8">0xf.b8p+7</data>
+    </node>
+    <node id="n7">
+      <data key="key1">#EF8A62</data>
+      <data key="key2">0xe.44p+7</data>
+      <data key="key6">Th196.12</data>
+      <data key="key8">0xf.b8p+7</data>
+    </node>
+    <node id="n8">
+      <data key="key1">#EF8A62</data>
+      <data key="key2">0xe.44p+7</data>
+      <data key="key6">Th230.12</data>
+      <data key="key8">0xf.b8p+7</data>
+    </node>
+    <node id="n9">
+      <data key="key1">#B2182B</data>
+      <data key="key2">0x8.9p+8</data>
+      <data key="key6">Th074.13</data>
+      <data key="key8">0xf.bap+7</data>
+    </node>
+
+   <!-- edges -->
+    <edge id="" source="n0" target="n1">
+      <data key="key0">#FFF5F0</data>
+      <data key="key3">0</data>
+      <data key="key4">0x0p+0</data>
+      <data key="key5">0xb.1p+4</data>
+      <data key="key7">0xb.1p+4</data>
+    </edge>
+    <edge id="" source="n0" target="n2">
+      <data key="key0">#FB7B5B</data>
+      <data key="key3">0</data>
+      <data key="key4">0x0p+0</data>
+      <data key="key5">0xd.8p+3</data>
+      <data key="key7">0xd.8p+3</data>
+    </edge>
+    <edge id="" source="n0" target="n3">
+      <data key="key0">#FB6B4B</data>
+      <data key="key3">0</data>
+      <data key="key4">0x0p+0</data>
+      <data key="key5">0xc.6p+3</data>
+      <data key="key7">0xc.6p+3</data>
+    </edge>
+    <edge id="" source="n0" target="n5">
+      <data key="key0">#F6583F</data>
+      <data key="key3">0</data>
+      <data key="key4">0x0p+0</data>
+      <data key="key5">0xb.6p+3</data>
+      <data key="key7">0xb.6p+3</data>
+    </edge>
+    <edge id="" source="n1" target="n4">
+      <data key="key0">#67000D</data>
+      <data key="key3">30</data>
+      <data key="key4">0x1.7b8d57f817b8dp-6</data>
+      <data key="key5">0xap+1</data>
+      <data key="key7">0xap+1</data>
+    </edge>
+    <edge id="" source="n1" target="n7">
+      <data key="key0">#76030E</data>
+      <data key="key3">32</data>
+      <data key="key4">0x1.8904fd503744bp-6</data>
+      <data key="key5">0xdp+1</data>
+      <data key="key7">0xdp+1</data>
+    </edge>
+    <edge id="" source="n1" target="n9">
+      <data key="key0">#71020E</data>
+      <data key="key3">35</data>
+      <data key="key4">0x1.ae300312a0efbp-6</data>
+      <data key="key5">0xcp+1</data>
+      <data key="key7">0xcp+1</data>
+    </edge>
+    <edge id="" source="n4" target="n6">
+      <data key="key0">#71020E</data>
+      <data key="key3">66</data>
+      <data key="key4">0x1.9ef1a85fe090ap-5</data>
+      <data key="key5">0xb.8p+1</data>
+      <data key="key7">0xb.8p+1</data>
+    </edge>
+    <edge id="" source="n4" target="n8">
+      <data key="key0">#67000D</data>
+      <data key="key3">63</data>
+      <data key="key4">0x1.8e38e38e38e39p-5</data>
+      <data key="key5">0x9.8p+1</data>
+      <data key="key7">0x9.8p+1</data>
+    </edge>
+
+  </graph>
+</graphml>
