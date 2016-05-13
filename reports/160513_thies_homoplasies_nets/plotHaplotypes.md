@@ -46,6 +46,8 @@ getGenoTab <- function(filename) {
 
 ```r
 networkorder <- c("Th134.11","Th117.11","Th106.11","Th086.07","Th106.09","Th196.12","Th074.13","Th132.11","Th162.12","Th230.12")
+INDELnetworkorder <- c("Th134.11","Th117.11","Th106.11","Th086.07","Th106.09","Th196.12","Th074.13","Th132.11","Th162.12","Th230.12")
+SNPnetworkorder <- c("Th086.07","Th106.09","Th134.11","Th117.11","Th106.11","Th162.12","Th230.12","Th074.13","Th132.11","Th196.12")
 
 clade3F <- "clade29.alleles.tab.txt"
 genotab3 <- getGenoTab(clade3F)
@@ -113,6 +115,11 @@ dim(genotab3HPI)
 
 ```
 ## [1] 13570     4
+```
+
+```r
+genotabNS$indv <- factor(genotabNS$indv,levels = networkorder,ordered=T)
+genotab$indv <- factor(genotab$indv,levels = networkorder,ordered=T)
 ```
 
 
@@ -211,14 +218,16 @@ ggplot(genotabNS,aes(x=pos,y=indv,colour=HP_INDEL,group=haplo,shape=type)) + geo
 #Clade3 NO SINGLETONS INDEXED
 
 #SNP net homoplasies
-ggplot(genotabNS,aes(x=I,y=indv,colour=HP_SNP,group=pos,shape=type)) + geom_line(data=subset(genotabNS,HP_SNP == 1),colour="red") + 
-  geom_point(alpha=0.6,size=3) + facet_grid(type ~ .)  +colsc
+genotabNS$indv <- factor(genotabNS$indv,levels = SNPnetworkorder,ordered=T)
+ggplot(genotabNS,aes(x=I,y=indv,colour=HP_SNP,group=pos,shape=type)) + geom_point(alpha=0.6,size=3) + geom_line(data=subset(genotabNS,HP_SNP == 1),colour="red") + 
+  facet_grid(type ~ .)  +colsc
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 ```r
 #INDEL net homoplasies
+genotabNS$indv <- factor(genotabNS$indv,levels = INDELnetworkorder,ordered=T)
 ggplot(genotabNS,aes(x=I,y=indv,colour=HP_INDEL,group=pos,shape=type)) + geom_line(data=subset(genotabNS,HP_INDEL == 1),colour="red") + 
   geom_point(alpha=0.6,size=3) + facet_grid(type ~ .)  +colsc
 ```
