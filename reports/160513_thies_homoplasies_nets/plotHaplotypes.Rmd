@@ -46,7 +46,7 @@ getGenoTab <- function(filename) {
 ```{r}
 networkorder <- c("Th134.11","Th117.11","Th106.11","Th086.07","Th106.09","Th196.12","Th074.13","Th132.11","Th162.12","Th230.12")
 INDELnetworkorder <- c("Th134.11","Th117.11","Th106.11","Th086.07","Th106.09","Th196.12","Th074.13","Th132.11","Th162.12","Th230.12")
-SNPnetworkorder <- c("Th086.07","Th106.09","Th134.11","Th117.11","Th106.11","Th162.12","Th230.12","Th074.13","Th132.11","Th196.12")
+SNPnetworkorder <- c("Th086.07","Th106.09","Th106.11","Th117.11","Th134.11","Th230.12","Th162.12","Th074.13","Th132.11","Th196.12")
 
 clade3F <- "clade29.alleles.tab.txt"
 genotab3 <- getGenoTab(clade3F)
@@ -159,4 +159,18 @@ plot(snpnet,edge.color="black",edge.label=round(E(snpnet)$homoplasy_percent,2),e
 indelnet <- read.graph("clade29.INDEL.graphml.HPLSY.xml",format="graphml")
 plot(indelnet,edge.color="black",edge.label=E(indelnet)$homoplasy_count,edge.label.cex=1.5)
 plot(indelnet,edge.color="black",edge.label=round(E(indelnet)$homoplasy_percent,2),edge.label.cex=1.5)
+```
+
+```{r}
+#lay <- layout_as_tree(snpnet,flip.y = T)
+lay[,1] <- as.numeric(as.factor(V(indelnet)$year))
+lay[,2] <- c(0,1,2,3,8,4,6,9,5,7)
+plot(snpnet,layout=lay)
+
+lay[,2] <- c(0,-1,1,2,-4,3,-5,-2,-6,-3)
+lay[,1] <- as.numeric(as.factor(V(indelnet)$year))
+plot(indelnet,layout=lay)
+
+
+
 ```

@@ -47,7 +47,7 @@ getGenoTab <- function(filename) {
 ```r
 networkorder <- c("Th134.11","Th117.11","Th106.11","Th086.07","Th106.09","Th196.12","Th074.13","Th132.11","Th162.12","Th230.12")
 INDELnetworkorder <- c("Th134.11","Th117.11","Th106.11","Th086.07","Th106.09","Th196.12","Th074.13","Th132.11","Th162.12","Th230.12")
-SNPnetworkorder <- c("Th086.07","Th106.09","Th134.11","Th117.11","Th106.11","Th162.12","Th230.12","Th074.13","Th132.11","Th196.12")
+SNPnetworkorder <- c("Th086.07","Th106.09","Th106.11","Th117.11","Th134.11","Th230.12","Th162.12","Th074.13","Th132.11","Th196.12")
 
 clade3F <- "clade29.alleles.tab.txt"
 genotab3 <- getGenoTab(clade3F)
@@ -267,3 +267,21 @@ plot(indelnet,edge.color="black",edge.label=round(E(indelnet)$homoplasy_percent,
 ```
 
 ![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-4.png)
+
+
+```r
+#lay <- layout_as_tree(snpnet,flip.y = T)
+lay[,1] <- as.numeric(as.factor(V(indelnet)$year))
+lay[,2] <- c(0,1,2,3,8,4,6,9,5,7)
+plot(snpnet,layout=lay)
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+
+```r
+lay[,2] <- c(0,-1,1,2,-4,3,-5,-2,-6,-3)
+lay[,1] <- as.numeric(as.factor(V(indelnet)$year))
+plot(indelnet,layout=lay)
+```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png)
