@@ -51,8 +51,11 @@ c(cor(all$distance[d],all$date[d]),
 ggplot(all,aes(x=date,y=distance,label=tip)) + geom_point() + geom_text() + geom_smooth(method="lm",se=F,fullrange=T,colour="black",linetype=2) + xlim(2000,2015)
 #ggplot(all,aes(x=date,y=distance,label=tip)) + geom_text() + geom_smooth(data=subset(all,date!=2007),method="lm",se=F) + xlim(2006,2013) #+ ylim(0,max(indel$distance))
 
+ggplot(snp,aes(x=date,y=distance,label=tip)) + geom_point() + geom_text() + geom_smooth(method="lm",se=F,fullrange=T,colour="black",linetype=2) + xlim(2000,2015)
 
 #ggplot(snp,aes(x=date,y=distance,label=tip)) + geom_text() + geom_smooth(method="lm",se=F) + xlim(2006,2013) + ylim(0,max(snp$distance))
+ggplot(indel,aes(x=date,y=distance,label=tip)) + geom_point() + geom_text() + geom_smooth(method="lm",se=F,fullrange=T,colour="black",linetype=2) + xlim(2000,2015)
+
 
 #ggplot(indel,aes(x=date,y=distance,label=tip)) + geom_text() + geom_smooth(method="lm",se=F) + xlim(2006,2013) #+ ylim(0,max(indel$distance))
 

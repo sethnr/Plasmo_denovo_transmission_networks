@@ -2,27 +2,15 @@
 
 ```r
 library("phyloTop")
-```
-
-```
-## Error in library("phyloTop"): there is no package called 'phyloTop'
-```
-
-```r
 library("phylobase")
-```
-
-```
-## Error in library("phylobase"): there is no package called 'phylobase'
-```
-
-```r
+library("ape")
+library("phytools")
 library(knitr)
 library(igraph)
 library("RColorBrewer")
 
 opts_chunk$set(fig.width=9, fig.height=9)
-opts_chunk$set(dev=c('png'))
+opts_chunk$set(dev=c('png','postscript'))
 ```
 
 
@@ -30,26 +18,17 @@ opts_chunk$set(dev=c('png'))
 ```r
 #thies <- read.nexus("sum_ALL.target.2.nexus")
 tree <- read.newick("sum_ALL.target.newick")
-```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "read.newick"
-```
 
-```r
+
 tree$tip.label<- gsub("'","",tree$tip.label)
-```
 
-```
-## Error in tree$tip.label: object of type 'closure' is not subsettable
-```
 
-```r
 is.rooted(tree)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "is.rooted"
+## [1] TRUE
 ```
 
 ```r
@@ -62,9 +41,13 @@ tree
 ```
 
 ```
-## function (...) 
-## constructor_spec(make_tree, ...)
-## <environment: namespace:igraph>
+## 
+## Phylogenetic tree with 18 tips and 17 internal nodes.
+## 
+## Tip labels:
+## 	Th166.12, Th245.13, Th211.13, Th246.13, Th092.13, Th086.07, ...
+## 
+## Rooted; includes branch lengths.
 ```
 
 ```r
@@ -72,7 +55,8 @@ splitTop(tree,1)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "splitTop"
+## node34 node20 
+##      3     15
 ```
 
 ```r
@@ -80,34 +64,16 @@ splitTop(tree,2)
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "splitTop"
+## Th068.12   node35   node21   node25 
+##        1        2        5       10
 ```
 
 ```r
 redtree <- extract.clade(tree,node=34)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "extract.clade"
-```
-
-```r
 bluetree <- extract.clade(tree,node=21)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "extract.clade"
-```
-
-```r
 greentree <- extract.clade(tree,node=25)
-```
 
-```
-## Error in eval(expr, envir, enclos): could not find function "extract.clade"
-```
 
-```r
 # subtree <- greentree
 # sackin.phylo(subtree)
 # widths(subtree)
@@ -121,5 +87,50 @@ phyloTop(list(bluetree,greentree,redtree))
 ```
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "phyloTop"
+##   avgLadder cherries colless.phylo ILnumber maxHeight pitchforks
+## 1         3        1     1.0000000        3         4          1
+## 2         2        3     0.4722222        4         6          2
+## 3         0        1     1.0000000        1         2          1
+##   sackin.phylo   stairs1   stairs2
+## 1            9 0.2500000 0.4375000
+## 2           31 0.5555556 0.1111111
+## 3            2 0.5000000 0.7500000
 ```
+
+
+
+```r
+cophyloplot(Itree,Stree,cbind(Stree$tip.label,Stree$tip.label))
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+
+```r
+Stree <- read.nexus("Thies_SNP.green.nexus")
+Itree <- read.nexus("Thies_INDEL.green.nexus")
+dist.topo(Stree,Itree)
+```
+
+```
+## [1] 6
+```
+
+```r
+Imat <- as.dist(t(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",sep="\t")))
+Smat <- as.dist(t(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")))
+
+dists <- data.frame("SNP"=as.numeric(Smat),"INDEL"=as.numeric(Imat))
+dists <- dists[dists$SNP < 5000,]
+# R^2 = 
+cor(dists$SNP,dists$INDEL)^2
+```
+
+```
+## [1] 0.9062327
+```
+
+```r
+ggplot(dists,aes(x=INDEL,y=SNP)) + geom_point() + geom_smooth(method = glm,se = F)
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png)
