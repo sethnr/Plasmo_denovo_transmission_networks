@@ -1,0 +1,16 @@
+
+Input Data
+Files              : Pf3D7_v3.fasta
+Format             : FASTA
+Type               : DNA
+Number of sequences: 16
+Total residues     : 23332831
+Minimum length     : 5967
+Maximum length     : 3291936
+
+Output Data
+SDF-ID             : 3cab2344-4cab-4332-bcd0-361c68399856
+Number of sequences: 16
+Total residues     : 23332831
+Minimum length     : 5967
+Maximum length     : 3291936

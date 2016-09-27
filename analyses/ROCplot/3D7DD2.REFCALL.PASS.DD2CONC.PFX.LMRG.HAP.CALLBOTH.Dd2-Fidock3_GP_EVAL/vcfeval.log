@@ -1,0 +1,90 @@
+2016-09-27 17:14:29 serial = 27182818284
+2016-09-27 17:14:29 email = anon
+2016-09-27 17:14:29 RTG version = RTG Tools 3.6.2 / Core bc71ee0 (2016-06-24)
+2016-09-27 17:14:29 awt.toolkit = sun.awt.X11.XToolkit
+2016-09-27 17:14:29 file.encoding = ANSI_X3.4-1968
+2016-09-27 17:14:29 file.encoding.pkg = sun.io
+2016-09-27 17:14:29 file.separator = /
+2016-09-27 17:14:29 host.name = uger-c011.broadinstitute.org
+2016-09-27 17:14:29 java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+2016-09-27 17:14:29 java.awt.printerjob = sun.print.PSPrinterJob
+2016-09-27 17:14:29 java.class.path = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar
+2016-09-27 17:14:29 java.class.version = 52.0
+2016-09-27 17:14:29 java.endorsed.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/endorsed
+2016-09-27 17:14:29 java.ext.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/ext:/usr/java/packages/lib/ext
+2016-09-27 17:14:29 java.home = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre
+2016-09-27 17:14:29 java.io.tmpdir = /tmp
+2016-09-27 17:14:29 java.library.path = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0
+2016-09-27 17:14:29 java.runtime.name = Java(TM) SE Runtime Environment
+2016-09-27 17:14:29 java.runtime.version = 1.8.0_45-b14
+2016-09-27 17:14:29 java.specification.name = Java Platform API Specification
+2016-09-27 17:14:29 java.specification.vendor = Oracle Corporation
+2016-09-27 17:14:29 java.specification.version = 1.8
+2016-09-27 17:14:29 java.vendor = Oracle Corporation
+2016-09-27 17:14:29 java.vendor.url = http://java.oracle.com/
+2016-09-27 17:14:29 java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+2016-09-27 17:14:29 java.version = 1.8.0_45
+2016-09-27 17:14:29 java.vm.info = mixed mode
+2016-09-27 17:14:29 java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+2016-09-27 17:14:29 java.vm.specification.name = Java Virtual Machine Specification
+2016-09-27 17:14:29 java.vm.specification.vendor = Oracle Corporation
+2016-09-27 17:14:29 java.vm.specification.version = 1.8
+2016-09-27 17:14:29 java.vm.vendor = Oracle Corporation
+2016-09-27 17:14:29 java.vm.version = 25.45-b02
+2016-09-27 17:14:29 lang.version = 1.8.0_45
+2016-09-27 17:14:29 line.separator = 
+
+2016-09-27 17:14:29 models.dir = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/models
+2016-09-27 17:14:29 os.arch = amd64
+2016-09-27 17:14:29 os.freememory = 12906209280
+2016-09-27 17:14:29 os.name = Linux
+2016-09-27 17:14:29 os.totalmemory = 270810230784
+2016-09-27 17:14:29 os.version = 2.6.32-642.3.1.el6.x86_64
+2016-09-27 17:14:29 path.separator = :
+2016-09-27 17:14:29 processor.arch = amd64
+2016-09-27 17:14:29 processor.count = 20
+2016-09-27 17:14:29 references.dir = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/references
+2016-09-27 17:14:29 runtime.freememory = 991592648
+2016-09-27 17:14:29 runtime.maxmemory = 7635730432
+2016-09-27 17:14:29 runtime.totalMemory = 1029177344
+2016-09-27 17:14:29 sun.arch.data.model = 64
+2016-09-27 17:14:29 sun.boot.class.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/resources.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/rt.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/sunrsasign.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jsse.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jce.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/charsets.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jfr.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/classes
+2016-09-27 17:14:29 sun.boot.library.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/amd64
+2016-09-27 17:14:29 sun.cpu.endian = little
+2016-09-27 17:14:29 sun.cpu.isalist = 
+2016-09-27 17:14:29 sun.io.unicode.encoding = UnicodeLittle
+2016-09-27 17:14:29 sun.java.command = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-Fidock3.vcf.gz -o 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-Fidock3_GP_EVAL -t Pf3D7.sdf --all-records --vcf-score-field=GP
+2016-09-27 17:14:29 sun.java.launcher = SUN_STANDARD
+2016-09-27 17:14:29 sun.jnu.encoding = ANSI_X3.4-1968
+2016-09-27 17:14:29 sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2016-09-27 17:14:29 sun.os.patch.level = unknown
+2016-09-27 17:14:29 talkback = true
+2016-09-27 17:14:29 user.country = US
+2016-09-27 17:14:29 user.dir = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot
+2016-09-27 17:14:29 user.home = /home/unix/sredmond
+2016-09-27 17:14:29 user.language = en
+2016-09-27 17:14:29 user.name = sredmond
+2016-09-27 17:14:29 user.timezone = US/Eastern
+2016-09-27 17:14:29 vendor = Oracle Corporation
+2016-09-27 17:14:29 gzipfix.enabled = true
+2016-09-27 17:14:29 Command line arguments: rtg vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-Fidock3.vcf.gz -o 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-Fidock3_GP_EVAL -t Pf3D7.sdf --all-records --vcf-score-field=GP
+2016-09-27 17:14:29 Run Id: e57c0779-6d96-42e4-b1d4-2839c2c3428c
+2016-09-27 17:14:29 Referenced SDF-ID: 3cab2344-4cab-4332-bcd0-361c68399856 Type: DNA Sequences: 16 Residues: 23332831 Max-Length: 3291936 Min-Length: 5967
+2016-09-27 17:14:29 Skipping reference sequence M76611 that is used by neither baseline or calls.
+2016-09-27 17:14:29 Reference sequence PFC10_API_IRAB is used in calls but not in baseline (variants will be treated as FP).
+2016-09-27 17:14:30 Reference PFC10_API_IRAB baseline contains 0 variants.
+2016-09-27 17:14:30 Reference PFC10_API_IRAB calls contains 14 variants.
+com.rtg.util.diagnostic.NoTalkbackSlimException: Invalid numeric value "0.0,313.0" in "GP" for VCF record :PFC10_API_IRAB	23	.	T	A	187	2D4RefAbsent;FDKRefAbsent	3D7LNERR=0;3D7MISS=0.0;3D7goldMAF=0.0;3D7goldMISS=0.0;AC=1;AF=1.00;AN=1;ANO=1;DD2FDKMAF=0.0;DD2FDKMISS=0.0;DD2LNERR=0;DD2MISS=0.0;FDK2D4MAF=0.0;FDK2D4MISS=0.0	GT:ALTP:GP:REFP	1:313.0:0.0,313.0:0.0
+	at com.rtg.vcf.VcfUtils.getDoubleFormatFieldFromRecord(VcfUtils.java:404)
+	at com.rtg.vcf.eval.RocScoreField$3$1.getSortValue(RocScoreField.java:111)
+	at com.rtg.vcf.eval.RocContainer.addRocLine(RocContainer.java:140)
+	at com.rtg.vcf.eval.WithRocsEvalSynchronizer.addToROCContainer(WithRocsEvalSynchronizer.java:121)
+	at com.rtg.vcf.eval.SplitEvalSynchronizer.handleKnownCall(SplitEvalSynchronizer.java:132)
+	at com.rtg.vcf.eval.InterleavingEvalSynchronizer.processCall(InterleavingEvalSynchronizer.java:175)
+	at com.rtg.vcf.eval.InterleavingEvalSynchronizer.writeInternal(InterleavingEvalSynchronizer.java:150)
+	at com.rtg.vcf.eval.EvalSynchronizer.write(EvalSynchronizer.java:117)
+	at com.rtg.vcf.eval.SequenceEvaluator.run(SequenceEvaluator.java:97)
+	at com.rtg.util.SimpleThreadPool$RunProxy.run(SimpleThreadPool.java:185)
+	at com.rtg.util.WorkerThread.run(WorkerThread.java:112)
+2016-09-27 17:14:30 Error: Invalid numeric value "0.0,313.0" in "GP" for VCF record :PFC10_API_IRAB	23	.	T	A	187	2D4RefAbsent;FDKRefAbsent	3D7LNERR=0;3D7MISS=0.0;3D7goldMAF=0.0;3D7goldMISS=0.0;AC=1;AF=1.00;AN=1;ANO=1;DD2FDKMAF=0.0;DD2FDKMISS=0.0;DD2LNERR=0;DD2MISS=0.0;FDK2D4MAF=0.0;FDK2D4MISS=0.0	GT:ALTP:GP:REFP	1:313.0:0.0,313.0:0.0
+2016-09-27 17:14:30 Run failed in 1 s.

@@ -18,3 +18,13 @@ do
   -c ${C} -n 45 -i100
 
 done
+
+
+for C in {0..23} ; 
+do 
+  bsub13 adcl_${C} \
+  getADCLrange.sh -t daniels.thies.newick \
+  -C culture_adapted_list.daniels.nodisco.txt \
+  -c ${C} -n 24 -i100
+
+done
