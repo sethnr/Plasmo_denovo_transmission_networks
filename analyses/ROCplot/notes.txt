@@ -41,3 +41,26 @@ do
   -c $F -o ${F/.vcf.gz/_EVAL} \
   -t Pf3D7.sdf --all-records --vcf-score-field="QUAL"
 done
+
+for F in 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.Dd2*.vcf.gz ; 
+do
+  qsubNN rocplotALL 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.vcf.gz \
+  -c $F -o ${F/.vcf.gz/_FILT_EVAL} \
+  -t Pf3D7.sdf --vcf-score-field="QUAL"
+done
+
+
+
+cut -f 1,4 ../../samples/3D7DD2.samples.txt | uniq > 3D7DD2.lookup
+python ../../scripts/vcf/replaceNamesVCF.py  -v
+3D7DD2_300100.VQSR.Pass90.vcf -f 3D7DD2.lookup
+
+../../scripts/splitVcfBySample.sh 3D7DD2_300100.VQSR.Pass90.RENAME.vcf
+$PFREF
+
+for F in 3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.D*.vcf.gz ; 
+do
+  qsubNN rocplotALL 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz \
+  -c $F -o ${F/.vcf.gz/_FILT_EVAL} \
+  -t Pf3D7.sdf --vcf-score-field="QUAL"
+done
