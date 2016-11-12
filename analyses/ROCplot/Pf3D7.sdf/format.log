@@ -1,0 +1,75 @@
+2016-09-26 18:28:06 serial = 27182818284
+2016-09-26 18:28:06 email = anon
+2016-09-26 18:28:06 RTG version = RTG Tools 3.6.2 / Core bc71ee0 (2016-06-24)
+2016-09-26 18:28:06 awt.toolkit = sun.awt.X11.XToolkit
+2016-09-26 18:28:06 file.encoding = ANSI_X3.4-1968
+2016-09-26 18:28:06 file.encoding.pkg = sun.io
+2016-09-26 18:28:06 file.separator = /
+2016-09-26 18:28:06 host.name = hw-uger-1004.broadinstitute.org
+2016-09-26 18:28:06 java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+2016-09-26 18:28:06 java.awt.printerjob = sun.print.PSPrinterJob
+2016-09-26 18:28:06 java.class.path = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar
+2016-09-26 18:28:06 java.class.version = 52.0
+2016-09-26 18:28:06 java.endorsed.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/endorsed
+2016-09-26 18:28:06 java.ext.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/ext:/usr/java/packages/lib/ext
+2016-09-26 18:28:06 java.home = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre
+2016-09-26 18:28:06 java.io.tmpdir = /tmp
+2016-09-26 18:28:06 java.library.path = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0
+2016-09-26 18:28:06 java.runtime.name = Java(TM) SE Runtime Environment
+2016-09-26 18:28:06 java.runtime.version = 1.8.0_45-b14
+2016-09-26 18:28:06 java.specification.name = Java Platform API Specification
+2016-09-26 18:28:06 java.specification.vendor = Oracle Corporation
+2016-09-26 18:28:06 java.specification.version = 1.8
+2016-09-26 18:28:06 java.vendor = Oracle Corporation
+2016-09-26 18:28:06 java.vendor.url = http://java.oracle.com/
+2016-09-26 18:28:06 java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+2016-09-26 18:28:06 java.version = 1.8.0_45
+2016-09-26 18:28:06 java.vm.info = mixed mode
+2016-09-26 18:28:06 java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+2016-09-26 18:28:06 java.vm.specification.name = Java Virtual Machine Specification
+2016-09-26 18:28:06 java.vm.specification.vendor = Oracle Corporation
+2016-09-26 18:28:06 java.vm.specification.version = 1.8
+2016-09-26 18:28:06 java.vm.vendor = Oracle Corporation
+2016-09-26 18:28:06 java.vm.version = 25.45-b02
+2016-09-26 18:28:06 lang.version = 1.8.0_45
+2016-09-26 18:28:06 line.separator = 
+
+2016-09-26 18:28:06 models.dir = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/models
+2016-09-26 18:28:06 os.arch = amd64
+2016-09-26 18:28:06 os.freememory = 37558362112
+2016-09-26 18:28:06 os.name = Linux
+2016-09-26 18:28:06 os.totalmemory = 50595131392
+2016-09-26 18:28:06 os.version = 2.6.32-573.18.1.el6.x86_64
+2016-09-26 18:28:06 path.separator = :
+2016-09-26 18:28:06 processor.arch = amd64
+2016-09-26 18:28:06 processor.count = 12
+2016-09-26 18:28:06 references.dir = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/references
+2016-09-26 18:28:06 runtime.freememory = 1002333456
+2016-09-26 18:28:06 runtime.maxmemory = 7635730432
+2016-09-26 18:28:06 runtime.totalMemory = 1029177344
+2016-09-26 18:28:06 sun.arch.data.model = 64
+2016-09-26 18:28:06 sun.boot.class.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/resources.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/rt.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/sunrsasign.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jsse.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jce.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/charsets.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jfr.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/classes
+2016-09-26 18:28:06 sun.boot.library.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/amd64
+2016-09-26 18:28:06 sun.cpu.endian = little
+2016-09-26 18:28:06 sun.cpu.isalist = 
+2016-09-26 18:28:06 sun.io.unicode.encoding = UnicodeLittle
+2016-09-26 18:28:06 sun.java.command = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar format -o PF3D7.sdf /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
+2016-09-26 18:28:06 sun.java.launcher = SUN_STANDARD
+2016-09-26 18:28:06 sun.jnu.encoding = ANSI_X3.4-1968
+2016-09-26 18:28:06 sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2016-09-26 18:28:06 sun.os.patch.level = unknown
+2016-09-26 18:28:06 talkback = true
+2016-09-26 18:28:06 user.country = US
+2016-09-26 18:28:06 user.dir = /seq/plasmodium/sredmond/pfdisco/analyses/ROCplot
+2016-09-26 18:28:06 user.home = /home/unix/sredmond
+2016-09-26 18:28:06 user.language = en
+2016-09-26 18:28:06 user.name = sredmond
+2016-09-26 18:28:06 user.timezone = America/New_York
+2016-09-26 18:28:06 vendor = Oracle Corporation
+2016-09-26 18:28:06 gzipfix.enabled = true
+2016-09-26 18:28:06 Command line arguments: rtg format -o PF3D7.sdf /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
+2016-09-26 18:28:06 Run Id: ad2eb312-bc25-4714-b00e-60ff0708181f
+2016-09-26 18:28:06 Formatting FASTA data
+2016-09-26 18:28:06 Processing "/seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta"
+2016-09-26 18:28:07 Writing SDF-Id: 3cab2344-4cab-4332-bcd0-361c68399856
+2016-09-26 18:28:07 Finished successfully in 1 s.

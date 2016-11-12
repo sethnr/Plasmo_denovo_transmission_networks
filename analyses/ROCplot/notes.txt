@@ -1,0 +1,43 @@
+bedtools intersect -header -b ../njtree_thies/callable_both_5k.bed -a
+3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.vcf.gz >
+3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.vcf
+
+bedtools intersect -header -b ../njtree_thies/callable_both_5k.bed -a 3D7_DD2_parents.DD2.vcf.gz > 3D7_DD2_parents.DD2.CALLBOTH.vcf
+bgzip 3D7_DD2_parents.DD2.CALLBOTH.vcf
+
+
+rtg format -o PF3D7.sdf $PFREF
+../../scripts/splitVcfBySample.sh 3D7DD2_all.REFCALL.MISS0.CALLABLE.vcf.gz
+
+
+for F in 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2*.vcf.gz ; 
+do
+  qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz \
+  -c $F -o ${F/.vcf.gz/_EVAL} \
+  -t Pf3D7.sdf --all-records --vcf-score-field="QUAL"
+done
+
+for F in 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2*.vcf.gz ; 
+do
+  qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz \
+  -c $F -o ${F/.vcf.gz/_FILT_EVAL} \
+  -t Pf3D7.sdf --vcf-score-field="QUAL"
+done
+
+for F in 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2*.vcf.gz ; 
+do
+  qsubNN rocplotGP 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz \
+  -c $F -o ${F/.vcf.gz/_GP_EVAL} \
+  -t Pf3D7.sdf --all-records --vcf-score-field="GP"
+done
+
+
+../../scripts/splitVcfBySample.sh  \
+  3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.vcf.gz $PFREF
+
+for F in 3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.Dd2*.vcf.gz ; 
+do
+  qsubNN rocplotALL 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.vcf.gz \
+  -c $F -o ${F/.vcf.gz/_EVAL} \
+  -t Pf3D7.sdf --all-records --vcf-score-field="QUAL"
+done
