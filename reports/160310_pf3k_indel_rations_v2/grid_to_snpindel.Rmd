@@ -1,0 +1,55 @@
+library(knitr)
+library(ggplot2)
+library(reshape2)
+```{r setup}
+opts_chunk$set(fig.width=13, fig.height=5)
+
+
+``` 
+
+```{r fig.width=13, fig.height=8}
+snpindel <- read.table("SNP_INDEL_Pf3kGhana_1K.SI-RATIO.tab.txt")
+snpindel[lower.tri(snpindel)]<-NA
+snpindel$from = colnames(snpindel)
+snpindel <- melt(snpindel)
+colnames(snpindel)[[3]]<-"snpindel"
+snpindel$from <- factor(snpindel$from ,levels=unique(sort(snpindel$from)))
+snpindel$variable <- factor(snpindel$variable,levels=unique(sort(snpindel$variable)))
+snpindel <- snpindel[as.numeric(snpindel$from) < as.numeric(snpindel$variable),]
+snpindel <- snpindel[!is.na(snpindel$snpindel),]
+
+```
+
+
+```{r fig.width=13, fig.height=8}
+dist <- read.table("SNP_INDEL_Pf3kGhana_1K.DIST.tab.txt",sep="\t")
+dist$from = colnames(dist)
+dist <- melt(dist)
+colnames(dist)[[3]]<-"dist"
+dist$from <- factor(dist$from ,levels=unique(sort(dist$from)))
+dist$variable <- factor(dist$variable,levels=unique(sort(dist$variable)))
+#dist <- dist[as.numeric(dist$from) < as.numeric(dist$variable),]
+dist <- dist[!is.na(dist$dist),]
+
+
+```
+
+```{r}
+
+# dist <- dist[dist$dist!=0,]
+# snpindel <- snpindel[dist$dist!=0,]
+
+
+cf <- merge(dist,snpindel,by=c("from","variable"))
+colnames(cf)<-c("from","to","dist","ratio")
+cf$from <- gsub("-",".",as.character(cf$from))
+cf$to <- gsub("-",".",as.character(cf$to))
+
+
+ggplot(cf,aes(x=dist,y=ratio,colour=to)) + geom_point() + scale_y_log10() + geom_hline(yintercept=2)
+
+s<-unique(sort(cf$to))[41:60]
+
+ggplot(subset(cf,to %in% s & from %in% s),aes(x=dist,y=ratio,colour=from)) + geom_point() + scale_y_log10() + geom_hline(yintercept=2)
+
+```

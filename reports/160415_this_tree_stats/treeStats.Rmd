@@ -8,9 +8,10 @@ library("phytools")
 library(knitr)
 library(igraph)
 library("RColorBrewer")
+library(ggplot2)
 
 opts_chunk$set(fig.width=9, fig.height=9)
-opts_chunk$set(dev=c('png'))
+opts_chunk$set(dev=c('png','postscript'))
 
 
 
@@ -55,6 +56,27 @@ phyloTop(list(bluetree,greentree,redtree))
 
 
 
+
+
+
+```
+
+
+```{r}
+cophyloplot(Itree,Stree,cbind(Stree$tip.label,Stree$tip.label))
+
+Stree <- read.nexus("Thies_SNP.green.nexus")
+Itree <- read.nexus("Thies_INDEL.green.nexus")
+dist.topo(Stree,Itree)
+
+Imat <- as.dist(t(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",sep="\t")))
+Smat <- as.dist(t(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")))
+
+dists <- data.frame("SNP"=as.numeric(Smat),"INDEL"=as.numeric(Imat))
+dists <- dists[dists$SNP < 5000,]
+# R^2 = 
+cor(dists$SNP,dists$INDEL)^2
+ggplot(dists,aes(x=INDEL,y=SNP)) + geom_point() + geom_smooth(method = glm,se = F)
 
 
 

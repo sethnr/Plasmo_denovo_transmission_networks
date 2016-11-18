@@ -3,7 +3,7 @@ library(reshape2)
 library(knitr)
 ```{r setup}
 opts_chunk$set(fig.width=10, fig.height=9)
-opts_chunk$set(dev=c('png'))
+opts_chunk$set(dev=c('png','postscript'))
 
 
 ``` 
@@ -195,3 +195,30 @@ ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)
   xlim(0,maxv)+ylim(0,maxv)
 ```
 
+
+
+```{r}
+
+#distances$snp[distances$snp==0] <- NA
+#distances$indel[distances$indel==0] <- NA
+
+icol = scale_fill_gradient(low="orange",high="black")
+scol = scale_fill_gradient(low="blue",high="black")
+#iscol = scale_fill_gradient2(low="black",high="black",mid="orange",midpoint = 0)
+colscale <- (c(-250,-0.01,0,0.01,250)+250)/(250+250)
+
+iscol <- scale_fill_gradientn(colors = c("black","orange","grey","blue","black"),
+                              values =colscale,na.value = NA,
+                              breaks =c(-250,-100,0,100,250),
+                              labels=c(-500,-200,0,100,250),
+                              limits=c(-250,250))
+
+ggplot(subset(distances,related=="RELATED")) + 
+  geom_tile(aes(x=Var1,y=Var2,fill=indel),size=1) + 
+  geom_text(aes(x=Var1,y=Var2, label=indel),colour="white",size=4) + 
+  geom_tile(aes(x=Var2,y=Var1,fill=snp*-0.5),size=1) + 
+  geom_text(aes(x=Var2,y=Var1, label=snp),colour="white") +
+#  geom_text(data=subset(distances,related=="UNRELATED"),size=4) +
+  vxlab + iscol
+  
+```

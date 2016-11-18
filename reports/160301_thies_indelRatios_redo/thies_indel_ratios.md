@@ -4,7 +4,7 @@ library(knitr)
 
 ```r
 opts_chunk$set(fig.width=10, fig.height=9)
-opts_chunk$set(dev=c('png'))
+opts_chunk$set(dev=c('png','postscript'))
 ```
 
 
@@ -164,13 +164,13 @@ vxlab <- theme(axis.text.x = element_text(angle = 90, hjust = 1))
 ggplot(distances,aes(x=Var1,y=Var2,fill=total,label=total,colour=related)) + geom_tile() + scale_fill_gradient(trans="log") + geom_text(size=3) + relcol + vxlab
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 ```r
 ggplot(distances,aes(x=Var1,y=Var2,fill=interval_yrs)) + geom_tile() + vxlab
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png)
 
 ```r
 sigcol <- scale_color_manual(values=c("white","red"))
@@ -184,7 +184,7 @@ ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=ratio,label=r
 ## Warning: Removed 18 rows containing missing values (geom_text).
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png)
 
 ```r
 # ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=total,label=ratio_t)) + geom_tile(size=1) + 
@@ -199,7 +199,7 @@ ggplot(subset(distances,related=="RELATED"),aes(x=Var1,y=Var2,fill=interval_yrs,
 ## Warning: Removed 18 rows containing missing values (geom_text).
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png) 
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png)
 
 
 ```r
@@ -210,7 +210,7 @@ hets <- hets[tree_order,]
 ggplot(hets,aes(x=INDV,y=hets)) + geom_bar(stat="identity") + coord_flip()
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
 
 ```r
 sings <- read.table("Thies_all_manual_2.PASS.Cls.miss0.5.LMRG.singletons",header=T)
@@ -236,7 +236,7 @@ cftab <- melt(hets[,c("INDV","clade","hets","sings")],id.vars=c("INDV","clade"))
 ggplot(cftab,aes(x=INDV,y=value,fill=clade)) + geom_bar(stat="identity") + coord_flip() + facet_grid(. ~ variable,scales ="free_y") + scale_fill_manual(values=c("red","blue","green"))
 ```
 
-![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
 
 
 
@@ -246,7 +246,7 @@ distcfs <- melt(distances[,c("snp","indel","total","ratPSig")],id.vars=c("total"
 ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + scale_y_log10() + scale_x_log10()
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 ```r
 #ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable)) + geom_point() + geom_smooth(method = "lm", se = FALSE)+ xlim(0,1000)+ylim(0,1000)
@@ -259,23 +259,9 @@ ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)
 ```
 
 ```
-## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
-```
+## Warning: Removed 190 rows containing non-finite values (stat_smooth).
 
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 95 rows containing missing values (stat_smooth).
+## Warning: Removed 190 rows containing non-finite values (stat_smooth).
 ```
 
 ```
@@ -283,14 +269,14 @@ ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)
 ```
 
 ```
-## Warning: Removed 1 rows containing missing values (geom_path).
+## Warning: Removed 1 rows containing missing values (geom_smooth).
 ```
 
 ```
-## Warning: Removed 3 rows containing missing values (geom_path).
+## Warning: Removed 3 rows containing missing values (geom_smooth).
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
 
 ```r
 maxv = 400
@@ -301,23 +287,11 @@ ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)
 ```
 
 ```
-## geom_smooth: method="auto" and size of largest group is <1000, so using loess. Use 'method = x' to change the smoothing method.
+## Warning: Removed 222 rows containing non-finite values (stat_smooth).
 ```
 
 ```
-## Warning: Removed 111 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 111 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 111 rows containing missing values (stat_smooth).
-```
-
-```
-## Warning: Removed 111 rows containing missing values (stat_smooth).
+## Warning: Removed 222 rows containing non-finite values (stat_smooth).
 ```
 
 ```
@@ -325,12 +299,40 @@ ggplot(distcfs,aes(x=total,y=value,colour=variable,group=variable,shape=ratPSig)
 ```
 
 ```
-## Warning: Removed 1 rows containing missing values (geom_path).
+## Warning: Removed 1 rows containing missing values (geom_smooth).
 ```
 
 ```
-## Warning: Removed 5 rows containing missing values (geom_path).
+## Warning: Removed 5 rows containing missing values (geom_smooth).
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png) 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png)
 
+
+
+
+```r
+#distances$snp[distances$snp==0] <- NA
+#distances$indel[distances$indel==0] <- NA
+
+icol = scale_fill_gradient(low="orange",high="black")
+scol = scale_fill_gradient(low="blue",high="black")
+#iscol = scale_fill_gradient2(low="black",high="black",mid="orange",midpoint = 0)
+colscale <- (c(-250,-0.01,0,0.01,250)+250)/(250+250)
+
+iscol <- scale_fill_gradientn(colors = c("black","orange","grey","blue","black"),
+                              values =colscale,na.value = NA,
+                              breaks =c(-250,-100,0,100,250),
+                              labels=c(-500,-200,0,100,250),
+                              limits=c(-250,250))
+
+ggplot(subset(distances,related=="RELATED")) + 
+  geom_tile(aes(x=Var1,y=Var2,fill=indel),size=1) + 
+  geom_text(aes(x=Var1,y=Var2, label=indel),colour="white",size=4) + 
+  geom_tile(aes(x=Var2,y=Var1,fill=snp*-0.5),size=1) + 
+  geom_text(aes(x=Var2,y=Var1, label=snp),colour="white") +
+#  geom_text(data=subset(distances,related=="UNRELATED"),size=4) +
+  vxlab + iscol
+```
+
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
