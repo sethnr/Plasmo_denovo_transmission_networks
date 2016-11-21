@@ -169,11 +169,25 @@ do
      -q gaag -pe smp_pe 1  \
      -V -cwd -t 1:100 \
      $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
-       $DISCO1/analyses/njtree_thies/discord_bootstraps/boot_${SET}/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.${SET}.ped
+       $DISCO1/analyses/njtree_thies/discord_bootstraps/boot_${SET}/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.${SET}.ped
 done
 
-qsub -N pedBootDisSUM -o out/ -j y -e out/ \
+qsub -N pedBootSUM -o out/ -j y -e out/ \
      -l h_vmem=8.0G -l h_rt=1:00:00 \
      -q gaag -pe smp_pe 1  \
      -V -cwd -hold_jid pedBootDis \
      /seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies/sumDiscordTrees.sh
+
+
+for SET in ALL ;
+do
+   qsub -N pedBootDis -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/discord_bootstraps/boot_${SET}/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.${SET}.ped
+done
+
+
+bedtools intersect -header -a thies_300100_haplo.vcf.gz -b callable_both_5k.bed > thies_300100_haplo.CALLBOTH.vcf
