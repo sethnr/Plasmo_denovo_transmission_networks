@@ -1,4 +1,5 @@
-```{r}
+
+```r
 library(ape)
 library(adegenet)
 library(knitr)
@@ -10,7 +11,8 @@ opts_chunk$set(dev=c('png'))
 ```
 
 
-```{r}
+
+```r
 sym <- function(M) {
   M[lower.tri(M)] = t(M)[lower.tri(M)]
   M
@@ -54,17 +56,16 @@ makeNet <- function(distance_matrix_file, meta_file, ngroups=3) {
   
   list(res1,res2,res3)
 }
-
-
 ```
 
-```{r}
+
+```r
 indelNets <- makeNet("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt")
 snpNets <- makeNet("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt")
 ```
 
-```{r message=FALSE}
 
+```r
 printGraph <- function(graph,colours,title) {
   cols <- brewer.pal((max(graph$year)-min(graph$year))+1, colours)
 
@@ -81,24 +82,66 @@ printGraph <- function(graph,colours,title) {
 }
 
 printGraph(indelNets[[2]],"Reds","clade 1, indel graph")
-printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
-printGraph(indelNets[[3]],"Blues","clade 3, indel graph")
-
-printGraph(snpNets[[2]],"Reds","clade 1, indel graph")
-printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
-printGraph(snpNets[[3]],"Blues","clade 3, indel graph")
-
 ```
 
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+
+```r
+printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
+
+```r
+printGraph(indelNets[[3]],"Blues","clade 3, indel graph")
+```
+
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-3.png)
+
+```r
+printGraph(snpNets[[2]],"Reds","clade 1, indel graph")
+```
+
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-4.png)
+
+```r
+printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-5.png)
+
+```r
+printGraph(snpNets[[3]],"Blues","clade 3, indel graph")
+```
+
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-6.png)
 
 
-```{r}
+
+
+```r
 opts_chunk$set(fig.width=12, fig.height=9)
 opts_chunk$set(dev=c('png'))
 ```
 
-```{r }
 
+```r
   net <- indelNets[[1]]
 
 indDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",sep="\t")
@@ -201,18 +244,27 @@ ggplot(ir1,aes(x=time,y=rate/12)) +
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
   geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("indel rate, clade 2") + ylab("rate (INDELs/mth/gen)") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
+```
 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+
+```r
 ggplot(sr1,aes(x=time,y=rate/12)) + 
   geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
   geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("substitution rate, clade 2") + ylab("rate (SNPs/mth/gen)") + xlab("years") + ylim(-2,9) + xlim(0,7.5)
+```
 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-2.png)
+
+```r
 ggplot(isr1,aes(x=time,y=rate/12)) + 
   geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3) +
   geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("evolutionary rate, clade 2") + ylab("rate (mut/mth/gen)") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
+```
 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
 
-```{r}

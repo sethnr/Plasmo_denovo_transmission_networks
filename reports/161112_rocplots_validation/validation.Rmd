@@ -53,8 +53,42 @@ head(discoFiltType); head(discoCALLFiltType)
 # discoFilt$sample="0901"
 # discoFilt$caller="disco"
 # discoFilt$filter=T
+```
 
-rocCf <- rbind(discoCALLFiltType,discoFiltType)
+```{r}
+gatkFilt <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4_FILT_EVAL/weighted_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkFilt$caller="gatk"
+gatkFilt$region="GENOME"
+
+gatkFiltSNPs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4_FILT_EVAL/snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkFiltINDELs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4_FILT_EVAL/non_snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkFiltSNPs$type="SNP"
+gatkFiltINDELs$type="INDEL"
+gatkFiltType <- rbind(gatkFiltSNPs,gatkFiltINDELs)
+gatkFiltType$caller="gatk"
+gatkFiltType$region="GENOME"
+posns <- intersect(gatkFiltSNPs$score,gatkFiltINDELs$score)
+gatkFiltType <- subset(gatkFiltType,score %in% posns)
+
+
+gatkCALLFilt <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.Dd2-2D4_FILT_EVAL/weighted_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkCALLFilt$caller="gatk"
+gatkCALLFilt$region="CALLABLE"
+
+gatkCALLFiltSNPs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.Dd2-2D4_FILT_EVAL/snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALLFiltINDELs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.Dd2-2D4_FILT_EVAL/non_snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALLFiltSNPs$type="SNP"
+gatkCALLFiltINDELs$type="INDEL"
+gatkCALLFiltType <- rbind(gatkCALLFiltSNPs,gatkCALLFiltINDELs)
+gatkCALLFiltType$caller="gatk"
+gatkCALLFiltType$region="CALLABLE"
+posns <- intersect(gatkCALLFiltSNPs$score,gatkCALLFiltINDELs$score)
+gatkCALLFiltType <- subset(gatkCALLFiltType,score %in% posns)
+```
+
+```{r}
+
+rocCf <- rbind(discoCALLFiltType,discoFiltType,gatkCALLFiltType,gatkFiltType)
 
 ```
 
@@ -84,18 +118,6 @@ ggplot(discoFiltType,aes(x=false_positives,y=true_positives,colour=type)) +
 ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
   geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom")
 
-
-#PRECISON_RECALL PLOT
-#ggplot(subset(roctab,filter),aes(x=sensitivity,y=precision,colour=sample)) + 
-#  geom_point() + facet_grid(. ~ caller) + theme(legend.position="bottom")
-##PRECISON_RECALL PLOT
-#ggplot(subset(roctab,filter),aes(x=score,y=precision,colour=sample)) + 
-#  geom_point() + facet_grid(. ~ caller) + theme(legend.position="bottom") + xlim(0,5e3)
-
-#combined roc plot
-ggplot(roctab,aes(x=false_positives,y=true_positives,colour=sample,linetype=filter)) + 
-  geom_line() + facet_grid(filter ~ caller) + theme(legend.position="bottom") + ylim(0,20e3)
-
 ```
 
 
@@ -107,6 +129,16 @@ callDisco <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONL
 callDisco$from=rownames(callDisco)
 callDisco <- melt(callDisco,variable.name = "to",value.name="disco")
 
+
+callbothGATK <- read.table("thies_300100_haplo.CALLBOTH.dist.tab.txt",sep="\t")
+callbothGATK$from=rownames(callbothGATK)
+callbothGATK <- melt(callbothGATK,variable.name = "to",value.name="both")
+callhaploGATK <- read.table("thies_300100_haplo.CALLHAPLO.dist.tab.txt",sep="\t")
+callhaploGATK$from=rownames(callhaploGATK)
+callhaploGATK <- melt(callhaploGATK,variable.name = "to",value.name="both")
+
+
+
 callsnp <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")
 callsnp $from=rownames(callsnp )
 callsnp  <- melt(callsnp ,variable.name = "to",value.name="snp")
@@ -116,7 +148,8 @@ callindel $from=rownames(callindel )
 callindel  <- melt(callindel ,variable.name = "to",value.name="indel")
 
 
-callCf <- merge(merge(callboth,callDisco),merge(callsnp,callindel))
+callCf <- merge(merge(callboth,callDisco),merge(callboth,callDisco))
+callCf <- merge(callCf,merge(callsnp,callindel))
 callCf <- callCf[!is.na(callCf$snp),]
 callCf <- callCf[callCf$from != callCf$to,]
 
@@ -128,6 +161,7 @@ cor(callCf$snp,callCf$indel)
 cor(callCf$both,callCf$disco)
 
 ggplot(callCf,aes(x=snp,y=indel)) + geom_point()
+ggplot(callCf,aes(x=both,y=disco)) + geom_point()
 ggplot(callCf,aes(x=both,y=disco)) + geom_point()
 
 ```
