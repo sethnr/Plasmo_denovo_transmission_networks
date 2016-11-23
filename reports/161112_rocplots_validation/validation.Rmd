@@ -130,15 +130,6 @@ callDisco$from=rownames(callDisco)
 callDisco <- melt(callDisco,variable.name = "to",value.name="disco")
 
 
-callbothGATK <- read.table("thies_300100_haplo.CALLBOTH.dist.tab.txt",sep="\t")
-callbothGATK$from=rownames(callbothGATK)
-callbothGATK <- melt(callbothGATK,variable.name = "to",value.name="both")
-callhaploGATK <- read.table("thies_300100_haplo.CALLHAPLO.dist.tab.txt",sep="\t")
-callhaploGATK$from=rownames(callhaploGATK)
-callhaploGATK <- melt(callhaploGATK,variable.name = "to",value.name="both")
-
-
-
 callsnp <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")
 callsnp $from=rownames(callsnp )
 callsnp  <- melt(callsnp ,variable.name = "to",value.name="snp")
@@ -148,23 +139,40 @@ callindel $from=rownames(callindel )
 callindel  <- melt(callindel ,variable.name = "to",value.name="indel")
 
 
-callCf <- merge(merge(callboth,callDisco),merge(callbothGATK,callhaploGATK))
-callCf <- merge(callCf,merge(callsnp,callindel))
+callCf <- merge(merge(callboth,callDisco),merge(callsnp,callindel))
 callCf <- callCf[!is.na(callCf$snp),]
 callCf <- callCf[callCf$from != callCf$to,]
 
 callCf <- callCf[callCf$snp <= 1000,]
+
+callbothGATK <- read.table("thies_300100_haplo.CALLBOTH.dist.tab.txt",sep="\t")
+callbothGATK$from=rownames(callbothGATK)
+callbothGATK <- melt(callbothGATK,variable.name = "to",value.name="both")
+callhaploGATK <- read.table("thies_300100_haplo.CALLHAPLO.dist.tab.txt",sep="\t")
+callhaploGATK$from=rownames(callhaploGATK)
+callhaploGATK <- melt(callhaploGATK,variable.name = "to",value.name="haplo")
+
+callCfGATK <- merge(callbothGATK,callhaploGATK)
+callCfGATK <- callCfGATK[!is.na(callCfGATK$both),]
+callCfGATK <- callCfGATK[callCfGATK$from != callCfGATK$to,]
+head(callCfGATK)
+
+callCfGATK <- callCfGATK[callCfGATK$both > 0,]
+
+callCfGATK <- callCfGATK[callCfGATK$both <= 5000,]
+
+
 ```
 
 ```{r}
 cor(callCf$snp,callCf$indel)
 cor(callCf$both,callCf$disco)
 
-cor(callCf$both,callCf$disco)
+cor(callCfGATK$both,callCfGATK$haplo)
 
 ggplot(callCf,aes(x=snp,y=indel)) + geom_point()
 ggplot(callCf,aes(x=both,y=disco)) + geom_point()
-ggplot(callCf,aes(x=both,y=disco)) + geom_point()
+ggplot(callCfGATK,aes(x=both,y=haplo)) + geom_point()
 
 ```
 
