@@ -148,7 +148,7 @@ callindel $from=rownames(callindel )
 callindel  <- melt(callindel ,variable.name = "to",value.name="indel")
 
 
-callCf <- merge(merge(callboth,callDisco),merge(callboth,callDisco))
+callCf <- merge(merge(callboth,callDisco),merge(callbothGATK,callhaploGATK))
 callCf <- merge(callCf,merge(callsnp,callindel))
 callCf <- callCf[!is.na(callCf$snp),]
 callCf <- callCf[callCf$from != callCf$to,]
@@ -158,6 +158,8 @@ callCf <- callCf[callCf$snp <= 1000,]
 
 ```{r}
 cor(callCf$snp,callCf$indel)
+cor(callCf$both,callCf$disco)
+
 cor(callCf$both,callCf$disco)
 
 ggplot(callCf,aes(x=snp,y=indel)) + geom_point()
