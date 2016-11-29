@@ -298,3 +298,26 @@ ggplot(sppsubs,aes(x=gsize,y=subrate),) +
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
+```r
+write.table(sppsubs,stdout(),sep="\t",quote=F)
+```
+
+```
+## Pathogen	Group	gsize	subrate	Evolutionary.rate..genome.1.year.1.	Host.scale	Date.range..yrs.	Source	vartype
+## 1	H. pylori	Bacteria	1600000	1.38e-05	22	among	15	[S5]	SNP
+## 2	M. tuberculosis	Bacteria	4400000	6.8e-08	0.3	among	10	[S9]	SNP
+## 3	S. aureus (MRSA)	Bacteria	2900000	3.3e-06	9.57	among	25	[S13]	SNP
+## 4	S. pneumoniae	Bacteria	2200000	1.6e-06	3.52	among	25	[S15]	SNP
+## 5	V. cholerae	Bacteria	4e+06	8.3e-07	3.32	among	60	[S16]	SNP
+## 6	HCV (Hep C)	RNA virus	9000	0.001	9	among	35	[S20]	SNP
+## 7	EBOV (Ebola)	RNA virus	19000	0.002	9	among	35	[S20]	SNP
+## 8	HIV-M	RNA virus	10000	0.0033	33	among	50	[S21]	SNP
+## 9	HFLUV (H1N1 2009)	RNA virus	13600	0.0036	48.96	among	1	[S22]	SNP
+## 10	HFLUV (H1N1)	RNA virus	13600	0.002	27.2	among	60	[S23]	SNP
+## 11	RABV	RNA virus	12000	2e-04	2.4	among	22	[S24], Biek, unpubl.	SNP
+## 12	FMDV	RNA virus	8100	0.0013	9	among	35	[S20]	SNP
+## 13	P.falciparum (snp)	eukaryote	18446000	1.3e-06	23.685	among	8	ours	SNP
+## 14	P.falciparum (ind)	eukaryote	18446000	4.9e-07	9.129	among	8	ours	INDEL
+## 15	P.falciparum (all)	eukaryote	18446000	1.8e-06	32.814	among	8	ours	SNP+INDEL
+```
+

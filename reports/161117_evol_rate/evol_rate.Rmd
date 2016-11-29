@@ -257,6 +257,6 @@ ggplot(sppsubs,aes(x=gsize,y=subrate),) +
   xlab("Genome Size (bp)")+ylab("mutation rate (muts / site / year)")+
   theme(panel.background = element_rect(fill = F))
 
-
+write.table(sppsubs,stdout(),sep="\t",quote=F)
 ```
 
