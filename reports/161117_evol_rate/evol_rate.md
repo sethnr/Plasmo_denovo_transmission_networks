@@ -84,10 +84,6 @@ printGraph <- function(graph,colours,title) {
 printGraph(indelNets[[2]],"Reds","clade 1, indel graph")
 ```
 
-```
-## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
-```
-
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 ```r
@@ -100,18 +96,10 @@ printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
 printGraph(indelNets[[3]],"Blues","clade 3, indel graph")
 ```
 
-```
-## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
-```
-
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-3.png)
 
 ```r
 printGraph(snpNets[[2]],"Reds","clade 1, indel graph")
-```
-
-```
-## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-4.png)
@@ -124,10 +112,6 @@ printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
 
 ```r
 printGraph(snpNets[[3]],"Blues","clade 3, indel graph")
-```
-
-```
-## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-6.png)
@@ -160,27 +144,17 @@ getAnces <- function(net, leaf, ids=character()) {
         leaf.year = net[leaf,"year"]
         leaf.name = net[leaf,"name"]
         nextI = dim(net)[[1]]+1
-        write(paste("  adding",nextI,":",leaf,ances,sep=" "),stderr())
+#        write(paste("  adding",nextI,":",leaf,ances,sep=" "),stderr())
         net[nextI,1:2] <- c(leaf, ances)
-        #write(paste("added",nextI,":",net[nextI,],sep=" "),stderr())
-        
-#        write(paste("doing",nextI,":",leaf.date,ances.date,leaf.year,sep=" "),stderr())
-#        net[nextI,4:5] <- c(leaf.date,ances.date)
         net[nextI,6] <- leaf.year
         net[nextI,7] <- leaf.name
-        #write(paste("  done",nextI,":",leaf,ances,sep=" "),stderr())
-        
         }
-#      write("recursing:",stderr())
       net <- getAnces(net,leaf,c(ances))
     }
     if (length(ids) > 1){
-#      write(paste(ids,collapse=","),stderr())
        ids <- ids[ids != id]
-#      write(paste(ids,collapse=","),stderr())
-       write(paste("proceeding:",ids[1],sep=" "),stderr())
+#       write(paste("proceeding:",ids[1],sep=" "),stderr())
        net <- getAnces(net,ids[1],ids)
-#      }
   }
 net
 }
@@ -267,4 +241,60 @@ ggplot(isr1,aes(x=time,y=rate/12)) +
 ```
 
 ![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-3.png)
+
+```r
+irate <- round(mean(ir1$rate),3)
+srate <- round(mean(sr1$rate),3)
+israte <- round(mean(isr1$rate),3)
+```
+
+
+
+```r
+sppsubs <- read.table("subrate_relaxed_otherspp2.txt",sep="\t",header=T,stringsAsFactors = F)
+colnames(sppsubs)[3:4] <- c("gsize","subrate")
+sppsubs$Group <- factor(sppsubs$Group,levels=c("eukaryote","Bacteria","dsDNA virus","ssDNA virus","RNA virus"),ordered = T)
+
+pfgsize<-18446000
+# sppsubs <- rbind(sppsubs,
+#       c("P.falciparum","eukaryote",pfgsize,signif(israte/pfgsize,2),israte,"among",8,"ours")
+#       )
+
+sppsubs$vartype<-"SNP"
+sppsubs <- rbind(sppsubs,
+      c("P.falciparum (snp)","eukaryote",pfgsize,signif(srate/pfgsize,2),srate,"among",8,"ours","SNP"),
+      c("P.falciparum (ind)","eukaryote",pfgsize,signif(irate/pfgsize,2),irate,"among",8,"ours","INDEL"),
+      c("P.falciparum (all)","eukaryote",pfgsize,signif(israte/pfgsize,2),israte,"among",8,"ours","SNP+INDEL")
+      )
+
+sppsubs$subrate <- as.numeric(sppsubs$subrate)
+sppsubs$gsize <- as.numeric(sppsubs$gsize)
+sppsubs$vartype <- factor(sppsubs$vartype,levels=c("SNP","INDEL","SNP+INDEL"),ordered=T)
+
+gsizes <- seq(0,1e8,1e3)
+rates <- data.frame("gsize"=gsizes,"years"=1/gsizes,"months"=12/gsizes,"weeks"=52/gsizes)
+ratesM <- melt(rates,id.vars = "gsize",value.name ="subrate")
+#ratesM <- ratesM[ratesM$subrate<=0.005,]
+ratesM <- ratesM[ratesM$gsize>0,]
+floors <- data.frame("gsize"=c(rep(max(ratesM$gsize),3),rep(min(ratesM$gsize),3)),
+      "variable"=unique(as.character(ratesM$variable)),
+      "subrate"=rep(0,6))
+
+ratesM <- rbind(ratesM,floors)
+ratesM$variable <- factor(ratesM$variable,levels=c("weeks","months","years"),ordered=T)
+
+fcol <- c("#AAAAAA","#CCCCCC","#EEEEEE")
+names(fcol) = c("years","months","weeks")
+
+ggplot(sppsubs,aes(x=gsize,y=subrate),) +  
+  geom_polygon(data=ratesM,aes(group=variable,fill=variable)) +
+  scale_fill_manual(values = fcol) + 
+  geom_label(aes(label=Pathogen,colour=Group),nudge_x = 0.2) + 
+  geom_point(aes(label=Pathogen,colour=Group,shape=vartype),size=3) + 
+  scale_y_log10() + scale_x_log10(limits=c(1e3,1e8),breaks=c(1e4,1e5,1e6,1e7,1e8)) +
+  xlab("Genome Size (bp)")+ylab("mutation rate (muts / site / year)")+
+  theme(panel.background = element_rect(fill = F))
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 

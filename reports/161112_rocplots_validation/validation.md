@@ -111,8 +111,43 @@ head(discoFiltType); head(discoCALLFiltType)
 # discoFilt$sample="0901"
 # discoFilt$caller="disco"
 # discoFilt$filter=T
+```
 
-rocCf <- rbind(discoCALLFiltType,discoFiltType)
+
+```r
+gatkFilt <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4_FILT_EVAL/weighted_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkFilt$caller="gatk"
+gatkFilt$region="GENOME"
+
+gatkFiltSNPs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4_FILT_EVAL/snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkFiltINDELs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.Dd2-2D4_FILT_EVAL/non_snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkFiltSNPs$type="SNP"
+gatkFiltINDELs$type="INDEL"
+gatkFiltType <- rbind(gatkFiltSNPs,gatkFiltINDELs)
+gatkFiltType$caller="gatk"
+gatkFiltType$region="GENOME"
+posns <- intersect(gatkFiltSNPs$score,gatkFiltINDELs$score)
+gatkFiltType <- subset(gatkFiltType,score %in% posns)
+
+
+gatkCALLFilt <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.Dd2-2D4_FILT_EVAL/weighted_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkCALLFilt$caller="gatk"
+gatkCALLFilt$region="CALLABLE"
+
+gatkCALLFiltSNPs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.Dd2-2D4_FILT_EVAL/snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALLFiltINDELs <- read.table("3D7DD2_300100.VQSR.Pass90.RENAME.CALLBOTH.Dd2-2D4_FILT_EVAL/non_snp_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALLFiltSNPs$type="SNP"
+gatkCALLFiltINDELs$type="INDEL"
+gatkCALLFiltType <- rbind(gatkCALLFiltSNPs,gatkCALLFiltINDELs)
+gatkCALLFiltType$caller="gatk"
+gatkCALLFiltType$region="CALLABLE"
+posns <- intersect(gatkCALLFiltSNPs$score,gatkCALLFiltINDELs$score)
+gatkCALLFiltType <- subset(gatkCALLFiltType,score %in% posns)
+```
+
+
+```r
+rocCf <- rbind(discoCALLFiltType,discoFiltType,gatkCALLFiltType,gatkFiltType)
 ```
 
 
@@ -132,45 +167,28 @@ ggplot(discoCALLFiltType,aes(x=false_positives,y=true_positives,colour=type)) +
   geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 ```r
 ggplot(discoFiltType,aes(x=false_positives,y=true_positives,colour=type)) + 
   geom_point() + facet_grid(. ~ caller) + theme(legend.position="bottom")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-2.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png)
 
 ```r
 ggplot(discoFiltType,aes(x=false_positives,y=true_positives,colour=type)) + 
   geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-3.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-3.png)
 
 ```r
 ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
   geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom")
 ```
 
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-4.png)
-
-```r
-#PRECISON_RECALL PLOT
-#ggplot(subset(roctab,filter),aes(x=sensitivity,y=precision,colour=sample)) + 
-#  geom_point() + facet_grid(. ~ caller) + theme(legend.position="bottom")
-##PRECISON_RECALL PLOT
-#ggplot(subset(roctab,filter),aes(x=score,y=precision,colour=sample)) + 
-#  geom_point() + facet_grid(. ~ caller) + theme(legend.position="bottom") + xlim(0,5e3)
-
-#combined roc plot
-ggplot(roctab,aes(x=false_positives,y=true_positives,colour=sample,linetype=filter)) + 
-  geom_line() + facet_grid(filter ~ caller) + theme(legend.position="bottom") + ylim(0,20e3)
-```
-
-```
-## Error in ggplot(roctab, aes(x = false_positives, y = true_positives, colour = sample, : object 'roctab' not found
-```
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png)
 
 
 
@@ -220,6 +238,85 @@ callCf <- callCf[!is.na(callCf$snp),]
 callCf <- callCf[callCf$from != callCf$to,]
 
 callCf <- callCf[callCf$snp <= 1000,]
+
+callbothGATK <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",sep="\t")
+callbothGATK$from=rownames(callbothGATK)
+callbothGATK <- melt(callbothGATK,variable.name = "to",value.name="both")
+```
+
+```
+## Using from as id variables
+```
+
+```r
+callhaploGATK <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab.txt",sep="\t")
+callhaploGATK$from=rownames(callhaploGATK)
+callhaploGATK <- melt(callhaploGATK,variable.name = "to",value.name="haplo")
+```
+
+```
+## Using from as id variables
+```
+
+```r
+calldiscoGATK <- read.table("thies_300100_haplo.CALLDISCO.RENAME.dist.tab.txt",sep="\t")
+calldiscoGATK$from=rownames(calldiscoGATK)
+calldiscoGATK <- melt(calldiscoGATK,variable.name = "to",value.name="disco")
+```
+
+```
+## Using from as id variables
+```
+
+```r
+callsnpGATK <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.SNP.dist.tab.txt",sep="\t")
+callsnpGATK$from=rownames(callsnpGATK)
+callsnpGATK <- melt(callsnpGATK,variable.name = "to",value.name="snp")
+```
+
+```
+## Using from as id variables
+```
+
+```r
+callindelGATK <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.INDEL.dist.tab.txt",sep="\t")
+callindelGATK$from=rownames(callindelGATK)
+callindelGATK <- melt(callindelGATK,variable.name = "to",value.name="indel")
+```
+
+```
+## Using from as id variables
+```
+
+```r
+callCfGATK <- merge(merge(callsnpGATK,callindelGATK),merge(callbothGATK,callhaploGATK))
+callCfGATK <- merge(callCfGATK,calldiscoGATK)
+callCfGATK <- callCfGATK[!is.na(callCfGATK$both),]
+callCfGATK <- callCfGATK[callCfGATK$from != callCfGATK$to,]
+head(callCfGATK)
+```
+
+```
+##        from       to  snp indel  both haplo disco
+## 6  Th061.13 Th095.13  435   740  1048  1175  1425
+## 19 Th068.12 Th061.13  384   739  1012  1123  1356
+## 24 Th068.12 Th095.13  404   782  1054  1186  1454
+## 37 Th074.13 Th061.13 9698 12608 20163 22306 26425
+## 38 Th074.13 Th068.12 9644 12591 20069 22235 26353
+## 41 Th074.13 Th092.13 9790 12668 20335 22458 26871
+```
+
+```r
+callCfGATK <- callCfGATK[callCfGATK$both > 0,]
+
+callCfGATK <- callCfGATK[callCfGATK$both <= 5000,]
+
+#remove core calls from disco/haplo regions
+# discovar already called on disco only
+#callCf$disco <- callCf$disco-callCf$both
+
+callCfGATK$disco <- callCfGATK$disco-callCfGATK$both
+callCfGATK$haplo <- callCfGATK$haplo-callCfGATK$both
 ```
 
 
@@ -232,6 +329,14 @@ cor(callCf$snp,callCf$indel)
 ```
 
 ```r
+ggplot(callCf,aes(y=snp,x=indel)) + geom_point() +  
+  geom_label(y=100,x=150,label=paste("r = ",round(cor(callCf$snp,callCf$indel),2)),size=5) +
+  ggtitle("Discovar calls - SNP:INDEL correlation")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
+```r
 cor(callCf$both,callCf$disco)
 ```
 
@@ -240,15 +345,54 @@ cor(callCf$both,callCf$disco)
 ```
 
 ```r
-ggplot(callCf,aes(x=snp,y=indel)) + geom_point()
+ggplot(callCf,aes(y=both,x=disco)) + geom_point() +  
+  geom_label(y=100,x=150,label=paste("r = ",round(cor(callCf$both,callCf$disco),2)),size=5) +
+  ggtitle("Discovar calls - accessible:inaccessible correlation")
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
 
 ```r
-ggplot(callCf,aes(x=both,y=disco)) + geom_point()
+#ggplot(callCf,aes(x=both,y=haplo)) + geom_point(aes(y=disco),colour="red")
+
+cor(callCfGATK$both,callCfGATK$disco)
 ```
 
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-2.png)
+```
+## [1] 0.9854283
+```
+
+```r
+cor(callCfGATK$both,callCfGATK$haplo)
+```
+
+```
+## [1] 0.9700306
+```
+
+```r
+ggplot(callCfGATK,aes(y=both,x=haplo)) + 
+  geom_point(aes(x=haplo),colour="blue") + geom_point(aes(x=disco),colour="red") +
+  geom_label(y=1500,x=375,label=paste("r = ",round(cor(callCfGATK$both,callCfGATK$haplo),2)),size=5,colour="blue") + geom_label(y=1000,x=750,label=paste("r = ",round(cor(callCfGATK$both,callCfGATK$disco),2)),size=5,colour="red") +
+  ggtitle("GATK calls - accessible:inaccessible correlation")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png)
+
+```r
+cor(callCfGATK$snp,callCfGATK$indel)
+```
+
+```
+## [1] 0.8925991
+```
+
+```r
+ggplot(callCfGATK,aes(y=snp,x=indel)) + geom_point() + 
+  geom_label(x=1500,y=300,label=paste("r = ",round(cor(callCfGATK$snp,callCfGATK$indel),2)),size=5) +
+  ggtitle("GATK calls - SNP:INDEL correlation")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-4.png)
 
 
