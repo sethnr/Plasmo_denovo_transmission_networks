@@ -190,6 +190,13 @@ ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-4.png)
 
+```r
+ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
+  geom_line() + scale_x_log10() + facet_grid(. ~ caller) + theme(legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-5.png)
+
 
 
 ```r
