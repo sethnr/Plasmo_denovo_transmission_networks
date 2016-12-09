@@ -8,7 +8,7 @@ library(grid)
 library(ggplot2)
 library(lattice)
 ```{r setup}
-opts_chunk$set(fig.width=12, fig.height=8,dev='png',warning=F)
+opts_chunk$set(fig.width=12, fig.height=8,dev=c('png','postscript'),warning=F)
 
 ``` 
 
@@ -209,6 +209,14 @@ cor(callCfGATK$snp,callCfGATK$indel)
 ggplot(callCfGATK,aes(y=snp,x=indel)) + geom_point() + 
   geom_label(x=1500,y=300,label=paste("r = ",round(cor(callCfGATK$snp,callCfGATK$indel),2)),size=5) +
   ggtitle("GATK calls - SNP:INDEL correlation")
+
+callCfGATK$caller<-"GATK"
+callCf$caller<-"DISCOVAR"
+callCfAll <- rbind(callCfGATK[,c("from","to","caller","snp","indel")],callCf[,c("from","to","caller","snp","indel")])
+ggplot(callCfAll,aes(y=snp,x=indel)) + geom_point() + geom_smooth(method = lm,se = F,linetype=2) +
+  facet_grid(. ~ caller,scale="free_x")+
+  ggtitle("SNP:INDEL correlation")+
+  theme(legend.position="bottom")
 
 
 ```

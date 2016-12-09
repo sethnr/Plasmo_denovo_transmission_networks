@@ -315,7 +315,7 @@ sppsubs <- rbind(sppsubs,
       )
 
 sppsubs$subrate <- as.numeric(sppsubs$subrate)
-sppsubs$subrate_genome <- as.numeric(sppsubs$subrate)
+sppsubs$subrate_genome <- as.numeric(sppsubs$subrate_genome)
 sppsubs$gsize <- as.numeric(sppsubs$gsize)
 sppsubs$vartype <- factor(sppsubs$vartype,levels=c("SNP","INDEL","SNP+INDEL"),ordered=T)
 #sppsubs$Label <- factor(sppsubs$Label,levels=sppsubs$Label[order(sppsubs$Group,sppsubs$subrate_genome)],ordered=T)

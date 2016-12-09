@@ -9,7 +9,7 @@ library(ggplot2)
 library(lattice)
 
 ```r
-opts_chunk$set(fig.width=12, fig.height=8,dev='png',warning=F)
+opts_chunk$set(fig.width=12, fig.height=8,dev=c('png','postscript'),warning=F)
 ```
 
 
@@ -401,5 +401,17 @@ ggplot(callCfGATK,aes(y=snp,x=indel)) + geom_point() +
 ```
 
 ![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-4.png)
+
+```r
+callCfGATK$caller<-"GATK"
+callCf$caller<-"DISCOVAR"
+callCfAll <- rbind(callCfGATK[,c("from","to","caller","snp","indel")],callCf[,c("from","to","caller","snp","indel")])
+ggplot(callCfAll,aes(y=snp,x=indel)) + geom_point() + geom_smooth(method = lm,se = F,linetype=2) +
+  facet_grid(. ~ caller,scale="free_x")+
+  ggtitle("SNP:INDEL correlation")+
+  theme(legend.position="bottom")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-5.png)
 
 

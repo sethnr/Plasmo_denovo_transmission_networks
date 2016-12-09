@@ -1,0 +1,15 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLBOTH.vcf
+	--out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLBOTH
+	--relatedness2
+
+After filtering, kept 18 out of 18 Individuals
+Outputting Individual Relatedness
+	Relatedness: Only using fully diploid sites.
+	Relatedness: Only using biallelic sites.
+After filtering, kept 2240 out of a possible 2240 Sites
+Run Time = 0.00 seconds

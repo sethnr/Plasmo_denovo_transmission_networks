@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><beast beautitemplate='Standard' beautistatus='' namespace="beast.core:beast.evolution.alignment:beast.evolution.tree.coalescent:beast.core.util:beast.evolution.nuc:beast.evolution.operators:beast.evolution.sitemodel:beast.evolution.substitutionmodel:beast.evolution.likelihood" required="" version="2.4">
+
+
+    <data
+id="ThiesDiscoSNPs"
+dataType="standard"
+name="alignment">
+                        <sequence id="seq_Th074.13" taxon="Th074.13" totalcount="2" value="000000000000000000000000000000000000000000000000?0000?00000?"/>
+                        <sequence id="seq_Th086.07" taxon="Th086.07" totalcount="2" value="110000001000001000000000000000000000111111111111?111101????1"/>
+                        <sequence id="seq_Th106.09" taxon="Th106.09" totalcount="2" value="000000000?????000000000000000000000000000000000000000?00000?"/>
+                        <sequence id="seq_Th106.11" taxon="Th106.11" totalcount="2" value="000000000?????00000000000000000000000000000000000000010?????"/>
+                        <sequence id="seq_Th117.11" taxon="Th117.11" totalcount="2" value="000000000?????000000000000000000000000000000000010000?01111?"/>
+                        <sequence id="seq_Th132.11" taxon="Th132.11" totalcount="2" value="0000000000000001000000000000000000000000000000000000000????0"/>
+                        <sequence id="seq_Th134.11" taxon="Th134.11" totalcount="2" value="000000000?????0011111100000000000000000000000000?0000?00000?"/>
+                        <sequence id="seq_Th162.12" taxon="Th162.12" totalcount="2" value="00000000011111010000000000000000000000000000000000000?00000?"/>
+                        <sequence id="seq_Th196.12" taxon="Th196.12" totalcount="2" value="001111110?????01000000111111111111110000000000000000000?????"/>
+                        <sequence id="seq_Th230.12" taxon="Th230.12" totalcount="2" value="000000000?????01??????000000000000000000000000000000000???1?"/>
+                        <userDataType id="StandardData.0" spec="beast.evolution.datatype.StandardData" ambiguities="" nrOfStates="2"/>
+                    </data>
+
+
+    
+
+
+    
+
+
+    
+<map name="Uniform" >beast.math.distributions.Uniform</map>
+<map name="Exponential" >beast.math.distributions.Exponential</map>
+<map name="LogNormal" >beast.math.distributions.LogNormalDistributionModel</map>
+<map name="Normal" >beast.math.distributions.Normal</map>
+<map name="Beta" >beast.math.distributions.Beta</map>
+<map name="Gamma" >beast.math.distributions.Gamma</map>
+<map name="LaplaceDistribution" >beast.math.distributions.LaplaceDistribution</map>
+<map name="prior" >beast.math.distributions.Prior</map>
+<map name="InverseGamma" >beast.math.distributions.InverseGamma</map>
+<map name="OneOnX" >beast.math.distributions.OneOnX</map>
+
+
+<run id="mcmc" spec="MCMC" chainLength="10000000">
+    <state id="state" storeEvery="5000">
+        <tree id="Tree.t:ThiesDiscoSNPs" name="stateNode">
+            <trait id="dateTrait.t:ThiesDiscoSNPs" spec="beast.evolution.tree.TraitSet" traitname="date">
+                Th086.07=7.0,
+Th106.09=9.0,
+Th230.12=12.0,
+Th074.13=13.0,
+Th132.11=11.0,
+Th162.12=12.0,
+Th196.12=12.0,
+Th106.11=11.0,
+Th117.11=11.0,
+Th134.11=11.0                <taxa id="TaxonSet.ThiesDiscoSNPs" spec="TaxonSet">
+                    <alignment idref="ThiesDiscoSNPs"/>
+                </taxa>
+            </trait>
+            <taxonset idref="TaxonSet.ThiesDiscoSNPs"/>
+        </tree>
+        <parameter id="birthRate.t:ThiesDiscoSNPs" name="stateNode">1.0</parameter>
+        <parameter id="clockRate.c:ThiesDiscoSNPs" name="stateNode">1.0</parameter>
+    </state>
+
+    <init id="RandomTree.t:ThiesDiscoSNPs" spec="beast.evolution.tree.RandomTree" estimate="false" initial="@Tree.t:ThiesDiscoSNPs" taxa="@ThiesDiscoSNPs">
+        <populationModel id="ConstantPopulation0.t:ThiesDiscoSNPs" spec="ConstantPopulation">
+            <parameter id="randomPopSize.t:ThiesDiscoSNPs" name="popSize">1.0</parameter>
+        </populationModel>
+    </init>
+
+    <distribution id="posterior" spec="util.CompoundDistribution">
+        <distribution id="prior" spec="util.CompoundDistribution">
+            <distribution id="YuleModel.t:ThiesDiscoSNPs" spec="beast.evolution.speciation.YuleModel" birthDiffRate="@birthRate.t:ThiesDiscoSNPs" tree="@Tree.t:ThiesDiscoSNPs"/>
+            <prior id="YuleBirthRatePrior.t:ThiesDiscoSNPs" name="distribution" x="@birthRate.t:ThiesDiscoSNPs">
+                <Uniform id="Uniform.0" name="distr" upper="Infinity"/>
+            </prior>
+            <prior id="ClockPrior.c:ThiesDiscoSNPs" name="distribution" x="@clockRate.c:ThiesDiscoSNPs">
+                <Uniform id="Uniform.01" name="distr" upper="Infinity"/>
+            </prior>
+        </distribution>
+        <distribution id="likelihood" spec="util.CompoundDistribution" useThreads="true">
+            <distribution id="treeLikelihood.ThiesDiscoSNPs" spec="ThreadedTreeLikelihood" data="@ThiesDiscoSNPs" tree="@Tree.t:ThiesDiscoSNPs">
+                <siteModel id="SiteModel.s:ThiesDiscoSNPs" spec="SiteModel">
+                    <parameter id="mutationRate.s:ThiesDiscoSNPs" estimate="false" name="mutationRate">1.0</parameter>
+                    <parameter id="gammaShape.s:ThiesDiscoSNPs" estimate="false" name="shape">1.0</parameter>
+                    <parameter id="proportionInvariant.s:ThiesDiscoSNPs" estimate="false" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+                    <substModel id="JC69.s:ThiesDiscoSNPs" spec="JukesCantor"/>
+                </siteModel>
+                <branchRateModel id="StrictClock.c:ThiesDiscoSNPs" spec="beast.evolution.branchratemodel.StrictClockModel" clock.rate="@clockRate.c:ThiesDiscoSNPs"/>
+            </distribution>
+        </distribution>
+    </distribution>
+
+    <operator id="YuleBirthRateScaler.t:ThiesDiscoSNPs" spec="ScaleOperator" parameter="@birthRate.t:ThiesDiscoSNPs" scaleFactor="0.75" weight="3.0"/>
+
+    <operator id="YuleModelTreeScaler.t:ThiesDiscoSNPs" spec="ScaleOperator" scaleFactor="0.5" tree="@Tree.t:ThiesDiscoSNPs" weight="3.0"/>
+
+    <operator id="YuleModelTreeRootScaler.t:ThiesDiscoSNPs" spec="ScaleOperator" rootOnly="true" scaleFactor="0.5" tree="@Tree.t:ThiesDiscoSNPs" weight="3.0"/>
+
+    <operator id="YuleModelUniformOperator.t:ThiesDiscoSNPs" spec="Uniform" tree="@Tree.t:ThiesDiscoSNPs" weight="30.0"/>
+
+    <operator id="YuleModelSubtreeSlide.t:ThiesDiscoSNPs" spec="SubtreeSlide" tree="@Tree.t:ThiesDiscoSNPs" weight="15.0"/>
+
+    <operator id="YuleModelNarrow.t:ThiesDiscoSNPs" spec="Exchange" tree="@Tree.t:ThiesDiscoSNPs" weight="15.0"/>
+
+    <operator id="YuleModelWide.t:ThiesDiscoSNPs" spec="Exchange" isNarrow="false" tree="@Tree.t:ThiesDiscoSNPs" weight="3.0"/>
+
+    <operator id="YuleModelWilsonBalding.t:ThiesDiscoSNPs" spec="WilsonBalding" tree="@Tree.t:ThiesDiscoSNPs" weight="3.0"/>
+
+    <operator id="StrictClockRateScaler.c:ThiesDiscoSNPs" spec="ScaleOperator" parameter="@clockRate.c:ThiesDiscoSNPs" scaleFactor="0.75" weight="3.0"/>
+
+    <operator id="strictClockUpDownOperator.c:ThiesDiscoSNPs" spec="UpDownOperator" scaleFactor="0.75" weight="3.0">
+        <up idref="clockRate.c:ThiesDiscoSNPs"/>
+        <down idref="Tree.t:ThiesDiscoSNPs"/>
+    </operator>
+
+    <logger id="tracelog" fileName="ThiesDiscoSNPs.log" logEvery="1000" model="@posterior" sanitiseHeaders="true" sort="smart">
+        <log idref="posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+        <log idref="treeLikelihood.ThiesDiscoSNPs"/>
+        <log id="TreeHeight.t:ThiesDiscoSNPs" spec="beast.evolution.tree.TreeHeightLogger" tree="@Tree.t:ThiesDiscoSNPs"/>
+        <log idref="YuleModel.t:ThiesDiscoSNPs"/>
+        <log idref="birthRate.t:ThiesDiscoSNPs"/>
+        <log idref="clockRate.c:ThiesDiscoSNPs"/>
+    </logger>
+
+    <logger id="screenlog" logEvery="1000">
+        <log idref="posterior"/>
+        <log id="ESS.0" spec="util.ESS" arg="@posterior"/>
+        <log idref="likelihood"/>
+        <log idref="prior"/>
+    </logger>
+
+    <logger id="treelog.t:ThiesDiscoSNPs" fileName="$(tree).trees" logEvery="1000" mode="tree">
+        <log id="TreeWithMetaDataLogger.t:ThiesDiscoSNPs" spec="beast.evolution.tree.TreeWithMetaDataLogger" tree="@Tree.t:ThiesDiscoSNPs"/>
+    </logger>
+
+</run>
+
+</beast>

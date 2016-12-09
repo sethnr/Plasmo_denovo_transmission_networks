@@ -1,0 +1,32 @@
+/* Created by igraph @VERSION@ */
+digraph {
+  0 [
+    name="Th068.12"
+    dates=0
+    year=2012
+    color="#2166AC"
+  ];
+  1 [
+    name="Th061.13"
+    dates=366
+    year=2013
+    color="#67A9CF"
+  ];
+  2 [
+    name="Th095.13"
+    dates=366
+    year=2013
+    color="#67A9CF"
+  ];
+
+  0 -> 1 [
+    weight=256
+    label=256
+    color="#FFF5F0"
+  ];
+  0 -> 2 [
+    weight=198
+    label=198
+    color="#67000D"
+  ];
+}

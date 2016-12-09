@@ -1,0 +1,54 @@
+/* Created by igraph @VERSION@ */
+digraph {
+  0 [
+    name="Th166.12"
+    dates=0
+    year=2012
+    color="#2166AC"
+  ];
+  1 [
+    name="Th092.13"
+    dates=366
+    year=2013
+    color="#67A9CF"
+  ];
+  2 [
+    name="Th211.13"
+    dates=366
+    year=2013
+    color="#67A9CF"
+  ];
+  3 [
+    name="Th245.13"
+    dates=366
+    year=2013
+    color="#67A9CF"
+  ];
+  4 [
+    name="Th246.13"
+    dates=366
+    year=2013
+    color="#67A9CF"
+  ];
+
+  0 -> 1 [
+    weight=130
+    label=130
+    color="#67000D"
+  ];
+  0 -> 2 [
+    weight=176
+    label=176
+    color="#FFF5F0"
+  ];
+  0 -> 3 [
+    weight=152
+    label=152
+    color="#F86043"
+  ];
+  0 -> 4 [
+    weight=147
+    label=147
+    color="#EB372A"
+  ];
+}
