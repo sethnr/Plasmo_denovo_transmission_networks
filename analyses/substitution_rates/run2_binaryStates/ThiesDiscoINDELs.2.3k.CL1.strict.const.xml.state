@@ -1,0 +1,21 @@
+<itsabeastystatewerein version='2.0' sample='10000000'>
+<statenode id='Tree.t:ThiesDiscoINDELs'>(((((0:3318.606311104345,((2:3046.2944232411564,(5:3009.9687706095224,9:3010.9687706095224)13:38.32565263163406)14:69.29991858301946,7:3118.594341824176)11:199.01196928016907)10:419.8191184260886,8:3737.4254295304336)16:10236.5116603948,6:13972.937089925234)15:344.4806486395828,(3:14286.241660984046,4:14286.241660984046)12:31.176077580770652)17:876.1201872943038,1:15189.53792585912)18:0.0</statenode>
+<statenode id='mutationRate.s:ThiesDiscoINDELs'>mutationRate.s:ThiesDiscoINDELs[1 1] (0.0,Infinity): 1.0 </statenode>
+<statenode id='clockRate.c:ThiesDiscoINDELs'>clockRate.c:ThiesDiscoINDELs[1 1] (0.0,Infinity): 6.450248838825531E-6 </statenode>
+<statenode id='popSize.t:ThiesDiscoINDELs'>popSize.t:ThiesDiscoINDELs[1 1] (-Infinity,Infinity): 19539.048546732793 </statenode>
+</itsabeastystatewerein>
+<!--
+{"operators":[
+{"id":"FixMeanMutationRatesOperator","p":7182.942460720178,"accept":241205,"reject":0,"acceptFC":240575,"rejectFC":0,"rejectIv":0,"rejectOp":0},
+{"id":"StrictClockRateScaler.c:ThiesDiscoINDELs","p":0.8110865810780605,"accept":76729,"reject":284462,"acceptFC":76569,"rejectFC":283684,"rejectIv":0,"rejectOp":0},
+{"id":"strictClockUpDownOperator.c:ThiesDiscoINDELs","p":0.2644175438854313,"accept":94014,"reject":267852,"acceptFC":93336,"rejectFC":267581,"rejectIv":38,"rejectOp":38},
+{"id":"CoalescentConstantTreeScaler.t:ThiesDiscoINDELs","p":0.7909478073479541,"accept":65856,"reject":294948,"acceptFC":65812,"rejectFC":294052,"rejectIv":25,"rejectOp":25},
+{"id":"CoalescentConstantTreeRootScaler.t:ThiesDiscoINDELs","p":0.6825141716609783,"accept":10993,"reject":351329,"acceptFC":10977,"rejectFC":350393,"rejectIv":139807,"rejectOp":139807},
+{"id":"CoalescentConstantUniformOperator.t:ThiesDiscoINDELs","p":"NaN","accept":1573855,"reject":2041554,"acceptFC":1569994,"rejectFC":2036195,"rejectIv":0,"rejectOp":0},
+{"id":"CoalescentConstantSubtreeSlide.t:ThiesDiscoINDELs","p":63.571401145670194,"accept":468639,"reject":1338683,"acceptFC":464857,"rejectFC":1337855,"rejectIv":314919,"rejectOp":314919},
+{"id":"CoalescentConstantNarrow.t:ThiesDiscoINDELs","p":"NaN","accept":876299,"reject":928916,"acceptFC":874301,"rejectFC":926351,"rejectIv":112,"rejectOp":112},
+{"id":"CoalescentConstantWide.t:ThiesDiscoINDELs","p":"NaN","accept":34634,"reject":326887,"acceptFC":34553,"rejectFC":326043,"rejectIv":191878,"rejectOp":191878},
+{"id":"CoalescentConstantWilsonBalding.t:ThiesDiscoINDELs","p":"NaN","accept":18194,"reject":343604,"acceptFC":18142,"rejectFC":342720,"rejectIv":120474,"rejectOp":120474},
+{"id":"PopSizeScaler.t:ThiesDiscoINDELs","p":0.2561241228656079,"accept":94516,"reject":266832,"acceptFC":93754,"rejectFC":266611,"rejectIv":0,"rejectOp":0}
+]}
+-->

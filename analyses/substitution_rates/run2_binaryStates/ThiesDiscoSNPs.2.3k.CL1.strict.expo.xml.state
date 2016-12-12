@@ -1,0 +1,23 @@
+<itsabeastystatewerein version='2.0' sample='10000000'>
+<statenode id='Tree.t:ThiesDiscoSNPs'>(((((((((0:1113.7137265301728,8:1112.7137265301728)10:19.81623402089781,5:1131.5299605510706)15:5.786931979606834,2:1135.3168925306775)12:5.9903980581520955,9:1144.3072905888296)14:152.79500924539116,7:1297.1022998342207)11:1210.300208414444,6:2506.4025082486646)17:19.601210138257102,3:2526.0037183869217)13:160.79361657146228,4:2686.797334958384)16:189.84498208257446,1:2872.6423170409585)18:0.0</statenode>
+<statenode id='clockRate.c:ThiesDiscoSNPs'>clockRate.c:ThiesDiscoSNPs[1 1] (0.0,Infinity): 4.5957813415150375E-5 </statenode>
+<statenode id='mutationRate.s:ThiesDiscoSNPs'>mutationRate.s:ThiesDiscoSNPs[1 1] (0.0,Infinity): 1.0 </statenode>
+<statenode id='ePopSize.t:ThiesDiscoSNPs'>ePopSize.t:ThiesDiscoSNPs[1 1] (0.0,Infinity): 38201.994601388775 </statenode>
+<statenode id='growthRate.t:ThiesDiscoSNPs'>growthRate.t:ThiesDiscoSNPs[1 1] (-Infinity,Infinity): 0.0011897837842629322 </statenode>
+</itsabeastystatewerein>
+<!--
+{"operators":[
+{"id":"StrictClockRateScaler.c:ThiesDiscoSNPs","p":0.8426516474587198,"accept":77509,"reject":272412,"acceptFC":77378,"rejectFC":271709,"rejectIv":0,"rejectOp":0},
+{"id":"strictClockUpDownOperator.c:ThiesDiscoSNPs","p":0.6146250488481012,"accept":81416,"reject":267881,"acceptFC":80897,"rejectFC":267511,"rejectIv":26,"rejectOp":26},
+{"id":"FixMeanMutationRatesOperator","p":7001.6324209948925,"accept":233273,"reject":0,"acceptFC":232708,"rejectFC":0,"rejectIv":0,"rejectOp":0},
+{"id":"CoalescentExponentialTreeScaler.t:ThiesDiscoSNPs","p":0.8153267794976001,"accept":57772,"reject":291122,"acceptFC":57733,"rejectFC":290302,"rejectIv":17,"rejectOp":17},
+{"id":"CoalescentExponentialTreeRootScaler.t:ThiesDiscoSNPs","p":0.6202873711456374,"accept":46006,"reject":303328,"acceptFC":45920,"rejectFC":302551,"rejectIv":89229,"rejectOp":89229},
+{"id":"CoalescentExponentialUniformOperator.t:ThiesDiscoSNPs","p":"NaN","accept":1524561,"reject":1961530,"acceptFC":1521190,"rejectFC":1956571,"rejectIv":0,"rejectOp":0},
+{"id":"CoalescentExponentialSubtreeSlide.t:ThiesDiscoSNPs","p":99.4625164151013,"accept":322694,"reject":1421544,"acceptFC":319004,"rejectFC":1420942,"rejectIv":305764,"rejectOp":305764},
+{"id":"CoalescentExponentialNarrow.t:ThiesDiscoSNPs","p":"NaN","accept":608344,"reject":1136807,"acceptFC":606984,"rejectFC":1134004,"rejectIv":101,"rejectOp":101},
+{"id":"CoalescentExponentialWide.t:ThiesDiscoSNPs","p":"NaN","accept":20470,"reject":327677,"acceptFC":20427,"rejectFC":326902,"rejectIv":184683,"rejectOp":184683},
+{"id":"CoalescentExponentialWilsonBalding.t:ThiesDiscoSNPs","p":"NaN","accept":10533,"reject":337909,"acceptFC":10509,"rejectFC":337130,"rejectIv":117467,"rejectOp":117467},
+{"id":"ePopSizeScaler.t:ThiesDiscoSNPs","p":0.25915306956242823,"accept":92634,"reject":255560,"acceptFC":91958,"rejectFC":255377,"rejectIv":0,"rejectOp":0},
+{"id":"GrowthRateRandomWalk.t:ThiesDiscoSNPs","p":0.060727050606720935,"accept":8116,"reject":340903,"acceptFC":8100,"rejectFC":340079,"rejectIv":475,"rejectOp":0}
+]}
+-->
