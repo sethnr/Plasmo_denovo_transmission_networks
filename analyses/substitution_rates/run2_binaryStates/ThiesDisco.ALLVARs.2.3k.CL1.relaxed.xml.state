@@ -1,0 +1,47 @@
+<itsabeastystatewerein version='2.0' sample='10000000'>
+<statenode id='Tree.t:ThiesDiscoSNPs'>(((((0:2.9301807404801337,(3:0.23735878389361442,4:0.23735878389361442)14:0.6928219565865192)11:0.5608411171359085,5:1.4910218576160421)12:0.3200456572919652,9:2.8110675149080073)15:0.7855214387278657,((2:0.05328366010931518,(7:0.9900091031032221,8:0.9900091031032221)17:2.063274557006093)10:0.4184865785150711,6:2.4717702386243863)13:0.12481871501148678)16:6.797836658954553,1:5.394425612590426)18:0.0</statenode>
+<statenode id='Tree.t:ThiesDiscoINDELs'>((((0:3.1995855847850314,(5:0.41854188669576153,7:1.4185418866957615)17:0.7810436980892699)13:2.1117156966788158,3:3.311301281463847)16:2.2726251319654924,(2:0.4472551247155625,9:3.4472551247155625)12:3.136671288713777)10:4.432668683476346,(1:5.473048111627184,((4:0.8354693573344103,8:1.8354693573344103)15:0.8626840931907007,6:1.698153450525111)11:7.774894661102073)14:0.5435469852785015)18:0.0</statenode>
+<statenode id='mutationRate.s:ThiesDiscoINDELs'>mutationRate.s:ThiesDiscoINDELs[1 1] (0.0,Infinity): 0.44479545127782016 </statenode>
+<statenode id='popSize.t:ThiesDiscoINDELs'>popSize.t:ThiesDiscoINDELs[1 1] (-Infinity,Infinity): 11.008830094885905 </statenode>
+<statenode id='popSize.t:ThiesDiscoSNPs'>popSize.t:ThiesDiscoSNPs[1 1] (-Infinity,Infinity): 7.587633072164481 </statenode>
+<statenode id='mutationRate.s:ThiesDiscoSNPs'>mutationRate.s:ThiesDiscoSNPs[1 1] (0.0,Infinity): 1.5552045487221766 </statenode>
+<statenode id='ucldMean.c:ThiesDiscoINDELs'>ucldMean.c:ThiesDiscoINDELs[1 1] (-Infinity,Infinity): 2.539886743679174 </statenode>
+<statenode id='ucldStdev.c:ThiesDiscoINDELs'>ucldStdev.c:ThiesDiscoINDELs[1 1] (0.0,Infinity): 3.4150848964826923 </statenode>
+<statenode id='rateCategories.c:ThiesDiscoINDELs'>rateCategories.c:ThiesDiscoINDELs[18 1] (0,17): 10 13 12 13 15 13 14 11 11 9 0 1 2 0 4 0 0 6 </statenode>
+<statenode id='ucldMean.c:ThiesDiscoSNPs'>ucldMean.c:ThiesDiscoSNPs[1 1] (-Infinity,Infinity): 1.461640190345542 </statenode>
+<statenode id='ucldStdev.c:ThiesDiscoSNPs'>ucldStdev.c:ThiesDiscoSNPs[1 1] (0.0,Infinity): 3.10207572817637 </statenode>
+<statenode id='rateCategories.c:ThiesDiscoSNPs'>rateCategories.c:ThiesDiscoSNPs[18 1] (0,17): 8 11 15 15 15 10 11 11 11 8 4 3 2 1 0 4 0 1 </statenode>
+</itsabeastystatewerein>
+<!--
+{"operators":[
+{"id":"FixMeanMutationRatesOperator","p":0.14249980876037427,"accept":10276,"reject":78081,"acceptFC":10271,"rejectFC":77773,"rejectIv":1159,"rejectOp":1159},
+{"id":"CoalescentConstantTreeScaler.t:ThiesDiscoINDELs","p":0.8225854888465519,"accept":11666,"reject":121736,"acceptFC":11659,"rejectFC":121277,"rejectIv":18061,"rejectOp":18061},
+{"id":"CoalescentConstantTreeRootScaler.t:ThiesDiscoINDELs","p":0.7587556554409174,"accept":30450,"reject":102494,"acceptFC":30437,"rejectFC":102082,"rejectIv":14596,"rejectOp":14596},
+{"id":"CoalescentConstantUniformOperator.t:ThiesDiscoINDELs","p":"NaN","accept":391621,"reject":936357,"acceptFC":390418,"rejectFC":932968,"rejectIv":0,"rejectOp":0},
+{"id":"CoalescentConstantSubtreeSlide.t:ThiesDiscoINDELs","p":1.3968241467085278,"accept":172326,"reject":489905,"acceptFC":172025,"rejectFC":487854,"rejectIv":121443,"rejectOp":121443},
+{"id":"CoalescentConstantNarrow.t:ThiesDiscoINDELs","p":"NaN","accept":178552,"reject":485565,"acceptFC":177917,"rejectFC":483902,"rejectIv":84170,"rejectOp":84170},
+{"id":"CoalescentConstantWide.t:ThiesDiscoINDELs","p":"NaN","accept":6105,"reject":127165,"acceptFC":6094,"rejectFC":126707,"rejectIv":92295,"rejectOp":92295},
+{"id":"CoalescentConstantWilsonBalding.t:ThiesDiscoINDELs","p":"NaN","accept":4468,"reject":128593,"acceptFC":4462,"rejectFC":128155,"rejectIv":46779,"rejectOp":46779},
+{"id":"PopSizeScaler.t:ThiesDiscoINDELs","p":0.2753266924241929,"accept":38440,"reject":94557,"acceptFC":38046,"rejectFC":94471,"rejectIv":0,"rejectOp":0},
+{"id":"CoalescentConstantTreeScaler.t:ThiesDiscoSNPs","p":0.8517287710092826,"accept":9058,"reject":124075,"acceptFC":9056,"rejectFC":123570,"rejectIv":15119,"rejectOp":15119},
+{"id":"CoalescentConstantTreeRootScaler.t:ThiesDiscoSNPs","p":0.7839087693664144,"accept":25773,"reject":107181,"acceptFC":25765,"rejectFC":106742,"rejectIv":4162,"rejectOp":4162},
+{"id":"CoalescentConstantUniformOperator.t:ThiesDiscoSNPs","p":"NaN","accept":369441,"reject":956577,"acceptFC":368597,"rejectFC":952723,"rejectIv":0,"rejectOp":0},
+{"id":"CoalescentConstantSubtreeSlide.t:ThiesDiscoSNPs","p":0.9337702115295624,"accept":190081,"reject":473985,"acceptFC":189917,"rejectFC":471796,"rejectIv":107721,"rejectOp":107721},
+{"id":"CoalescentConstantNarrow.t:ThiesDiscoSNPs","p":"NaN","accept":192489,"reject":471161,"acceptFC":192116,"rejectFC":469154,"rejectIv":81813,"rejectOp":81813},
+{"id":"CoalescentConstantWide.t:ThiesDiscoSNPs","p":"NaN","accept":6919,"reject":125253,"acceptFC":6910,"rejectFC":124826,"rejectIv":91848,"rejectOp":91848},
+{"id":"CoalescentConstantWilsonBalding.t:ThiesDiscoSNPs","p":"NaN","accept":4222,"reject":128581,"acceptFC":4214,"rejectFC":128108,"rejectIv":46802,"rejectOp":46802},
+{"id":"PopSizeScaler.t:ThiesDiscoSNPs","p":0.26928605174255554,"accept":37390,"reject":94885,"acceptFC":37052,"rejectFC":94787,"rejectIv":0,"rejectOp":0},
+{"id":"ucldMeanScaler.c:ThiesDiscoINDELs","p":0.7635780617513104,"accept":7037,"reject":37192,"acceptFC":7027,"rejectFC":37046,"rejectIv":0,"rejectOp":0},
+{"id":"ucldStdevScaler.c:ThiesDiscoINDELs","p":0.8883140399196248,"accept":6725,"reject":126145,"acceptFC":6701,"rejectFC":125698,"rejectIv":0,"rejectOp":0},
+{"id":"CategoriesRandomWalk.c:ThiesDiscoINDELs","p":"NaN","accept":107365,"reject":336009,"acceptFC":107062,"rejectFC":334748,"rejectIv":167618,"rejectOp":167618},
+{"id":"CategoriesSwapOperator.c:ThiesDiscoINDELs","p":"NaN","accept":67180,"reject":375518,"acceptFC":66924,"rejectFC":374218,"rejectIv":0,"rejectOp":0},
+{"id":"CategoriesUniform.c:ThiesDiscoINDELs","p":"NaN","accept":72791,"reject":369535,"acceptFC":72589,"rejectFC":368141,"rejectIv":0,"rejectOp":0},
+{"id":"relaxedUpDownOperator.c:ThiesDiscoINDELs","p":0.8500182503836609,"accept":29576,"reject":102570,"acceptFC":29536,"rejectFC":102125,"rejectIv":17863,"rejectOp":17863},
+{"id":"ucldMeanScaler.c:ThiesDiscoSNPs","p":0.7978917455807627,"accept":7120,"reject":37306,"acceptFC":7113,"rejectFC":37164,"rejectIv":0,"rejectOp":0},
+{"id":"ucldStdevScaler.c:ThiesDiscoSNPs","p":0.9037557966735406,"accept":6162,"reject":126867,"acceptFC":6143,"rejectFC":126409,"rejectIv":0,"rejectOp":0},
+{"id":"CategoriesRandomWalk.c:ThiesDiscoSNPs","p":"NaN","accept":79209,"reject":363235,"acceptFC":79076,"rejectFC":361815,"rejectIv":175879,"rejectOp":175879},
+{"id":"CategoriesSwapOperator.c:ThiesDiscoSNPs","p":"NaN","accept":64785,"reject":377721,"acceptFC":64524,"rejectFC":376430,"rejectIv":0,"rejectOp":0},
+{"id":"CategoriesUniform.c:ThiesDiscoSNPs","p":"NaN","accept":60094,"reject":381683,"acceptFC":59917,"rejectFC":380288,"rejectIv":0,"rejectOp":0},
+{"id":"relaxedUpDownOperator.c:ThiesDiscoSNPs","p":0.9040648970878784,"accept":24116,"reject":108632,"acceptFC":24115,"rejectFC":108149,"rejectIv":9358,"rejectOp":9358}
+]}
+-->

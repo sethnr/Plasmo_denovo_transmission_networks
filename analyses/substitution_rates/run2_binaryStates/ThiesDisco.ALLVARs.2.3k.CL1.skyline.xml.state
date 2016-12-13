@@ -1,0 +1,39 @@
+<itsabeastystatewerein version='2.0' sample='10000000'>
+<statenode id='Tree.t:ThiesDiscoSNPs'>((((((0:5085.979572023436,(2:4986.845918644181,9:4989.845918644181)15:95.13365337925461)10:49.56819096344134,8:5134.547762986877)13:710.479869477379,5:5844.027632464256)12:462.1330019935285,7:6307.160634457785)11:6534.676820739382,((1:12833.994631973996,3:12837.994631973996)17:1.2555971002620936,6:12839.250229074258)14:1.5872261229087599)16:5.656482842765399,4:12846.493938039932)18:0.0</statenode>
+<statenode id='clockRate.c:ThiesDiscoSNPs'>clockRate.c:ThiesDiscoSNPs[1 1] (0.0,Infinity): 1.6192447842128904E-5 </statenode>
+<statenode id='Tree.t:ThiesDiscoINDELs'>((((((0:187.83413364470678,(5:185.70523319180256,((7:179.39429063794546,9:179.39429063794546)11:5.981804571647274,8:185.37609520959273)10:1.3291379822098293)13:0.1289004529042188)12:13.265584778818152,2:197.09971842352493)15:632.42161145191,4:831.521329875435)16:2.427435206541986,3:833.948765081977)14:4.91446505694546,6:838.8632301389224)17:8.822177386853696,1:843.6854075257761)18:0.0</statenode>
+<statenode id='mutationRate.s:ThiesDiscoINDELs'>mutationRate.s:ThiesDiscoINDELs[1 1] (0.0,Infinity): 1.3742239924819077 </statenode>
+<statenode id='mutationRate.s:ThiesDiscoSNPs'>mutationRate.s:ThiesDiscoSNPs[1 1] (0.0,Infinity): 0.6257760075180796 </statenode>
+<statenode id='clockRate.c:ThiesDiscoINDELs'>clockRate.c:ThiesDiscoINDELs[1 1] (0.0,Infinity): 8.413938144678937E-5 </statenode>
+<statenode id='bPopSizes.t:ThiesDiscoINDELs'>bPopSizes.t:ThiesDiscoINDELs[5 1] (0.0,380000.0): 2840.1360709002097 711.229488022596 1390.2828900522568 5.937944774768212 10.027860892096161 </statenode>
+<statenode id='bGroupSizes.t:ThiesDiscoINDELs'>bGroupSizes.t:ThiesDiscoINDELs[5 1] (1,2147483647): 1 3 2 1 2 </statenode>
+<statenode id='bPopSizes.t:ThiesDiscoSNPs'>bPopSizes.t:ThiesDiscoSNPs[5 1] (0.0,380000.0): 130092.42862185786 16533.383552386458 26.22112962589069 18.11474875214312 6.929481248922556 </statenode>
+<statenode id='bGroupSizes.t:ThiesDiscoSNPs'>bGroupSizes.t:ThiesDiscoSNPs[5 1] (1,2147483647): 1 5 1 1 1 </statenode>
+</itsabeastystatewerein>
+<!--
+{"operators":[
+{"id":"StrictClockRateScaler.c:ThiesDiscoSNPs","p":0.8392773294484679,"accept":32207,"reject":118828,"acceptFC":32144,"rejectFC":118581,"rejectIv":0,"rejectOp":0},
+{"id":"strictClockUpDownOperator.c:ThiesDiscoSNPs","p":0.27484254800346525,"accept":41525,"reject":108039,"acceptFC":41337,"rejectFC":107930,"rejectIv":29,"rejectOp":29},
+{"id":"FixMeanMutationRatesOperator","p":0.24512817319734273,"accept":6950,"reject":93493,"acceptFC":6944,"rejectFC":93291,"rejectIv":3276,"rejectOp":3276},
+{"id":"StrictClockRateScaler.c:ThiesDiscoINDELs","p":0.8116475375855311,"accept":32077,"reject":118472,"acceptFC":32010,"rejectFC":118253,"rejectIv":0,"rejectOp":0},
+{"id":"strictClockUpDownOperator.c:ThiesDiscoINDELs","p":0.27204443563391434,"accept":41423,"reject":108419,"acceptFC":41212,"rejectFC":108327,"rejectIv":10,"rejectOp":10},
+{"id":"BayesianSkylineTreeScaler.t:ThiesDiscoINDELs","p":0.7852101779743942,"accept":26200,"reject":123471,"acceptFC":26172,"rejectFC":123207,"rejectIv":12,"rejectOp":12},
+{"id":"BayesianSkylineTreeRootScaler.t:ThiesDiscoINDELs","p":0.7071117511966922,"accept":1217,"reject":149587,"acceptFC":1205,"rejectFC":149276,"rejectIv":61104,"rejectOp":61104},
+{"id":"BayesianSkylineUniformOperator.t:ThiesDiscoINDELs","p":"NaN","accept":556848,"reject":944448,"acceptFC":555543,"rejectFC":942604,"rejectIv":0,"rejectOp":0},
+{"id":"BayesianSkylineSubtreeSlide.t:ThiesDiscoINDELs","p":23.711965878731597,"accept":242868,"reject":506366,"acceptFC":241900,"rejectFC":505773,"rejectIv":103978,"rejectOp":103978},
+{"id":"BayesianSkylineNarrow.t:ThiesDiscoINDELs","p":"NaN","accept":468622,"reject":280752,"acceptFC":467920,"rejectFC":279938,"rejectIv":67,"rejectOp":67},
+{"id":"BayesianSkylineWide.t:ThiesDiscoINDELs","p":"NaN","accept":19148,"reject":130447,"acceptFC":19122,"rejectFC":130149,"rejectIv":79227,"rejectOp":79227},
+{"id":"BayesianSkylineWilsonBalding.t:ThiesDiscoINDELs","p":"NaN","accept":7392,"reject":142289,"acceptFC":7375,"rejectFC":142000,"rejectIv":48805,"rejectOp":48805},
+{"id":"popSizesScaler.t:ThiesDiscoINDELs","p":0.19294031732111952,"accept":209750,"reject":540693,"acceptFC":208564,"rejectFC":540379,"rejectIv":5890,"rejectOp":5890},
+{"id":"groupSizesDelta.t:ThiesDiscoINDELs","p":2.227056591910973,"accept":21693,"reject":277687,"acceptFC":21598,"rejectFC":277228,"rejectIv":195651,"rejectOp":195651},
+{"id":"BayesianSkylineTreeScaler.t:ThiesDiscoSNPs","p":0.8040580006336628,"accept":24338,"reject":124766,"acceptFC":24325,"rejectFC":124476,"rejectIv":18,"rejectOp":18},
+{"id":"BayesianSkylineTreeRootScaler.t:ThiesDiscoSNPs","p":0.6086544860276797,"accept":16033,"reject":134367,"acceptFC":16003,"rejectFC":134026,"rejectIv":44421,"rejectOp":44421},
+{"id":"BayesianSkylineUniformOperator.t:ThiesDiscoSNPs","p":"NaN","accept":602823,"reject":896383,"acceptFC":601599,"rejectFC":894389,"rejectIv":0,"rejectOp":0},
+{"id":"BayesianSkylineSubtreeSlide.t:ThiesDiscoSNPs","p":92.25845465421386,"accept":238717,"reject":511702,"acceptFC":237754,"rejectFC":511131,"rejectIv":100560,"rejectOp":100560},
+{"id":"BayesianSkylineNarrow.t:ThiesDiscoSNPs","p":"NaN","accept":307444,"reject":442429,"acceptFC":306905,"rejectFC":441410,"rejectIv":99,"rejectOp":99},
+{"id":"BayesianSkylineWide.t:ThiesDiscoSNPs","p":"NaN","accept":10961,"reject":139191,"acceptFC":10940,"rejectFC":138887,"rejectIv":79609,"rejectOp":79609},
+{"id":"BayesianSkylineWilsonBalding.t:ThiesDiscoSNPs","p":"NaN","accept":4644,"reject":145055,"acceptFC":4636,"rejectFC":144763,"rejectIv":50492,"rejectOp":50492},
+{"id":"popSizesScaler.t:ThiesDiscoSNPs","p":0.1879422535900683,"accept":204914,"reject":545114,"acceptFC":203608,"rejectFC":544850,"rejectIv":9689,"rejectOp":9689},
+{"id":"groupSizesDelta.t:ThiesDiscoSNPs","p":5.522328006121256,"accept":12520,"reject":287689,"acceptFC":12358,"rejectFC":287262,"rejectIv":251037,"rejectOp":251037}
+]}
+-->
