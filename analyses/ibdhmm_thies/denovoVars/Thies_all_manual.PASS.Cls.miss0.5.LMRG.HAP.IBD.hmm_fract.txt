@@ -1,0 +1,1 @@
+sample1	sample2	N_informative_sites	discordance	log_p	N_fit_iteration	N_generation	N_state_transition	seq_shared_best_traj	fract_sites_IBD

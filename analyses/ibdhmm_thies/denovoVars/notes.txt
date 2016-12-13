@@ -1,0 +1,6 @@
+python ../../../../idi_broad_scripts/vcf/getAlleleTableVCF.py -v ThiesDiscoDiscord.CL1.vcf.gz > ThiesDiscoDiscord.CL1.alleles.tab
+python ../../../../idi_broad_scripts/vcf/getAlleleTableVCF.py -v ThiesDiscoDiscord.vcf.gz > ThiesDiscoDiscord.alleles.tab
+
+perl -i -lane '$F[0] =~ s/Pf3D7_(\d+)_v3/$1/; print join("\t",@F[0,1,6..23])' *alleles.tab
+
+for F in *alleles.tab ; do hmmIBD -i $F -o ${F/alleles.tab/IBD} ; done
