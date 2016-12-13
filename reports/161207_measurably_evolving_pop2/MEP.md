@@ -776,11 +776,17 @@ ggplot(TDtab2,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
 ```r
 njtree1 <- nj(as.dist(sym(combDists[cog1,cog1])))
 njtree1 <- root(njtree1,og1)
+plot(njtree2)
+```
+
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+
+```r
 njtree1 <- drop.tip(njtree1,og1)
 plot(njtree1)
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-2.png)
 
 ```r
 rtdist1 <- diag(vcv.phylo(njtree1)[cl1,cl1])
@@ -809,16 +815,22 @@ ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
   ggtitle(paste("combined, outgroup",og1))
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-2.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-3.png)
 
 ```r
 njtree2 <- nj(as.dist(sym(combDists[cog2,cog2])))
 njtree2 <- root(njtree2,og2)
+plot(njtree2)
+```
+
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-4.png)
+
+```r
 njtree2 <- drop.tip(njtree2,og2)
 plot(njtree2)
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-3.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-5.png)
 
 ```r
 rtdist2 <- diag(vcv.phylo(njtree2)[cl1,cl1])
@@ -847,7 +859,7 @@ ggplot(TDtab2,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
   ggtitle(paste("combined, outgroup",og2))
 ```
 
-![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-4.png)
+![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-6.png)
 
 
 ```r
