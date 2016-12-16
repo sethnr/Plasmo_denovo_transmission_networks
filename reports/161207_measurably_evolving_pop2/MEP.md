@@ -2,6 +2,7 @@
 ```r
 library(ape)
 library(adegenet)
+library(phangorn)
 library(knitr)
 library(igraph)
 library(RColorBrewer)
@@ -35,12 +36,11 @@ makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
     
   list(dist1,dist2,dist3)
 }
-
-meta<-read.table("daniels.thies.CA.txt",sep="\t",header=T)
 ```
 
 
 ```r
+meta<-read.table("daniels.thies.CA.txt",sep="\t",header=T)
 indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
 snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
 combDists <- indelDists+snpDists
@@ -776,7 +776,7 @@ ggplot(TDtab2,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
 ```r
 njtree1 <- nj(as.dist(sym(combDists[cog1,cog1])))
 njtree1 <- root(njtree1,og1)
-plot(njtree2)
+plot(njtree1)
 ```
 
 ![plot of chunk unnamed-chunk-18](figure/unnamed-chunk-18-1.png)
@@ -945,3 +945,235 @@ ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
 
 ![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-3.png)
 
+
+MRCA
+
+```r
+cl1 = c("Th196.12", "Th230.12", "Th132.11","Th162.12", "Th074.13", "Th106.09", "Th134.11", "Th117.11", "Th106.11","Th086.07")
+
+#alleleTab <- read.table("ThiesDiscoDiscord.CL1.alleles.tab",colClasses="character",header=T,na.strings = c("."))
+#alleleTab <- read.table("ThiesDiscoDiscord.alleles.tab",colClasses="character",header=T,na.strings = c("."))
+#genos <- t(data.matrix(alleleTab[3:dim(alleleTab)[2]]))
+
+#alleleTab <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.tab.gz",colClasses="character",header=T,na.strings = c("."))
+#genos <- t(data.matrix(alleleTab[6:dim(alleleTab)[2]]))
+
+# alleleTab <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP_012/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.biallelic.012",na.strings = c("."))
+# alleleInd <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP_012/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.biallelic.012.indv",na.strings = c("."))
+# rownames(alleleTab) <- alleleInd$V1
+# genos <- t(data.matrix(alleleTab[2:dim(alleleTab)[2]]))
+#inds <- row.names(genos)
+
+ped <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.incTriallelic.ped.gz",colClasses="character",na.strings = "0")
+#ped <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.incTriallelic.ped.gz",colClasses="character")
+inds <- ped[,1]
+ped <- ped[,seq(7,dim(ped)[[2]],2)]
+
+genos <- apply(ped,2,function(x) {as.numeric(factor(x))})
+genos[is.na(genos)] <- 0
+rownames(genos)=inds
+
+genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T),drop_null = F))
+#genosDat <- as.phyDat(genos, type="USER", levels = c(0:5))
+
+distmatH <- dist.hamming(genosDat)
+
+discotree <- midpoint(nj(distmatH))
+#discotree <- midpoint(njs(as.dist(sym(combDists))))
+
+plot(discotree)
+nodelabels()
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-1.png)
+
+```r
+#PARSIMONY ancestral state
+ances.par <- ancestral.pars(discotree,genosDat)
+#ML ancestral state 
+fit = pml(discotree, genosDat)
+ances.pml <- ancestral.pml(fit,type = "ml")
+cl1mrca <- mrca.phylo(discotree,which(discotree$tip.label %in% cl1))
+cl1mrca
+```
+
+```
+## [1] 21
+```
+
+```r
+#cl1mrca<-35
+MLalleleMat <- ances.pml[[cl1mrca]]
+maxLikelihoods <- apply(ances.pml[[cl1mrca]],1,FUN=max)
+#MLallele <- matrix(as.numeric(MLallele),nrow = dim(MLallele)[1],dim(MLallele)[2])
+MLallele <- rep(0,dim(MLalleleMat)[1])
+for (i in c(0:dim(MLalleleMat)[2])) {
+  MLallele[MLalleleMat[,i]==maxLikelihoods] <- i
+}
+
+genosDat$MRCA <- MLallele
+distfromMRCA <- dist.hamming(genosDat)
+genosM <- as.character(genosDat)
+
+# replace '0' with NA 
+genosM[genosM==0]<-NA
+genos[genos==0]<-NA
+
+#manually make distance matrix
+inds <- rownames(genosM)
+distmatM <- matrix(nrow=length(inds),ncol=length(inds),dimnames = list(inds,inds))
+distmatMabs <- matrix(nrow=length(inds),ncol=length(inds),dimnames = list(inds,inds))
+distmat <- matrix(nrow=length(inds),ncol=length(inds),dimnames = list(inds,inds))
+for (i in rownames(genos)){
+    for (j in rownames(genos)){
+        notnull <- intersect(which(!(is.na(genos[i,]))),which(!is.na(genos[j,])))
+        distmat[i,j] <- sum(genos[i,notnull] != genos[j,notnull])
+
+        notnull <- intersect(which(!(is.na(genosM[i,]))),which(!is.na(genosM[j,])))
+        distmatM[i,j] <- sum(genosM[i,notnull] != genosM[j,notnull])/length(notnull)
+        distmatMabs[i,j] <- sum(genosM[i,notnull] != genosM[j,notnull])
+
+    }
+    notnull <- intersect(which(!(is.na(genosM[i,]))),which(!is.na(genosM["MRCA",])))
+    distmatM[i,"MRCA"] <- sum(genosM[i,notnull] != genosM["MRCA",notnull])/length(notnull)
+    distmatM["MRCA",i] <- sum(genosM[i,notnull] != genosM["MRCA",notnull])/length(notnull)
+    distmatMabs[i,"MRCA"] <- sum(genosM[i,notnull] != genosM["MRCA",notnull])
+    distmatMabs["MRCA",i] <- sum(genosM[i,notnull] != genosM["MRCA",notnull])
+}
+
+distmat["Th106.09","Th074.13"]
+```
+
+```
+## [1] 88
+```
+
+```r
+distmatM["Th106.09","Th074.13"]
+```
+
+```
+## [1] 0.003047619
+```
+
+```r
+#distmat <- matrix(nrow=length(inds),ncol=length(inds),dimnames = list(inds,inds))
+#for (i in rownames(genos)){
+#     for (j in rownames(genos)){
+#     filled = intersect(which(genos[i,] != 0), which(genos[j,] !=0))
+#     write(paste("calculating",i,"v",j),stderr())
+#     write(length(filled),stderr())
+# 
+# #    distmat[i,j] = sum(genos[i,]!=genos[j,])
+#     if(length(filled) > 0) {
+#         distmat[i,j] = sum(genos[i,filled]!=genos[j,filled])
+#       }else {
+#         distmat[i,j]=-1
+#       }
+#     }
+# }
+
+MRCAdist <- data.frame("name"=cl1,"year"=meta[cl1,"year"],"dist"=as.matrix(distfromMRCA)["MRCA",cl1],"dist2"=distmatM["MRCA",cl1],"distAbs"=distmatMabs["MRCA",cl1])
+
+plot(discotree)
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-2.png)
+
+```r
+tdcor <- cor.test(MRCAdist$year,MRCAdist$dist)
+cor.test(MRCAdist$year,MRCAdist$dist)
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  MRCAdist$year and MRCAdist$dist
+## t = 2.5164, df = 8, p-value = 0.03601
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.06031779 0.91245325
+## sample estimates:
+##       cor 
+## 0.6647003
+```
+
+```r
+ggplot(MRCAdist,aes(x=year,y=dist,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+      geom_label(x=2008,y=mean(MRCAdist$dist),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
+      ggtitle("combined, all samples, tree distance")
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-3.png)
+
+```r
+ggplot(MRCAdist,aes(x=year,y=dist2,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+      geom_label(x=2008,y=mean(MRCAdist$dist2),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
+      ggtitle("combined, all samples, prop distance")
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-4.png)
+
+```r
+ggplot(MRCAdist,aes(x=year,y=distAbs,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+      geom_label(x=2008,y=mean(MRCAdist$distAbs),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
+      ggtitle("combined, all samples, absolute distance")
+```
+
+![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-5.png)
+
+
+
+```r
+# 
+# ped1 <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.incTriallelic.ped.gz",colClasses="character",na.strings = "0")
+# inds <- ped1[,1]
+# ped1 <- ped1[,seq(7,dim(ped1)[[2]],2)]
+# 
+# ped1 <- apply(ped1,2,function(x) {as.numeric(factor(x))})
+# rownames(ped1)=inds
+# 
+# 
+# ped2 <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.incTriallelic.ped.gz",colClasses="character")
+# inds <- ped2[,1]
+# ped2 <- ped2[,seq(7,dim(ped2)[[2]],2)]
+# rownames(ped2)=inds
+# 
+# # distmat = matrix(nrow=length(inds),ncol=length(inds))
+# # colnames(distmat) = inds
+# # rownames(distmat) = inds
+# # 
+# # write("calculating distance matrix",stderr())
+# # for (i in rownames(ped2)){
+# #     for (j in rownames(ped2)){
+# #     filled = intersect(which(ped2[i,] != 0), which(ped2[j,] !=0))
+# #     write(paste("calculating",i,"v",j),stderr())
+# #     write(length(filled),stderr())
+# # 
+# # #    distmat[i,j] = sum(ped2[i,]!=ped2[j,])
+# #     if(length(filled) > 0) {
+# #         distmat[i,j] = sum(ped2[i,filled]!=ped2[j,filled])
+# #       }else {
+# #         distmat[i,j]=-1
+# #       }
+# #     }
+# # }
+# 
+# 
+# write("calculating distance matrix",stderr())
+# i<-"Th106.09"
+# j<-"Th074.13"
+# 
+# ped1[,1:10]
+# ped2[,1:10]
+# 
+# filled = intersect(which(ped2[i,] != 0), which(ped2[j,] !=0))
+# sum(ped2[i,filled]!=ped2[j,filled])
+# 
+# notnull <- intersect(which(!(is.na(ped1[i,]))),which(!is.na(ped1[j,])))
+# sum(ped1[i,notnull] != ped1[j,notnull])
+# 
+# 
+# distmat
+```
