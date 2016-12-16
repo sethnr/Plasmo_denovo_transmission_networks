@@ -1073,8 +1073,26 @@ distmatM["Th106.09","Th074.13"]
 #     }
 # }
 
-MRCAdist <- data.frame("name"=cl1,"year"=meta[cl1,"year"],"dist"=as.matrix(distfromMRCA)["MRCA",cl1],"dist2"=distmatM["MRCA",cl1],"distAbs"=distmatMabs["MRCA",cl1])
+MRCAdist <- data.frame("name"=cl1,"year"=meta[cl1,"year"],"distTree"=as.matrix(distfromMRCA)["MRCA",cl1],"distRel"=distmatM["MRCA",cl1],"distAbs"=distmatMabs["MRCA",cl1])
 
+MRCAdist 
+```
+
+```
+##              name year   distTree     distRel distAbs
+## Th196.12 Th196.12 2012 0.07006410 0.018066507     527
+## Th230.12 Th230.12 2012 0.07028734 0.016467682     480
+## Th132.11 Th132.11 2011 0.06630099 0.016916003     493
+## Th162.12 Th162.12 2012 0.07424180 0.017927190     521
+## Th074.13 Th074.13 2013 0.06713015 0.017423388     510
+## Th106.09 Th106.09 2009 0.06923494 0.015259025     443
+## Th134.11 Th134.11 2011 0.05456517 0.007426674     217
+## Th117.11 Th117.11 2011 0.05332143 0.008183306     240
+## Th106.11 Th106.11 2011 0.05670185 0.008363898     244
+## Th086.07 Th086.07 2007 0.04148994 0.005029940     147
+```
+
+```r
 plot(discotree)
 ```
 
@@ -1082,35 +1100,49 @@ plot(discotree)
 
 ```r
 tdcor <- cor.test(MRCAdist$year,MRCAdist$dist)
+```
+
+```
+## Error in cor.test.default(MRCAdist$year, MRCAdist$dist): 'x' and 'y' must have the same length
+```
+
+```r
 cor.test(MRCAdist$year,MRCAdist$dist)
 ```
 
 ```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  MRCAdist$year and MRCAdist$dist
-## t = 2.5164, df = 8, p-value = 0.03601
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.06031779 0.91245325
-## sample estimates:
-##       cor 
-## 0.6647003
+## Error in cor.test.default(MRCAdist$year, MRCAdist$dist): 'x' and 'y' must have the same length
 ```
 
 ```r
-ggplot(MRCAdist,aes(x=year,y=dist,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+ggplot(MRCAdist,aes(x=year,y=distTree,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
       geom_label(x=2008,y=mean(MRCAdist$dist),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, tree distance")
+```
+
+```
+## Warning in mean.default(MRCAdist$dist): argument is not numeric or logical:
+## returning NA
+```
+
+```
+## Warning: Removed 10 rows containing missing values (geom_label).
 ```
 
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-3.png)
 
 ```r
-ggplot(MRCAdist,aes(x=year,y=dist2,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+ggplot(MRCAdist,aes(x=year,y=distRel,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
       geom_label(x=2008,y=mean(MRCAdist$dist2),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, prop distance")
+```
+
+```
+## Warning in mean.default(MRCAdist$dist2): argument is not numeric or
+## logical: returning NA
+
+## Warning in mean.default(MRCAdist$dist2): Removed 10 rows containing missing
+## values (geom_label).
 ```
 
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-4.png)
