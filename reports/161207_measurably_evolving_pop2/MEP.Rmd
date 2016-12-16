@@ -636,16 +636,18 @@ distmatM["Th106.09","Th074.13"]
 #     }
 # }
 
-MRCAdist <- data.frame("name"=cl1,"year"=meta[cl1,"year"],"dist"=as.matrix(distfromMRCA)["MRCA",cl1],"dist2"=distmatM["MRCA",cl1],"distAbs"=distmatMabs["MRCA",cl1])
+MRCAdist <- data.frame("name"=cl1,"year"=meta[cl1,"year"],"distTree"=as.matrix(distfromMRCA)["MRCA",cl1],"distRel"=distmatM["MRCA",cl1],"distAbs"=distmatMabs["MRCA",cl1])
+
+MRCAdist 
 
 plot(discotree)
 tdcor <- cor.test(MRCAdist$year,MRCAdist$dist)
 cor.test(MRCAdist$year,MRCAdist$dist)
-ggplot(MRCAdist,aes(x=year,y=dist,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+ggplot(MRCAdist,aes(x=year,y=distTree,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
       geom_label(x=2008,y=mean(MRCAdist$dist),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, tree distance")
 
-ggplot(MRCAdist,aes(x=year,y=dist2,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
+ggplot(MRCAdist,aes(x=year,y=distRel,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
       geom_label(x=2008,y=mean(MRCAdist$dist2),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, prop distance")
 
