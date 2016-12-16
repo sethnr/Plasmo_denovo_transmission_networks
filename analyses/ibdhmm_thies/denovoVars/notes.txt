@@ -4,3 +4,4 @@ python ../../../../idi_broad_scripts/vcf/getAlleleTableVCF.py -v ThiesDiscoDisco
 perl -i -lane '$F[0] =~ s/Pf3D7_(\d+)_v3/$1/; print join("\t",@F[0,1,6..23])' *alleles.tab
 
 for F in *alleles.tab ; do hmmIBD -i $F -o ${F/alleles.tab/IBD} ; done
+python ../../../../idi_broad_scripts/vcf/getAlleleTableVCF.py -v Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf > Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss2.alleles.tab
