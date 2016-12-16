@@ -8,31 +8,6 @@
 |        http://pngu.mgh.harvard.edu/purcell/plink/        |
 @----------------------------------------------------------@
 
-Web-based version check ( --noweb to skip )
-Connecting to web... 
 
-          *** UPDATE REQUIRED ***
-
-	This version        : 1.08p
-	Most recent version : 1.07
-
-Please upgrade your version of PLINK as soon as possible!
-  (visit the above website for free download)
-
-Old versions of PLINK (<1.07) contain bugs fixed in 1.07. 
-
-+++ PLINK 1.9 is now available! See above website for details +++ 
-
-Writing this text to log file [ plink.log ]
-Analysis started: Thu Apr  7 12:15:21 2016
-
-Options in effect:
-
-Before frequency and genotyping pruning, there are 0 SNPs
-0 founders and 0 non-founders found
-0 SNPs failed missingness test ( GENO > 1 )
-0 SNPs failed frequency test ( MAF < 0 )
-After frequency and genotyping pruning, there are 0 SNPs
-
-ERROR: Stopping as there are no SNPs left for analysis
+Analysis finished: Fri Dec 16 14:54:07 2016
 
