@@ -1099,14 +1099,7 @@ plot(discotree)
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-2.png)
 
 ```r
-tdcor <- cor.test(MRCAdist$year,MRCAdist$dist)
-```
-
-```
-## Error in cor.test.default(MRCAdist$year, MRCAdist$dist): 'x' and 'y' must have the same length
-```
-
-```r
+tdcor <- cor.test(MRCAdist$year,MRCAdist$distTree)
 cor.test(MRCAdist$year,MRCAdist$dist)
 ```
 
@@ -1116,38 +1109,23 @@ cor.test(MRCAdist$year,MRCAdist$dist)
 
 ```r
 ggplot(MRCAdist,aes(x=year,y=distTree,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
-      geom_label(x=2008,y=mean(MRCAdist$dist),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
+      geom_label(x=2008,y=mean(MRCAdist$distTree),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, tree distance")
-```
-
-```
-## Warning in mean.default(MRCAdist$dist): argument is not numeric or logical:
-## returning NA
-```
-
-```
-## Warning: Removed 10 rows containing missing values (geom_label).
 ```
 
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-3.png)
 
 ```r
+tdcor <- cor.test(MRCAdist$year,MRCAdist$distRel)
 ggplot(MRCAdist,aes(x=year,y=distRel,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
-      geom_label(x=2008,y=mean(MRCAdist$dist2),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
+      geom_label(x=2008,y=mean(MRCAdist$distRel),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, prop distance")
-```
-
-```
-## Warning in mean.default(MRCAdist$dist2): argument is not numeric or
-## logical: returning NA
-
-## Warning in mean.default(MRCAdist$dist2): Removed 10 rows containing missing
-## values (geom_label).
 ```
 
 ![plot of chunk unnamed-chunk-21](figure/unnamed-chunk-21-4.png)
 
 ```r
+tdcor <- cor.test(MRCAdist$year,MRCAdist$distAbs)
 ggplot(MRCAdist,aes(x=year,y=distAbs,label=name)) + geom_text() + geom_smooth(method="lm",se=F)+
       geom_label(x=2008,y=mean(MRCAdist$distAbs),label=paste("R=",round(tdcor$estimate,3)," p=",round(tdcor$p.value,4),sep=""),size=5) + 
       ggtitle("combined, all samples, absolute distance")
