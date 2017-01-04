@@ -119,7 +119,11 @@ ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)
   geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom")
 
 ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
+  geom_line() + facet_grid(. ~ caller,scales = "free_x") + theme(legend.position="bottom")
+
+ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
   geom_line() + scale_x_log10() + facet_grid(. ~ caller) + theme(legend.position="bottom")
+
 
 ```
 
