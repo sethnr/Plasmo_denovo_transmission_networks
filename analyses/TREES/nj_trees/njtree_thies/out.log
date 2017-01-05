@@ -1,0 +1,11 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.NOSNGL.vcf
+	--keep-only-indels
+
+After filtering, kept 18 out of 18 Individuals
+After filtering, kept 743 out of a possible 1552 Sites
+Run Time = 0.00 seconds

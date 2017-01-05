@@ -1,0 +1,151 @@
+#!/usr/bin/python
+
+import vcf
+import sys
+import argparse
+from string import *
+import collections
+import copy
+import re 
+import os.path 
+
+
+parser = argparse.ArgumentParser(description='get non-ref allele depth')
+
+parser.add_argument('-v','--vcf', action="store", dest='vcfFile1', type=str, help='vcfFile1', nargs='?', default=None)
+parser.add_argument('-o','--out', action="store", dest='out', type=str, help='outfile', nargs='?', default=None)
+parser.add_argument('-l','--locus', action="store", dest='locus', type=str, help='locus', nargs='?', default=None)
+
+parser.add_argument('--012', action="store_true", dest='make012', help='make 012 file', default=False)
+parser.add_argument('--ped', action="store_true", dest='makePed', help='make ped file (default)', default=False)
+
+
+args = parser.parse_args()
+
+#if neither is supplied, make ped file by default
+print >>sys.stderr, args.makePed, args.make012
+if not args.makePed and not args.make012:
+    args.makePed=True
+print >>sys.stderr, args.makePed, args.make012
+
+
+
+if args.vcfFile1 is None:
+    print >>sys.stderr, "no VCF file provided"
+    exit(100)
+if args.out is None:
+    args.out = os.path.basename(args.vcfFile1)
+    args.out = args.out.replace(".vcf.gz$","")
+    args.out = args.out.replace(".vcf$","")
+
+vcfFile1 = open(args.vcfFile1,'r')
+
+depthlim=20
+
+sample = re.sub(".vcf.*$","",args.vcfFile1)
+
+def getCallDataVal(name, rec):
+    FORMAT = rec.FORMAT.split(":")
+    nameIndex=-1
+    retlist = list()
+    if name in FORMAT:
+        nameIndex=FORMAT.index(name)
+    for call in rec.samples:
+        callData= list(call.data)
+        value=None
+        if nameIndex > 0:
+            value=callData[nameIndex]        
+        retlist += [value]
+    return retlist 
+
+reader1=vcf.Reader(vcfFile1)
+loci = list()
+chroms = list()
+chromID=0
+
+if args.locus is None:
+    varList = reader1
+else:
+    locus = re.split('[:-]',args.locus)
+    if len(locus)==1:
+        if locus[0] in reader1.contigs:
+            varlist=reader1.fetch(locus[0], 0, reader1.contigs[locus[0]].length)
+        else:
+            print >>sys.stderr, "couldn't find locus "+args.locus
+            exit(100)
+    elif len(locus)==3:
+        varlist=reader1.fetch(locus[0],int(locus[1]),int(locus[2]))
+    else:
+        print >>sys.stderr, "couldn't parse locus "+args.locus
+        exit(100)
+
+
+
+
+for bx in sorted(bxcount):
+    if bxcount[bx] < args.minBX:
+        del bxcount[bx]
+print >>sys.stderr, "found "+str(len(bxcount))+" barcodes above "+str(args.minBX)+" vars"
+bxs = list(bxcount.keys())
+bxs.sort()
+
+outprefix = ".".join(map(str,[args.out,"bx",args.minBX]))
+if args.locus is not None:
+    outprefix += "."+args.locus
+
+if args.makePed:
+    mapfile = open(outprefix+".map","w")
+    pedfile = open(outprefix+".ped","w")
+if args.make012:
+    posfile = open(outprefix+".pos","w")
+    indfile = open(outprefix+".indv","w")
+    genofile = open(outprefix+".012","w")
+    
+
+
+for rec in reader1:
+    if not rec.is_monomorphic:
+        continue
+    elif not len(rec.alleles)==2:
+        continue
+
+    if rec.CHROM not in chroms:
+        chroms += [rec.CHROM]
+        chromID+=1
+    varname = rec.CHROM+"_"+str(rec.POS)
+    
+    loci += [(chromID,varname,0,rec.POS)]
+
+    BXs = getCallDataVal("BX",rec)
+
+
+
+
+    if args.makePed:
+        print >>pedfile, " ".join(["null",bx,"0","0","1","0"]),
+    if args.make012:
+        print >>indfile, " ".join(["null",bx,"0","0","1","0"])
+
+
+    (call,allele) = bxCalls[(bx,varname)]
+        else:
+            (call,allele) = (".","0")
+
+        if args.makePed:
+            print >>pedfile," "+allele+" "+allele,
+        if args.make012:
+            print >>genofile," "+str(call),
+    if args.makePed:
+        print >>pedfile,""
+    if args.make012:
+        print >>genofile,""
+        
+if args.makePed:
+    pedfile.close()
+    mapfile.close()
+if args.make012:
+    posfile.close()
+    indfile.close()
+    genofile.close()
+
+exit(0)

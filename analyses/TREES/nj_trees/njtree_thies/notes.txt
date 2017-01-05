@@ -1,0 +1,192 @@
+
+pip install --user -U dendropy
+wget https://pypi.python.org/packages/source/D/DendroPy/DendroPy-4.0.3.tar.gz
+cp dendro/applications/sumtr... ./
+
+
+
+bedtools intersect -header -a Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.vcf -b callable_disco_only_5k.bed > Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLDISCOONLY.vcf
+bedtools intersect -header -a Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.vcf -b callable_both_5k.bed > Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLBOTH.vcf
+
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLBOTH \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLBOTH.vcf
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLDISCOONLY \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLDISCOONLY.vcf
+
+
+
+qsub -N pedBoot -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/boot_all/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.NOSNGL.ped
+
+qsub -N pedBoot -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/boot_snp/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.NOSNGL.SNP.recode.ped
+
+qsub -N pedBoot -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/boot_indel/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.NOSNGL.INDEL.recode.ped
+
+qsub -N pedBoot -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/boot_inaccess/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLDISCOONLY.ped
+
+qsub -N pedBoot -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/boot_access/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.CALLBOTH.ped
+
+#     -V -cwd  depend=afterok:pedBoot \
+
+qsub -N pedBootSUM -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -hold_jid pedBoot \
+     /seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies/sumAllTrees.sh
+
+
+python sumtrees.py -F nexus --min-clade-freq=0.95 \
+       --output-tree-filepath=boot_all/sum_all.nexus \
+       boot_all/*nexus
+python sumtrees.py -F nexus --min-clade-freq=0.95 \
+       --output-tree-filepath=boot_snp/sum_snp.nexus \
+       boot_snp/*nexus
+python sumtrees.py -F nexus --min-clade-freq=0.95 \
+       --output-tree-filepath=boot_indel/sum_indel.nexus \
+       boot_indel/*nexus
+
+python sumtrees.py -F nexus --min-clade-freq=0.95 \
+       --output-tree-filepath=boot_inaccess/sum_inaccess.nexus \
+       boot_inaccess/*nexus
+
+python sumtrees.py -F nexus --min-clade-freq=0.95 \
+       --output-tree-filepath=boot_access/sum_access.nexus \
+       boot_access/*nexus
+
+
+
+python sumtrees.py -F nexus --min-clade-freq=0.95 \
+       --output-tree-filepath=boot_access/sum_access.T.nexus \
+       -t \
+       boot_access/*nexus
+
+
+
+
+for SUMM in consensus mcct
+do
+  for SET in all snp indel access inaccess
+  do
+  python sumtrees.py -F nexus -s $SUMM \
+       --output-tree-filepath=boot_${SET}/sum_${SET}.${SUMM}.nexus \
+       boot_${SET}/Thies*nexus
+  done
+done
+
+
+
+#REPEAT WITHOUT DISCORDS
+bedtools intersect -header -a Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf -b callable_disco_only_5k.bed > Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONLY.vcf
+bedtools intersect -header -a Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf -b callable_both_5k.bed > Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLBOTH.vcf
+
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLBOTH \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLBOTH.vcf
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONLY \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONLY.vcf
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.vcf
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.vcf
+vcftools --plink \
+	 --out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP \
+	 --vcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf
+
+
+mkdir boot_CALLBOTH
+mkdir boot_CALLDISCOONLY
+mkdir boot_SNP
+mkdir boot_INDEL
+mkdir boot_ALL
+cd boot_CALLBOTH
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLBOTH.ped
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLBOTH.map
+cd ../boot_CALLDISCOONLY
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONLY.ped
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONLY.map
+cd ../boot_SNP
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.ped
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.map
+cd ../boot_INDEL
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.ped
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.map
+cd ../boot_ALL
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.ped Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.ALL.ped
+ln -s ../Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.map Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.ALL.map
+cd ../
+
+
+for SET in CALLBOTH CALLDISCOONLY SNP INDEL ALL;
+do
+   qsub -N pedBoot -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/boot_${SET}/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.${SET}.ped
+done
+
+qsub -N pedBootSUM -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -hold_jid pedBoot \
+     /seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies/sumAllTrees.sh
+
+
+for SET in CALLBOTH CALLDISCOONLY SNP INDEL ALL;
+do
+   qsub -N pedBootDis -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/discord_bootstraps/boot_${SET}/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.${SET}.ped
+done
+
+qsub -N pedBootSUM -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -hold_jid pedBootDis \
+     /seq/plasmodium/sredmond/pfdisco/analyses/njtree_thies/sumDiscordTrees.sh
+
+
+for SET in ALL ;
+do
+   qsub -N pedBootDis -o out/ -j y -e out/ \
+     -l h_vmem=8.0G -l h_rt=1:00:00 \
+     -q gaag -pe smp_pe 1  \
+     -V -cwd -t 1:100 \
+     $DISCO1/analyses/njtree_thies/pedToNJNexus.sh \
+       $DISCO1/analyses/njtree_thies/discord_bootstraps/boot_${SET}/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.${SET}.ped
+done
+bedtools intersect -header -a thies_300100_haplo.vcf.gz -b callable_haplo_5k.bed > thies_300100_haplo.CALLHAPLO.vcf
+python ../../scripts/vcf/getAlleleTableVCF.py -v thies_300100_haplo.CALLHAPLO.RENAME.INDEL.vcf.gz

@@ -1,1 +1,0 @@
-/seq/plasmodium/sredmond//pfdisco//scripts/R/getNJTreePed.R

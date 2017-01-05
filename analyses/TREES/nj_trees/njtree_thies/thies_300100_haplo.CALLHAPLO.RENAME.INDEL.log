@@ -1,0 +1,20 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf thies_300100_haplo.CALLHAPLO.RENAME.vcf.gz
+	--keep-only-indels
+	--maf 0.01
+	--max-alleles 2
+	--max-maf 0.99
+	--min-alleles 2
+	--012
+	--out thies_300100_haplo.CALLHAPLO.RENAME.INDEL
+
+Using zlib version: 1.2.3
+Versions of zlib >= 1.2.4 will be *much* faster when reading zipped VCF files.
+After filtering, kept 18 out of 18 Individuals
+Writing 012 matrix files ... Done.
+After filtering, kept 21980 out of a possible 66573 Sites
+Run Time = 1.00 seconds
