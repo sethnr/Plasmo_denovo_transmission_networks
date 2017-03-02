@@ -4,9 +4,12 @@ library(stringdist)
 library(reshape2)
 library(phangorn)
 
+#fileroot <- commandArgs(TRUE)[1]
 
-fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles"
-fileroot <- commandArgs(TRUE)[1]
+
+fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles"
+outfolder <- "boot_allvars"
+
 
 tab=paste(fileroot,'tab',sep='.')
 outpng=paste(fileroot,'png',sep='.')
@@ -72,3 +75,4 @@ dev.off()
 
 
 write.nexus(treeRatchet,file=outnex)
+

@@ -1,0 +1,26 @@
+python sumtrees.py -F nexus -s mcct --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.pars.BOOT.nexus Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.*.pars.nexus
+python /seq/plasmodium/sredmond/idi_broad_scripts/vcf/getAlleleTableVCF.py -v Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.vcf.gz -M -1 > Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles.tab
+python sumtrees.py --weighted-trees -F nexus -t Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.nexus --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.pars.BOOT.weighted.target.nexus Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.alleles.*.pars.nexus
+python sumtrees.py -F nexus -t Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.nexus --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.pars.BOOT.target.nexus boot_allvars/*.nexus
+python sumtrees.py -F nexus -t Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.nexus --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.pars.BOOT.target.nexus boot_discords/*.nexus
+
+
+
+python sumtrees.py -F nexus --force-unrooted  \
+  -t  Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.nexus \
+  --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.pars.BOOT.target.nexus  \
+  boot_allvars/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.*.nexus
+
+python sumtrees.py -F nexus --force-unrooted \
+  -t Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.nexus \
+  --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.pars.BOOT.target.nexus  \
+  boot_discords/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles.*.nexus
+
+
+python sumtrees.py -F nexus --force-unrooted -s consensus \
+  --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.pars.BOOT.consensus.nexus  \
+  boot_allvars/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.*.nexus
+
+python sumtrees.py -F nexus --force-unrooted -s consensus \
+  --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.pars.BOOT.consensus.nexus  \
+  boot_discords/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles.*.nexus

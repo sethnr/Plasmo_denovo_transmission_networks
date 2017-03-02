@@ -1,0 +1,112 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=18;
+	taxlabels
+	'Th061.13'[&!color=#ff0000]
+	'Th068.12'[&!color=#ff0000]
+	'Th074.13'[&!color=#00ff00]
+	'Th086.07'[&!color=#00ff00]
+	'Th092.13'[&!color=#0000ff]
+	'Th095.13'[&!color=#ff0000]
+	'Th106.09'[&!color=#00ff00]
+	'Th106.11'[&!color=#00ff00]
+	'Th117.11'[&!color=#00ff00]
+	'Th132.11'[&!color=#00ff00]
+	'Th134.11'[&!color=#00ff00]
+	'Th162.12'[&!color=#00ff00]
+	'Th166.12'[&!color=#0000ff]
+	'Th196.12'[&!color=#00ff00]
+	'Th211.13'[&!color=#0000ff]
+	'Th230.12'[&!color=#00ff00]
+	'Th245.13'[&!color=#0000ff]
+	'Th246.13'[&!color=#0000ff]
+;
+end;
+
+begin trees;
+	tree UNTITLED = [&U] ((('Th061.13'[&support=1.0,length_mean=0.00409938720928,length_median=0.0041070547355,length_sd=2.73580019176E-4,length_hpd95={0.003568596352,0.004544498212},length_quant_5_95={0.003587613293,0.004522423684},length_range={0.00347556635,0.004827267766}]:0.004145,'Th095.13'[&support=1.0,length_mean=0.00409822765455,length_median=0.0041070547355,length_sd=2.71920014104E-4,length_hpd95={0.003568596352,0.004544498212},length_quant_5_95={0.003587613293,0.004511120436},length_range={0.00347556635,0.004827267766}]:0.004079)[&support=0.99,length_mean=9.1809833193E-4,length_median=9.56203766E-4,length_sd=2.7042248803E-4,length_hpd95={2.829714094E-4,0.001350381905},length_quant_5_95={4.284221526E-4,0.001321752266},length_range={2.829714094E-4,0.001504513541},boot=0.99]:0.001701,'Th068.12'[&support=1.0,length_mean=0.00500714500322,length_median=0.0050061542225,length_sd=3.04606869841E-4,length_hpd95={0.004413193125,0.005542700883},length_quant_5_95={0.004500801079,0.005475759235},length_range={0.004201504138,0.005812001679}]:0.004194)[&support=1.0,length_mean=0.199608718431,length_median=0.1988304605,length_sd=0.0032241619171,length_hpd95={0.195536192,0.2063649784},length_quant_5_95={0.1958735318,0.2054790965},length_range={0.1949682354,0.213017892},boot=1.0]:0.003,((((('Th132.11'[&support=1.0,length_mean=0.153364951009,length_median=0.20263546585,length_sd=0.0881805189407,length_hpd95={0.001056083597,0.2079878269},length_quant_5_95={0.001296350995,0.20782654},length_range={0.001056083597,0.2111616648}]:0.001465,(('Th162.12'[&support=1.0,length_mean=0.0818738678477,length_median=0.0014112776605,length_sd=0.0992445122999,length_hpd95={9.821130057E-4,0.2057952347},length_quant_5_95={0.001005109306,0.2053955161},length_range={9.821130057E-4,0.2077765419}]:0.001808,'Th230.12'[&support=1.0,length_mean=0.0757429530181,length_median=0.0013735487905,length_sd=0.0977067866497,length_hpd95={9.821130057E-4,0.2049196465},length_quant_5_95={0.001005109306,0.2047169281},length_range={9.821130057E-4,0.2077765419}]:6.67E-4)[&support=0.91,length_mean=0.0916811920967,length_median=3.071643435E-4,length_sd=0.101721583624,length_hpd95={-2.775557562E-17,0.2065196445},length_quant_5_95={0.0,0.2059437515},length_range={-2.775557562E-17,0.2090883362},boot=0.91]:5.5E-5,'Th196.12'[&support=1.0,length_mean=0.120563928426,length_median=0.2012669044,length_sd=0.0998083274397,length_hpd95={0.001025147496,0.2068242262},length_quant_5_95={0.0012667849,0.2067592966},length_range={0.001025147496,0.2086957892}]:0.001581)[&support=0.47,length_mean=0.0655029330702,length_median=0.0,length_sd=0.0967131801777,length_hpd95={-5.551115123E-17,0.2094784465},length_quant_5_95={-5.551115123E-17,0.2065597551},length_range={-5.551115123E-17,0.2095361813},boot=0.47]:6.9E-5)[&support=1.0,length_mean=0.004205405795,length_median=0.0,length_sd=0.0295867949449,length_hpd95={-5.551115123E-17,2.775557562E-17},length_quant_5_95={-2.775557562E-17,2.775557562E-17},length_range={-5.551115123E-17,0.211652202},boot=1.0]:4.23E-4,'Th074.13'[&support=1.0,length_mean=0.153398053508,length_median=0.20253598905,length_sd=0.0886458553967,length_hpd95={4.621848739E-4,0.2103269564},length_quant_5_95={5.931449392E-4,0.2086957892},length_range={4.621848739E-4,0.2177649278}]:9.66E-4)[&support=0.36,length_mean=1.54197642333E-18,length_median=0.0,length_sd=6.44791676114E-18,length_hpd95={0.0,2.775557562E-17},length_quant_5_95={0.0,0.0},length_range={0.0,2.775557562E-17},boot=0.36]:0.0,'Th106.09'[&support=1.0,length_mean=0.149076567509,length_median=0.20245500005,length_sd=0.0906833247438,length_hpd95={5.419376355E-4,0.2086957892},length_quant_5_95={5.931449392E-4,0.2079878269},length_range={4.621848739E-4,0.2111616648}]:6.78E-4)[&support=1.0,length_mean=-3.053113318E-18,length_median=0.0,length_sd=2.49176380911E-17,length_hpd95={-5.551115123E-17,2.775557562E-17},length_quant_5_95={-5.551115123E-17,2.775557562E-17},length_range={-5.551115123E-17,5.551115123E-17},boot=1.0]:0.006646,(('Th117.11'[&support=1.0,length_mean=4.93316997498E-4,length_median=5.015157047E-4,length_sd=1.14297837661E-4,length_hpd95={3.132439544E-4,7.4955167E-4},length_quant_5_95={3.167363487E-4,6.80300735E-4},length_range={2.109793662E-4,8.001010654E-4}]:4.56E-4,'Th134.11'[&support=1.0,length_mean=5.01804059159E-4,length_median=5.033770188E-4,length_sd=1.19543994942E-4,length_hpd95={3.132439544E-4,7.4955167E-4},length_quant_5_95={3.167363487E-4,6.965552178E-4},length_range={2.109793662E-4,8.001010654E-4}]:4.67E-4)[&support=0.7,length_mean=2.2481849797E-4,length_median=2.356673662E-4,length_sd=1.04274895323E-4,length_hpd95={4.201680672E-5,4.197976575E-4},length_quant_5_95={4.215140786E-5,3.890968746E-4},length_range={0.0,4.296793125E-4},boot=0.7]:4.2E-5,'Th106.11'[&support=1.0,length_mean=6.50689946078E-4,length_median=6.4662793915E-4,length_sd=1.15654799467E-4,length_hpd95={4.278141826E-4,8.690007538E-4},length_quant_5_95={4.405840886E-4,8.671124112E-4},length_range={3.959332004E-4,9.027544508E-4}]:8.18E-4)[&support=1.0,length_mean=0.171660869096,length_median=0.20228345075,length_sd=0.0730177346237,length_hpd95={0.004542336819,0.2072210134},length_quant_5_95={0.005139005897,0.2071931476},length_range={0.004542336819,0.2171530876},boot=1.0]:0.006034)[&support=0.84,length_mean=1.22256702125E-17,length_median=0.0,length_sd=2.59767915433E-17,length_hpd95={-2.775557562E-17,5.551115123E-17},length_quant_5_95={-2.775557562E-17,5.551115123E-17},length_range={-5.551115123E-17,5.551115123E-17},boot=0.84]:0.003654,'Th086.07'[&support=1.0,length_mean=0.172320046107,length_median=0.20289123295,length_sd=0.0730117192291,length_hpd95={0.005270230546,0.20782654},length_quant_5_95={0.005749789385,0.2077316854},length_range={0.005270230546,0.2177649278}]:0.008881)[&support=1.0,length_mean=3.60822483E-18,length_median=0.0,length_sd=2.38843953318E-17,length_hpd95={-2.775557562E-17,5.551115123E-17},length_quant_5_95={-2.775557562E-17,5.551115123E-17},length_range={-5.551115123E-17,5.551115123E-17},boot=1.0]:0.003,(('Th166.12'[&support=1.0,length_mean=0.00221678999736,length_median=0.0022354070895,length_sd=3.6296592976E-4,length_hpd95={0.001637210864,0.003004647375},length_quant_5_95={0.001650992685,0.002877063295},length_range={0.001262626263,0.003070800168}]:0.00216,('Th092.13'[&support=1.0,length_mean=0.002200469347,length_median=0.0022279110335,length_sd=3.12005414097E-4,length_hpd95={0.001637210864,0.00284980978},length_quant_5_95={0.001679543164,0.002747598473},length_range={0.001596504495,0.003068400838}]:0.003072,('Th211.13'[&support=1.0,length_mean=0.00242703390818,length_median=0.002376277832,length_sd=2.40621981426E-4,length_hpd95={0.002121403067,0.003073493965},length_quant_5_95={0.002126099707,0.002971165901},length_range={0.001914983165,0.003104936006}]:0.002485,'Th246.13'[&support=1.0,length_mean=0.00248371656595,length_median=0.0024114140735,length_sd=3.20589007851E-4,length_hpd95={0.002104162309,0.003157729367},length_quant_5_95={0.002117037412,0.003072995461},length_range={0.001262626263,0.003240624213}]:0.001793)[&support=0.25,length_mean=4.7014323656E-6,length_median=0.0,length_sd=1.3870878151E-5,length_hpd95={-4.33680869E-19,5.859211518E-5},length_quant_5_95="None",length_range={-4.33680869E-19,5.859211518E-5},boot=0.25]:0.0)[&support=0.43,length_mean=1.13389263395E-6,length_median=0.0,length_sd=7.43543124031E-6,length_hpd95={-4.33680869E-19,4.33680869E-19},length_quant_5_95={-4.33680869E-19,0.0},length_range={-4.33680869E-19,4.875738326E-5},boot=0.43]:0.0)[&support=0.77,length_mean=0.00119652137303,length_median=0.001214081959,length_sd=2.14044131351E-4,length_hpd95={8.464201283E-4,0.001673834219},length_quant_5_95={8.464201283E-4,0.001516905163},length_range={6.266852039E-4,0.001673834219},boot=0.77]:0.001123,'Th245.13'[&support=1.0,length_mean=0.00340935281719,length_median=0.003502137442,length_sd=3.66373421534E-4,length_hpd95={0.00264561374,0.004016527539},length_quant_5_95={0.002664725291,0.003852884129},length_range={0.002400824754,0.004134953162}]:0.003612)[&support=1.0,length_mean=0.201187503613,length_median=0.2004406785,length_sd=0.00323574368353,length_hpd95={0.1972455667,0.207595346},length_quant_5_95={0.1974901692,0.2066612533},length_range={0.1968608891,0.2151112762},boot=1.0]:0.003)[&support=1.0,length_mean=0.0,length_median=0,length_sd=0.0,length_hpd95={0,0},length_quant_5_95={0,0},length_range={0,0},boot=1.0];
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=1.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="Branch times";
+	set branchLabels.fontName="Abadi MT Condensed Extra Bold";
+	set branchLabels.fontSize=8;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=0;
+	set legend.attribute=null;
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute=null;
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="User selection";
+	set nodeLabels.displayAttribute="boot";
+	set nodeLabels.fontName="Helvetica";
+	set nodeLabels.fontSize=12;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=true;
+	set nodeLabels.significantDigits=4;
+	set nodeShape.colourAttribute=null;
+	set nodeShape.isShown=false;
+	set nodeShape.minSize=10.0;
+	set nodeShape.scaleType=Width;
+	set nodeShape.shapeType=Circle;
+	set nodeShape.size=4.0;
+	set nodeShape.sizeAttribute=null;
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set tipLabels.colorAttribute="User selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="Helvetica";
+	set tipLabels.fontSize=14;
+	set tipLabels.fontStyle=1;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=false;
+	set trees.orderType="increasing";
+	set trees.rooting=false;
+	set trees.rootingType="User Selection";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+
