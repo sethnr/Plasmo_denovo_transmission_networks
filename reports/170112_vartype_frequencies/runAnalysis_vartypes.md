@@ -37,6 +37,10 @@ vartypes$maxcons = vartypes$consequence
 vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
 vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
 
+vartypes$maxcons[vartypes$consequence=="disruptive_inframe_deletion"] <- "inframe_deletion"
+vartypes$maxcons[vartypes$consequence=="disruptive_inframe_insertion"] <- "inframe_insertion"
+
+
 vartypes$effect="NONE"
 vartypes$effect[vartypes$maxcons %in% c("inframe_insertion","inframe_deletion","synonymous_variant","intergenic","intragenic_variant","non_coding_exon_variant")] <- "SILENT"
 vartypes$effect[vartypes$maxcons %in% c("missense_variant","disruptive_inframe_insertion","disruptive_inframe_deletion","splice_region_variant")] <- "MISSENSE"
@@ -93,21 +97,49 @@ table(vartypes[,c("vartype","STRtype")])
 ```
 
 ```r
+table(vartypes[,c("coding","STRtype")])
+```
+
+```
+##       STRtype
+## coding      polyA  STR TArep TArich
+##      0 2028   121 1192     6      9
+##      1  502     1  333     0      3
+```
+
+```r
+pctable <- function(X) {
+  t(round(t(table(X)) / apply(table(X),2,FUN=sum),3)*100)
+  }
+
 #RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
 table(indels[,c("maxcons","STR")])
 ```
 
 ```
-##                               STR
-## maxcons                          0   1
-##   disruptive_inframe_deletion   30  29
-##   disruptive_inframe_insertion  22  16
-##   frameshift_variant             9   3
-##   inframe_deletion              13  15
-##   inframe_insertion             31  16
-##   intergenic                   639 386
-##   missense_variant               5   7
-##   non_coding_exon_variant        4   0
+##                          STR
+## maxcons                     0   1
+##   frameshift_variant        9   3
+##   inframe_deletion         43  44
+##   inframe_insertion        53  32
+##   intergenic              639 386
+##   missense_variant          5   7
+##   non_coding_exon_variant   4   0
+```
+
+```r
+pctable(indels[,c("maxcons","STR")])
+```
+
+```
+##                          STR
+## maxcons                      0    1
+##   frameshift_variant       1.2  0.6
+##   inframe_deletion         5.7  9.3
+##   inframe_insertion        7.0  6.8
+##   intergenic              84.9 81.8
+##   missense_variant         0.7  1.5
+##   non_coding_exon_variant  0.5  0.0
 ```
 
 ```r
@@ -126,24 +158,77 @@ table(snps[,c("maxcons","STR")])
 ```
 
 ```r
+pctable(snps[,c("maxcons","STR")])
+```
+
+```
+##                          STR
+## maxcons                      0    1
+##   intergenic              78.2 79.0
+##   intragenic_variant       0.0  0.1
+##   missense_variant        14.5 15.7
+##   non_coding_exon_variant  0.6  0.0
+##   stop_gained              0.3  0.5
+##   synonymous_variant       6.4  4.8
+```
+
+```r
 #RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
 table(vartypes[,c("maxcons","vartype")])
 ```
 
 ```
-##                               vartype
-## maxcons                        INDEL  SNP
-##   disruptive_inframe_deletion     59    0
-##   disruptive_inframe_insertion    38    0
-##   frameshift_variant              12    0
-##   inframe_deletion                28    0
-##   inframe_insertion               47    0
-##   intergenic                    1025 2331
-##   intragenic_variant               0    1
-##   missense_variant                12  445
-##   non_coding_exon_variant          4   10
-##   stop_gained                      0   12
-##   synonymous_variant               0  171
+##                          vartype
+## maxcons                   INDEL  SNP
+##   frameshift_variant         12    0
+##   inframe_deletion           87    0
+##   inframe_insertion          85    0
+##   intergenic               1025 2331
+##   intragenic_variant          0    1
+##   missense_variant           12  445
+##   non_coding_exon_variant     4   10
+##   stop_gained                 0   12
+##   synonymous_variant          0  171
+```
+
+```r
+pctable(vartypes[,c("maxcons","vartype")])
+```
+
+```
+##                          vartype
+## maxcons                   INDEL  SNP
+##   frameshift_variant        1.0  0.0
+##   inframe_deletion          7.1  0.0
+##   inframe_insertion         6.9  0.0
+##   intergenic               83.7 78.5
+##   intragenic_variant        0.0  0.0
+##   missense_variant          1.0 15.0
+##   non_coding_exon_variant   0.3  0.3
+##   stop_gained               0.0  0.4
+##   synonymous_variant        0.0  5.8
+```
+
+```r
+table(vartypes[,c("vartype","effect")])
+```
+
+```
+##        effect
+## vartype SILENT MISSENSE NONSENSE
+##   INDEL   1201       12       12
+##   SNP     2513      445       12
+```
+
+```r
+table(vartypes[,c("vartype","effect")])
+```
+
+```
+##        effect
+## vartype SILENT MISSENSE NONSENSE
+##   INDEL   1201       12       12
+##   SNP     2513      445       12
 ```
 
 ```r
@@ -155,6 +240,17 @@ table(vartypes[,c("coding","vartype")])
 ## coding INDEL  SNP
 ##      0  1025 2331
 ##      1   200  639
+```
+
+```r
+pctable(vartypes[,c("coding","vartype")])
+```
+
+```
+##       vartype
+## coding INDEL  SNP
+##      0  83.7 78.5
+##      1  16.3 21.5
 ```
 
 ```r

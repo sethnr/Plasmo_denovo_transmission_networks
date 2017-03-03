@@ -36,6 +36,10 @@ vartypes$maxcons = vartypes$consequence
 vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
 vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
 
+vartypes$maxcons[vartypes$consequence=="disruptive_inframe_deletion"] <- "inframe_deletion"
+vartypes$maxcons[vartypes$consequence=="disruptive_inframe_insertion"] <- "inframe_insertion"
+
+
 vartypes$effect="NONE"
 vartypes$effect[vartypes$maxcons %in% c("inframe_insertion","inframe_deletion","synonymous_variant","intergenic","intragenic_variant","non_coding_exon_variant")] <- "SILENT"
 vartypes$effect[vartypes$maxcons %in% c("missense_variant","disruptive_inframe_insertion","disruptive_inframe_deletion","splice_region_variant")] <- "MISSENSE"
@@ -72,18 +76,29 @@ snps <- subset(vartypes,vartype=="SNP")
 
 table(vartypes[,c("vartype","STR")])
 table(vartypes[,c("vartype","STRtype")])
+table(vartypes[,c("coding","STRtype")])
 
+pctable <- function(X) {
+  t(round(t(table(X)) / apply(table(X),2,FUN=sum),3)*100)
+  }
 
 #RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
 table(indels[,c("maxcons","STR")])
+pctable(indels[,c("maxcons","STR")])
 table(snps[,c("maxcons","STR")])
+pctable(snps[,c("maxcons","STR")])
 
 
 #RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
 table(vartypes[,c("maxcons","vartype")])
+pctable(vartypes[,c("maxcons","vartype")])
+
+table(vartypes[,c("vartype","effect")])
+table(vartypes[,c("vartype","effect")])
 
 
 table(vartypes[,c("coding","vartype")])
+pctable(vartypes[,c("coding","vartype")])
 
 #MODE INDELS V SHORT
 sum(indels$varlen <= 1) / dim(indels)[[1]]
