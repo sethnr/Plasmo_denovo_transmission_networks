@@ -72,48 +72,48 @@ digraph {
   ];
 
   0 -> 1 [
-    weight=399
-    label=399
+    weight=307
+    label=307
     color="#FFF5F0"
   ];
   1 -> 2 [
-    weight=232
-    label=232
-    color="#FA6848"
+    weight=202
+    label=202
+    color="#FB8868"
   ];
-  1 -> 3 [
-    weight=236
-    label=236
-    color="#FB6B4B"
+  0 -> 3 [
+    weight=197
+    label=197
+    color="#FB8262"
   ];
   1 -> 4 [
-    weight=101
-    label=101
-    color="#990C13"
+    weight=53
+    label=53
+    color="#71020E"
   ];
-  1 -> 5 [
-    weight=226
-    label=226
-    color="#F86043"
+  0 -> 5 [
+    weight=175
+    label=175
+    color="#FA6848"
   ];
   1 -> 6 [
-    weight=99
-    label=99
-    color="#940A12"
+    weight=58
+    label=58
+    color="#7B040F"
   ];
-  4 -> 7 [
-    weight=113
-    label=113
-    color="#A91016"
+  1 -> 7 [
+    weight=63
+    label=63
+    color="#850710"
   ];
-  1 -> 8 [
-    weight=84
-    label=84
-    color="#800610"
+  4 -> 8 [
+    weight=47
+    label=47
+    color="#67000D"
   ];
   1 -> 9 [
-    weight=64
-    label=64
+    weight=45
+    label=45
     color="#67000D"
   ];
 }

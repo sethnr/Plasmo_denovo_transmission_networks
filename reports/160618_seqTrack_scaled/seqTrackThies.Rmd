@@ -7,6 +7,7 @@ library(adegenet)
 library(knitr)
 library(igraph)
 
+library(RColorBrewer)
 opts_chunk$set(fig.width=9, fig.height=9)
 opts_chunk$set(dev=c('png'))
 
@@ -18,7 +19,7 @@ sym <- function(M) {
 
 ```
 
-```{r}
+```{r warning=FALSE}
 Imat <- as.dist(t(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",sep="\t")))
 Smat <- as.dist(t(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")))
 
@@ -29,19 +30,19 @@ SIratio <- mean(dists$SNP)/mean(dists$INDEL)
 SIratio2 <- mean(dists$SNP/dists$INDEL)
 
 D <- Imat + round(Smat / SIratio2)
-D <- Smat
+#D <- Smat
 
 ```
 
 
-```{r}
+```{r warning=FALSE}
 clust <- gengraph(D,ngrp=3)
 #plot(clust$g, main="gengraph clusters")
 distmat <- as.matrix(D)
 names <- colnames(distmat)
 ```
 
-```{r}
+```{r warning=FALSE}
 meta <- read.table("daniels.thies.CA.txt",sep="\t",header=T)
 rownames(meta) <- meta$name
 meta <- meta[names,]
@@ -62,7 +63,7 @@ coll3 <- coll[name3]
 
 ```
 
-```{r}
+```{r warning=FALSE}
 dist1 <- distmat[name1,name1]
 dist2 <- distmat[name2,name2]
 dist3 <- distmat[name3,name3]
@@ -76,13 +77,13 @@ res2 <- seqTrack(dist2, x.names=name2, x.dates=coll2)
 res3 <- seqTrack(dist3, x.names=name3, x.dates=coll3)
 ```
 
-```{r}
+```{r warning=FALSE}
 opts_chunk$set(fig.width=12, fig.height=12)
 opts_chunk$set(dev=c('png','postscript'))
 ```
 
 #INDEL plots only
-```{r}
+```{r warning=FALSE}
 
 cols <- brewer.pal(7, "Greens")
 
@@ -102,19 +103,19 @@ plot(igGREEN,main="INDELs, clade 29",vertex.size=25,
 
 ```
 
-```{r}
+```{r warning=FALSE}
 write.graph(igGREEN,paste("clade29.seqtrack.SIscaled.dot"),format="dot")
 write.graph(igGREEN,paste("clade29.seqtrack.SIscaled.xml"),format="graphml")
 
 ```
 
-```{r}
+```{r warning=FALSE}
 opts_chunk$set(fig.width=9, fig.height=9)
 opts_chunk$set(dev=c('png','postscript'))
 ```
 
 #INDEL plots only
-```{r}
+```{r warning=FALSE}
 
 cols <- brewer.pal(7, "Blues")
 igBLUE <- as.igraph(res2)
