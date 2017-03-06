@@ -209,48 +209,216 @@ opts_chunk$set(dev=c('png','postscript'))
 ```
 
 ```{r}
-  
+
+ped <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.vcf.gz_NJnex/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.gz.ped"
+genos <- read.table(ped,colClasses="character")
+inds <- genos[,1]
+genos <- genos[,seq(7,dim(genos)[[2]],2)]
+rownames(genos)=inds
 
 
-meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+  meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
   colnames(meta)[1]<-"name"
   meta <- meta[!is.na(meta$Age),]
 
 
-  tab<-"./Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles.tab"
-  fileroot<="ThiesDiscoAlleles"
+  #tab<-"./Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles.tab"
+  fileroot<-"ThiesDiscoAlleles_ped"
   
   #read in ped file and get hamming distances:
-  alleleTab <- read.table(tab,colClasses="character",header=T,na.strings = c("."))
+  #alleleTab <- read.table(tab,colClasses="character",header=T,na.strings = c("."))
   
   c1 <- c("Th086.07","Th106.09","Th106.11","Th117.11","Th132.11","Th134.11","Th162.12","Th196.12","Th230.12","Th074.13")
-  genos <- t(data.matrix(alleleTab[3:dim(alleleTab)[2]]))
+  #genos <- t(data.matrix(alleleTab[3:dim(alleleTab)[2]]))
+
+
   genos <- genos[c1,]
   inds <- c1
 
 
-  genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
-  distmat <- dist.hamming(genosDat,exclude="pairwise")
-  distmat <- round(distmat*dim(genos)[2])
-
-  net <- makeNetSingle(distmat,meta)
-  printGraph(net,"Greens",tab)
+#  inds<-row.names(genos)
+#   DNdistmat = matrix(nrow=length(c1),ncol=length(c1))
+#   colnames(DNdistmat) = c1
+#   rownames(DNdistmat) = c1
+# 
+#   outs <- inds[(!inds %in% c1)]
+#   write("calculating de novo distance matrix",stderr())
+# 
+#   for (i in c1){
+#       for (j in c1){
+#         for (o in outs){
+#             if(length(filled) > 0) {
+#             meta[meta$name==i,"Date"] > meta[meta$name==j,"Date"]
+#             distmat[i,j] = 
+#         }else {
+#           distmat[i,j]=-1
+#         }
+#       }
+#   }
+# 
   
 
+
+  distmat = matrix(nrow=length(inds),ncol=length(inds))
+  colnames(distmat) = inds
+  rownames(distmat) = inds
+
+  write("calculating distance matrix",stderr())
+  for (i in inds){
+      for (j in inds){
+      filled = intersect(which(genos[i,] != 0), which(genos[j,] !=0))
+      write(paste("calculating",i,"v",j),stderr())
+      write(length(filled),stderr())
+  
+  #    distmat[i,j] = sum(genos[i,]!=genos[j,])
+      if(length(filled) > 0) {
+          distmat[i,j] = sum(genos[i,filled]!=genos[j,filled])
+        }else {
+          distmat[i,j]=-1
+        }
+      }
+  }
+
+  
+
+  distmat <- as.dist(distmat)
+  net <- makeNetSingle(distmat,meta)
+  #printGraph(net,"Greens",tab)
+  
+distmatAllVars <- distmat
+netAllVars <- net
   #target:
-  targetDist <- as.dist(sym(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf.dist.tab.txt",sep="\t")[c1,c1]))
-  printGraph(makeNetSingle(targetDist,meta),"Greens","test")
+  #targetDist <- as.dist(sym(read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf.dist.tab.txt",sep="\t")[c1,c1]))
+  #printGraph(makeNetSingle(targetDist,meta),"Greens","test")
 
 ```
+
+
 
 
 
 ```{r}
-  outnet=paste(".",outfolder, paste(fileroot,"c29",boot,'seqtrack.net',sep='.'),sep="/")
-  outtab=paste(".",outfolder, paste(fileroot,"c29",boot,'dist.tab.txt',sep='.')         ,sep="/")
-  
+genosStatic <- genos
+outfolder <- "./bootstraps"
+bstraps <- system("ls bootstraps/*",intern = T)
+if (length(bstraps)>0) {write("using old bootstraps",stderr())
+                     } else{
+  write("bootstrapping (100)",stderr())
+    for (boot in c(1:100)) {
+    
+        bootsample <- sample(c(1:dim(genos)[2]),replace = T)
+        genos <- genosStatic[c1,bootsample]
+        inds <- c1
+      
+        distmat = matrix(nrow=length(inds),ncol=length(inds))
+        colnames(distmat) = inds
+        rownames(distmat) = inds
+      
+        write("calculating distance matrix",stderr())
+        for (i in inds){
+            for (j in inds){
+            filled = intersect(which(genos[i,] != 0), which(genos[j,] !=0))
+            if(length(filled) > 0) {
+                distmat[i,j] = sum(genos[i,filled]!=genos[j,filled])
+              }else {
+                distmat[i,j]=-1
+              }
+            }
+        }
+        distmat <- as.dist(distmat)
+        net <- makeNetSingle(distmat,meta)
+        #printGraph(net,"Greens",tab)
+        
+        outnet=paste(".",outfolder, paste(fileroot,"c29",boot,'seqtrack.net',sep='.'),sep="/")
+        write.table(net,outnet,quote=F,row.names=F)
+      
+      }
+}
+```
+
+```{r}
+bstraps <- system("ls bootstraps/*",intern = T)
+
+blinks <- matrix(rep(0,length(inds)**2),nrow = length(inds),ncol=length(inds),dimnames = list(inds,inds))
+
+for (b in bstraps) {
+  tab <- read.table(b,header=T)
+  for (i in c(1:dim(tab)[[1]])) {
+#    write(paste(i,tab$ances[[i]]),stderr())    
+    if (!is.na(tab$ances[i])) {
+     blinks[tab$id[i],tab$ances[i]] = blinks[tab$id[i],tab$ances[i]]+1
+    }
+  }
+}
+blinks
 
 ```
 
 
+```{r}
+meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+colnames(meta)[1]<-"name"
+meta <- meta[meta$name %in% inds,]
+row.names(meta) <- inds
+meta$Date <- as.Date(as.character(meta$Date),"%d/%m/%Y",origin = "2000-01-01")
+
+net <- netAllVars
+net$type = "core"
+net$boot = 0
+
+for (t in inds) {
+  for (f in inds) {
+    fi = which(inds==f)
+      #write(paste(t,f,blinks[t,f],net[t,"ances"],is.na(net[t,"ances"]),net[t,"ances"] == fi),stderr())
+    if (blinks[t,f] > 0) {
+      if ((!is.na(net[t,"ances"])) & net[t,"ances"] == fi) {net[t,"boot"] = blinks[t,f]}
+      else {
+        nextI = dim(net)[[1]]+1
+#        write(paste("  adding",nextI,":",leaf,ances,sep=" "),stderr())
+        #integers
+        net[nextI,c("id","ances","weight","year","boot")] <- c(which(inds==t), which(inds==f),as.matrix(distmat)[t,f],net[t,"year"], blinks[t,f])
+        net[nextI,4] <- meta[f,"Date"]
+        net[nextI,5] <- net[t,"date"]
+        net[nextI,7:8] <- c(t,"boot")
+        }
+      }
+  }
+}
+net
+  
+#plot(as.igraph(net))  
+
+cols <- brewer.pal((max(netAllVars$year)-min(netAllVars$year))+1, "Greens")
+
+#get posns from allGraph:
+ts=1.0 #textsize
+igA <- as.igraph(netAllVars)
+tree <- layout_as_tree(igA,flip.y = F)[,c(2,1)]
+
+#manually push two further ahead
+tree[inds %in% c("Th230.12","Th134.11"),1] <- 3.1 
+
+
+ig <- as.igraph(net)
+V(ig)$name <- netAllVars$name
+V(ig)$color <- cols[netAllVars$year-min(netAllVars$year)+1]
+V(ig)$label.cex <- ts
+#E(ig)$color <- factor(net$type,levels=c("core","boot"))[2:15]
+E(ig)$lty <- as.numeric(factor(net$type,levels=c("core","boot"))[2:15])
+ #frame()
+E(ig)$label <- paste(net$weight,(net$boot/100),sep="/")[2:15]
+E(ig)$color <- as.character(factor(net$type,levels=c("core","boot"),labels=c("black","#888888"))[2:15])
+E(ig)$weight <- as.numeric(factor(net$type,levels=c("boot","core"))[2:15])*2
+E(ig)$weight
+curves = rep(0,14)
+#curves[net$type[2:15]=="boot"] <- -0.5
+curves[c(10,11,12,13,14)] <- c(-0.1,0.1,-0.5,0.2,0.1)
+
+
+plot.new()
+plot(ig,layout=tree,vertex.size=25,
+     edge.curved=curves,edge.width=as.numeric(factor(net$type,levels=c("boot","core"))[2:15]),
+     edge.label.cex=1,edge.label.family="helvetica",vertex.label.family="helvetica")
+
+```
 
