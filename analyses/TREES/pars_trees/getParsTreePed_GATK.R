@@ -4,11 +4,13 @@ library(stringdist)
 library(reshape2)
 library(phangorn)
 
-fileroot <- commandArgs(TRUE)[1]
+#fileroot <- commandArgs(TRUE)[1]
 
 
 #fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles"
-outfolder <- "boot_allvars"
+#outfolder <- "boot_allvars"
+fileroot<-"thies_300100_haplo.CALLBOTH.RENAME.vcf.gz"
+outfolder <- "boot_gatk_both"
 
 
 tab=paste(fileroot,'tab',sep='.')
