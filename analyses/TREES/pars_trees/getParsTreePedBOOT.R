@@ -9,11 +9,8 @@ sym <- function(M) {
 
 
 
-fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles"
-outfolder <- "boot_discords"
-
-fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles"
-outfolder <- "boot_allvars"
+fileroot<-"thies_300100_haplo.CALLHAPLO.RENAME.alleles"
+outfolder <- "boot_gatk_haplo"
 
 #fileroot <- commandArgs(TRUE)[1]
 
@@ -21,6 +18,7 @@ outfolder <- "boot_allvars"
 tab=paste(fileroot,'tab',sep='.')
 #boot <- Sys.getenv('SGE_TASK_ID')
 
+system(paste("mkdir ",outfolder))
 
 for (boot in c(1:100)) {
     

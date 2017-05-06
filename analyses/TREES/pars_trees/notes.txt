@@ -24,3 +24,14 @@ python sumtrees.py -F nexus --force-unrooted -s consensus \
 python sumtrees.py -F nexus --force-unrooted -s consensus \
   --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.pars.BOOT.consensus.nexus  \
   boot_discords/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles.*.nexus
+
+
+
+python sumtrees.py -F nexus --force-unrooted \
+  -t thies_300100_haplo.CALLHAPLO.RENAME.alleles.nexus \
+  --output-tree-filepath=thies_300100_haplo.CALLHAPLO.RENAME.BOOT.target.nexus  \
+  boot_gatk_haplo/*.nexus
+
+python sumtrees.py -F nexus --force-unrooted -s consensus \
+  --output-tree-filepath=thies_300100_haplo.CALLHAPLO.RENAME.BOOT.consensus.nexus  \
+  boot_gatk_haplo/*.nexus

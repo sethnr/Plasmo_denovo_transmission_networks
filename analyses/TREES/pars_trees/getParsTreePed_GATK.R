@@ -9,8 +9,8 @@ library(phangorn)
 
 #fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles"
 #outfolder <- "boot_allvars"
-fileroot<-"thies_300100_haplo.CALLBOTH.RENAME.vcf.gz"
-outfolder <- "boot_gatk_both"
+fileroot<-"thies_300100_haplo.CALLHAPLO.RENAME.alleles"
+outfolder <- "boot_gatk_haplo"
 
 
 tab=paste(fileroot,'tab',sep='.')
