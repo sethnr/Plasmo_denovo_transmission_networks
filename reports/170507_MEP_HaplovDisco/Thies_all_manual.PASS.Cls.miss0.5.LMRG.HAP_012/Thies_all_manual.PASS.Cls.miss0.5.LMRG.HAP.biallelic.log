@@ -1,0 +1,17 @@
+
+VCFtools - 0.1.14
+(C) Adam Auton and Anthony Marcketta 2009
+
+Parameters as interpreted:
+	--gzvcf Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.vcf.gz
+	--max-alleles 2
+	--min-alleles 2
+	--012
+	--out Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.biallelic
+
+Using zlib version: 1.2.3
+Versions of zlib >= 1.2.4 will be *much* faster when reading zipped VCF files.
+After filtering, kept 18 out of 18 Individuals
+Writing 012 matrix files ... Done.
+After filtering, kept 31357 out of a possible 35940 Sites
+Run Time = 0.00 seconds
