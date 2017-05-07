@@ -84,48 +84,48 @@
       <data key="v_year">2013</data>
     </node>
     <edge source="n0" target="n1">
-      <data key="e_weight">399</data>
-      <data key="e_label">399</data>
+      <data key="e_weight">307</data>
+      <data key="e_label">307</data>
       <data key="e_color">#FFF5F0</data>
     </edge>
     <edge source="n1" target="n2">
-      <data key="e_weight">232</data>
-      <data key="e_label">232</data>
-      <data key="e_color">#FA6848</data>
+      <data key="e_weight">202</data>
+      <data key="e_label">202</data>
+      <data key="e_color">#FB8868</data>
     </edge>
-    <edge source="n1" target="n3">
-      <data key="e_weight">236</data>
-      <data key="e_label">236</data>
-      <data key="e_color">#FB6B4B</data>
+    <edge source="n0" target="n3">
+      <data key="e_weight">197</data>
+      <data key="e_label">197</data>
+      <data key="e_color">#FB8262</data>
     </edge>
     <edge source="n1" target="n4">
-      <data key="e_weight">101</data>
-      <data key="e_label">101</data>
-      <data key="e_color">#990C13</data>
+      <data key="e_weight">53</data>
+      <data key="e_label">53</data>
+      <data key="e_color">#71020E</data>
     </edge>
-    <edge source="n1" target="n5">
-      <data key="e_weight">226</data>
-      <data key="e_label">226</data>
-      <data key="e_color">#F86043</data>
+    <edge source="n0" target="n5">
+      <data key="e_weight">175</data>
+      <data key="e_label">175</data>
+      <data key="e_color">#FA6848</data>
     </edge>
     <edge source="n1" target="n6">
-      <data key="e_weight">99</data>
-      <data key="e_label">99</data>
-      <data key="e_color">#940A12</data>
+      <data key="e_weight">58</data>
+      <data key="e_label">58</data>
+      <data key="e_color">#7B040F</data>
     </edge>
-    <edge source="n4" target="n7">
-      <data key="e_weight">113</data>
-      <data key="e_label">113</data>
-      <data key="e_color">#A91016</data>
+    <edge source="n1" target="n7">
+      <data key="e_weight">63</data>
+      <data key="e_label">63</data>
+      <data key="e_color">#850710</data>
     </edge>
-    <edge source="n1" target="n8">
-      <data key="e_weight">84</data>
-      <data key="e_label">84</data>
-      <data key="e_color">#800610</data>
+    <edge source="n4" target="n8">
+      <data key="e_weight">47</data>
+      <data key="e_label">47</data>
+      <data key="e_color">#67000D</data>
     </edge>
     <edge source="n1" target="n9">
-      <data key="e_weight">64</data>
-      <data key="e_label">64</data>
+      <data key="e_weight">45</data>
+      <data key="e_label">45</data>
       <data key="e_color">#67000D</data>
     </edge>
   </graph>

@@ -1,0 +1,141 @@
+library(ggplot2)
+library(knitr)
+library(reshape2)
+library(hexbin)
+```{r setup}
+opts_chunk$set(fig.width=12, fig.height=7)
+
+# matchlevels <- c("",     "NUCMER","DISCO","HAPLO","NUCMER,DISCO","NUCMER,HAPLO","DISCO,HAPLO","NUCMER,DISCO,HAPLO")
+# colours <-     c("black","green", "red",  "blue", "yellow",      "cyan",        "magenta",     "white")
+# names(colours) <- matchlevels
+
+``` 
+
+```{r}
+#vartypes <- read.table("pfx_v_3D7DD2fullrun_miss0callable.PASS.DD2CONC.R3.varClass.txt",stringsAsFactors = F,sep='\t',header=T)
+vartypes <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.VARCLASS.varClass.txt",stringsAsFactors = F,sep='\t',header=T)
+#3D7 only:
+# vartypes$refsAbsent = vartypes$FDKRefAbsent
+# vartypes$anyDiscord = vartypes$X2D4Discord | vartypes$FDKDiscord | vartypes$FDK2D4Incons
+# vartypes$anyDiscord <- as.numeric(vartypes$anyDiscord)
+vartypes$abslen = abs(vartypes$varlen)
+
+vartypes$STR = 0
+vartypes$STR[vartypes$STRtype != ""] <- 1
+
+vartypes$coding[vartypes$coding=="intergenic"] <- 0
+vartypes$coding[vartypes$coding=="coding"] <- 1
+#head(vartypes$coding,50)
+vartypes$coding <- as.numeric(vartypes$coding)
+#head(vartypes$coding,50)
+
+
+#set max call length to read length (only one above this)
+#vartypes <- subset(vartypes,abslen < 500)
+vartypes$maxcons = vartypes$consequence
+vartypes$maxcons[vartypes$consequence==""] <- "intergenic"
+vartypes$maxcons <- unlist(lapply(vartypes$maxcons,FUN=function(x) {unlist(strsplit(x,split ='&'))[[1]]}))
+
+vartypes$maxcons[vartypes$consequence=="disruptive_inframe_deletion"] <- "inframe_deletion"
+vartypes$maxcons[vartypes$consequence=="disruptive_inframe_insertion"] <- "inframe_insertion"
+
+
+vartypes$effect="NONE"
+vartypes$effect[vartypes$maxcons %in% c("inframe_insertion","inframe_deletion","synonymous_variant","intergenic","intragenic_variant","non_coding_exon_variant")] <- "SILENT"
+vartypes$effect[vartypes$maxcons %in% c("missense_variant","disruptive_inframe_insertion","disruptive_inframe_deletion","splice_region_variant")] <- "MISSENSE"
+vartypes$effect[vartypes$maxcons %in% c("frameshift_variant","stop_lost","start_lost","stop_gained","exon_loss_variant")] <- "NONSENSE"
+vartypes$effect <- factor(vartypes$effect,levels =c("SILENT","MISSENSE","NONSENSE"))
+                           
+
+indels <- subset(vartypes,vartype=="INDEL")
+snps <- subset(vartypes,vartype=="SNP")
+```
+
+```{r}
+# #subset(vartypes,anyDiscord)
+# #summary(indels[,c("STR","DUST","coding","anyDiscord","effect")])
+# colMeans(indels[,c("STR","DUST","coding","anyDiscord")])
+# #no appreciable drop in discordance with STRs
+# colMeans(subset(indels,STR==1)[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(indels,STRtype=="STR")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(indels,STRtype=="polyA")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(indels,STRtype=="TArich")[,c("STR","DUST","coding","anyDiscord")])
+# #large increase in discordance with TA-repeats
+# colMeans(subset(indels,STRtype=="TArep")[,c("STR","DUST","coding","anyDiscord")])
+# 
+# colMeans(subset(snps,STR==1)[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="STR")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="polyA")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="TArich")[,c("STR","DUST","coding","anyDiscord")])
+# colMeans(subset(snps,STRtype=="TArep")[,c("STR","DUST","coding","anyDiscord")])
+
+```
+
+#INDEL SIZE DISTRIBUTION
+```{r}
+
+table(vartypes[,c("vartype","STR")])
+table(vartypes[,c("vartype","STRtype")])
+table(vartypes[,c("coding","STRtype")])
+
+pctable <- function(X) {
+  t(round(t(table(X)) / apply(table(X),2,FUN=sum),3)*100)
+  }
+
+#RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
+table(indels[,c("maxcons","STR")])
+pctable(indels[,c("maxcons","STR")])
+table(snps[,c("maxcons","STR")])
+pctable(snps[,c("maxcons","STR")])
+
+
+#RELATIVELY SMALL NUMBER OF CODING SNPs ARE polyA REPEATS (possible difficulties in calling really long TA repeats?)
+table(vartypes[,c("maxcons","vartype")])
+pctable(vartypes[,c("maxcons","vartype")])
+
+table(vartypes[,c("vartype","effect")])
+table(vartypes[,c("vartype","effect")])
+
+
+table(vartypes[,c("coding","vartype")])
+pctable(vartypes[,c("coding","vartype")])
+
+#MODE INDELS V SHORT
+sum(indels$varlen <= 1) / dim(indels)[[1]]
+sum(indels$varlen <= 5) / dim(indels)[[1]]
+
+```
+
+
+
+```{r, fig.width=10,fig.height7}
+
+
+#most indels intergenic or neutral
+ggplot(vartypes,aes(x=effect,fill=maxcons,group=maxcons)) + 
+  ggtitle(paste("consequence v var type")) +
+  geom_bar() + facet_grid(. ~ vartype, scale="free_y") + 
+  theme(axis.text.x=element_text(angle=-90,size=14))
+```
+
+make blocks
+```{r}
+b<-5000
+
+  Pmax <- ceiling(max(vartypes$pos)/b)*b
+  bins <- seq(0,Pmax,by = b)
+  labs <- seq(b,Pmax,by = b)
+  
+  vartypes$posbin <- cut(vartypes$pos,breaks=bins,labels=labs,include.lowest = T)
+  vartypes$bin <- paste(vartypes$chr,vartypes$posbin)
+
+snpCounts <- aggregate(vartypes$vartype,by=list(vartypes$bin),FUN=table)
+snpCounts <- cbind(t(as.data.frame(strsplit(snpCounts$Group.1,split = "\ "))),as.data.frame(snpCounts$x))
+colnames(snpCounts)[1:2] <- c("chr","bin")
+snpCounts$bin <- as.numeric(as.character(snpCounts$bin))
+snpCountsM <- melt(snpCounts,id.vars = c("chr","bin"))
+ggplot(snpCountsM,aes(x=bin,y=value,fill=variable)) + geom_bar(stat="identity") + facet_grid(chr ~ .) + ylim(0,20)
+
+
+```
+

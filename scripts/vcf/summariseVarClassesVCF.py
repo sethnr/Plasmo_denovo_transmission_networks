@@ -167,9 +167,11 @@ for rec in reader:
     alleleCount=len(alleles)
     if 'ANO' in rec.INFO:
         alleleCount=int(rec.INFO['ANO'])+1
-    diversity = rec.nucl_diversity
-    if diversity is None:
-        diversity=-1
+    
+    #diversity = rec.nucl_diversity
+    #if diversity is None:
+    #    diversity=-1
+    diversity=-1    
 
     fvals=list()
     for f in filters:

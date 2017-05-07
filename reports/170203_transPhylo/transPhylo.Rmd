@@ -1,0 +1,149 @@
+```{r}
+library(ape)
+library(adegenet)
+library(phangorn)
+library(knitr)
+library(igraph)
+library(RColorBrewer)
+library(ggplot2)
+library(reshape2)
+library(outbreaker)
+opts_chunk$set(fig.width=9, fig.height=9)
+opts_chunk$set(dev=c('png'))
+
+
+sym <- function(M) {
+  M[lower.tri(M)] = t(M)[lower.tri(M)]
+  M
+}
+
+```
+
+```{r}
+#meta <- read.table("daniels.thies.CA.txt",sep="\t",header=T)
+meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+colnames(meta)[1]<-"name"
+meta <- meta[!is.na(meta$Age),]
+
+rownames(meta) <- meta$name
+meta <- meta[names,]
+coll <- as.Date(as.character(meta$Date),"%d/%m/%Y",origin = "2000-01-01")
+#coll <- as.Date(paste("1","jan",meta$year,sep=""),"%d%b%Y")
+names(coll)<-meta$name
+meta$year <- as.numeric(format(coll,'%Y'))+2000
+
+as.integer(difftime(coll, min(coll), unit="years"))
+name1 <- as.character(meta$name[meta$Haplotype.Number==29])
+name2 <- as.character(meta$name[meta$Haplotype.Number==26])
+name3 <- as.character(meta$name[meta$Haplotype.Number==24])
+year1 <- meta[name1,"year"]
+year2 <- meta[name2,"year"]
+year3 <- meta[name3,"year"]
+coll1 <- coll[name1]
+coll2 <- coll[name2]
+coll3 <- coll[name3]
+
+```
+
+
+
+MRCA
+```{r}
+
+cl1 = name1
+
+ped <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.ped",colClasses="character",na.strings = "0")
+inds <- ped[,1]
+ped <- ped[,seq(7,dim(ped)[[2]],2)]
+
+genos <- apply(ped,2,function(x) {as.numeric(factor(x))})
+genos[is.na(genos)] <- 0
+rownames(genos)=inds
+
+genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T),drop_null = F))
+#genosDat <- as.phyDat(genos, type="USER", levels = c(0:5))
+
+distmatH <- dist.hamming(genosDat)
+
+discotree <- midpoint(nj(distmatH))
+#discotree <- midpoint(njs(as.dist(sym(combDists))))
+
+plot(discotree)
+nodelabels()
+
+
+#PARSIMONY ancestral state
+ances.par <- ancestral.pars(discotree,genosDat)
+#ML ancestral state 
+fit = pml(discotree, genosDat)
+ances.pml <- ancestral.pml(fit,type = "ml")
+cl1mrca <- mrca.phylo(discotree,which(discotree$tip.label %in% cl1))
+cl1mrca
+
+#cl1mrca<-35
+MLalleleMat <- ances.pml[[cl1mrca]]
+maxLikelihoods <- apply(ances.pml[[cl1mrca]],1,FUN=max)
+#MLallele <- matrix(as.numeric(MLallele),nrow = dim(MLallele)[1],dim(MLallele)[2])
+MLallele <- rep(0,dim(MLalleleMat)[1])
+for (i in c(0:dim(MLalleleMat)[2])) {
+  MLallele[MLalleleMat[,i]==maxLikelihoods] <- i
+}
+
+genosDat$MRCA <- MLallele
+genosM <- as.character(genosDat)
+genosM[genosM==0]<-NA
+
+```
+
+discovar NJtree + MRCA
+```{r}
+genos <- apply(genosM,2,function(x) {as.numeric(factor(x))})
+row.names(genos)<-row.names(genosM)
+genosDat <- as.phyDat(genos[c(cl1,"MRCA"),], type="USER", levels = c(0:max(genos,na.rm=T),drop_null = F))
+distmatH <- dist.hamming(genosDat)
+
+discotree <- root(nj(distmatH),"MRCA")
+plot(discotree)
+write.tree(discotree,file = "disco_clade29.nwk")
+```
+
+```{r}
+set.seed(0)
+neg=100/365
+off.r=5
+w.shape=10
+w.scale=0.1
+pi=0.25
+simu <- simulateOutbreak(neg=neg,pi=pi,off.r=off.r,w.shape=w.shape,
+                         w.scale=w.scale,dateStartOutbreak=2005,dateT=2008)
+plotCTree(simu)
+
+ttree<-extractTTree(simu)
+plotTTree(ttree,w.shape,w.scale)
+
+ptree<-extractPTree(simu)
+p<-phyloFromPTree(ptree)
+plot(p)
+axisPhylo()
+write.tree(p,'tree.nwk',append = F)
+
+ptree<-ptreeFromPhylo(read.tree('tree.nwk'),dateLastSample=2007.964)
+dateT=2008
+record<-inferTTree(ptree,mcmcIterations=100,w.shape=w.shape,w.scale=w.scale,dateT=dateT)
+lastIteration<-record[[length(record)]]
+plotCTree(lastIteration$ctree)
+```
+
+```{r}
+ptreeDisco<-ptreeFromPhylo(read.tree('disco_clade29.nwk'),dateLastSample=2013)
+w.shape=10
+w.scale=0.1
+dateT=2013
+record<-inferTTree(ptreeDisco,mcmcIterations=100,w.shape=w.shape,w.scale=w.scale,dateT=2013)
+lastIteration<-record[[length(record)]]
+plotCTree(lastIteration$ctree)
+
+
+
+```
+

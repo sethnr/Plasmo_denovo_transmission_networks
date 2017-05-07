@@ -84,37 +84,1515 @@ printGraph <- function(graph,colours,title) {
 printGraph(indelNets[[2]],"Reds","clade 1, indel graph")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+```
+
+![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-1.png)
 
 ```r
 printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+```
+
+![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-2.png)
 
 ```r
 printGraph(indelNets[[3]],"Blues","clade 3, indel graph")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-3.png)
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+```
+
+![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-3.png)
 
 ```r
 printGraph(snpNets[[2]],"Reds","clade 1, indel graph")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-4.png)
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+```
+
+![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-4.png)
 
 ```r
 printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-5.png)
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+```
+
+![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-5.png)
 
 ```r
 printGraph(snpNets[[3]],"Blues","clade 3, indel graph")
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-6.png)
+```
+## Warning in brewer.pal((max(graph$year) - min(graph$year)) + 1, colours): minimal value for n is 3, returning requested palette with 3 different levels
+```
+
+```
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+
+## Warning in text.default(lc.x, lc.y, labels = edge.labels, col =
+## edge.label.color, : font family 'Arial' not found in PostScript font
+## database
+```
+
+```
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+
+## Warning in text.default(x, y, labels = labels, col = label.color, family =
+## label.family, : font family 'Arial' not found in PostScript font database
+```
+
+![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-6.png)
 
 
 
@@ -200,7 +1678,7 @@ getEvolRates <- function(net,mat,ng) {
   outtab
 }
 
-netAll <- getAnces(net, 1,1:10)
+#netAll <- getAnces(net, 1,1:10)
 
 
 g_legend<-function(a.gplot){
@@ -212,7 +1690,7 @@ g_legend<-function(a.gplot){
 
 
 ```r
-opts_chunk$set(fig.width=22, fig.height=8)
+opts_chunk$set(fig.width=18, fig.height=8)
 opts_chunk$set(dev=c('png','postscript'))
 ```
 
@@ -226,7 +1704,7 @@ inaccr1 <- getEvolRates(indelNets[[1]],(indDists+snpDists)-coreDists)
 cplot <- ggplot(corer1,aes(x=time,y=rate/12)) + 
   geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-  geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
+  geom_label(inherit.aes=F,aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("evolutionary rate, accessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5) +
   theme(legend.position="none")
 
@@ -234,16 +1712,58 @@ cplot <- ggplot(corer1,aes(x=time,y=rate/12)) +
 iaplot <- ggplot(inaccr1,aes(x=time,y=rate/12)) + 
   geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-  geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
+  geom_label(inherit.aes=F,aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("evolutionary rate, inaccessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
 legend <- g_legend(iaplot)
 
 grid.arrange(cplot, iaplot + theme(legend.position="none"),legend, nrow=1,widths=c(10,10,1),heights=c(1))
 ```
 
-![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+```
+## Warning: Removed 2 rows containing non-finite values (stat_boxplot).
+```
+
+```
+## Warning: Removed 2 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-8](figure_ALL/unnamed-chunk-8-1.png)
 
 ```r
+# corer1$timeF <- paste(corer1$time,"a",sep="_")
+# inaccr1$timeF <- paste(inaccr1$time,"i",sep="_")
+# corer1$region <- "core"
+# inaccr1$region <- "inaccessible"
+# allrates <- rbind(corer1,inaccr1)
+# allrates$timeF <- factor(allrates$timeF)
+# 
+# ggplot(data=allrates,aes(x=timeF,y=rate/12)) + 
+#   geom_boxplot(data=subset(allrates,region=="core"),aes(group=timeF),fill=NA,colour="black") + 
+#     geom_hline(data=subset(allrates,region=="core"),aes(yintercept=mean(rate/12)),linetype=3) + 
+#     geom_label(data=subset(allrates,region=="core"),aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
+#   geom_boxplot(data=subset(allrates,region=="inaccessible"),aes(group=timeF),fill=NA,colour="#555555") + 
+#     geom_hline(data=subset(allrates,region=="inaccessible"),aes(yintercept=mean(rate/12)),linetype=3) + 
+#     geom_label(data=subset(allrates,region=="inaccessible"),aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
+#   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
+#   ggtitle("evolutionary rate, inaccessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9)
+# 
+# allrates$key <- paste(allrates$time,allrates$region,allrates$from,allrates$to)
+# means <- aggregate(allrates$rate/12,by=list(allrates$key),FUN=mean)
+# colnames(means)<-c("key","rate")
+# ses <- aggregate(allrates$rate/12,by=list(allrates$key),FUN=function(x) {sd(x)/sqrt(length(x))})
+# colnames(ses)<-c("key","se")
+# allratesmean <- unique(allrates[,c("from","to","time","timeF","region","key")])
+# meanrates <- merge(merge(allratesmean,means),ses)[,c("from","to","time","timeF","region","rate","se")]
+# 
+# ggplot(data=meanrates,aes(x=timeF,y=rate,ymin=rate-se,ymax=rate+se)) + 
+#   geom_point(aes(colour=to,shape=from),size=3)+
+#   geom_errorbar(data=subset(meanrates,region=="core"),colour="white")+
+#   geom_errorbar(data=subset(meanrates,region=="inaccessible"),colour="black")+
+#   theme(panel.background = element_rect(colour = "black"))+
+#   ggtitle("evolutionary rate, inaccessible/accessible genome") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9)
+
+
+
 corerate <- round(mean(corer1$rate),3)
 inaccrate <- round(mean(inaccr1$rate),3)
 ```
@@ -274,7 +1794,7 @@ legend <- g_legend(splot)
 grid.arrange(iplot, splot + theme(legend.position="none"),legend, nrow=1,widths=c(10,10,1),heights=c(1))
 ```
 
-![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-9](figure_ALL/unnamed-chunk-9-1.png)
 
 
 GATK rates
@@ -299,11 +1819,27 @@ gatkiaplot <- ggplot(inaccrateGATK,aes(x=time,y=rate/12)) +
   ggtitle("evolutionary rate, inaccessible genome, GATK calls, clade 2") + ylab("rate (mut/mth/gen)") + xlab("years")  + ylim(-50,100) + xlim(0,7.5)
 
 legend <- g_legend(gatkiaplot)
+```
 
+```
+## Warning: Removed 7 rows containing non-finite values (stat_boxplot).
+```
+
+```
+## Warning: Removed 7 rows containing missing values (geom_point).
+```
+
+```r
 grid.arrange(gatkcplot, gatkiaplot + theme(legend.position="none"),legend, nrow=1,widths=c(10,10,1),heights=c(1))
 ```
 
-![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+```
+## Warning: Removed 7 rows containing non-finite values (stat_boxplot).
+
+## Warning: Removed 7 rows containing missing values (geom_point).
+```
+
+![plot of chunk unnamed-chunk-10](figure_ALL/unnamed-chunk-10-1.png)
 
 
 
@@ -322,7 +1858,7 @@ ggplot(isr1,aes(x=time,y=rate/12)) +
   ggtitle("evolutionary rate, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-12](figure_ALL/unnamed-chunk-12-1.png)
 
 ```r
 irate <- round(mean(ir1$rate),3)
@@ -355,7 +1891,7 @@ sppsubs <- rbind(sppsubs,
       )
 
 sppsubs$subrate <- as.numeric(sppsubs$subrate)
-sppsubs$subrate_genome <- as.numeric(sppsubs$subrate)
+sppsubs$subrate_genome <- as.numeric(sppsubs$subrate_genome)
 sppsubs$gsize <- as.numeric(sppsubs$gsize)
 sppsubs$vartype <- factor(sppsubs$vartype,levels=c("SNP","INDEL","SNP+INDEL"),ordered=T)
 #sppsubs$Label <- factor(sppsubs$Label,levels=sppsubs$Label[order(sppsubs$Group,sppsubs$subrate_genome)],ordered=T)
@@ -397,7 +1933,7 @@ ggplot(subset(sppsubs, Label %in% dotsubs),aes(x=gsize,y=subrate),) +
   theme(panel.background = element_rect(fill = F))
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-1.png)
+![plot of chunk unnamed-chunk-13](figure_ALL/unnamed-chunk-13-1.png)
 
 ```r
 #dput(sppsubs$Label)
@@ -434,7 +1970,7 @@ ggplot(subset(sppsubs,Label %in% barSamps),aes(x=Pathogen,y=subrate * gsize),) +
   theme(panel.background = element_rect(fill = F),axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-![plot of chunk unnamed-chunk-13](figure/unnamed-chunk-13-2.png)
+![plot of chunk unnamed-chunk-13](figure_ALL/unnamed-chunk-13-2.png)
 
 ```r
 write.table(sppsubs,stdout(),sep="\t",quote=F)
@@ -442,22 +1978,22 @@ write.table(sppsubs,stdout(),sep="\t",quote=F)
 
 ```
 ## Pathogen	Label	Group	gsize	subrate	subrate_genome	Host.scale	Date.range..yrs.	Source	vartype	region	newmut
-## 1	H. pylori	H. pylori	Bacteria	1600000	1.38e-05	1.38e-05	among	15	[S5]	SNP	all	2.4 wks
-## 2	M. tuberculosis	M. tuberculosis	Bacteria	4400000	6.8e-08	6.8e-08	among	10	[S9]	SNP	all	3.3 yrs
-## 3	S. aureus	S. aureus (MRSA)	Bacteria	2900000	3.3e-06	3.3e-06	among	25	[S13]	SNP	all	1.3 mths
-## 4	S. pneumoniae	S. pneumoniae	Bacteria	2200000	1.6e-06	1.6e-06	among	25	[S15]	SNP	all	3.4 mths
-## 5	V. cholerae	V. cholerae	Bacteria	4e+06	8.3e-07	8.3e-07	among	60	[S16]	SNP	all	3.6 mths
-## 6	HCV	HCV (Hep C)	RNA virus	9000	0.001	0.001	among	35	[S20]	SNP	all	1.3 mths
-## 7	EBOV	EBOV (Ebola)	RNA virus	19000	0.002	0.002	among	35	[S20]	SNP	all	1.4 wks
-## 8	HIV-M	HIV-M	RNA virus	10000	0.0033	0.0033	among	50	[S21]	SNP	all	1.6 wks
-## 9	HFLUV	HFLUV (H1N1 2009)	RNA virus	13600	0.0036	0.0036	among	1	[S22]	SNP	all	1.1 wks
-## 10	HFLUV	HFLUV (H1N1)	RNA virus	13600	0.002	0.002	among	60	[S23]	SNP	all	1.9 wks
-## 11	RABV	RABV	RNA virus	12000	2e-04	2e-04	among	22	[S24], Biek, unpubl.	SNP	all	5 mths
-## 12	FMDV	FMDV	RNA virus	8100	0.0013	0.0013	among	35	[S20]	SNP	all	1.1 mths
-## 13	P.falciparum	P.falciparum (snp)	Eukaryote	18446000	1.3e-06	1.3e-06	among	8	ours	SNP	all	2.2 wks
-## 14	P.falciparum	P.falciparum (ind)	Eukaryote	18446000	4.9e-07	4.9e-07	among	8	ours	INDEL	all	1.3 mths
-## 15	P.falciparum	P.falciparum (all)	Eukaryote	18446000	1.8e-06	1.8e-06	among	8	ours	SNP+INDEL	all	1.6 wks
-## 16	P.falciparum	P.falciparum (core)	Eukaryote	15180000	5.1e-07	5.1e-07	among	8	ours	SNP+INDEL	accessible	1.6 mths
-## 17	P.falciparum	P.falciparum (inacc)	Eukaryote	3266000	7.7e-06	7.7e-06	among	8	ours	SNP+INDEL	inaccessible	2.1 wks
+## 1	H. pylori	H. pylori	Bacteria	1600000	1.38e-05	22	among	15	[S5]	SNP	all	2.4 wks
+## 2	M. tuberculosis	M. tuberculosis	Bacteria	4400000	6.8e-08	0.3	among	10	[S9]	SNP	all	3.3 yrs
+## 3	S. aureus	S. aureus (MRSA)	Bacteria	2900000	3.3e-06	9.57	among	25	[S13]	SNP	all	1.3 mths
+## 4	S. pneumoniae	S. pneumoniae	Bacteria	2200000	1.6e-06	3.52	among	25	[S15]	SNP	all	3.4 mths
+## 5	V. cholerae	V. cholerae	Bacteria	4e+06	8.3e-07	3.32	among	60	[S16]	SNP	all	3.6 mths
+## 6	HCV	HCV (Hep C)	RNA virus	9000	0.001	9	among	35	[S20]	SNP	all	1.3 mths
+## 7	EBOV	EBOV (Ebola)	RNA virus	19000	0.002	9	among	35	[S20]	SNP	all	1.4 wks
+## 8	HIV-M	HIV-M	RNA virus	10000	0.0033	33	among	50	[S21]	SNP	all	1.6 wks
+## 9	HFLUV	HFLUV (H1N1 2009)	RNA virus	13600	0.0036	48.96	among	1	[S22]	SNP	all	1.1 wks
+## 10	HFLUV	HFLUV (H1N1)	RNA virus	13600	0.002	27.2	among	60	[S23]	SNP	all	1.9 wks
+## 11	RABV	RABV	RNA virus	12000	2e-04	2.4	among	22	[S24], Biek, unpubl.	SNP	all	5 mths
+## 12	FMDV	FMDV	RNA virus	8100	0.0013	9	among	35	[S20]	SNP	all	1.1 mths
+## 13	P.falciparum	P.falciparum (snp)	Eukaryote	18446000	1.3e-06	23.685	among	8	ours	SNP	all	2.2 wks
+## 14	P.falciparum	P.falciparum (ind)	Eukaryote	18446000	4.9e-07	9.129	among	8	ours	INDEL	all	1.3 mths
+## 15	P.falciparum	P.falciparum (all)	Eukaryote	18446000	1.8e-06	32.814	among	8	ours	SNP+INDEL	all	1.6 wks
+## 16	P.falciparum	P.falciparum (core)	Eukaryote	15180000	5.1e-07	7.742	among	8	ours	SNP+INDEL	accessible	1.6 mths
+## 17	P.falciparum	P.falciparum (inacc)	Eukaryote	3266000	7.7e-06	25.073	among	8	ours	SNP+INDEL	inaccessible	2.1 wks
 ```
 

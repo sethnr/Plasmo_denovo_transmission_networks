@@ -4,9 +4,12 @@ library(stringdist)
 library(reshape2)
 library(phangorn)
 
-
-fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.alleles"
 fileroot <- commandArgs(TRUE)[1]
+
+
+#fileroot<-"Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles"
+outfolder <- "boot_allvars"
+
 
 tab=paste(fileroot,'tab',sep='.')
 outpng=paste(fileroot,'png',sep='.')
@@ -19,9 +22,10 @@ alleleTab <- read.table(tab,colClasses="character",header=T,na.strings = c("."))
 genos <- t(data.matrix(alleleTab[6:dim(alleleTab)[2]]))
 inds <- row.names(genos)
 
+
 genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
 
-distmat <- dist.hamming(genosDat)
+distmat <- dist.hamming(genosDat,exclude="pairwise")
 treeNJ <- NJ(distmat)
 
 #
@@ -50,7 +54,8 @@ write(str(treeRatchet))
 #write.table(as.matrix(distmat),stderr())
 
 write("re-adding distances",stderr())
-treeRatchet <- nnls.phylo(treeRatchet,as.matrix(distmat))
+write(paste("symmetric",isSymmetric(as.matrix(distmat))),stderr())
+treeRatchet <- nnls.phylo(treeRatchet,distmat)
 
 #write(treeRatchet,stderr())
 
@@ -70,3 +75,4 @@ dev.off()
 
 
 write.nexus(treeRatchet,file=outnex)
+
