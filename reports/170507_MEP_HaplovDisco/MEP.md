@@ -2,9 +2,57 @@
 ```r
 library(ape)
 library(adegenet)
+```
+
+```
+## Loading required package: ade4
+```
+
+```
+## 
+##    /// adegenet 2.0.1 is loaded ////////////
+## 
+##    > overview: '?adegenet'
+##    > tutorials/doc/questions: 'adegenetWeb()' 
+##    > bug reports/feature requests: adegenetIssues()
+```
+
+```r
 library(phangorn)
 library(knitr)
 library(igraph)
+```
+
+```
+## 
+## Attaching package: 'igraph'
+```
+
+```
+## The following object is masked from 'package:phangorn':
+## 
+##     diversity
+```
+
+```
+## The following objects are masked from 'package:ape':
+## 
+##     edges, mst, ring
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+```
+
+```
+## The following object is masked from 'package:base':
+## 
+##     union
+```
+
+```r
 library(RColorBrewer)
 library(ggplot2)
 library(reshape2)
@@ -220,14 +268,14 @@ njtree1 <- midpoint(njtree1)
 plot(njtree1)
 ```
 
-![plot of chunk unnamed-chunk-248](figure/unnamed-chunk-248-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
 ```r
 njtree1 <- drop.tip(njtree1,c(oc1,oc2))
 plot(njtree1)
 ```
 
-![plot of chunk unnamed-chunk-248](figure/unnamed-chunk-248-2.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
 
 ```r
 rtdist1 <- diag(vcv.phylo(njtree1)[cl1,cl1])
@@ -256,7 +304,7 @@ ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
   ggtitle("Discovar, disco-accessible genome, midpoint root")
 ```
 
-![plot of chunk unnamed-chunk-248](figure/unnamed-chunk-248-3.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-3.png)
 
 ```r
 # meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
@@ -267,7 +315,7 @@ netDisco <- makeNetSingle(as.dist(sym(discoDists[cl1,cl1])),meta)
 printGraph(netDisco,"Greens",title = "Discovar - disco-accessible genome")
 ```
 
-![plot of chunk unnamed-chunk-249](figure/unnamed-chunk-249-1.png)
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
 
 
 ```r
@@ -276,14 +324,14 @@ njtreeGATK <- midpoint(njtreeGATK)
 plot(njtreeGATK)
 ```
 
-![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-1.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
 
 ```r
 njtreeGATK <- drop.tip(njtreeGATK,c(oc1,oc2))
 plot(njtreeGATK)
 ```
 
-![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-2.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-2.png)
 
 ```r
 rtdistGATK <- diag(vcv.phylo(njtreeGATK)[cl1,cl1])
@@ -312,7 +360,7 @@ ggplot(TDtabGATK,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_sm
   ggtitle("HaplotypeCaller, haplo-accessible genome, midpoint root")
 ```
 
-![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-3.png)
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-3.png)
 
 ```r
 #cols <- brewer.pal((max(netGATK$year)-min(netGATK$year))+1, "Greens")
@@ -321,7 +369,7 @@ netGATK <- makeNetSingle(as.dist(sym(gatkDists[cl1,cl1])),meta)
 printGraph(netGATK[],"Greens",title = "HaplotypeCaller - haplo-accessible genome")
 ```
 
-![plot of chunk unnamed-chunk-251](figure/unnamed-chunk-251-1.png)
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
 
 
 ```r
@@ -330,14 +378,14 @@ njtreeGATKCore <- midpoint(njtreeGATKCore)
 plot(njtreeGATKCore)
 ```
 
-![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-1.png)
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
 
 ```r
 njtreeGATKCore <- drop.tip(njtreeGATKCore,c(oc1,oc2))
 plot(njtreeGATKCore)
 ```
 
-![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-2.png)
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-2.png)
 
 ```r
 rtdistGATKCore <- diag(vcv.phylo(njtreeGATKCore)[cl1,cl1])
@@ -366,14 +414,14 @@ ggplot(TDtabGATKCore,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geo
   ggtitle("HaplotypeCaller, core genome, midpoint root")
 ```
 
-![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-3.png)
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-3.png)
 
 ```r
 netGATKCore <- makeNetSingle(as.dist(sym(gatkDistsCore[cl1,cl1])),meta)
 printGraph(netGATKCore[],"Greens",title = "HaplotypeCaller - core genome")
 ```
 
-![plot of chunk unnamed-chunk-253](figure/unnamed-chunk-253-1.png)
+![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png)
 
 ```r
 # meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
@@ -386,8 +434,8 @@ bootstrapNets <- function(genos,outfolder) {
   genosStatic <- genos
   #outfolder <- "./bootstraps"
   bstraps <- system(paste("ls ",outfolder,"*",sep=""),intern = T)
-  #if (length(bstraps)>0) {write("using old bootstraps",stderr())
-  if (1==2) {write("using old bootstraps",stderr())
+  if (length(bstraps)>0) {write("using old bootstraps",stderr())
+  #if (1==2) {write("using old bootstraps",stderr())
                        } else{
     write("bootstrapping (100)",stderr())
       for (boot in c(1:100)) {
@@ -511,4 +559,34 @@ discobootnet
 ## 15        8     7     NA 0010-10-12 0012-10-25 2012 Th196.12 boot    1
 ## 16        9     2     NA 0026-10-09 0012-11-09 2012 Th230.12 boot   41
 ## 17        9     8     NA 0025-10-12 0012-11-09 2012 Th230.12 boot   22
+```
+
+```r
+gatkbootnet
+```
+
+```
+##          id ances weight       date ances.date year     name type boot
+## Th086.07  1    NA     NA 0007-10-11       <NA> 2007 Th086.07 core    0
+## Th106.09  2     1   2528 0009-10-26 0007-10-11 2009 Th106.09 core  100
+## Th106.11  3     2   1570 0011-10-27 0009-10-26 2011 Th106.11 core  100
+## Th117.11  4     3   1166 0011-11-02 0011-10-27 2011 Th117.11 core  100
+## Th132.11  5     2   1194 0011-11-11 0009-10-26 2011 Th132.11 core  100
+## Th134.11  6     4   1129 0011-11-14 0011-11-02 2011 Th134.11 core   97
+## Th162.12  7     5   1509 0012-10-10 0011-11-11 2012 Th162.12 core   48
+## Th196.12  8     2   1231 0012-10-25 0009-10-26 2012 Th196.12 core   32
+## Th230.12  9     8   1197 0012-11-09 0012-10-25 2012 Th230.12 core   49
+## Th074.13 10     2   1102 0013-09-23 0009-10-26 2013 Th074.13 core  100
+## 11        6     3     NA 0027-10-11 0011-11-14 2011 Th134.11 boot    3
+## 12        7     2     NA 0026-10-09 0012-10-10 2012 Th162.12 boot   52
+## 13        8     5     NA 0011-11-11 0012-10-25 2012 Th196.12 boot   68
+## 14        9     2     NA 0026-10-09 0012-11-09 2012 Th230.12 boot   51
+```
+
+```r
+batkcorebootnet
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'batkcorebootnet' not found
 ```

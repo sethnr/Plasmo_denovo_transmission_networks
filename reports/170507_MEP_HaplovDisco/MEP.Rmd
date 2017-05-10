@@ -291,8 +291,8 @@ bootstrapNets <- function(genos,outfolder) {
   genosStatic <- genos
   #outfolder <- "./bootstraps"
   bstraps <- system(paste("ls ",outfolder,"*",sep=""),intern = T)
-  #if (length(bstraps)>0) {write("using old bootstraps",stderr())
-  if (1==2) {write("using old bootstraps",stderr())
+  if (length(bstraps)>0) {write("using old bootstraps",stderr())
+  #if (1==2) {write("using old bootstraps",stderr())
                        } else{
     write("bootstrapping (100)",stderr())
       for (boot in c(1:100)) {
@@ -396,5 +396,6 @@ discobootnet <- addBootToNet(netDisco,discosum,discoDists)
 gatkbootnet <- addBootToNet(netGATK,haplosum,gatkDists)
 gatkbootcorenet <- addBootToNet(netGATKCore,haploCoresum,gatkDistsCore)
 discobootnet
-
+gatkbootnet
+batkcorebootnet
 ```
