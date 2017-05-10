@@ -397,5 +397,5 @@ gatkbootnet <- addBootToNet(netGATK,haplosum,gatkDists)
 gatkbootcorenet <- addBootToNet(netGATKCore,haploCoresum,gatkDistsCore)
 discobootnet
 gatkbootnet
-batkcorebootnet
+gatkcorebootnet
 ```

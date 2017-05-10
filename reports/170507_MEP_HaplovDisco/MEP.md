@@ -2,57 +2,9 @@
 ```r
 library(ape)
 library(adegenet)
-```
-
-```
-## Loading required package: ade4
-```
-
-```
-## 
-##    /// adegenet 2.0.1 is loaded ////////////
-## 
-##    > overview: '?adegenet'
-##    > tutorials/doc/questions: 'adegenetWeb()' 
-##    > bug reports/feature requests: adegenetIssues()
-```
-
-```r
 library(phangorn)
 library(knitr)
 library(igraph)
-```
-
-```
-## 
-## Attaching package: 'igraph'
-```
-
-```
-## The following object is masked from 'package:phangorn':
-## 
-##     diversity
-```
-
-```
-## The following objects are masked from 'package:ape':
-## 
-##     edges, mst, ring
-```
-
-```
-## The following objects are masked from 'package:stats':
-## 
-##     decompose, spectrum
-```
-
-```
-## The following object is masked from 'package:base':
-## 
-##     union
-```
-
-```r
 library(RColorBrewer)
 library(ggplot2)
 library(reshape2)
@@ -584,9 +536,9 @@ gatkbootnet
 ```
 
 ```r
-batkcorebootnet
+gatkcorebootnet
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'batkcorebootnet' not found
+## Error in eval(expr, envir, enclos): object 'gatkcorebootnet' not found
 ```
