@@ -40,7 +40,9 @@ makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
 
 
 ```r
-meta<-read.table("daniels.thies.CA.txt",sep="\t",header=T)
+meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+colnames(meta)[1]<-"name"
+meta <- meta[!is.na(meta$Age),]
 
 indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
 snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
@@ -55,51 +57,6 @@ gatkDistsCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",he
 ```
 
 
-```r
-rates <- data.frame(
-                 from=character(), 
-                 to=character(), 
-                 haplotype=numeric(),
-                 interval=numeric(),
-                 gatk=numeric(),
-                 disco=numeric(),
-                 stringsAsFactors=FALSE) 
-n=0
-names <- colnames(snpDists)
-for (i in c(1:length(meta$name))) {
-  for (j in c(i:length(meta$name))) {
-    iname <-names[i]; jname <- names[j] 
-    if (meta[iname,"haplotype.number"]==meta[jname,"haplotype.number"]) {
-      n<-n+1
-      interval <- abs(meta[jname,"year"]-meta[iname,"year"])
-      
-      #write(paste(meta$name[i],meta$name[j],interval,indelDists[i,j],snpDists[i,j]),stderr())  
-      rates[n,1:3] <- c(as.character(iname),
-                     as.character(jname),
-                     meta[iname,"haplotype.number"])
-      rates[n,4:6] <- c(interval,
-                        gatkDists[iname,jname],discoDists[iname,jname])
-      }
-  }
-}
-
-rates <- subset(rates,haplotype=="29")
-
-rates$grate <- rates$gatk/rates$interval
-rates$grate1 <- rates$gatk/sample(rates$interval)
-rates$grate2 <- rates$gatk/sample(rates$interval)
-rates$grate3 <- rates$gatk/sample(rates$interval)
-rates$grate4 <- rates$gatk/sample(rates$interval)
-rates$grate5 <- rates$gatk/sample(rates$interval)
-rates <- melt(rates,id.vars=c("from","to","interval","haplotype","gatk","disco"))
-
-rates <- subset(rates,value > 0 & is.finite(value))
-ggplot(subset(rates,interval > 0),aes(y=value,x=variable,colour=haplotype)) + geom_jitter()
-```
-
-![plot of chunk unnamed-chunk-179](figure/unnamed-chunk-179-1.png)
-
-
 
 
 ```r
@@ -109,24 +66,61 @@ opts_chunk$set(dev=c('png'))
 
 
 ```r
-#   net <- indelNets[[1]]
-# 
-# indDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",sep="\t")
-# snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")
-# 
-# discoDists <- indelDists+snpDists
-# 
-# gatkDists <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab",header=T,sep="\t")
-# 
-# 
-netAll <- net
-```
+makeNetSingle <- function(distance_matrix, meta) {
+  if (class(distance_matrix)=="dist") {
+    D = distance_matrix
+    mat <- as.matrix(D)
+  } else {
+    mat <- read.table(distance_matrix,sep="\t")
+    D <- as.dist(sym(mat))
+    }
+  
+  names <- colnames(mat)
+  mat <- as.matrix(mat)
 
-```
-## Error in eval(expr, envir, enclos): object 'net' not found
-```
+  #limit meta to only these files
+  rownames(meta) <- meta$name
+  meta <- meta[names,]
+  
+  coll <- as.Date(as.character(meta$Date),"%d/%m/%Y",origin = "2000-01-01")
+  #coll <- as.Date(paste("1","jan",meta$year,sep=""),"%d%b%Y")
+  names(coll)<-meta$name
+  meta$year <- as.numeric(format(coll,'%Y'))+2000
 
-```r
+  
+#   meta <- read.table("daniels.thies.CA.txt",sep="\t",header=T)
+#   rownames(meta) <- meta$name
+#   meta <- meta[names,]
+#   coll <- as.Date(paste("1","jan",meta$year,sep=""),"%d%b%Y")
+#   names(coll)<-meta$name
+
+  year <- meta$year
+  
+  res <- seqTrack(mat, x.names=names, x.dates=coll)
+
+  res$year <- year
+  res$name <- names
+  res
+}
+
+
+
+printGraph <- function(graph,colours,title) {
+  cols <- brewer.pal((max(graph$year)-min(graph$year))+1, colours)
+
+  ts=1 #textsize
+  ig <- as.igraph(graph)
+  tree <- layout_as_tree(ig,flip.y = F)[,c(2,1)]
+  V(ig)$name <- graph$name
+  V(ig)$color <- cols[graph$year-min(graph$year)+1]
+  V(ig)$label.cex <- ts
+ #frame()
+  plot(ig,layout=tree,main=title,vertex.size=25,
+     edge.color="black",edge.label.cex=1.5,edge.label.family="Arial",vertex.label.family="Arial")
+
+}
+
+
 getAnces <- function(net, leaf, ids=character()) {
     id = ids[1]
     ances = netAll[id,"ances"]
@@ -194,14 +188,9 @@ getEvolRates <- function(net,mat,ng) {
   outtab
 }
 
-netAll <- getAnces(net, 1,1:10)
-```
+#netAll <- getAnces(net, 1,1:10)
 
-```
-## Error in getAnces(net, 1, 1:10): object 'netAll' not found
-```
 
-```r
 g_legend<-function(a.gplot){
   tmp <- ggplot_gtable(ggplot_build(a.gplot))
   leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
@@ -209,96 +198,6 @@ g_legend<-function(a.gplot){
   return(legend)}
 ```
 
-
-```r
-opts_chunk$set(fig.width=22, fig.height=8)
-opts_chunk$set(dev=c('png','postscript'))
-```
-
-
-
-```r
-corer1 <- getEvolRates(indelNets[[1]],coreDists)  
-```
-
-```
-## Error in getAnces(net, net$id[1], net$id): object 'indelNets' not found
-```
-
-```r
-inaccr1 <- getEvolRates(indelNets[[1]],(indDists+snpDists)-coreDists)  
-```
-
-```
-## Error in getAnces(net, net$id[1], net$id): object 'indelNets' not found
-```
-
-```r
-#CORE GENOME
-cplot <- ggplot(corer1,aes(x=time,y=rate/12)) + 
-  geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
-  geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-  geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
-  ggtitle("evolutionary rate, accessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5) +
-  theme(legend.position="none")
-```
-
-```
-## Error in ggplot(corer1, aes(x = time, y = rate/12)): object 'corer1' not found
-```
-
-```r
-#INACCESSIBLE GENOME
-iaplot <- ggplot(inaccr1,aes(x=time,y=rate/12)) + 
-  geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
-  geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-  geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
-  ggtitle("evolutionary rate, inaccessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
-```
-
-```
-## Error in ggplot(inaccr1, aes(x = time, y = rate/12)): object 'inaccr1' not found
-```
-
-```r
-legend <- g_legend(iaplot)
-```
-
-```
-## Error in plot_clone(plot): object 'iaplot' not found
-```
-
-```r
-grid.arrange(cplot, iaplot + theme(legend.position="none"),legend, nrow=1,widths=c(10,10,1),heights=c(1))
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "grid.arrange"
-```
-
-```r
-corerate <- round(mean(corer1$rate),3)
-```
-
-```
-## Error in mean(corer1$rate): object 'corer1' not found
-```
-
-```r
-inaccrate <- round(mean(inaccr1$rate),3)
-```
-
-```
-## Error in mean(inaccr1$rate): object 'inaccr1' not found
-```
-
-
-
-
-```r
-opts_chunk$set(fig.width=8, fig.height=8)
-opts_chunk$set(dev=c('png'))
-```
 
 
 ```r
@@ -321,14 +220,14 @@ njtree1 <- midpoint(njtree1)
 plot(njtree1)
 ```
 
-![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-1.png)
+![plot of chunk unnamed-chunk-248](figure/unnamed-chunk-248-1.png)
 
 ```r
 njtree1 <- drop.tip(njtree1,c(oc1,oc2))
 plot(njtree1)
 ```
 
-![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-2.png)
+![plot of chunk unnamed-chunk-248](figure/unnamed-chunk-248-2.png)
 
 ```r
 rtdist1 <- diag(vcv.phylo(njtree1)[cl1,cl1])
@@ -357,8 +256,18 @@ ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
   ggtitle("Discovar, disco-accessible genome, midpoint root")
 ```
 
-![plot of chunk unnamed-chunk-186](figure/unnamed-chunk-186-3.png)
+![plot of chunk unnamed-chunk-248](figure/unnamed-chunk-248-3.png)
 
+```r
+# meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+# colnames(meta)[1]<-"name"
+# meta <- meta[!is.na(meta$Age),]
+
+netDisco <- makeNetSingle(as.dist(sym(discoDists[cl1,cl1])),meta)
+printGraph(netDisco,"Greens",title = "Discovar - disco-accessible genome")
+```
+
+![plot of chunk unnamed-chunk-249](figure/unnamed-chunk-249-1.png)
 
 
 ```r
@@ -367,14 +276,14 @@ njtreeGATK <- midpoint(njtreeGATK)
 plot(njtreeGATK)
 ```
 
-![plot of chunk unnamed-chunk-187](figure/unnamed-chunk-187-1.png)
+![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-1.png)
 
 ```r
 njtreeGATK <- drop.tip(njtreeGATK,c(oc1,oc2))
 plot(njtreeGATK)
 ```
 
-![plot of chunk unnamed-chunk-187](figure/unnamed-chunk-187-2.png)
+![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-2.png)
 
 ```r
 rtdistGATK <- diag(vcv.phylo(njtreeGATK)[cl1,cl1])
@@ -403,7 +312,17 @@ ggplot(TDtabGATK,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_sm
   ggtitle("HaplotypeCaller, haplo-accessible genome, midpoint root")
 ```
 
-![plot of chunk unnamed-chunk-187](figure/unnamed-chunk-187-3.png)
+![plot of chunk unnamed-chunk-250](figure/unnamed-chunk-250-3.png)
+
+```r
+#cols <- brewer.pal((max(netGATK$year)-min(netGATK$year))+1, "Greens")
+
+netGATK <- makeNetSingle(as.dist(sym(gatkDists[cl1,cl1])),meta)
+printGraph(netGATK[],"Greens",title = "HaplotypeCaller - haplo-accessible genome")
+```
+
+![plot of chunk unnamed-chunk-251](figure/unnamed-chunk-251-1.png)
+
 
 ```r
 njtreeGATKCore <- nj(as.dist(sym(gatkDistsCore)))
@@ -411,14 +330,14 @@ njtreeGATKCore <- midpoint(njtreeGATKCore)
 plot(njtreeGATKCore)
 ```
 
-![plot of chunk unnamed-chunk-188](figure/unnamed-chunk-188-1.png)
+![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-1.png)
 
 ```r
 njtreeGATKCore <- drop.tip(njtreeGATKCore,c(oc1,oc2))
 plot(njtreeGATKCore)
 ```
 
-![plot of chunk unnamed-chunk-188](figure/unnamed-chunk-188-2.png)
+![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-2.png)
 
 ```r
 rtdistGATKCore <- diag(vcv.phylo(njtreeGATKCore)[cl1,cl1])
@@ -447,4 +366,149 @@ ggplot(TDtabGATKCore,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geo
   ggtitle("HaplotypeCaller, core genome, midpoint root")
 ```
 
-![plot of chunk unnamed-chunk-188](figure/unnamed-chunk-188-3.png)
+![plot of chunk unnamed-chunk-252](figure/unnamed-chunk-252-3.png)
+
+```r
+netGATKCore <- makeNetSingle(as.dist(sym(gatkDistsCore[cl1,cl1])),meta)
+printGraph(netGATKCore[],"Greens",title = "HaplotypeCaller - core genome")
+```
+
+![plot of chunk unnamed-chunk-253](figure/unnamed-chunk-253-1.png)
+
+```r
+# meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+# colnames(meta)[1]<-"name"
+# meta <- meta[meta$name %in% cl1,]
+# row.names(meta) <- cl1
+# meta$Date <- as.Date(as.character(meta$Date),"%d/%m/%Y",origin = "2000-01-01")
+
+bootstrapNets <- function(genos,outfolder) {
+  genosStatic <- genos
+  #outfolder <- "./bootstraps"
+  bstraps <- system(paste("ls ",outfolder,"*",sep=""),intern = T)
+  #if (length(bstraps)>0) {write("using old bootstraps",stderr())
+  if (1==2) {write("using old bootstraps",stderr())
+                       } else{
+    write("bootstrapping (100)",stderr())
+      for (boot in c(1:100)) {
+      
+          bootsample <- sample(c(1:dim(genos)[1]),replace = T)
+#          genos <- genosStatic[c1,bootsample]
+#          inds <- c1
+          genos <- genosStatic[bootsample,]
+          inds <- colnames(genosStatic)
+        
+          distmat = matrix(nrow=length(inds),ncol=length(inds))
+          colnames(distmat) = inds
+          rownames(distmat) = inds
+        
+          write("calculating distance matrix",stderr())
+          for (i in inds){
+              for (j in inds){
+#              filled = intersect(which(genos[,i] != 0), which(genos[,j] !=0))
+              filled = intersect(which(!is.na(genos[,i])), which(!is.na(genos[,j])))
+              if(length(filled) > 0) {
+                  distmat[j,i] = sum(genos[filled,i]!=genos[filled,j])
+                }else {
+                  distmat[j,i]=-1
+                }
+              }
+          }
+          distmat <- as.dist(distmat)
+          net <- makeNetSingle(distmat,meta)
+          #printGraph(net,"Greens",tab)
+          
+          outnet=paste(".",outfolder, paste("bootstrap_c29",boot,'seqtrack.net',sep='.'),sep="/")
+          write.table(net,outnet,quote=F,row.names=F)
+        
+        }
+  }
+}
+
+sumBootstraps <- function(bootdir) {
+  bstraps <- system(paste("ls ",bootdir,"/*",sep=""),intern = T)
+
+  blinks <- matrix(rep(0,length(cl1)**2),nrow = length(cl1),ncol=length(cl1),dimnames = list(cl1,cl1))
+
+  for (b in bstraps) {
+    tab <- read.table(b,header=T)
+    for (i in c(1:dim(tab)[[1]])) {
+      if (!is.na(tab$ances[i])) {
+      blinks[tab$id[i],tab$ances[i]] = blinks[tab$id[i],tab$ances[i]]+1
+      }
+    }
+  }
+blinks
+}
+```
+
+
+```r
+discoGenos <- read.table("ThiesDiscoDiscord.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(discoGenos,"bootstraps_disco")
+discosum <- sumBootstraps("bootstraps_disco")
+
+
+haploGenosCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(haploGenosCore,"bootstraps_haploCore")
+haploCoresum <- sumBootstraps("bootstraps_haploCore")
+
+haploGenosAccess <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(haploGenosAccess,"bootstraps_haploAccess")
+haplosum <- sumBootstraps("bootstraps_haploAccess")
+```
+
+
+
+```r
+addBootToNet <- function(net,boottab,distmat) {
+  net$type = "core"
+  net$boot = 0
+  inds <- rownames(net)
+  for (t in inds) {
+    for (f in inds) {
+      fi = which(inds==f)
+        #write(paste(t,f,blinks[t,f],net[t,"ances"],is.na(net[t,"ances"]),net[t,"ances"] == fi),stderr())
+      if (boottab[t,f] > 0) {
+        if ((!is.na(net[t,"ances"])) & net[t,"ances"] == fi) {net[t,"boot"] = boottab[t,f]}
+        else {
+          nextI = dim(net)[[1]]+1
+  #        write(paste("  adding",nextI,":",leaf,ances,sep=" "),stderr())
+          #integers
+          net[nextI,c("id","ances","weight","year","boot")] <- c(which(inds==t), which(inds==f),as.matrix(distmat)[t,f],net[t,"year"], boottab[t,f])
+          net[nextI,4] <- meta[f,"Date"]
+          net[nextI,5] <- net[t,"date"]
+          net[nextI,7:8] <- c(t,"boot")
+          }
+        }
+    }
+  }
+net
+}
+
+discobootnet <- addBootToNet(netDisco,discosum,discoDists)
+gatkbootnet <- addBootToNet(netGATK,haplosum,gatkDists)
+gatkbootcorenet <- addBootToNet(netGATKCore,haploCoresum,gatkDistsCore)
+discobootnet
+```
+
+```
+##          id ances weight       date ances.date year     name type boot
+## Th086.07  1    NA     NA 0007-10-11       <NA> 2007 Th086.07 core    0
+## Th106.09  2     1    576 0009-10-26 0007-10-11 2009 Th106.09 core  101
+## Th106.11  3     2    358 0011-10-27 0009-10-26 2011 Th106.11 core   15
+## Th117.11  4     3    111 0011-11-02 0011-10-27 2011 Th117.11 core  101
+## Th132.11  5     2    121 0011-11-11 0009-10-26 2011 Th132.11 core  101
+## Th134.11  6     3    105 0011-11-14 0011-10-27 2011 Th134.11 core   11
+## Th162.12  7     2    125 0012-10-10 0009-10-26 2012 Th162.12 core   90
+## Th196.12  8     5    139 0012-10-25 0011-11-11 2012 Th196.12 core   24
+## Th230.12  9     5    106 0012-11-09 0011-11-11 2012 Th230.12 core   38
+## Th074.13 10     2     88 0013-09-23 0009-10-26 2013 Th074.13 core  101
+## 11        3     1     NA 0011-10-07 0011-10-27 2011 Th106.11 boot   86
+## 12        6     4     NA 0002-11-11 0011-11-14 2011 Th134.11 boot   90
+## 13        7     5     NA 0011-11-11 0012-10-10 2012 Th162.12 boot   11
+## 14        8     2     NA 0026-10-09 0012-10-25 2012 Th196.12 boot   76
+## 15        8     7     NA 0010-10-12 0012-10-25 2012 Th196.12 boot    1
+## 16        9     2     NA 0026-10-09 0012-11-09 2012 Th230.12 boot   41
+## 17        9     8     NA 0025-10-12 0012-11-09 2012 Th230.12 boot   22
+```

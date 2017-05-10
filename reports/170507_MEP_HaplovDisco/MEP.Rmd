@@ -38,7 +38,9 @@ makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
 ```
 
 ```{r}
-meta<-read.table("daniels.thies.CA.txt",sep="\t",header=T)
+meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+colnames(meta)[1]<-"name"
+meta <- meta[!is.na(meta$Age),]
 
 indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
 snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
@@ -195,10 +197,6 @@ g_legend<-function(a.gplot){
   return(legend)}
 ```
 
-```{r}
-opts_chunk$set(fig.width=8, fig.height=8)
-opts_chunk$set(dev=c('png'))
-```
 
 ```{r}
 cl1 <- c("Th086.07", "Th106.09", "Th106.11", "Th117.11", "Th132.11", "Th134.11", "Th162.12", "Th196.12", "Th230.12", "Th074.13")
@@ -229,9 +227,9 @@ ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
 
 ```
 ```{r}
-meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
-colnames(meta)[1]<-"name"
-meta <- meta[!is.na(meta$Age),]
+# meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+# colnames(meta)[1]<-"name"
+# meta <- meta[!is.na(meta$Age),]
 
 netDisco <- makeNetSingle(as.dist(sym(discoDists[cl1,cl1])),meta)
 printGraph(netDisco,"Greens",title = "Discovar - disco-accessible genome")
@@ -254,9 +252,6 @@ ggplot(TDtabGATK,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_sm
 
 ```
 ```{r}
-meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
-colnames(meta)[1]<-"name"
-meta <- meta[!is.na(meta$Age),]
 #cols <- brewer.pal((max(netGATK$year)-min(netGATK$year))+1, "Greens")
 
 netGATK <- makeNetSingle(as.dist(sym(gatkDists[cl1,cl1])),meta)
@@ -280,10 +275,6 @@ ggplot(TDtabGATKCore,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geo
 
 ```
 ```{r}
-meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
-colnames(meta)[1]<-"name"
-meta <- meta[!is.na(meta$Age),]
-cols <- brewer.pal((max(netGATK$year)-min(netGATK$year))+1, "Greens")
 
 netGATKCore <- makeNetSingle(as.dist(sym(gatkDistsCore[cl1,cl1])),meta)
 printGraph(netGATKCore[],"Greens",title = "HaplotypeCaller - core genome")
@@ -304,7 +295,7 @@ bootstrapNets <- function(genos,outfolder) {
   if (1==2) {write("using old bootstraps",stderr())
                        } else{
     write("bootstrapping (100)",stderr())
-      for (boot in c(1:20)) {
+      for (boot in c(1:100)) {
       
           bootsample <- sample(c(1:dim(genos)[1]),replace = T)
 #          genos <- genosStatic[c1,bootsample]
@@ -319,11 +310,12 @@ bootstrapNets <- function(genos,outfolder) {
           write("calculating distance matrix",stderr())
           for (i in inds){
               for (j in inds){
-              filled = intersect(which(genos[,i] != 0), which(genos[,j] !=0))
+#              filled = intersect(which(genos[,i] != 0), which(genos[,j] !=0))
+              filled = intersect(which(!is.na(genos[,i])), which(!is.na(genos[,j])))
               if(length(filled) > 0) {
-                  distmat[i,j] = sum(genos[filled,i]!=genos[filled,j])
+                  distmat[j,i] = sum(genos[filled,i]!=genos[filled,j])
                 }else {
-                  distmat[i,j]=-1
+                  distmat[j,i]=-1
                 }
               }
           }
@@ -337,23 +329,6 @@ bootstrapNets <- function(genos,outfolder) {
         }
   }
 }
-
-
-
-discoGenos <- read.table("ThiesDiscoDiscord.alleles.tab",header=T,na.strings = c("."))[,cl1]
-bootstrapNets(discoGenos,"bootstraps_disco")
-sumBootstraps("bootstraps_disco")
-
-
-haploGenosCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
-bootstrapNets(haploGenosCore,"bootstraps_haploCore")
-
-haploGenosAccess <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
-bootstrapNets(haploGenosAccess,"bootstraps_haploAccess")
-
-```
-
-```{r}
 
 sumBootstraps <- function(bootdir) {
   bstraps <- system(paste("ls ",bootdir,"/*",sep=""),intern = T)
@@ -371,11 +346,25 @@ sumBootstraps <- function(bootdir) {
 blinks
 }
 
-discosum <- sumBootstraps("bootstraps_disco/")
-haplosum <- sumBootstraps("bootstraps_haploAccess/")
-haploCoresum <- sumBootstraps("bootstraps_haploCore/")
+```
+
+```{r}
+
+discoGenos <- read.table("ThiesDiscoDiscord.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(discoGenos,"bootstraps_disco")
+discosum <- sumBootstraps("bootstraps_disco")
+
+
+haploGenosCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(haploGenosCore,"bootstraps_haploCore")
+haploCoresum <- sumBootstraps("bootstraps_haploCore")
+
+haploGenosAccess <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(haploGenosAccess,"bootstraps_haploAccess")
+haplosum <- sumBootstraps("bootstraps_haploAccess")
 
 ```
+
 
 ```{r}
 addBootToNet <- function(net,boottab,distmat) {
