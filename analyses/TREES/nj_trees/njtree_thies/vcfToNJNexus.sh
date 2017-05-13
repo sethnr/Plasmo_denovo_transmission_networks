@@ -19,7 +19,7 @@ cd tmp_${OUTFILE}_NJnex
 
 ln -s $VCF_ABS
 
-vcftools --plink --out ${VCF/.vcf/} --gzvcf $VCF
+vcftools --plink --out ${VCF/.vcf/} --gzvcf $VCF --maf 0.01 --max-maf 0.99
 if [[ $? != 0 ]]; then exit 1 ; fi
 
 Rscript $PEDTOTREE ${VCF/.vcf/}
