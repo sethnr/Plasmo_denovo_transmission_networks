@@ -1,0 +1,1 @@
+../../scripts/vcf/markSingletons.py

@@ -1,0 +1,1 @@
+/seq/plasmodium/sredmond/pfdisco/scripts/cfs_dd2/checkSampleConsistencyVCF.py

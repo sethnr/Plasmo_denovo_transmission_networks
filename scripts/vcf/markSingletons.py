@@ -41,7 +41,7 @@ for rec in reader1:
 #    rec.samples = None
     newSamples = list()
     GTindex=rec.FORMAT.split(":").index("GT")
-    GPindex=rec.FORMAT.split(":").index("GP")
+#    GPindex=rec.FORMAT.split(":").index("GP")
     format = rec.FORMAT.split(":")
     makeCallData = vcf.model.make_calldata_tuple(tuple(rec.FORMAT.split(":")))
     

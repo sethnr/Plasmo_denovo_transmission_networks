@@ -1,0 +1,21 @@
+python getCladeDiscordsVCF.py -v thies_300100_haplo.CALLDISCO.RENAME.vcf.gz -s Th086.07 -s Th106.09 -s Th106.11 -s Th117.11 -s Th132.11 -s Th134.11 -s Th162.12 -s Th196.12 -s Th230.12 -s Th074.13 -p clade29
+python getCladeDiscordsVCF.py -v thies_300100_haplo.CALLDISCO.RENAME.clade29.vcf -s Th166.12 -s Th092.13 -s Th211.13 -s Th245.13 -s Th246.13 -p clade26
+python getCladeDiscordsVCF.py -v thies_300100_haplo.CALLDISCO.RENAME.clade29.clade26.vcf -s Th068.12 -s Th061.13 -s Th095.13 -p clade23
+
+
+for F in *MKSNGL.vcf ; do echo $F " " `grep -c Incons $F` " " `grep Incons $F | grep -c Singleton` ; done
+Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.MKSNGL.vcf   3200   1645
+thies_300100_haplo.CALLDISCO.RENAME.miss0.5.clade29.clade26.clade23.MKSNGL.vcf   17531   3197
+
+
+
+
+#get overlap between callsets:
+grep Incons thies_300100_haplo.CALLDISCO.RENAME.miss0.5.clade29.clade26.clade23.MKSNGL.vcf | cut -f1,2 | sort > haploLocs.txt 
+grep Incons Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.MKSNGL.vcf | cut -f1,2 | sort > discoLocs.txt 
+comm -12 discoLocs.txt haploLocs.txt | wc -l 
+comm -23 discoLocs.txt haploLocs.txt | wc -l 
+comm -13 discoLocs.txt haploLocs.txt | wc -l 
+    394        3806       17137
+
+
