@@ -18,6 +18,7 @@ sym <- function(M) {
   M
 }
 
+
 makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
   mat <- read.table(distance_matrix_file,sep="\t")
   D <- as.dist(sym(mat))
@@ -226,6 +227,8 @@ ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smoot
   ggtitle("Discovar, disco-accessible genome, midpoint root")
 
 ```
+
+
 ```{r}
 # meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
 # colnames(meta)[1]<-"name"
