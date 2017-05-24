@@ -8,6 +8,10 @@ library(igraph)
 library(RColorBrewer)
 library(ggplot2)
 library(reshape2)
+
+require(gridExtra)
+
+
 opts_chunk$set(fig.width=9, fig.height=9)
 opts_chunk$set(dev=c('png','postscript'))
 ```
@@ -40,160 +44,6 @@ makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
 ```
 
 
-```r
-meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
-colnames(meta)[1]<-"name"
-meta <- meta[!is.na(meta$Age),]
-
-indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
-snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
-discoDists <- indelDists+snpDists
-
-meta <- subset(meta,name %in% names(indelDists))
-rownames(meta) <- meta$name
-
-gatkDists <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab",header=T,sep="\t")
-
-gatkDistsCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",header=T,sep="\t")
-```
-
-
-
-
-
-```r
-cl1 <- c("Th086.07", "Th106.09", "Th106.11", "Th117.11", "Th132.11", "Th134.11", "Th162.12", "Th196.12", "Th230.12", "Th074.13")
-cl1yrs <- as.numeric(gsub(".*\\.","",cl1))
-og1<-"Th166.12"
-oc1 <- c("Th166.12", "Th092.13", "Th211.13", "Th245.13", "Th246.13")
-og2<-"Th068.12"
-oc2 <- c("Th068.12", "Th061.13", "Th095.13")
-cog1 <- c(cl1,og1)
-cog2 <- c(cl1,og2)
-```
-
-
-
-
-```r
-njtree1 <- nj(as.dist(sym(discoDists)))
-njtree1 <- midpoint(njtree1)
-plot(njtree1)
-```
-
-![plot of chunk unnamed-chunk-337](figure/unnamed-chunk-337-1.png)
-
-```r
-njtree1 <- drop.tip(njtree1,c(oc1,oc2))
-plot(njtree1)
-```
-
-![plot of chunk unnamed-chunk-337](figure/unnamed-chunk-337-2.png)
-
-```r
-rtdist1 <- diag(vcv.phylo(njtree1)[cl1,cl1])
-TDtab1 <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=rtdist1)
-ct1 <- cor.test(TDtab1$yrs,TDtab1$rtdist)
-ct1
-```
-
-```
-## 
-## 	Pearson's product-moment correlation
-## 
-## data:  TDtab1$yrs and TDtab1$rtdist
-## t = 2.4403, df = 8, p-value = 0.04055
-## alternative hypothesis: true correlation is not equal to 0
-## 95 percent confidence interval:
-##  0.04012092 0.90899971
-## sample estimates:
-##       cor 
-## 0.6532455
-```
-
-```r
-ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
-  geom_label(x=8,y=mean(TDtab1$rtdist),label=paste("R=",round(ct1$estimate,3)," p=",round(ct1$p.value,4),sep=""),size=5) +
-  ggtitle("Discovar, disco-accessible genome, midpoint root")
-```
-
-![plot of chunk unnamed-chunk-337](figure/unnamed-chunk-337-3.png)
-
-
-```r
-alleleTab <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.tab",colClasses="character",header=T,na.strings = c("."))
-genos <- t(data.matrix(alleleTab[6:dim(alleleTab)[2]]))
-inds <- row.names(genos)
-genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
-
-fitch(njtree1,genosDat,site = "site")
-```
-
-```
-##   [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1
-##  [36] 0 0 0 0 0 0 0 1 0 1 1 1 1 1 1 1 1 0 0 0 0 0 1 0 2 1 1 1 1 1 1 1 1 1 1
-##  [71] 1 0 0 1 1 0 1 1 1 2 1 1 0 0 1 0 0 0 1 0 2 1 0 0 1 0 0 0 0 0 0 0 2 1 0
-## [106] 0 2 1 1 0 2 1 1 1 0 1 0 1 0 1 0 2 2 1 0 0 1 1 0 1 2 1 0 2 2 0 0 1 0 0
-## [141] 2 0 3 0 1 1 0 0 0 0 1 1 1 0 0 0 0 0 2 0 1 0 1 1 0 2 1 1 1 0 0 0 0 0 2
-## [176] 0 2 1 0 0 0 1 1 0 0 1 0 0 1 2 0 1 1 0 0 1 2 1 1 1 1 1 1 0 1 0 0 0 1 1
-## [211] 1 1 1 1 1 2 0 2 1 0 0 1 1 2 0 3 0 0 0 2 1 1 1 0 0 0 1 0 0 1 1 0 0 1 3
-## [246] 1 0 0 1
-```
-
-```r
-parsimony(njtree1,genosDat)
-```
-
-```
-## [1] 796
-```
-
-```r
-parsTree <- pratchet(genosDat,njtree1)
-```
-
-```
-## [1] "Best pscore so far: 796"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-## [1] "Best pscore so far: 792"
-```
-
-```r
-plot(parsTree)
-```
-
-![plot of chunk unnamed-chunk-338](figure/unnamed-chunk-338-1.png)
-
-```r
-lento(parsTree)
-```
-
-![plot of chunk unnamed-chunk-338](figure/unnamed-chunk-338-2.png)
-
-```r
-plot(njtree1)
-```
-
-![plot of chunk unnamed-chunk-338](figure/unnamed-chunk-338-3.png)
-
-```r
-lento(njtree1)
-```
-
-![plot of chunk unnamed-chunk-338](figure/unnamed-chunk-338-4.png)
-
-```r
-?lento
-```
-
 
 ```r
 getSplitSupports <- function(tree,genos) {
@@ -209,10 +59,12 @@ getSplitSupports <- function(tree,genos) {
                               stringsAsFactors = F)
   
   splits <- as.splits(tree)
-  for (si in c(1:length(splits))) {
+  write(paste(c((length(samps)+1):length(splits)),sep=", "),stderr())
+  for (si in c((length(samps)+1):length(splits))) {
     split <- samps[splits[[si]]]
     outs <- samps[!samps %in% split]
-    if (length(split)==1) {next}
+    #if (length(split)==1) {next}
+    if (length(split)==length(samps)) {next}
     
   #  write(split,stderr())
     calcs <- apply(genos,2,function(x) {
@@ -255,79 +107,332 @@ getSplitSupports <- function(tree,genos) {
   
   return(splitSupports)
 }
+
+getSplitPlot <- function(tree) {
+    
+#  samps <- c(1:dim(genos)[[1]])
+  samps <- tree$tip.label
+  
+  splitPlot <- data.frame(splits=character(),
+                          sample=character(),
+                          insplit=numeric(),
+                          stringsAsFactors = F)
+  
+  splits <- as.splits(tree)
+  write(paste(c((length(samps)+1):length(splits)),sep=", "),stderr())
+  for (si in c((length(samps)+1):length(splits))) {
+    split <- samps[splits[[si]]]
+    outs <- samps[!samps %in% split]
+    #if (length(split)==1) {next}
+    if (length(split)==length(samps)) {next}
+    
+    splitStr = paste(split,sep=",",collapse =",")
+    
+    write(paste(si,splitStr,length(splits)),stderr())
+    for (s in split) {
+      nextI = dim(splitPlot)[[1]]+1
+      splitPlot[nextI,"splits"] = splitStr
+      splitPlot[nextI,"sample"] = s
+      splitPlot[nextI,"insplit"] = 1}
+    for (s in outs) {
+      nextI = dim(splitPlot)[[1]]+1
+      splitPlot[nextI,"splits"] = splitStr
+      splitPlot[nextI,"sample"] = s
+      splitPlot[nextI,"insplit"] = 0}
+    
+      
+  }
+  
+  treeOrder <- tree$tip.label[tree$edge[c(tree$edge[,2] <= length(tree$tip.label)),2]]
+  splitPlot$sample <- factor(splitPlot$sample,levels=treeOrder,ordered=T)
+  splitPlot$insplit <- as.logical(splitPlot$insplit)
+  return(splitPlot)
+}
+
+blankTheme <- theme(axis.title=element_blank(),axis.text = element_blank())
+blankThemeLab <- theme(axis.title=element_blank(),axis.text.y = element_blank(),
+                    axis.text.x=element_text(angle=90,hjust=1))
 ```
+
+
+
+
+
+```r
+meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+colnames(meta)[1]<-"name"
+meta <- meta[!is.na(meta$Age),]
+
+indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
+snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
+discoDists <- indelDists+snpDists
+
+meta <- subset(meta,name %in% names(indelDists))
+rownames(meta) <- meta$name
+
+gatkDists <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab",header=T,sep="\t")
+
+gatkDistsCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",header=T,sep="\t")
+```
+
+
+```r
+discoLocs <- paste(alleleTab[,1],alleleTab[,2])
+haploLocs <- paste(alleleTabGATK[,1],alleleTabGATK[,2])
+
+hapInDisc <- as.logical(haploLocs %in% discoLocs)
+sum(hapInDisc) / length(haploLocs)
+```
+
+```
+## [1] 0.2628966
+```
+
+```r
+discInHap <- as.logical(discoLocs %in% haploLocs)
+sum(discInHap) / length(discoLocs)
+```
+
+```
+## [1] 0.4450473
+```
+
+
+
+
+```r
+cl1 <- c("Th086.07", "Th106.09", "Th106.11", "Th117.11", "Th132.11", "Th134.11", "Th162.12", "Th196.12", "Th230.12", "Th074.13")
+cl1yrs <- as.numeric(gsub(".*\\.","",cl1))
+og1<-"Th166.12"
+oc1 <- c("Th166.12", "Th092.13", "Th211.13", "Th245.13", "Th246.13")
+og2<-"Th068.12"
+oc2 <- c("Th068.12", "Th061.13", "Th095.13")
+cog1 <- c(cl1,og1)
+cog2 <- c(cl1,og2)
+```
+
+
+#MAKE DISCOVAR TREES
+
+```r
+alleleTab <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.miss-1.alleles.tab",colClasses="character",header=T,na.strings = c("."))
+genos <- t(data.matrix(alleleTab[6:dim(alleleTab)[2]]))
+inds <- row.names(genos)
+genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
+
+njtree1 <- nj(as.dist(sym(discoDists)))
+njtree1 <- midpoint(njtree1)
+njtree1 <- drop.tip(njtree1,c(oc1,oc2))
+#plot(njtree1)
+
+parsTree <- pratchet(genosDat) # ,njtree1)
+```
+
+```
+## [1] "Best pscore so far: 23264"
+## [1] "Best pscore so far: 23264"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+```
+
+```r
+parsTree <- nnls.phylo(parsTree,dist.hamming(genosDat))
+parsTree <- midpoint(parsTree)
+parsTree <- drop.tip(parsTree,c(oc1,oc2))
+#plot(parsTree)
+```
+
+
+#MAKE HAP CALLER TREES
+
+```r
+alleleTabGATK <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",colClasses="character",header=T,na.strings = c("."))
+genosGATK <- t(data.matrix(alleleTabGATK[6:dim(alleleTabGATK)[2]]))
+indsGATK <- row.names(genosGATK)
+genosDatGATK <- as.phyDat(genosGATK, type="USER", levels = c(0:max(genosGATK,na.rm=T)))
+
+
+njtreeGATK <- nj(as.dist(sym(gatkDists)))
+njtreeGATK <- midpoint(njtreeGATK)
+njtree1 <- drop.tip(njtreeGATK,c(oc1,oc2))
+#plot(njtreeGATK)
+
+parstreeGATK <- pratchet(genosDatGATK)
+```
+
+```
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+## [1] "Best pscore so far: 32311"
+```
+
+```r
+parstreeGATK <- nnls.phylo(parstreeGATK,as.dist(sym(gatkDists)))
+parstreeGATK <- midpoint(parstreeGATK)
+parstreeGATK <- drop.tip(parstreeGATK,c(oc1,oc2))
+#plot(parstreeGATK)
+```
+
+
 
 
 ```r
 njSupp <- getSplitSupports(njtree1,genos[cl1,])
 parsSupp <- getSplitSupports(parsTree,genos[cl1,])
 
-ggplot(njSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-100,500)
-```
+njSplits <- getSplitPlot(njtree1)
 
-![plot of chunk unnamed-chunk-340](figure/unnamed-chunk-340-1.png)
-
-```r
-ggplot(parsSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-100,500)
-```
-
-![plot of chunk unnamed-chunk-340](figure/unnamed-chunk-340-2.png)
+splitSort <- njSupp$splits[rev(order(njSupp$pro))]
 
 
+njSplits$splits <- factor(njSplits$splits,levels=splitSort, ordered=T)
+njSupp$splits <- factor(njSupp$splits,levels=splitSort, ordered=T)
+
+#splitP <- ggplot(splitTab,aes(x=splits,y=sample,fill=as.logical(insplit))) + geom_point(shape=21, size=3)
+splitP <- ggplot(njSplits,aes(x=splits,y=sample,fill=insplit)) + geom_point(shape=21, size=3) + scale_fill_manual(values=c(NA,"black"),guide=F)
+#splitP
 
 
-```r
-njtreeGATK <- nj(as.dist(sym(gatkDists)))
-njtreeGATK <- midpoint(njtreeGATK)
-plot(njtreeGATK)
-```
+njsupP <- ggplot(njSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-100,500)
+#njsupP
 
-![plot of chunk unnamed-chunk-341](figure/unnamed-chunk-341-1.png)
 
-```r
-njtreeGATK <- drop.tip(njtreeGATK,c(oc1,oc2))
-plot(njtreeGATK)
-```
-
-![plot of chunk unnamed-chunk-341](figure/unnamed-chunk-341-2.png)
-
-```r
-alleleTabGATK <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",colClasses="character",header=T,na.strings = c("."))
-genosGATK <- t(data.matrix(alleleTabGATK[6:dim(alleleTabGATK)[2]]))
-
-inds <- row.names(genosGATK)
-genosDatGATK <- as.phyDat(genosGATK, type="USER", levels = c(0:max(genosGATK,na.rm=T)))
-
-parstreeGATK <- pratchet(genosDatGATK,njtreeGATK)
-```
-
-```
-## [1] "Best pscore so far: 5420"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
-## [1] "Best pscore so far: 5331"
+#par(mfrow=c(2,2))
+#plot(njtree1)
+#grid.arrange(njsupP + blankTheme, splitP+blankTheme, ncol=1)
+#njsupP + blankTheme
+#splitP + blankThemeLab
 ```
 
 
 ```r
-njSuppGATK <- getSplitSupports(njtreeGATK,genosGATK[cl1,])
+parsSupp <- getSplitSupports(parsTree,genos[cl1,])
+parsSuppIn <- getSplitSupports(parsTree,genos[cl1,discInHap])
+parsSuppOut <- getSplitSupports(parsTree,genos[cl1,!discInHap])
+parsSuppIn$inHap=T
+parsSuppOut$inHap=F
+parsSuppComb = rbind(parsSuppIn,parsSuppOut)
+
+parsSplits <- getSplitPlot(parsTree)
+
+parsSplitSort <- parsSupp$splits[rev(order(parsSupp$pro))]
+
+
+parsSplits$splits <- factor(parsSplits$splits,levels=parsSplitSort, ordered=T)
+parsSupp$splits <- factor(parsSupp$splits,levels=parsSplitSort, ordered=T)
+parsSuppComb$splits <- factor(parsSuppComb$splits,levels=parsSplitSort, ordered=T)
+
+#splitP <- ggplot(splitTab,aes(x=splits,y=sample,fill=as.logical(insplit))) + geom_point(shape=21, size=3)
+splitP <- ggplot(parsSplits,aes(x=splits,y=sample,fill=as.logical(insplit))) + geom_point(shape=21, size=3) + scale_fill_manual(values=c(NA,"black"),guide=F)
+splitP
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+
+```r
+parssupP <- ggplot(parsSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-100,500)
+parssupP
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-2.png)
+
+```r
+parssupP <- ggplot(parsSuppComb,aes(x=splits,alpha=inHap)) + geom_bar(aes(y=pro),stat="identity",fill="blue",colour="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red",colour="red") + ylim(-100,500) + scale_alpha_manual(values=c(0.6,1),guide=F)
+parssupP
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-3.png)
+
+```r
+# par(mfrow=c(2,2))
+plot(parsTree)
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-4.png)
+
+```r
+# parssupP + blankTheme
+# splitP + blankTheme
+
+
+grid.arrange(parssupP + blankTheme, splitP+blankTheme, ncol=1)
+```
+
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-5.png)
+
+
+
+
+```r
 parsSuppGATK <- getSplitSupports(parstreeGATK,genosGATK[cl1,])
 
-ggplot(njSuppGATK,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-4000,3000)
+parsSuppGATKin <- getSplitSupports(parstreeGATK,genosGATK[cl1,hapInDisc])
+parsSuppGATKout <- getSplitSupports(parstreeGATK,genosGATK[cl1,!hapInDisc])
+parsSuppGATKin$inDisco <- T
+parsSuppGATKout$inDisco <- F
+parsSuppGATKcomb <- rbind(parsSuppGATKin,parsSuppGATKout)
+
+
+parsSplitsGATK <- getSplitPlot(parstreeGATK)
+
+parsSplitSortGATK <- parsSuppGATK$splits[rev(order(parsSuppGATK$pro))]
+
+
+parsSplitsGATK$splits <- factor(parsSplitsGATK$splits,levels=parsSplitSortGATK, ordered=T)
+parsSuppGATK$splits <- factor(parsSuppGATK$splits,levels=parsSplitSortGATK, ordered=T)
+parsSuppGATKcomb$splits <- factor(parsSuppGATKcomb$splits,levels=parsSplitSortGATK, ordered=T)
+
+#splitP <- ggplot(splitTab,aes(x=splits,y=sample,fill=as.logical(insplit))) + geom_point(shape=21, size=3)
+splitGATKP <- ggplot(parsSplitsGATK,aes(x=splits,y=sample,fill=as.logical(insplit))) + geom_point(shape=21, size=3) + scale_fill_manual(values=c(NA,"black"),guide=F)
+splitGATKP
 ```
 
-![plot of chunk unnamed-chunk-342](figure/unnamed-chunk-342-1.png)
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
 
 ```r
-ggplot(parsSuppGATK,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-4000,3000)
+parssupGATKP <- ggplot(parsSuppGATK,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") 
+parssupGATKP
 ```
 
-![plot of chunk unnamed-chunk-342](figure/unnamed-chunk-342-2.png)
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-2.png)
+
+```r
+parssupGATKP <- ggplot(parsSuppGATKcomb,aes(x=splits,alpha=inDisco)) + geom_bar(aes(y=pro),stat="identity",fill="blue",colour="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red",colour="red") + scale_alpha_manual(values=c(0.6,1),guide=F)
+parssupGATKP
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-3.png)
+
+```r
+# par(mfrow=c(2,2))
+plot(parstreeGATK)
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-4.png)
+
+```r
+# parssupP + blankTheme
+# splitP + blankTheme
+
+
+grid.arrange(parssupGATKP + blankTheme, splitGATKP+blankTheme, ncol=1)
+```
+
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-5.png)
+
 
