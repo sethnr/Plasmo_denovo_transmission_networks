@@ -1,0 +1,158 @@
+```{r}
+library(ape)
+library(adegenet)
+library(phangorn)
+library(knitr)
+library(igraph)
+library(RColorBrewer)
+library(ggplot2)
+library(reshape2)
+
+require(gridExtra)
+
+
+opts_chunk$set(fig.width=9, fig.height=9)
+opts_chunk$set(dev=c('png','postscript'))
+```
+
+
+```{r}
+sym <- function(M) {
+  M[lower.tri(M)] = t(M)[lower.tri(M)]
+  M
+}
+
+
+makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
+  mat <- read.table(distance_matrix_file,sep="\t")
+  D <- as.dist(sym(mat))
+  clust <- gengraph(D,ngrp=ngroups)
+  names <- colnames(mat)
+  mat <- as.matrix(mat)
+  
+  name1 <- names[clust$clust$membership==1]
+  name2 <- names[clust$clust$membership==2]
+  name3 <- names[clust$clust$membership==3]
+  dist1 <- mat[name1,name1]
+  dist2 <- mat[name2,name2]
+  dist3 <- mat[name3,name3]
+    
+  list(dist1,dist2,dist3)
+}
+
+
+
+blankTheme <- theme(axis.title=element_blank(),axis.text = element_blank())
+blankThemeLab <- theme(axis.title=element_blank(),axis.text.y = element_blank(),
+                    axis.text.x=element_text(angle=90,hjust=1))
+
+
+
+```
+
+
+
+
+```{r}
+meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+colnames(meta)[1]<-"name"
+meta <- meta[!is.na(meta$Age),]
+
+# indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
+# snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
+# discoDists <- indelDists+snpDists
+
+gatkDists <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab",header=T,sep="\t")
+
+gatkDistsCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",header=T,sep="\t")
+
+meta <- subset(meta,name %in% names(gatkDists))
+rownames(meta) <- meta$name
+
+
+```
+
+
+
+```{r}
+cl1 <- c("Th086.07", "Th106.09", "Th106.11", "Th117.11", "Th132.11", "Th134.11", "Th162.12", "Th196.12", "Th230.12", "Th074.13")
+cl2 <- c("Th166.12", "Th092.13", "Th211.13", "Th245.13", "Th246.13")
+cl3 <- c("Th068.12", "Th061.13", "Th095.13")
+```
+
+
+#MAKE HAP CALLER TREES
+```{r}
+alleleTabGATK <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",colClasses="character",header=T,na.strings = c("."))
+genosGATK <- t(data.matrix(alleleTabGATK[6:dim(alleleTabGATK)[2]]))
+indsGATK <- row.names(genosGATK)
+genosDatGATK <- as.phyDat(genosGATK, type="USER", levels = c(0:max(genosGATK,na.rm=T)))
+
+
+njtreeGATK <- nj(as.dist(sym(gatkDists)))
+njtreeGATK <- midpoint(njtreeGATK)
+njtree1 <- drop.tip(njtreeGATK,c(cl1,cl2))
+#plot(njtreeGATK)
+
+parstreeGATK <- pratchet(genosDatGATK)
+parstreeGATK <- nnls.phylo(parstreeGATK,as.dist(sym(gatkDists)))
+parstreeGATK <- midpoint(parstreeGATK)
+write.nexus(parstreeGATK,file="tree_all_haplo.nexus")
+
+
+
+
+```
+
+```{r}
+
+outfolder <- "GATK_pars_boot"
+system("mkdir GATK_pars_boot")
+
+fileroot="thies_300100_haplo.CALLBOTH.RENAME"
+for (boot in c(1:100)) {
+    
+  
+  outnex=paste(".",outfolder, paste(fileroot,boot,'pars.nexus',sep='.'),sep="/")
+  outtab=paste(".",outfolder, paste(fileroot,boot,'dist.tab.txt',sep='.')         ,sep="/")
+  
+  
+  noGenos = dim(genosGATK)[[2]]
+  sample <- sample(1:noGenos,replace=T)
+  
+  
+  genosGATK_samp <- genosGATK[,sample]
+
+  indsGATK <- row.names(genosGATK_samp)
+  genosDatGATK <- as.phyDat(genosGATK_samp, type="USER", levels = c(0:max(genosGATK,na.rm=T)))
+  
+  parstreeGATK_samp <- pratchet(genosDatGATK)
+  parstreeGATK_samp <- nnls.phylo(parstreeGATK_samp,as.dist(sym(gatkDists)))
+  parstreeGATK_samp <- midpoint(parstreeGATK_samp)
+  write.nexus(parstreeGATK_samp,file=outnex)
+  plot(parstreeGATK_samp)
+  
+}
+
+```
+
+
+
+```{r}
+
+#python sumtrees.py -F nexus --force-unrooted -s consensus \
+#  --output-tree-filepath=Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.pars.BOOT.consensus.nexus  \
+#  boot_discords/Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.DISCORDS.miss-1.alleles.*.nexus
+
+system("rm GATK_pars_boot.nexus")
+system(paste("python sumtrees.py -F nexus",
+"-t=tree_all_haplo.nexus",
+" --output-tree-filepath=GATK_pars_boot.nexus",
+"GATK_pars_boot/*.nexus"))
+
+bootTree <- read.nexus("GATK_pars_boot.nexus")
+
+plot(parstreeGATK)
+plot(bootTree)
+
+```

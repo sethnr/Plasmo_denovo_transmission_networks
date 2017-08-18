@@ -1,0 +1,112 @@
+#NEXUS
+begin taxa;
+	dimensions ntax=18;
+	taxlabels
+	'Th061.13'
+	'Th068.12'
+	'Th074.13'
+	'Th086.07'
+	'Th092.13'
+	'Th095.13'
+	'Th106.09'
+	'Th106.11'
+	'Th117.11'
+	'Th132.11'
+	'Th134.11'
+	'Th162.12'
+	'Th166.12'
+	'Th196.12'
+	'Th211.13'
+	'Th230.12'
+	'Th245.13'
+	'Th246.13'
+;
+end;
+
+begin trees;
+	tree UNTITLED = [&R] ((('Th095.13'[&support=1.0,length_mean=624.282916688,length_median=633.9166667,length_sd=12.9097107531,length_hpd95={607.15625,633.9166667},length_quant_5_95={607.15625,633.9166667},length_range={607.15625,633.9166667},!color=#ff0000]:633.916667,'Th068.12'[&support=1.0,length_mean=517.332666676,length_median=513.4791667,length_sd=5.16388426252,length_hpd95={513.4791667,524.1833333},length_quant_5_95={513.4791667,524.1833333},length_range={513.4791667,524.1833333},!color=#ff0000]:513.479167)[&support=0.34,length_mean=3.34373052059E-15,length_median=0.0,length_sd=1.94971318149E-14,length_hpd95={0.0,0.0},length_quant_5_95={0.0,0.0},length_range={0.0,1.136868377E-13},Boot=0.34,!color=#ff0000]:0.0,'Th061.13'[&support=1.0,length_mean=584.970416688,length_median=594.6041667,length_sd=12.9097107531,length_hpd95={567.84375,594.6041667},length_quant_5_95={567.84375,594.6041667},length_range={567.84375,594.6041667},!color=#ff0000]:594.604167)[&support=1.0,length_mean=10546.5778309,length_median=10541.90245,length_sd=17.3380441327,length_hpd95={10521.91904,10571.39753},length_quant_5_95={10521.91904,10571.1027},length_range={10519.26204,10571.39753},Boot=1.0,!color=#ff0000]:10541.90245,(((((((('Th074.13'[&support=1.0,length_mean=548.308867801,length_median=539.96875,length_sd=21.7344891082,length_hpd95={539.96875,568.8918919},length_quant_5_95={539.96875,568.8918919},length_range={539.96875,659.535248},!color=#00ff00]:539.96875,'Th106.09'[&support=1.0,length_mean=577.731596946,length_median=562.03125,length_sd=35.7866040763,length_hpd95={562.03125,681.6367493},length_quant_5_95={562.03125,681.6367493},length_range={562.03125,681.6367493},!color=#00ff00]:562.03125)[&support=0.75,length_mean=76.9072207347,length_median=48.40151515,length_sd=52.919092627,length_hpd95={22.05,136.7930809},length_quant_5_95={22.05,136.7930809},length_range={22.05,137.2252531},Boot=0.75,!color=#00ff00]:22.05,'Th132.11'[&support=1.0,length_mean=643.621296916,length_median=625.5075758,length_sd=45.8509002901,length_hpd95={600.09375,703.939429},length_quant_5_95={600.09375,703.2283465},length_range={596.9375,703.939429},!color=#00ff00]:602.45)[&support=0.25,length_mean=29.997809522,length_median=26.03095238,length_sd=4.98924177529,length_hpd95={26.03095238,36.23333333},length_quant_5_95="None",length_range={26.03095238,36.23333333},Boot=0.25,!color=#00ff00]:26.030952,'Th230.12'[&support=1.0,length_mean=636.988040752,length_median=612.4375,length_sd=40.3331289886,length_hpd95={592.6458333,685.6626958},length_quant_5_95={592.6458333,685.6626958},length_range={592.6458333,685.6626958},!color=#00ff00]:604.785714)[&support=0.29,length_mean=76.5665344603,length_median=18.83516484,length_sd=72.7090551231,length_hpd95={18.83516484,173.4861309},length_quant_5_95="None",length_range={18.83516484,173.4861309},Boot=0.29,!color=#00ff00]:18.835165,'Th196.12'[&support=1.0,length_mean=627.839437464,length_median=655.01698235,length_sd=37.2935034821,length_hpd95={578.0700758,673.0707237},length_quant_5_95={578.0700758,673.0707237},length_range={578.0700758,673.0707237},!color=#00ff00]:586.307692)[&support=0.39,length_mean=226.163965823,length_median=227.7083333,length_sd=6.85485475812,length_hpd95={219.4679487,235.9431818},length_quant_5_95={219.4679487,235.9431818},length_range={219.4679487,235.9431818},Boot=0.39,!color=#00ff00]:219.467949,'Th162.12'[&support=1.0,length_mean=612.682112131,length_median=619.4791667,length_sd=14.5410229816,length_hpd95={573.6268382,619.4791667},length_quant_5_95={573.6268382,619.4791667},length_range={573.1286765,619.4791667},!color=#00ff00]:619.479167)[&support=0.59,length_mean=30.7211505627,length_median=0.0,length_sd=46.6136822233,length_hpd95={0.0,122.2728758},length_quant_5_95={0.0,122.2728758},length_range={0.0,123.6013072},Boot=0.59,!color=#00ff00]:0.0,(('Th117.11'[&support=1.0,length_mean=562.334375,length_median=560.34375,length_sd=6.001960203,length_hpd95={560.34375,580.25},length_quant_5_95={560.34375,580.25},length_range={560.34375,580.25},!color=#00ff00]:560.34375,'Th134.11'[&support=1.0,length_mean=570.646875,length_median=568.65625,length_sd=6.001960203,length_hpd95={568.65625,588.5625},length_quant_5_95={568.65625,588.5625},length_range={568.65625,588.5625},!color=#00ff00]:568.65625)[&support=0.9,length_mean=31.85,length_median=31.85,length_sd=1.93922853378E-6,length_hpd95={31.85,31.85},length_quant_5_95={31.85,31.85},length_range={31.85,31.85},Boot=0.9,!color=#00ff00]:31.85,'Th106.11'[&support=1.0,length_mean=588.35375,length_median=589.15,length_sd=2.40078408098,length_hpd95={581.1875,589.15},length_quant_5_95={581.1875,589.15},length_range={581.1875,589.15},!color=#00ff00]:589.15)[&support=1.0,length_mean=217.978498441,length_median=239.0222222,length_sd=26.2145958442,length_hpd95={184.6803307,239.0222222},length_quant_5_95={184.7323325,239.0222222},length_range={184.0212121,249.6388889},Boot=1.0,!color=#00ff00]:239.022222)[&support=1.0,length_mean=1177.96462956,length_median=1251.4375,length_sd=93.7177158797,length_hpd95={1066.233796,1263.740741},length_quant_5_95={1066.233796,1263.740741},length_range={1066.233796,1263.740741},Boot=1.0,!color=#00ff00]:1251.4375,'Th086.07'[&support=1.0,length_mean=345.9166667,length_median=345.9166667,length_sd=8.67515935692E-6,length_hpd95={345.9166667,345.9166667},length_quant_5_95={345.9166667,345.9166667},length_range={345.9166667,345.9166667},!color=#00ff00]:345.916667)[&support=1.0,length_mean=9006.3,length_median=9006.3,length_sd=0.0,length_hpd95={9006.3,9006.3},length_quant_5_95={9006.3,9006.3},length_range={9006.3,9006.3},Boot=1.0,!color=#00ff00]:9006.3,(((('Th245.13'[&support=1.0,length_mean=-2.72848410516E-13,length_median=-9.094947018E-13,length_sd=3.15985045036E-12,length_hpd95={-6.366462912E-12,5.456968211E-12},length_quant_5_95={-5.456968211E-12,4.547473509E-12},length_range={-7.275957614E-12,7.275957614E-12},!color=#0000ff]:0.0,'Th246.13'[&support=1.0,length_mean=2226.20179688,length_median=3446.9375,length_sd=1415.48487385,length_hpd95={603.65625,3446.9375},length_quant_5_95={603.65625,3446.9375},length_range={603.65625,3587.179688},!color=#0000ff]:3446.9375)[&support=0.5,length_mean=3.81987774796E-13,length_median=0.0,length_sd=1.81982446214E-12,length_hpd95={-3.637978807E-12,2.728484105E-12},length_quant_5_95={-2.728484105E-12,2.728484105E-12},length_range={-4.547473509E-12,3.637978807E-12},Boot=0.5,!color=#0000ff]:0.0,'Th211.13'[&support=1.0,length_mean=2210.7964375,length_median=3431.625,length_sd=1415.58026721,length_hpd95={588.34375,3431.625},length_quant_5_95={588.34375,3431.625},length_range={588.34375,3571.425},!color=#0000ff]:3431.625)[&support=0.95,length_mean=-3.15929738537E-13,length_median=0.0,length_sd=1.27776599733E-12,length_hpd95={-2.728484105E-12,1.818989404E-12},length_quant_5_95={-2.728484105E-12,1.818989404E-12},length_range={-2.728484105E-12,2.728484105E-12},Boot=0.95,!color=#0000ff]:0.0,'Th092.13'[&support=1.0,length_mean=3379.76296867,length_median=3376.0625,length_sd=408.646956626,length_hpd95={3376.0625,3518.226563},length_quant_5_95={3376.0625,3518.226563},length_range={571.21875,3518.226563},!color=#0000ff]:3376.0625)[&support=0.68,length_mean=8.02495325118E-14,length_median=0.0,length_sd=6.03194224187E-13,length_hpd95={-9.094947018E-13,9.094947018E-13},length_quant_5_95={-9.094947018E-13,9.094947018E-13},length_range={-9.094947018E-13,9.094947018E-13},Boot=0.68,!color=#0000ff]:0.0,'Th166.12'[&support=1.0,length_mean=3419.75932802,length_median=3357.25,length_sd=70.8759313772,length_hpd95={3357.25,3499.414063},length_quant_5_95={3357.25,3499.414063},length_range={3357.25,3499.414063},!color=#0000ff]:3357.25)[&support=1.0,length_mean=6348.73967675,length_median=6473.758333,length_sd=141.751862993,length_hpd95={6189.430208,6473.758333},length_quant_5_95={6189.430208,6473.758333},length_range={6189.430208,6473.758333},Boot=1.0,!color=#0000ff]:6473.758333)[&support=1.0,length_mean=41.4841688563,length_median=51.29755037,length_sd=15.5624901687,length_hpd95={21.80247468,58.77372685},length_quant_5_95={21.80247468,58.77372685},length_range={20.91668771,59.66574074},Boot=1.0]:51.29755)[&support=1.0,length_mean=0.0,length_median=0,length_sd=0.0,length_hpd95={0,0},length_quant_5_95={0,0},length_range={0,0},Boot=1.0];
+end;
+
+begin figtree;
+	set appearance.backgroundColorAttribute="Default";
+	set appearance.backgroundColour=#ffffff;
+	set appearance.branchColorAttribute="User selection";
+	set appearance.branchColorGradient=false;
+	set appearance.branchLineWidth=3.0;
+	set appearance.branchMinLineWidth=0.0;
+	set appearance.branchWidthAttribute="Fixed";
+	set appearance.foregroundColour=#000000;
+	set appearance.hilightingGradient=false;
+	set appearance.selectionColour=#2d3680;
+	set branchLabels.colorAttribute="User selection";
+	set branchLabels.displayAttribute="Boot";
+	set branchLabels.fontName="Helvetica";
+	set branchLabels.fontSize=12;
+	set branchLabels.fontStyle=0;
+	set branchLabels.isShown=false;
+	set branchLabels.significantDigits=4;
+	set layout.expansion=0;
+	set layout.layoutType="RECTILINEAR";
+	set layout.zoom=0;
+	set legend.attribute="Boot";
+	set legend.fontSize=10.0;
+	set legend.isShown=false;
+	set legend.significantDigits=4;
+	set nodeBars.barWidth=4.0;
+	set nodeBars.displayAttribute="length_hpd95";
+	set nodeBars.isShown=false;
+	set nodeLabels.colorAttribute="Branch lengths (raw)";
+	set nodeLabels.displayAttribute="Boot";
+	set nodeLabels.fontName="Helvetica";
+	set nodeLabels.fontSize=12;
+	set nodeLabels.fontStyle=0;
+	set nodeLabels.isShown=true;
+	set nodeLabels.significantDigits=4;
+	set nodeShape.colourAttribute="User selection";
+	set nodeShape.isShown=false;
+	set nodeShape.minSize=10.0;
+	set nodeShape.scaleType=Width;
+	set nodeShape.shapeType=Circle;
+	set nodeShape.size=4.0;
+	set nodeShape.sizeAttribute="Fixed";
+	set polarLayout.alignTipLabels=false;
+	set polarLayout.angularRange=0;
+	set polarLayout.rootAngle=0;
+	set polarLayout.rootLength=100;
+	set polarLayout.showRoot=true;
+	set radialLayout.spread=0.0;
+	set rectilinearLayout.alignTipLabels=false;
+	set rectilinearLayout.curvature=0;
+	set rectilinearLayout.rootLength=100;
+	set scale.offsetAge=0.0;
+	set scale.rootAge=1.0;
+	set scale.scaleFactor=1.0;
+	set scale.scaleRoot=false;
+	set scaleAxis.automaticScale=true;
+	set scaleAxis.fontSize=8.0;
+	set scaleAxis.isShown=false;
+	set scaleAxis.lineWidth=1.0;
+	set scaleAxis.majorTicks=1.0;
+	set scaleAxis.origin=0.0;
+	set scaleAxis.reverseAxis=false;
+	set scaleAxis.showGrid=true;
+	set scaleBar.automaticScale=true;
+	set scaleBar.fontSize=10.0;
+	set scaleBar.isShown=true;
+	set scaleBar.lineWidth=1.0;
+	set scaleBar.scaleRange=0.0;
+	set tipLabels.colorAttribute="User selection";
+	set tipLabels.displayAttribute="Names";
+	set tipLabels.fontName="Helvetica";
+	set tipLabels.fontSize=14;
+	set tipLabels.fontStyle=0;
+	set tipLabels.isShown=true;
+	set tipLabels.significantDigits=4;
+	set trees.order=true;
+	set trees.orderType="increasing";
+	set trees.rooting=false;
+	set trees.rootingType="User Selection";
+	set trees.transform=false;
+	set trees.transformType="cladogram";
+end;
+

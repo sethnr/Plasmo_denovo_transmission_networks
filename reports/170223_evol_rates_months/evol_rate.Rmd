@@ -1,3 +1,4 @@
+
 ```{r}
 library(ape)
 library(adegenet)
@@ -5,6 +6,7 @@ library(knitr)
 library(igraph)
 library(RColorBrewer)
 library(gridExtra)
+library(ggplot2)
 opts_chunk$set(fig.width=9, fig.height=9)
 opts_chunk$set(dev=c('png','postscript'))
 ```
@@ -75,7 +77,6 @@ makeNet <- function(distance_matrix, meta_file, ngroups=3) {
 }
 
 
-```
 
 ```{r}
 ifile <- "Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt"
@@ -94,7 +95,7 @@ varNets <- makeNet(distmatIS)
 
 
 
-```{r message=FALSE}
+```{r}
 
 printGraph <- function(graph,colours,title) {
   cols <- brewer.pal((max(graph$year)-min(graph$year))+1, colours)
@@ -107,7 +108,7 @@ printGraph <- function(graph,colours,title) {
   V(ig)$label.cex <- ts
  #frame()
   plot(ig,layout=tree,main=title,vertex.size=25,
-     edge.color="black",edge.label.cex=1.5,edge.label.family="Arial",vertex.label.family="Arial")
+     edge.color="black",edge.label.cex=1.5,edge.label.family="Helvetica",vertex.label.family="Helvetica")
 
 }
 
@@ -121,11 +122,6 @@ printGraph(varNets[[1]],"Greens","clade 29 all vars")
 ```
 
 
-
-```{r}
-opts_chunk$set(fig.width=12, fig.height=9)
-opts_chunk$set(dev=c('png'))
-```
 
 ```{r }
 
@@ -367,7 +363,7 @@ sppsubs$subrate <- as.numeric(sppsubs$subrate)
 sppsubs$subrate_genome <- as.numeric(sppsubs$subrate_genome)
 sppsubs$gsize <- as.numeric(sppsubs$gsize)
 sppsubs$vartype <- factor(sppsubs$vartype,levels=c("SNP","INDEL","SNP+INDEL"),ordered=T)
-#sppsubs$Label <- factor(sppsubs$Label,levels=sppsubs$Label[order(sppsubs$Group,sppsubs$subrate_genome)],ordered=T)
+sppsubs$Label <- factor(sppsubs$Label,levels=sppsubs$Label[order(sppsubs$Group,sppsubs$subrate_genome)],ordered=T)
 
 
 pathOrder <- c("HCV","EBOV", "FMDV",   "HIV-M","HFLUV", "RABV",  
@@ -393,8 +389,10 @@ names(fcol) = c("years","months","weeks")
 
 dotsubs <- c("H. pylori", "M. tuberculosis", "S. aureus (MRSA)", "S. pneumoniae", 
 "V. cholerae", "HCV (Hep C)", "EBOV (Ebola)", "HIV-M", # "HFLUV (H1N1 2009)", 
-"HFLUV (H1N1)", "RABV", "FMDV",    "P.falciparum (snp)", # "P.falciparum (ind)", 
-"P.falciparum (all)", "P.falciparum (core)")
+"HFLUV (H1N1)", "RABV", "FMDV", "P.falciparum (core)",    "P.falciparum (snp)", # "P.falciparum (ind)", 
+"P.falciparum (all)")
+
+sppsubs$region <- factor(sppsubs$region,levels=c("all","accessible","inaccessible"),ordered=T)
 
 ggplot(subset(sppsubs, Label %in% dotsubs),aes(x=gsize,y=subrate),) +  
   geom_polygon(data=ratesM,aes(group=variable,fill=variable)) +
@@ -421,8 +419,7 @@ sppsubs$newmut <- paste(newmut,period,sep=" ")
 
 barSamps <- c("M. tuberculosis", "S. aureus (MRSA)","H. pylori",  
 "EBOV (Ebola)", "HIV-M", 
-"HFLUV (H1N1)", "P.falciparum (inacc)",
-"P.falciparum (core)")
+"HFLUV (H1N1)","P.falciparum (core)", "P.falciparum (inacc)")
 labelSamps <- c("M. tuberculosis", "S. aureus (MRSA)","H. pylori", 
 "EBOV (Ebola)", "HIV-M", 
 "HFLUV (H1N1)", "P.falciparum (all)")
@@ -430,7 +427,7 @@ midLabelSamps <- c("P.falciparum (inacc)",
 "P.falciparum (core)")
 
 ggplot(subset(sppsubs,Label %in% barSamps),aes(x=Pathogen,y=subrate * gsize),) +  
-  geom_bar(aes(fill=Group,alpha=region),stat = "identity",size=3) +
+  geom_bar(aes(alpha=region,fill=Group,colour=Group),stat = "identity",size=1) +
   geom_label(data=subset(sppsubs,Label %in% labelSamps),aes(label=newmut))+
   geom_label(data=subset(sppsubs,Label %in% midLabelSamps),aes(label=newmut, y=(subrate * gsize)/2))+
 #  scale_alpha_manual(values=c("SNP"=0.9,"INDEL"=0.6,"SNP+INDEL"=1))+

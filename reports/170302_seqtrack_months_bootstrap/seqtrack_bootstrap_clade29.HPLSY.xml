@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+
+  <!-- property keys -->
+  <key id="key0" for="edge" attr.name="color" attr.type="string" />
+  <key id="key1" for="node" attr.name="color" attr.type="string" />
+  <key id="key2" for="node" attr.name="dates" attr.type="double" />
+  <key id="key3" for="edge" attr.name="homoplasy_count" attr.type="int" />
+  <key id="key4" for="edge" attr.name="homoplasy_percent" attr.type="float" />
+  <key id="key5" for="edge" attr.name="label" attr.type="string" />
+  <key id="key6" for="node" attr.name="label.cex" attr.type="double" />
+  <key id="key7" for="edge" attr.name="lty" attr.type="double" />
+  <key id="key8" for="node" attr.name="name" attr.type="string" />
+  <key id="key9" for="edge" attr.name="weight" attr.type="double" />
+
+  <graph id="G" edgedefault="directed" parse.nodeids="free" parse.edgeids="free" parse.order="nodesfirst">
+
+   <!-- graph properties -->
+
+   <!-- vertices -->
+    <node id="n0">
+      <data key="key1">#EDF8E9</data>
+      <data key="key2">0xd.55555555554f542p-6</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th086.07</data>
+    </node>
+    <node id="n1">
+      <data key="key1">#A1D99B</data>
+      <data key="key2">0xb.a8d555555553de1p+6</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th106.09</data>
+    </node>
+    <node id="n2">
+      <data key="key1">#41AB5D</data>
+      <data key="key2">0xb.8a6aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th106.11</data>
+    </node>
+    <node id="n3">
+      <data key="key1">#41AB5D</data>
+      <data key="key2">0xb.966aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th117.11</data>
+    </node>
+    <node id="n4">
+      <data key="key1">#41AB5D</data>
+      <data key="key2">0xb.a86aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th132.11</data>
+    </node>
+    <node id="n5">
+      <data key="key1">#41AB5D</data>
+      <data key="key2">0xb.ae6aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th134.11</data>
+    </node>
+    <node id="n6">
+      <data key="key1">#238B45</data>
+      <data key="key2">0xe.446aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th162.12</data>
+    </node>
+    <node id="n7">
+      <data key="key1">#238B45</data>
+      <data key="key2">0xe.626aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th196.12</data>
+    </node>
+    <node id="n8">
+      <data key="key1">#238B45</data>
+      <data key="key2">0xe.806aaaaaaaa3563p+7</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th230.12</data>
+    </node>
+    <node id="n9">
+      <data key="key1">#005A32</data>
+      <data key="key2">0x8.7e3555555551ab1p+8</data>
+      <data key="key6">0x8p-3</data>
+      <data key="key8">Th074.13</data>
+    </node>
+
+   <!-- edges -->
+    <edge id="" source="n0" target="n1">
+      <data key="key0">black</data>
+      <data key="key3">0</data>
+      <data key="key4">0x0p+0</data>
+      <data key="key5">576/1</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n0" target="n2">
+      <data key="key0">#888888</data>
+      <data key="key3">375</data>
+      <data key="key4">0x1.243cc90f3243dp-2</data>
+      <data key="key5">408/0.03</data>
+      <data key="key7">0x8p-2</data>
+      <data key="key9">0x8p-2</data>
+    </edge>
+    <edge id="" source="n1" target="n2">
+      <data key="key0">black</data>
+      <data key="key3">375</data>
+      <data key="key4">0x1.243cc90f3243dp-2</data>
+      <data key="key5">358/0.97</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n1" target="n4">
+      <data key="key0">black</data>
+      <data key="key3">30</data>
+      <data key="key4">0x1.7b8d57f817b8dp-6</data>
+      <data key="key5">121/1</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n1" target="n6">
+      <data key="key0">black</data>
+      <data key="key3">30</data>
+      <data key="key4">0x1.7938c79cfab2p-6</data>
+      <data key="key5">125/1</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n1" target="n9">
+      <data key="key0">black</data>
+      <data key="key3">35</data>
+      <data key="key4">0x1.ae300312a0efbp-6</data>
+      <data key="key5">88/1</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n1" target="n7">
+      <data key="key0">#888888</data>
+      <data key="key3">81</data>
+      <data key="key4">0x1.f16a509985f2fp-5</data>
+      <data key="key5">140/0.59</data>
+      <data key="key7">0x8p-2</data>
+      <data key="key9">0x8p-2</data>
+    </edge>
+    <edge id="" source="n1" target="n8">
+      <data key="key0">#888888</data>
+      <data key="key3">146</data>
+      <data key="key4">0x1.cd6e9e06522c4p-4</data>
+      <data key="key5">107/0.5</data>
+      <data key="key7">0x8p-2</data>
+      <data key="key9">0x8p-2</data>
+    </edge>
+    <edge id="" source="n2" target="n3">
+      <data key="key0">black</data>
+      <data key="key3">50</data>
+      <data key="key4">0x1.364d9364d9365p-5</data>
+      <data key="key5">111/1</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n2" target="n5">
+      <data key="key0">black</data>
+      <data key="key3">68</data>
+      <data key="key4">0x1.be0068f109a22p-5</data>
+      <data key="key5">105/0.76</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n3" target="n5">
+      <data key="key0">#888888</data>
+      <data key="key3">68</data>
+      <data key="key4">0x1.be0068f109a22p-5</data>
+      <data key="key5">111/0.24</data>
+      <data key="key7">0x8p-2</data>
+      <data key="key9">0x8p-2</data>
+    </edge>
+    <edge id="" source="n4" target="n7">
+      <data key="key0">black</data>
+      <data key="key3">81</data>
+      <data key="key4">0x1.f16a509985f2fp-5</data>
+      <data key="key5">139/0.41</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n4" target="n8">
+      <data key="key0">black</data>
+      <data key="key3">146</data>
+      <data key="key4">0x1.cd6e9e06522c4p-4</data>
+      <data key="key5">106/0.48</data>
+      <data key="key7">0x8p-3</data>
+      <data key="key9">0x8p-1</data>
+    </edge>
+    <edge id="" source="n7" target="n8">
+      <data key="key0">#888888</data>
+      <data key="key3">146</data>
+      <data key="key4">0x1.cd6e9e06522c4p-4</data>
+      <data key="key5">124/0.02</data>
+      <data key="key7">0x8p-2</data>
+      <data key="key9">0x8p-2</data>
+    </edge>
+
+  </graph>
+</graphml>

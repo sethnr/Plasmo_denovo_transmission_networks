@@ -25,10 +25,6 @@ tab=paste(fileroot,'tab',sep='.')
 for (boot in c(1:100)) {
     
   
-  ped=paste(fileroot,'ped',sep='.')
-  outpng=paste(fileroot,boot,'png',sep='.')
-  #outnex=paste(fileroot,boot,'pars.nexus',sep='.')
-  #outtab=paste(fileroot,boot,'dist.tab.txt',sep='.')
   outnex=paste(".",outfolder, paste(fileroot,boot,'pars.nexus',sep='.'),sep="/")
   outtab=paste(".",outfolder, paste(fileroot,boot,'dist.tab.txt',sep='.')         ,sep="/")
   
