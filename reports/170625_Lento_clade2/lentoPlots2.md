@@ -203,8 +203,6 @@ parsTree <- pratchet(genosDat) # ,njtree1)
 
 ```
 ## [1] "Best pscore so far: 23264"
-## [1] "Best pscore so far: 23264"
-## [1] "Best pscore so far: 23264"
 ## [1] "Best pscore so far: 23263"
 ## [1] "Best pscore so far: 23263"
 ## [1] "Best pscore so far: 23263"
@@ -470,6 +468,17 @@ mean(parsSupp[,4]/rowSums(parsSupp[,4:5]))
 ```
 
 ```r
+write.table(parsSupp[,3:5],quote=F) 
+```
+
+```
+## irrelevant pro anti
+## 1 456 213 0
+## 2 580 113 29
+## 3 614 89 21
+```
+
+```r
 #percent support HapCaller:
 write.table(round(parsSuppGATK[,3:5] / rowSums(parsSuppGATK[,3:5]),2),sep="\t",quote=F)
 ```
@@ -487,5 +496,16 @@ mean(parsSupp[,4]/rowSums(parsSuppGATK[,4:5]))
 
 ```
 ## [1] 0.1227858
+```
+
+```r
+write.table(parsSuppGATK[,3:5],quote=F)
+```
+
+```
+## irrelevant pro anti
+## 1 3238 952 0
+## 2 2915 589 871
+## 3 2976 761 563
 ```
 

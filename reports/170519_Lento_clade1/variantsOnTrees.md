@@ -183,8 +183,10 @@ cl1 <- c("Th086.07", "Th106.09", "Th106.11", "Th117.11", "Th132.11", "Th134.11",
 cl1yrs <- as.numeric(gsub(".*\\.","",cl1))
 og1<-"Th166.12"
 oc1 <- c("Th166.12", "Th092.13", "Th211.13", "Th245.13", "Th246.13")
+cl2 <- c("Th166.12", "Th092.13", "Th211.13", "Th245.13", "Th246.13")
 og2<-"Th068.12"
 oc2 <- c("Th068.12", "Th061.13", "Th095.13")
+cl3 <- c("Th068.12", "Th061.13", "Th095.13")
 cog1 <- c(cl1,og1)
 cog2 <- c(cl1,og2)
 ```
@@ -207,6 +209,7 @@ parsTree <- pratchet(genosDat) # ,njtree1)
 ```
 
 ```
+## [1] "Best pscore so far: 23264"
 ## [1] "Best pscore so far: 23264"
 ## [1] "Best pscore so far: 23264"
 ## [1] "Best pscore so far: 23263"
@@ -474,12 +477,36 @@ write.table(round(parsSupp[,3:5] / rowSums(parsSupp[,3:5]),2),sep="\t",quote=F)
 ## irrelevant	pro	anti
 ## 1	0.69	0.31	0
 ## 2	0.7	0.26	0.03
-## 3	0.91	0.05	0.04
+## 3	0.92	0.05	0.04
 ## 4	0.9	0.07	0.03
 ## 5	0.91	0.06	0.03
 ## 6	0.95	0.04	0.02
 ## 7	0.9	0.07	0.02
 ## 8	0.94	0.05	0.01
+```
+
+```r
+mean(parsSupp[,4]/rowSums(parsSupp[,4:5]))
+```
+
+```
+## [1] 0.7529791
+```
+
+```r
+write.table(parsSupp[,3:5],quote=F) 
+```
+
+```
+## irrelevant pro anti
+## 1 1053 471 0
+## 2 1155 433 57
+## 3 1512 75 59
+## 4 1482 109 50
+## 5 1453 98 50
+## 6 1463 58 27
+## 7 1460 116 40
+## 8 1475 71 17
 ```
 
 ```r
@@ -498,3 +525,28 @@ write.table(round(parsSuppGATK[,3:5] / rowSums(parsSuppGATK[,3:5]),2),sep="\t",q
 ## 7	0.72	0.03	0.24
 ## 8	0.82	0.02	0.16
 ```
+
+```r
+mean(parsSupp[,4]/rowSums(parsSuppGATK[,4:5]))
+```
+
+```
+## [1] 0.06046187
+```
+
+```r
+write.table(parsSuppGATK[,3:5],quote=F)
+```
+
+```
+## irrelevant pro anti
+## 1 5734 2744 0
+## 2 6282 778 3286
+## 3 7025 171 3155
+## 4 7255 133 2952
+## 5 7648 148 2507
+## 6 8326 180 1665
+## 7 7430 358 2514
+## 8 8361 200 1626
+```
+

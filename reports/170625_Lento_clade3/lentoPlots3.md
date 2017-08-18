@@ -218,6 +218,8 @@ parsTree <- pratchet(genosDat) # ,njtree1)
 ```r
 parsTree <- nnls.phylo(parsTree,dist.hamming(genosDat))
 parsTree <- midpoint(parsTree)
+write.nexus(parsTree,file="tree_all_disco.nexus")
+
 parsTree <- drop.tip(parsTree,c(cl1,cl2))
 #plot(parsTree)
 ```
@@ -256,6 +258,8 @@ parstreeGATK <- pratchet(genosDatGATK)
 ```r
 parstreeGATK <- nnls.phylo(parstreeGATK,as.dist(sym(gatkDists)))
 parstreeGATK <- midpoint(parstreeGATK)
+write.nexus(parstreeGATK,file="tree_all_haplo.nexus")
+
 parstreeGATK <- drop.tip(parstreeGATK,c(cl1,cl2))
 #plot(parstreeGATK)
 ```
@@ -466,6 +470,15 @@ mean(parsSupp[,4]/rowSums(parsSupp[,4:5]))
 ```
 
 ```r
+write.table(parsSupp[,3:5],quote=F) 
+```
+
+```
+## irrelevant pro anti
+## 1 272 268 0
+```
+
+```r
 #percent support HapCaller:
 write.table(round(parsSuppGATK[,3:5] / rowSums(parsSuppGATK[,3:5]),2),sep="\t",quote=F)
 ```
@@ -481,5 +494,14 @@ mean(parsSupp[,4]/rowSums(parsSuppGATK[,4:5]))
 
 ```
 ## [1] 0.1985185
+```
+
+```r
+write.table(parsSuppGATK[,3:5],quote=F)
+```
+
+```
+## irrelevant pro anti
+## 1 1765 1350 0
 ```
 
