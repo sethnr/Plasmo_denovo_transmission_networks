@@ -39,9 +39,13 @@ if not path.exists(TMP):
 if args.vcfTargets is None:
     args.vcfTargets = args.vcfFull
 
+OUT=sys.stdout
+if args.outFile is not None:
+    OUT = open(args.outFile, 'w')
+    
 #if neither vartype selected, chose indels only
-if not args.snpsOnly and not args.indelsOnly:
-    args.indelsOnly=True
+#if not args.snpsOnly and not args.indelsOnly:
+#    args.indelsOnly=True
 
 print >>sys.stderr, "TARGETS = ",args.vcfTargets
 print >>sys.stderr, "VARS = ",args.vcfFull
@@ -98,19 +102,20 @@ def _parse_chrlens_from_dict(fasta):
 
 chrlens =  _parse_chrlens_from_dict(args.fasta_cons)
 
-for var in targets:
-    #print var
 
+#PRINT OUT VAR DETAILS AND FASTQS FOR ALL VARIANTS
+
+for var in targets:
     chrom = var.CHROM
     start = var.POS-args.flank
     if start <= 0: start = 1 
     end = var.POS + len(var.REF) +args.flank
     if end > chrlens[chrom]: end = chrlens[chrom]
 
-    if args.indelsOnly and not var.is_indel:
-        continue
-    elif args.snpsOnly and not var.is_snp:
-        continue
+#    if args.indelsOnly and not var.is_indel:
+#        continue
+#    elif args.snpsOnly and not var.is_snp:
+#        continue
 
     i+=1
     telodist = chrlens[chrom]-var.POS
@@ -138,20 +143,16 @@ for var in targets:
     setfound = False
     s=0
     while not setfound:
-#        print str(s)+":"+str(len(se))+" ",
         if s >= len(se):
-#            print "+"
             se += [end]
             sc += [1]
             setfound = True
         elif se[s] < start-1:
-#            print "S"
             se[s] = end
             sc[s] +=1
             setfound = True
         else:
             s+=1
-#    print ""
 
 #    print >>blocks,chrom+":"+str(start)+"-"+str(end)
     print >>blockindex,"\t".join([str(i),
@@ -337,16 +338,16 @@ print >>sys.stdout, '#'+args.fasta_align
 #for name in names:
 #    print "\t".join([""] + [i+"."+name for i in ["N","AS","NM","XS"]]),
 
-print "\t".join(["#i","aligned_region","var_length","distance_to_telomere","block_length",
+print >>OUT,"\t".join(["#i","aligned_region","var_length","distance_to_telomere","block_length",
                  "variantCount","LevDist (pre)","No. alignments","Alignment Score","prop. total score","LevDist (post)","Subopt align score"])
-print "\t".join(["i","block","L","TD","VC","LD","DU","N1","C1","L1","NM1","N2","C2","L2","NM2",])
+print >>OUT,"\t".join(["i","block","L","TD","VC","LD","DU","N1","C1","L1","NM1","N2","C2","L2","NM2",])
 #print ""
 for b in blockI:
     block = blockI[b]
     print str(b)+"\t"+block,
     #for name in names:
     if (block, 'N1') not in quals:
-        print "\t".join(map(str,["",
+        print >>OUT,"\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],
                                  quals[(block,'VT')],
@@ -374,7 +375,7 @@ for b in blockI:
         score1 = round(int(quals[(block,'AS1')])/maxscore,3)
         score2 = round(int(quals[(block,'AS2')])/maxscore,3)
         
-        print "\t".join(map(str,["",
+        print >>OUT, "\t".join(map(str,["",
                                  quals[(block,'L')],
                                  quals[(block,'TD')],
                                  quals[(block,'VT')],
@@ -396,7 +397,10 @@ for b in blockI:
                                  quals[(block,'NM2')] #,
 #                                 quals[(block,'XS2')]
                                  ])),
-    print "" 
+    print >>OUT,"" 
 
+
+if args.outFile is not None:
+    OUT.close()
 exit(0)
 

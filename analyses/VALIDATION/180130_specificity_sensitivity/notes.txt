@@ -1,0 +1,38 @@
+rtg format -o PF3D7.sdf $PFREF
+
+for F in {disco,gatk}*.vcf.gz ; do
+  echo qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz \
+         -c $F -o ${F/.vcf.gz/}_EVAL \
+	 --all-records \
+         -t Pf3D7.sdf --vcf-score-field="QUAL"
+  for B in *bed; do
+	echo qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz \
+         -c $F -o ${F/.vcf.gz/}_${B/.bed/}_EVAL \
+	 --all-records --bed-regions ${B} \
+         -t Pf3D7.sdf --vcf-score-field="QUAL"
+  done
+done > doAllROC.qual.sh 
+
+#do ROCPLOTS
+ qsubNNarr rocplot 1 16 doAllROC.qual.sh
+
+#do VCF annotation
+
+java -jar $GATK/GenomeAnalysisTK.jar \
+   -R $PFREF \
+   -T VariantAnnotator \
+   -I /seq/plasmodium/sredmond/pfdisco/gatkHaplo_3D7DD2_450250/SM-7LV8R.3D7.250.s.bam \
+   -V  disco_3D7DD2.FILT.DD2-2D4.vcf.gz \
+   -o  disco_3D7DD2.FILT.DD2-2D4.ANN.vcf \
+   -A QualByDepth \
+   -A RMSMappingQuality \
+   -A FisherStrand \
+   -A DepthPerAlleleBySample \
+   -A Coverage \
+   -A StrandOddsRatio
+
+#QD / MQ / FS / DP / SOR
+#MV ann to core VCF
+
+#do disco VQSR
+qsubNN vqsr 1 16 ~/bin/VQSR_PFX -V   disco_3D7DD2.FILT.DD2-2D4.vcf.gz -o disco_3D7DD2.FILT.DD2-2D4.VQSR

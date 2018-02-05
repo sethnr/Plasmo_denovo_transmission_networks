@@ -1,0 +1,75 @@
+2018-02-01 16:11:43 serial = 27182818284
+2018-02-01 16:11:43 email = anon
+2018-02-01 16:11:43 RTG version = RTG Tools 3.6.2 / Core bc71ee0 (2016-06-24)
+2018-02-01 16:11:43 awt.toolkit = sun.awt.X11.XToolkit
+2018-02-01 16:11:43 file.encoding = ANSI_X3.4-1968
+2018-02-01 16:11:43 file.encoding.pkg = sun.io
+2018-02-01 16:11:43 file.separator = /
+2018-02-01 16:11:43 host.name = uger-c009.broadinstitute.org
+2018-02-01 16:11:43 java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+2018-02-01 16:11:43 java.awt.printerjob = sun.print.PSPrinterJob
+2018-02-01 16:11:43 java.class.path = /gsap/garage-protistvector/sredmond/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar
+2018-02-01 16:11:43 java.class.version = 52.0
+2018-02-01 16:11:43 java.endorsed.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/endorsed
+2018-02-01 16:11:43 java.ext.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/ext:/usr/java/packages/lib/ext
+2018-02-01 16:11:43 java.home = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre
+2018-02-01 16:11:43 java.io.tmpdir = /tmp
+2018-02-01 16:11:43 java.library.path = /gsap/garage-protistvector/sredmond/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0
+2018-02-01 16:11:43 java.runtime.name = Java(TM) SE Runtime Environment
+2018-02-01 16:11:43 java.runtime.version = 1.8.0_45-b14
+2018-02-01 16:11:43 java.specification.name = Java Platform API Specification
+2018-02-01 16:11:43 java.specification.vendor = Oracle Corporation
+2018-02-01 16:11:43 java.specification.version = 1.8
+2018-02-01 16:11:43 java.vendor = Oracle Corporation
+2018-02-01 16:11:43 java.vendor.url = http://java.oracle.com/
+2018-02-01 16:11:43 java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+2018-02-01 16:11:43 java.version = 1.8.0_45
+2018-02-01 16:11:43 java.vm.info = mixed mode
+2018-02-01 16:11:43 java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+2018-02-01 16:11:43 java.vm.specification.name = Java Virtual Machine Specification
+2018-02-01 16:11:43 java.vm.specification.vendor = Oracle Corporation
+2018-02-01 16:11:43 java.vm.specification.version = 1.8
+2018-02-01 16:11:43 java.vm.vendor = Oracle Corporation
+2018-02-01 16:11:43 java.vm.version = 25.45-b02
+2018-02-01 16:11:43 lang.version = 1.8.0_45
+2018-02-01 16:11:43 line.separator = 
+
+2018-02-01 16:11:43 models.dir = /gsap/garage-protistvector/sredmond/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/models
+2018-02-01 16:11:43 os.arch = amd64
+2018-02-01 16:11:43 os.freememory = 121128853504
+2018-02-01 16:11:43 os.name = Linux
+2018-02-01 16:11:43 os.totalmemory = 135259312128
+2018-02-01 16:11:43 os.version = 2.6.32-696.6.3.el6.x86_64
+2018-02-01 16:11:43 path.separator = :
+2018-02-01 16:11:43 processor.arch = amd64
+2018-02-01 16:11:43 processor.count = 16
+2018-02-01 16:11:43 references.dir = /gsap/garage-protistvector/sredmond/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/references
+2018-02-01 16:11:43 runtime.freememory = 1973000344
+2018-02-01 16:11:43 runtime.maxmemory = 108207800320
+2018-02-01 16:11:43 runtime.totalMemory = 2025848832
+2018-02-01 16:11:43 sun.arch.data.model = 64
+2018-02-01 16:11:43 sun.boot.class.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/resources.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/rt.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/sunrsasign.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jsse.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jce.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/charsets.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jfr.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/classes
+2018-02-01 16:11:43 sun.boot.library.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/amd64
+2018-02-01 16:11:43 sun.cpu.endian = little
+2018-02-01 16:11:43 sun.cpu.isalist = 
+2018-02-01 16:11:43 sun.io.unicode.encoding = UnicodeLittle
+2018-02-01 16:11:43 sun.java.command = /gsap/garage-protistvector/sredmond/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar format -o PF3D7.sdf /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
+2018-02-01 16:11:43 sun.java.launcher = SUN_STANDARD
+2018-02-01 16:11:43 sun.jnu.encoding = ANSI_X3.4-1968
+2018-02-01 16:11:43 sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2018-02-01 16:11:43 sun.os.patch.level = unknown
+2018-02-01 16:11:43 talkback = true
+2018-02-01 16:11:43 user.country = US
+2018-02-01 16:11:43 user.dir = /gsap/garage-protistvector/sredmond/180130_specificity_sensitivity
+2018-02-01 16:11:43 user.home = /home/unix/sredmond
+2018-02-01 16:11:43 user.language = en
+2018-02-01 16:11:43 user.name = sredmond
+2018-02-01 16:11:43 user.timezone = America/New_York
+2018-02-01 16:11:43 vendor = Oracle Corporation
+2018-02-01 16:11:43 gzipfix.enabled = true
+2018-02-01 16:11:43 Command line arguments: rtg format -o PF3D7.sdf /seq/plasmodium/sredmond//refs/Pf3D7_v3.fasta
+2018-02-01 16:11:43 Run Id: 96c7b816-1c1f-46a7-ab09-7989cce75790
+2018-02-01 16:11:43 Formatting FASTA data
+2018-02-01 16:11:43 Processing "/seq/plasmodium/sredmond/refs/Pf3D7_v3.fasta"
+2018-02-01 16:11:44 Writing SDF-Id: 6ac77308-41be-4766-949d-035df96768cd
+2018-02-01 16:11:44 Finished successfully in 0 s.
