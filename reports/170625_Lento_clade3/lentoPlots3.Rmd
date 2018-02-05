@@ -372,11 +372,12 @@ grid.arrange(parssupGATKP + blankTheme, splitGATKP+blankTheme, ncol=1)
 #percent support Discovar:
 write.table(round(parsSupp[,3:5] / rowSums(parsSupp[,3:5]),2),sep="\t",quote=F)
 mean(parsSupp[,4]/rowSums(parsSupp[,4:5]))
+write.table(parsSupp[,3:5],quote=F) 
 
 #percent support HapCaller:
 write.table(round(parsSuppGATK[,3:5] / rowSums(parsSuppGATK[,3:5]),2),sep="\t",quote=F)
 mean(parsSupp[,4]/rowSums(parsSuppGATK[,4:5]))
-
+write.table(parsSuppGATK[,3:5],quote=F)
 
 ```
 
