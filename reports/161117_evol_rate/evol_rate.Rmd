@@ -4,6 +4,9 @@ library(adegenet)
 library(knitr)
 library(igraph)
 library(RColorBrewer)
+library(ggplot2)
+library(reshape2)
+
 
 opts_chunk$set(fig.width=9, fig.height=9)
 opts_chunk$set(dev=c('png','postscript'))

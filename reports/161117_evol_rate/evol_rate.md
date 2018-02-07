@@ -5,6 +5,9 @@ library(adegenet)
 library(knitr)
 library(igraph)
 library(RColorBrewer)
+library(ggplot2)
+library(reshape2)
+
 
 opts_chunk$set(fig.width=9, fig.height=9)
 opts_chunk$set(dev=c('png','postscript'))
@@ -282,7 +285,7 @@ printGraph(indelNets[[2]],"Reds","clade 1, indel graph")
 ## label.family, : font family 'Arial' not found in PostScript font database
 ```
 
-![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-1.png)
 
 ```r
 printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
@@ -687,7 +690,7 @@ printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
 ## label.family, : font family 'Arial' not found in PostScript font database
 ```
 
-![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-2.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-2.png)
 
 ```r
 printGraph(indelNets[[3]],"Blues","clade 3, indel graph")
@@ -817,7 +820,7 @@ printGraph(indelNets[[3]],"Blues","clade 3, indel graph")
 ## label.family, : font family 'Arial' not found in PostScript font database
 ```
 
-![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-3.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-3.png)
 
 ```r
 printGraph(snpNets[[2]],"Reds","clade 1, indel graph")
@@ -1037,7 +1040,7 @@ printGraph(snpNets[[2]],"Reds","clade 1, indel graph")
 ## label.family, : font family 'Arial' not found in PostScript font database
 ```
 
-![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-4.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-4.png)
 
 ```r
 printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
@@ -1458,7 +1461,7 @@ printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
 ## label.family, : font family 'Arial' not found in PostScript font database
 ```
 
-![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-5.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-5.png)
 
 ```r
 printGraph(snpNets[[3]],"Blues","clade 3, indel graph")
@@ -1592,7 +1595,7 @@ printGraph(snpNets[[3]],"Blues","clade 3, indel graph")
 ## label.family, : font family 'Arial' not found in PostScript font database
 ```
 
-![plot of chunk unnamed-chunk-4](figure_ALL/unnamed-chunk-4-6.png)
+![plot of chunk unnamed-chunk-20](figure/unnamed-chunk-20-6.png)
 
 
 
@@ -1678,7 +1681,7 @@ getEvolRates <- function(net,mat,ng) {
   outtab
 }
 
-#netAll <- getAnces(net, 1,1:10)
+netAll <- getAnces(net, 1,1:10)
 
 
 g_legend<-function(a.gplot){
@@ -1690,7 +1693,7 @@ g_legend<-function(a.gplot){
 
 
 ```r
-opts_chunk$set(fig.width=18, fig.height=8)
+opts_chunk$set(fig.width=22, fig.height=8)
 opts_chunk$set(dev=c('png','postscript'))
 ```
 
@@ -1704,7 +1707,7 @@ inaccr1 <- getEvolRates(indelNets[[1]],(indDists+snpDists)-coreDists)
 cplot <- ggplot(corer1,aes(x=time,y=rate/12)) + 
   geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-  geom_label(inherit.aes=F,aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
+  geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("evolutionary rate, accessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5) +
   theme(legend.position="none")
 
@@ -1712,7 +1715,7 @@ cplot <- ggplot(corer1,aes(x=time,y=rate/12)) +
 iaplot <- ggplot(inaccr1,aes(x=time,y=rate/12)) + 
   geom_boxplot(aes(group=time),fill=NA) + geom_hline(aes(yintercept=mean(rate/12)),linetype=3) + 
   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-  geom_label(inherit.aes=F,aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
+  geom_label(aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
   ggtitle("evolutionary rate, inaccessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
 legend <- g_legend(iaplot)
 
@@ -1727,43 +1730,9 @@ grid.arrange(cplot, iaplot + theme(legend.position="none"),legend, nrow=1,widths
 ## Warning: Removed 2 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-8](figure_ALL/unnamed-chunk-8-1.png)
+![plot of chunk unnamed-chunk-24](figure/unnamed-chunk-24-1.png)
 
 ```r
-# corer1$timeF <- paste(corer1$time,"a",sep="_")
-# inaccr1$timeF <- paste(inaccr1$time,"i",sep="_")
-# corer1$region <- "core"
-# inaccr1$region <- "inaccessible"
-# allrates <- rbind(corer1,inaccr1)
-# allrates$timeF <- factor(allrates$timeF)
-# 
-# ggplot(data=allrates,aes(x=timeF,y=rate/12)) + 
-#   geom_boxplot(data=subset(allrates,region=="core"),aes(group=timeF),fill=NA,colour="black") + 
-#     geom_hline(data=subset(allrates,region=="core"),aes(yintercept=mean(rate/12)),linetype=3) + 
-#     geom_label(data=subset(allrates,region=="core"),aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
-#   geom_boxplot(data=subset(allrates,region=="inaccessible"),aes(group=timeF),fill=NA,colour="#555555") + 
-#     geom_hline(data=subset(allrates,region=="inaccessible"),aes(yintercept=mean(rate/12)),linetype=3) + 
-#     geom_label(data=subset(allrates,region=="inaccessible"),aes(label=paste(round(mean(rate/12),2)," (+/- ",round(sd(rate/12),1),")",sep=""),y=mean(rate/12),x=7.3),size=5)+
-#   geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
-#   ggtitle("evolutionary rate, inaccessible genome only, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9)
-# 
-# allrates$key <- paste(allrates$time,allrates$region,allrates$from,allrates$to)
-# means <- aggregate(allrates$rate/12,by=list(allrates$key),FUN=mean)
-# colnames(means)<-c("key","rate")
-# ses <- aggregate(allrates$rate/12,by=list(allrates$key),FUN=function(x) {sd(x)/sqrt(length(x))})
-# colnames(ses)<-c("key","se")
-# allratesmean <- unique(allrates[,c("from","to","time","timeF","region","key")])
-# meanrates <- merge(merge(allratesmean,means),ses)[,c("from","to","time","timeF","region","rate","se")]
-# 
-# ggplot(data=meanrates,aes(x=timeF,y=rate,ymin=rate-se,ymax=rate+se)) + 
-#   geom_point(aes(colour=to,shape=from),size=3)+
-#   geom_errorbar(data=subset(meanrates,region=="core"),colour="white")+
-#   geom_errorbar(data=subset(meanrates,region=="inaccessible"),colour="black")+
-#   theme(panel.background = element_rect(colour = "black"))+
-#   ggtitle("evolutionary rate, inaccessible/accessible genome") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9)
-
-
-
 corerate <- round(mean(corer1$rate),3)
 inaccrate <- round(mean(inaccr1$rate),3)
 ```
@@ -1794,7 +1763,7 @@ legend <- g_legend(splot)
 grid.arrange(iplot, splot + theme(legend.position="none"),legend, nrow=1,widths=c(10,10,1),heights=c(1))
 ```
 
-![plot of chunk unnamed-chunk-9](figure_ALL/unnamed-chunk-9-1.png)
+![plot of chunk unnamed-chunk-25](figure/unnamed-chunk-25-1.png)
 
 
 GATK rates
@@ -1839,7 +1808,7 @@ grid.arrange(gatkcplot, gatkiaplot + theme(legend.position="none"),legend, nrow=
 ## Warning: Removed 7 rows containing missing values (geom_point).
 ```
 
-![plot of chunk unnamed-chunk-10](figure_ALL/unnamed-chunk-10-1.png)
+![plot of chunk unnamed-chunk-26](figure/unnamed-chunk-26-1.png)
 
 
 
@@ -1858,7 +1827,7 @@ ggplot(isr1,aes(x=time,y=rate/12)) +
   ggtitle("evolutionary rate, clade 2") + ylab("mut/mth/gen") + xlab("years")  + ylim(-2,9) + xlim(0,7.5)
 ```
 
-![plot of chunk unnamed-chunk-12](figure_ALL/unnamed-chunk-12-1.png)
+![plot of chunk unnamed-chunk-28](figure/unnamed-chunk-28-1.png)
 
 ```r
 irate <- round(mean(ir1$rate),3)
@@ -1933,7 +1902,15 @@ ggplot(subset(sppsubs, Label %in% dotsubs),aes(x=gsize,y=subrate),) +
   theme(panel.background = element_rect(fill = F))
 ```
 
-![plot of chunk unnamed-chunk-13](figure_ALL/unnamed-chunk-13-1.png)
+```
+## Warning: Ignoring unknown aesthetics: label
+```
+
+```
+## Warning: Transformation introduced infinite values in continuous y-axis
+```
+
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29-1.png)
 
 ```r
 #dput(sppsubs$Label)
@@ -1970,7 +1947,7 @@ ggplot(subset(sppsubs,Label %in% barSamps),aes(x=Pathogen,y=subrate * gsize),) +
   theme(panel.background = element_rect(fill = F),axis.text.x = element_text(angle = 90, hjust = 1))
 ```
 
-![plot of chunk unnamed-chunk-13](figure_ALL/unnamed-chunk-13-2.png)
+![plot of chunk unnamed-chunk-29](figure/unnamed-chunk-29-2.png)
 
 ```r
 write.table(sppsubs,stdout(),sep="\t",quote=F)
