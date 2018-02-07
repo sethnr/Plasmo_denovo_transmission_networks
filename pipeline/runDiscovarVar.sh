@@ -1,21 +1,17 @@
 #!/bin/bash
 
-#SET=$1
-#LANE=$2
-#DATA=$3
-#REGION=$4
+source /broad/software/scripts/useuse
 
-#VARIABLE=<< EOL
-#./runDiscovarVar.sh [options] library  lane  region,region...
-#options:
-#     -d /path/to/data/directory
-#     -f ./reference.fasta
-#     -m max_mem (GB) [2]
-#     -n nodes [1]
-#EOL
+reuse -q Samtools
+reuse -q BWA
+reuse -q .vcftools-0.1.14
+reuse -q Tabix
+reuse -q Python-2.7
+reuse -q .numpy-1.9.1-python-2.7.1-sqlite3-rtrees
 
-#DATA="./"
-#OPTIND=1
+reuse -q GCC-4.9
+reuse -q Discovar
+
 
 ## defaults
 NODES=1
@@ -23,140 +19,79 @@ MEMORY=2
 SPLIT=0
 REFERENCE=${WORK}/refs/PlasmoDB-24_Pfalciparum3D7_Genome.fasta \
 
-while getopts "d:f:m:n:s:l:B:N:" opt; do
+
+	 
+while getopts "f:m:n:B:o:r:" opt; do
   case $opt in
-    d) DATA=${OPTARG} ;;
     f) REFERENCE=$OPTARG ;;
     m) MEMORY=$OPTARG ;;
     n) NODES=$OPTARG ;;
-    s) SPLIT=1;;
-    B) BAMFILE=$OPTARG;;
-    N) NAME=$OPTARG;;
-#    s) SET=$OPTARG ;;
-    l) LANE=$OPTARG ;;
-#    r) REGION=$OPTARG ;;
+    B) BAMLIST+=($OPTARG);;
+    o) NAME=$OPTARG;;
+    r) REGION=$OPTARG ;;
    \?) echo "Invalid option: -$OPTARG" >&2 ;;
   esac
 done
 
-echo "OPTIND - " $OPTIND
-
-if [ -z "$BAMFILE" ]; then
-    SET=${@:$OPTIND:1}
-    LANE=${@:$OPTIND+1:1}
-    REGION=${@:$OPTIND+2:1}
-#only get one bam for all regions
-#put all regions in same file
-    REFNAME=${SET}_${LANE}
-#IF NOT SPLITTING REGIONS, THEN NAME = SET+NAME
-    NAME=${SET}_${LANE}
-#OTHERWISE ADD REGION TO END
-    BAMFILE=`ls ${DATA}/${LANE}/${SET}/*bam`
-
-elif [ -z "$NAME" ]; then
-     echo "NAME [-N] must be set if BAMFILE [-B] is set"
-     exit 1
-#elif [ -z "$LANE" ]; then 
-else:
-     echo "BAMFILE set: "${BAMFILE}
-     echo "NAME set: "${NAME}
-     REFNAME=$NAME
-     SET=$NAME
-     REGION=${@:$OPTIND:1}
-#else
-#     echo "BAMFILE set: "${BAMFILE}
-#     echo "NAME set: "${NAME}_${LANE}
-#     REFNAME=${NAME}_${LANE}
-#     SET=$NAME
-#     REGION=${@:$OPTIND:1}
-fi
-
-
-if [[ $SPLIT==1 ]]; then NAME=${NAME}_$REGION; fi
-
-#if [[ $SPLIT==1 ]]; then REFNAME=${NAME}_$REGION; fi
-#NB, inefficient - for the moment, make new bam index for each bam, 
-# even though most are the same file - avoids race condition across farm
-# eventually should make NAME_LANE.bam.bai
-
 
 echo "SETUP..."
-mkdir $REFNAME
-cd $REFNAME
-#mkdir tmp_${NAME}
-echo "SET " $SET
-echo "LANE " $LANE
-echo "DATA " $DATA
+mkdir $NAME
+
+echo "BAM " $BAM
 echo "REGION " $REGION
 echo "MEMORY " $MEMORY
 echo "NODES " $NODES
 
+
+for BAM in "${BAMLIST[@]}"; do
+#    ln -s $BAM
+#    ln -s ${BAM}.idx    
+    #    BAMSTR=${BAMSTR}"  READS="`basename $BAM`
+    ln -s `readlink -e $BAM` ${NAME}/`basename $BAM`
+    ln -s `readlink -e ${BAM}.bai` ${NAME}/`basename ${BAM}.bai`
+    BAMLIST2+=(`basename $BAM`)
+done
+
+cd $NAME
+mkdir tmp_$NAME
+
+
+#BAMSTR=shift  "${BAMLIST[@]}"
+BAMSTR=$(IFS=, ; echo "${BAMLIST2[*]}")
+
+
+
 # DO SOME STUFF:
-
-#ls ${NAME}.final.variant.filtered.vcf
-#rc=$?;
-#if [[ $rc == 0 ]];
-
-#if [[ -f ${NAME}.final.variant.filtered.vcf ]]
-#then
-#    echo "DISCOVAR OUTPUT ALREADY PRESENT, NOT RUNNING";
-#    exit 0;
 if [[ -f ${NAME}.final.variant.filtered.vcf.gz ]]
 then
     echo "DISCOVAR OUTPUT ALREADY PRESENT, NOT RUNNING";
     exit 0;
 fi
 
-#MAKE SUB FOLDER (FULL RUN IS MAKING TOO MANY FILES IN ONE FOLDER)
-mkdir ${NAME}_${LANE}
-cd ${NAME}_${LANE}
-mkdir tmp_${NAME}
 
 echo "WORKING DIR"
 pwd
 
-if [[ ! -f ${NAME}.final.variant.filtered.vcf ]];
-then
-    echo "LINK/INDEX BAM..."
 
-#check if bam index file already present
-##    ls ${NAME}.bam.bai
-##    rc=$?;
-##    if [[ $rc != 0 ]];
-##	then
-##	ln -s $BAMFILE ${NAME}.bam
-##	echo samtools index ${NAME}.bam
-##	samtools index ${NAME}.bam
-##    fi
-    #remove old bams - some are wrong
-    if [[ -e ${NAME}.bam ]]; then
-	echo "REMOVING OLD BAM"
-	rm ${NAME}.bam;
-	rm ${NAME}.bam.bai
-    fi
-
-    ln -s $BAMFILE ${NAME}.bam
-    echo samtools index ${NAME}.bam
-    samtools index ${NAME}.bam
-    
-#mkdir tmp_${NAME}
-
-    echo "DISCOVAR"
-    echo Discovar READS=${NAME}.bam \
+echo "DISCOVAR"
+echo Discovar READS=$BAMSTR \
 	REGIONS=${REGION} \
 	OUT_HEAD=${NAME} \
 	TMP=./tmp_${NAME} \
 	REFERENCE=${REFERENCE} \
 	NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
-    Discovar READS=${NAME}.bam \
+Discovar READS=$BAMSTR \
 	REGIONS=${REGION} \
 	OUT_HEAD=${NAME} \
 	TMP=./tmp_${NAME} \
 	REFERENCE=${REFERENCE} \
 	NUM_THREADS=${NODES} \
 	 MAX_MEMORY_GB=${MEMORY}
-    rc=$?;
+rc=$?;
+echo "exit" $rc
+exit 0 
+
     if [[ $rc == 1 ]];
 	then
 	echo "DISCOVAR ERROR";

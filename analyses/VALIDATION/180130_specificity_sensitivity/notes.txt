@@ -36,3 +36,17 @@ java -jar $GATK/GenomeAnalysisTK.jar \
 
 #do disco VQSR
 qsubNN vqsr 1 16 ~/bin/VQSR_PFX -V   disco_3D7DD2.FILT.DD2-2D4.vcf.gz -o disco_3D7DD2.FILT.DD2-2D4.VQSR
+
+for V in  ../ROCplot/3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-2D4.vcf.gz ../ROCplot/3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.Dd2-2D4.vcf.gz disco_3D7DD2.FILT.DD2-2D4.vcf.gz ; do echo $V ; zcat $V | wc -l ; cat ${V/.vcf.gz/_EVAL}/summary.txt ;  cat ${V/.vcf.gz/_FILT_EVAL}/summary.txt ; done
+
+for V in ../ROCplot/3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.Dd2-2D4.vcf.gz  disco_3D7DD2.FILT.DD2-2D4.vcf.gz ;
+do
+   echo $V ; zcat $V | wc -l ;
+   cat ${V/.vcf.gz/_EVAL}/summary.txt ;
+   cat ${V/.vcf.gz/_FILT_EVAL}/summary.txt ;
+done
+
+for D in  ../ROCplot/3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-2D4  disco_3D7DD2.FILT.DD2-2D4_callable_all ;
+do
+echo $D ; cat ${D}_EVAL/summary.txt ; cat ${D}_FILT_EVAL/summary.txt ;
+done
