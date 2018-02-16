@@ -50,3 +50,17 @@ for D in  ../ROCplot/3D7DD2.REFCALL.PASS.DD2CONC.PFX.LMRG.HAP.CALLBOTH.Dd2-2D4  
 do
 echo $D ; cat ${D}_EVAL/summary.txt ; cat ${D}_FILT_EVAL/summary.txt ;
 done
+
+
+
+
+#copy VQSLOD into discovar table
+java -jar $GATK/GenomeAnalysisTK.jar \
+   -R $PFREF \
+   -T VariantAnnotator \
+   -V  disco_3D7DD2.FILT.DD2-2D4.ANN.vcf.gz  \
+   -o  disco_3D7DD2.FILT.DD2-2D4.ANN.VQSLOD.vcf  \
+   --resource:ann  disco_DD22D4_L12_allvars.variant.VQSR.vcf.gz \
+   --expression ann.VQSLOD
+ 
+vcftools --non-ref-ac 1 --gzvcf gatkHaplo_3D7DD2_100.VQSR.DD2-2D4.vcf.gz --recode --recode-INFO-all --out gatkHaplo_3D7DD2_100.VQSR.DD2-2D4.nr
