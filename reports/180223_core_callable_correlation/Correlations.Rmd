@@ -1,0 +1,128 @@
+```{r setup}
+library(ggplot2)
+library(hexbin)
+library(reshape2)
+library(knitr)
+
+library(gridExtra)
+library(grid)
+library(ggplot2)
+library(lattice)
+opts_chunk$set(fig.width=12, fig.height=8,dev=c('png','postscript'),warning=F)
+
+``` 
+
+```{r}
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+```
+
+
+```{r}
+callboth <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLBOTH.vcf.dist.tab.txt",sep="\t")
+callboth$from=rownames(callboth)
+callboth <- melt(callboth,variable.name = "to",value.name="both")
+callDisco <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.CALLDISCOONLY.vcf.dist.tab.txt",sep="\t")
+callDisco$from=rownames(callDisco)
+callDisco <- melt(callDisco,variable.name = "to",value.name="disco")
+
+
+callsnp <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",sep="\t")
+callsnp $from=rownames(callsnp )
+callsnp  <- melt(callsnp ,variable.name = "to",value.name="snp")
+
+callindel <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",sep="\t")
+callindel $from=rownames(callindel )
+callindel  <- melt(callindel ,variable.name = "to",value.name="indel")
+
+
+callCf <- merge(merge(callboth,callDisco),merge(callsnp,callindel))
+callCf <- callCf[!is.na(callCf$snp),]
+callCf <- callCf[callCf$from != callCf$to,]
+
+callCf <- callCf[callCf$snp <= 1000,]
+
+callbothGATK <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",sep="\t")
+callbothGATK$from=rownames(callbothGATK)
+callbothGATK <- melt(callbothGATK,variable.name = "to",value.name="both")
+callhaploGATK <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab.txt",sep="\t")
+callhaploGATK$from=rownames(callhaploGATK)
+callhaploGATK <- melt(callhaploGATK,variable.name = "to",value.name="haplo")
+calldiscoGATK <- read.table("thies_300100_haplo.CALLDISCO.RENAME.dist.tab.txt",sep="\t")
+calldiscoGATK$from=rownames(calldiscoGATK)
+calldiscoGATK <- melt(calldiscoGATK,variable.name = "to",value.name="disco")
+
+callsnpGATK <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.SNP.dist.tab.txt",sep="\t")
+callsnpGATK$from=rownames(callsnpGATK)
+callsnpGATK <- melt(callsnpGATK,variable.name = "to",value.name="snp")
+callindelGATK <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.INDEL.dist.tab.txt",sep="\t")
+callindelGATK$from=rownames(callindelGATK)
+callindelGATK <- melt(callindelGATK,variable.name = "to",value.name="indel")
+
+
+callCfGATK <- merge(merge(callsnpGATK,callindelGATK),merge(callbothGATK,callhaploGATK))
+callCfGATK <- merge(callCfGATK,calldiscoGATK)
+callCfGATK <- callCfGATK[!is.na(callCfGATK$both),]
+callCfGATK <- callCfGATK[callCfGATK$from != callCfGATK$to,]
+head(callCfGATK)
+
+callCfGATK <- callCfGATK[callCfGATK$both > 0,]
+
+callCfGATK <- callCfGATK[callCfGATK$both <= 5000,]
+
+#remove core calls from disco/haplo regions
+# discovar already called on disco only
+#callCf$disco <- callCf$disco-callCf$both
+
+callCfGATK$disco <- callCfGATK$disco-callCfGATK$both
+callCfGATK$haplo <- callCfGATK$haplo-callCfGATK$both
+```
+
+```{r}
+
+
+discoSI <- cor.test(callCf$snp,callCf$indel)
+discoSI
+ggplot(callCf,aes(y=snp,x=indel)) + geom_point() +  
+  geom_label(y=100,x=150,label=paste("r = ",round(cor(callCf$snp,callCf$indel),2)),size=5) +
+  ggtitle("Discovar calls - SNP:INDEL correlation")
+
+cor(callCf$both,callCf$disco)
+ggplot(callCf,aes(y=both,x=disco)) + geom_point() +  
+  geom_label(y=100,x=150,label=paste("r = ",round(cor(callCf$both,callCf$disco),2)),size=5) +
+  ggtitle("Discovar calls - accessible:inaccessible correlation")
+#ggplot(callCf,aes(x=both,y=haplo)) + geom_point(aes(y=disco),colour="red")
+
+cor.test(callCfGATK$both,callCfGATK$disco)
+cor.test(callCfGATK$both,callCfGATK$haplo)
+ggplot(callCfGATK,aes(y=both,x=haplo)) + 
+  geom_point(aes(x=haplo),colour="blue") + geom_point(aes(x=disco),colour="red") +
+  geom_label(y=1500,x=375,label=paste("r = ",round(cor(callCfGATK$both,callCfGATK$haplo),2)),size=5,colour="blue") + geom_label(y=1000,x=750,label=paste("r = ",round(cor(callCfGATK$both,callCfGATK$disco),2)),size=5,colour="red") +
+  ggtitle("GATK calls - accessible:inaccessible correlation")
+
+gatkSI<-cor.test(callCfGATK$snp,callCfGATK$indel)
+gatkSI
+ggplot(callCfGATK,aes(y=snp,x=indel)) + geom_point() + 
+  geom_label(x=1500,y=300,label=paste("r = ",round(cor(callCfGATK$snp,callCfGATK$indel),2)),size=5) +
+  ggtitle("GATK calls - SNP:INDEL correlation")
+
+callCfGATK$caller<-"GATK"
+callCf$caller<-"DISCOVAR"
+callCfAll <- rbind(callCfGATK[,c("from","to","caller","snp","indel")],callCf[,c("from","to","caller","snp","indel")])
+
+
+paste(round(discoSI$estimate,2),discoSI$p.value)
+ggplot(callCfAll,aes(y=snp,x=indel)) + geom_point() + geom_smooth(method = lm,se = F,linetype=2) +
+  facet_grid(. ~ caller,scale="free_x")+
+  ggtitle("SNP:INDEL correlation")+
+  geom_label(y=600,x=50,label=paste("r = ",round(discoSI$estimate,2),", p < 1e15",sep=""),size=3) +
+  geom_label(y=200,x=1500,label=paste("r = ",round(gatkSI$estimate,2),", p < 1e15",sep=""),size=3) +
+  theme(legend.position="bottom")
+
+
+```
+
+
