@@ -1,0 +1,126 @@
+2018-02-16 16:55:33 serial = 27182818284
+2018-02-16 16:55:33 email = anon
+2018-02-16 16:55:33 RTG version = RTG Tools 3.6.2 / Core bc71ee0 (2016-06-24)
+2018-02-16 16:55:33 awt.toolkit = sun.awt.X11.XToolkit
+2018-02-16 16:55:33 file.encoding = ANSI_X3.4-1968
+2018-02-16 16:55:33 file.encoding.pkg = sun.io
+2018-02-16 16:55:33 file.separator = /
+2018-02-16 16:55:33 host.name = uger-c083.broadinstitute.org
+2018-02-16 16:55:33 java.awt.graphicsenv = sun.awt.X11GraphicsEnvironment
+2018-02-16 16:55:33 java.awt.printerjob = sun.print.PSPrinterJob
+2018-02-16 16:55:33 java.class.path = /seq/plasmodium/sredmond/pfdisco/analyses/VALIDATION/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar
+2018-02-16 16:55:33 java.class.version = 52.0
+2018-02-16 16:55:33 java.endorsed.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/endorsed
+2018-02-16 16:55:33 java.ext.dirs = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/ext:/usr/java/packages/lib/ext
+2018-02-16 16:55:33 java.home = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre
+2018-02-16 16:55:33 java.io.tmpdir = /tmp
+2018-02-16 16:55:33 java.library.path = /seq/plasmodium/sredmond/pfdisco/analyses/VALIDATION/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0
+2018-02-16 16:55:33 java.runtime.name = Java(TM) SE Runtime Environment
+2018-02-16 16:55:33 java.runtime.version = 1.8.0_45-b14
+2018-02-16 16:55:33 java.specification.name = Java Platform API Specification
+2018-02-16 16:55:33 java.specification.vendor = Oracle Corporation
+2018-02-16 16:55:33 java.specification.version = 1.8
+2018-02-16 16:55:33 java.vendor = Oracle Corporation
+2018-02-16 16:55:33 java.vendor.url = http://java.oracle.com/
+2018-02-16 16:55:33 java.vendor.url.bug = http://bugreport.sun.com/bugreport/
+2018-02-16 16:55:33 java.version = 1.8.0_45
+2018-02-16 16:55:33 java.vm.info = mixed mode
+2018-02-16 16:55:33 java.vm.name = Java HotSpot(TM) 64-Bit Server VM
+2018-02-16 16:55:33 java.vm.specification.name = Java Virtual Machine Specification
+2018-02-16 16:55:33 java.vm.specification.vendor = Oracle Corporation
+2018-02-16 16:55:33 java.vm.specification.version = 1.8
+2018-02-16 16:55:33 java.vm.vendor = Oracle Corporation
+2018-02-16 16:55:33 java.vm.version = 25.45-b02
+2018-02-16 16:55:33 lang.version = 1.8.0_45
+2018-02-16 16:55:33 line.separator = 
+
+2018-02-16 16:55:33 models.dir = /seq/plasmodium/sredmond/pfdisco/analyses/VALIDATION/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/models
+2018-02-16 16:55:33 os.arch = amd64
+2018-02-16 16:55:33 os.freememory = 130968076288
+2018-02-16 16:55:33 os.name = Linux
+2018-02-16 16:55:33 os.totalmemory = 270810583040
+2018-02-16 16:55:33 os.version = 2.6.32-696.20.1.el6.x86_64
+2018-02-16 16:55:33 path.separator = :
+2018-02-16 16:55:33 processor.arch = amd64
+2018-02-16 16:55:33 processor.count = 16
+2018-02-16 16:55:33 references.dir = /seq/plasmodium/sredmond/pfdisco/analyses/VALIDATION/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/references
+2018-02-16 16:55:33 runtime.freememory = 2004614880
+2018-02-16 16:55:33 runtime.maxmemory = 30542397440
+2018-02-16 16:55:33 runtime.totalMemory = 2058354688
+2018-02-16 16:55:33 sun.arch.data.model = 64
+2018-02-16 16:55:33 sun.boot.class.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/resources.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/rt.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/sunrsasign.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jsse.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jce.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/charsets.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/jfr.jar:/broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/classes
+2018-02-16 16:55:33 sun.boot.library.path = /broad/software/free/Linux/redhat_6_x86_64/pkgs/jdk1.8.0_45/jre/lib/amd64
+2018-02-16 16:55:33 sun.cpu.endian = little
+2018-02-16 16:55:33 sun.cpu.isalist = 
+2018-02-16 16:55:33 sun.io.unicode.encoding = UnicodeLittle
+2018-02-16 16:55:33 sun.java.command = /seq/plasmodium/sredmond/pfdisco/analyses/VALIDATION/180130_specificity_sensitivity/rtg-tools/dist/rtg-tools-3.6.2-bc71ee0/RTG.jar vcfeval -b 3D7_DD2_parents.DD2.vcf.gz -c gatkHaplo_3D7DD2_250.VQSR.DD2-2D4.vcf.gz -o gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_EVAL --all-records --bed-regions callable_haplo250.bed -t Pf3D7.sdf --vcf-score-field=INFO=VQSLOD
+2018-02-16 16:55:33 sun.java.launcher = SUN_STANDARD
+2018-02-16 16:55:33 sun.jnu.encoding = ANSI_X3.4-1968
+2018-02-16 16:55:33 sun.management.compiler = HotSpot 64-Bit Tiered Compilers
+2018-02-16 16:55:33 sun.os.patch.level = unknown
+2018-02-16 16:55:33 talkback = true
+2018-02-16 16:55:33 user.country = US
+2018-02-16 16:55:33 user.dir = /seq/plasmodium/sredmond/pfdisco/analyses/VALIDATION/180130_specificity_sensitivity
+2018-02-16 16:55:33 user.home = /home/unix/sredmond
+2018-02-16 16:55:33 user.language = en
+2018-02-16 16:55:33 user.name = sredmond
+2018-02-16 16:55:33 user.timezone = America/New_York
+2018-02-16 16:55:33 vendor = Oracle Corporation
+2018-02-16 16:55:33 gzipfix.enabled = true
+2018-02-16 16:55:33 Command line arguments: rtg vcfeval -b 3D7_DD2_parents.DD2.vcf.gz -c gatkHaplo_3D7DD2_250.VQSR.DD2-2D4.vcf.gz -o gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_EVAL --all-records --bed-regions callable_haplo250.bed -t Pf3D7.sdf --vcf-score-field=INFO=VQSLOD
+2018-02-16 16:55:33 Run Id: 49b7f66b-dd6c-49af-a3c8-53066f0db4e2
+2018-02-16 16:55:33 Referenced SDF-ID: 6ac77308-41be-4766-949d-035df96768cd Type: DNA Sequences: 16 Residues: 23332831 Max-Length: 3291936 Min-Length: 5967
+2018-02-16 16:55:34 Reference sequence M76611 is used in calls but not in baseline (variants will be treated as FP).
+2018-02-16 16:55:34 Reference sequence PFC10_API_IRAB is used in calls but not in baseline (variants will be treated as FP).
+2018-02-16 16:55:34 Reference M76611 baseline contains 0 variants.
+2018-02-16 16:55:34 Reference M76611 calls contains 0 variants.
+2018-02-16 16:55:34 Reference PFC10_API_IRAB baseline contains 0 variants.
+2018-02-16 16:55:34 Reference PFC10_API_IRAB calls contains 11 variants.
+2018-02-16 16:55:35 Reference Pf3D7_01_v3 baseline contains 667 variants.
+2018-02-16 16:55:35 Reference Pf3D7_01_v3 calls contains 1490 variants.
+2018-02-16 16:55:35 Reference Pf3D7_02_v3 baseline contains 598 variants.
+2018-02-16 16:55:35 Reference Pf3D7_02_v3 calls contains 1944 variants.
+2018-02-16 16:55:36 Reference Pf3D7_01_v3 had maximum path complexity of 27 at Pf3D7_01_v3:500966-500974
+2018-02-16 16:55:36 Reference Pf3D7_03_v3 baseline contains 744 variants.
+2018-02-16 16:55:36 Reference Pf3D7_03_v3 calls contains 2293 variants.
+2018-02-16 16:55:36 Reference Pf3D7_02_v3 had maximum path complexity of 38 at Pf3D7_02_v3:483226-483341
+2018-02-16 16:55:37 Reference Pf3D7_03_v3 had maximum path complexity of 11 at Pf3D7_03_v3:472753-472770
+2018-02-16 16:55:37 Reference Pf3D7_04_v3 baseline contains 1130 variants.
+2018-02-16 16:55:37 Reference Pf3D7_04_v3 calls contains 3008 variants.
+2018-02-16 16:55:37 Reference Pf3D7_04_v3 had maximum path complexity of 17 at Pf3D7_04_v3:132461-132511
+2018-02-16 16:55:38 Reference Pf3D7_05_v3 baseline contains 952 variants.
+2018-02-16 16:55:38 Reference Pf3D7_05_v3 calls contains 3244 variants.
+2018-02-16 16:55:38 Reference Pf3D7_05_v3 had maximum path complexity of 27 at Pf3D7_05_v3:388443-388531
+2018-02-16 16:55:39 Reference Pf3D7_06_v3 baseline contains 1076 variants.
+2018-02-16 16:55:39 Reference Pf3D7_06_v3 calls contains 2920 variants.
+2018-02-16 16:55:39 Reference Pf3D7_06_v3 had maximum path complexity of 39 at Pf3D7_06_v3:992823-994171
+2018-02-16 16:55:39 Reference Pf3D7_07_v3 baseline contains 1286 variants.
+2018-02-16 16:55:39 Reference Pf3D7_07_v3 calls contains 3509 variants.
+2018-02-16 16:55:40 Reference Pf3D7_07_v3 had maximum path complexity of 24 at Pf3D7_07_v3:79456-79476
+2018-02-16 16:55:40 Reference Pf3D7_08_v3 baseline contains 1185 variants.
+2018-02-16 16:55:40 Reference Pf3D7_08_v3 calls contains 3462 variants.
+2018-02-16 16:55:41 Reference Pf3D7_08_v3 had maximum path complexity of 10 at Pf3D7_08_v3:116345-116841
+2018-02-16 16:55:41 Reference Pf3D7_09_v3 baseline contains 1065 variants.
+2018-02-16 16:55:41 Reference Pf3D7_09_v3 calls contains 3454 variants.
+2018-02-16 16:55:41 Reference Pf3D7_09_v3 had maximum path complexity of 14 at Pf3D7_09_v3:1367330-1367697
+2018-02-16 16:55:42 Reference Pf3D7_10_v3 baseline contains 1241 variants.
+2018-02-16 16:55:42 Reference Pf3D7_10_v3 calls contains 3743 variants.
+2018-02-16 16:55:42 Reference Pf3D7_10_v3 had maximum path complexity of 121 at Pf3D7_10_v3:1177389-1177522
+2018-02-16 16:55:42 Reference Pf3D7_11_v3 baseline contains 1510 variants.
+2018-02-16 16:55:42 Reference Pf3D7_11_v3 calls contains 4651 variants.
+2018-02-16 16:55:42 Reference Pf3D7_11_v3 had maximum path complexity of 96 at Pf3D7_11_v3:529385-530647
+2018-02-16 16:55:43 Reference Pf3D7_12_v3 baseline contains 1381 variants.
+2018-02-16 16:55:43 Reference Pf3D7_12_v3 calls contains 4963 variants.
+2018-02-16 16:55:43 Reference Pf3D7_12_v3 had maximum path complexity of 30 at Pf3D7_12_v3:1475272-1475729
+2018-02-16 16:55:44 Reference Pf3D7_13_v3 baseline contains 1967 variants.
+2018-02-16 16:55:44 Reference Pf3D7_13_v3 calls contains 6218 variants.
+2018-02-16 16:55:44 Reference Pf3D7_13_v3 had maximum path complexity of 46 at Pf3D7_13_v3:2216231-2216263
+2018-02-16 16:55:45 Reference Pf3D7_14_v3 baseline contains 2296 variants.
+2018-02-16 16:55:45 Reference Pf3D7_14_v3 calls contains 7427 variants.
+2018-02-16 16:55:45 Reference Pf3D7_14_v3 had maximum path complexity of 80 at Pf3D7_14_v3:2523473-2524150
+2018-02-16 16:55:53 Threshold  True-pos  False-pos  False-neg  Precision  Sensitivity  F-measure
+----------------------------------------------------------------------------
+    3.740     12120      18334       4978     0.3980       0.7089     0.5098
+     None     14746      37559       2352     0.2819       0.8624     0.4249
+
+2018-02-16 16:55:53 Finished successfully in 20 s.
