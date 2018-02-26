@@ -7,8 +7,16 @@ library(igraph)
 library(RColorBrewer)
 library(ggplot2)
 library(reshape2)
-opts_chunk$set(fig.width=9, fig.height=9)
-opts_chunk$set(dev=c('png','postscript'))
+
+
+#opts_chunk$set(fig.width=9, fig.height=9)
+#opts_chunk$set(dev=c('png','postscript'))
+opts_chunk$set(fig.width=12, fig.height=9)
+opts_chunk$set(dev=c('png'))
+
+
+
+
 ```
 
 
@@ -43,25 +51,30 @@ meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
 colnames(meta)[1]<-"name"
 meta <- meta[!is.na(meta$Age),]
 
-indelDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.INDEL.recode.vcf.dist.tab.txt",header=T,sep="\t")
-snpDists <- read.table("Thies_all_manual.PASS.Cls.miss0.5.LMRG.HAP.SNP.recode.vcf.dist.tab.txt",header=T,sep="\t")
-discoDists <- indelDists+snpDists
+discoDists <- read.table("thies_disco.FILT.m0.5.dist.tab.txt",header=T,sep="\t")
 
-meta <- subset(meta,name %in% names(indelDists))
+meta <- subset(meta,name %in% names(discoDists))
 rownames(meta) <- meta$name
 
-gatkDists <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.dist.tab",header=T,sep="\t")
+hap100Dists <- read.table("thies_haplo100.FILT.m0.5.dist.tab.txt",header=T,sep="\t")
 
-gatkDistsCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.dist.tab.txt",header=T,sep="\t")
+hap250Dists <- read.table("thies_haplo250.FILT.m0.5.dist.tab.txt",header=T,sep="\t")
+
+
+
+samples <- read.table("Thies.samples.txt",col.names=c("ID","lane","dataset","sample","bam"))
+samples <- unique(samples[,c("ID","sample")])
+snames <- samples[,c("ID")]; samples<- as.character(samples[,c("sample")]) ; names(samples) <- snames
+
+#fix names for hap100 tree
+names(hap100Dists) <- samples[rownames(hap100Dists)]
+rownames(hap100Dists) <- samples[rownames(hap100Dists)]
+
 
 ```
 
 
 
-```{r}
-opts_chunk$set(fig.width=12, fig.height=9)
-opts_chunk$set(dev=c('png'))
-```
 
 ```{r }
 
@@ -188,7 +201,6 @@ getEvolRates <- function(net,mat,ng) {
   outtab
 }
 
-#netAll <- getAnces(net, 1,1:10)
 
 
 g_legend<-function(a.gplot){
@@ -208,87 +220,103 @@ og2<-"Th068.12"
 oc2 <- c("Th068.12", "Th061.13", "Th095.13")
 cog1 <- c(cl1,og1)
 cog2 <- c(cl1,og2)
+
+
 ```
 
 
 
 ```{r}
-njtree1 <- nj(as.dist(sym(discoDists)))
-njtree1 <- midpoint(njtree1)
-plot(njtree1)
-njtree1 <- drop.tip(njtree1,c(oc1,oc2))
-plot(njtree1)
-rtdist1 <- diag(vcv.phylo(njtree1)[cl1,cl1])
-TDtab1 <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=rtdist1)
-ct1 <- cor.test(TDtab1$yrs,TDtab1$rtdist)
+discoNJtree <- nj(as.dist(sym(discoDists)))
+discoNJtree <- midpoint(discoNJtree)
+plot(discoNJtree)
+discoNJtree <- drop.tip(discoNJtree,c(oc1,oc2))
+plot(discoNJtree)
+
+discoRTdist <- diag(vcv.phylo(discoNJtree)[cl1,cl1])
+discoMEPtab <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=discoRTdist)
+ct1 <- cor.test(discoMEPtab$yrs,discoMEPtab$rtdist)
 ct1
-ggplot(TDtab1,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
+ggplot(discoMEPtab,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
   geom_label(x=8,y=mean(TDtab1$rtdist),label=paste("R=",round(ct1$estimate,3)," p=",round(ct1$p.value,4),sep=""),size=5) +
-  ggtitle("Discovar, disco-accessible genome, midpoint root")
+  ggtitle("Discovar, distance-time correlation extended genome")
 
 ```
 
 
 ```{r}
-# meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
-# colnames(meta)[1]<-"name"
-# meta <- meta[!is.na(meta$Age),]
+hap100NJtree <- nj(as.dist(sym(hap100Dists)))
+hap100NJtree <- midpoint(hap100NJtree)
+plot(hap100NJtree)
+hap100NJtree <- drop.tip(hap100NJtree,c(oc1,oc2))
+plot(hap100NJtree)
+
+hap100RTdist <- diag(vcv.phylo(hap100NJtree)[cl1,cl1])
+hap100MEPtab <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=hap100RTdist)
+ct1 <- cor.test(hap100MEPtab$yrs,hap100MEPtab$rtdist)
+ct1
+ggplot(hap100MEPtab,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
+  geom_label(x=8,y=mean(TDtab1$rtdist),label=paste("R=",round(ct1$estimate,3)," p=",round(ct1$p.value,4),sep=""),size=5) +
+  ggtitle("hap100, distance-time correlation extended genome")
+
+```
+
+
+```{r}
+hap250NJtree <- nj(as.dist(sym(hap250Dists)))
+hap250NJtree <- midpoint(hap250NJtree)
+plot(hap250NJtree)
+hap250NJtree <- drop.tip(hap250NJtree,c(oc1,oc2))
+plot(hap250NJtree)
+
+hap250RTdist <- diag(vcv.phylo(hap250NJtree)[cl1,cl1])
+hap250MEPtab <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=hap250RTdist)
+ct1 <- cor.test(hap250MEPtab$yrs,hap250MEPtab$rtdist)
+ct1
+ggplot(hap250MEPtab,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
+  geom_label(x=8,y=mean(TDtab1$rtdist),label=paste("R=",round(ct1$estimate,3)," p=",round(ct1$p.value,4),sep=""),size=5) +
+  ggtitle("hap250, distance-time correlation extended genome")
+
+```
+
+```{r}
+discoMEPtab$prog <- "disco"
+hap100MEPtab$prog <- "haplo100"
+hap250MEPtab$prog <- "haplo250"
+cfMEPtab<-rbind(discoMEPtab,hap100MEPtab,hap250MEPtab)
+
+ggplot(cfMEPtab,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
+  geom_label(x=8,y=mean(TDtab1$rtdist),label=paste("R=",round(ct1$estimate,3)," p=",round(ct1$p.value,4),sep=""),size=5) + facet_grid(. ~ prog) + 
+  ggtitle("hap250, distance-time correlation extended genome")
+
+
+```
+
+
+
+```{r}
 
 netDisco <- makeNetSingle(as.dist(sym(discoDists[cl1,cl1])),meta)
-printGraph(netDisco,"Greens",title = "Discovar - disco-accessible genome")
+printGraph(netDisco,"Greens",title = "Discovar - clade29")
+
+```
+
+
+```{r}
+netHap100 <- makeNetSingle(as.dist(sym(hap100Dists)[cl1,cl1]),meta)
+printGraph(netHap100,"Greens",title = "Haplo100 - clade29")
 
 ```
 
 ```{r}
-njtreeGATK <- nj(as.dist(sym(gatkDists)))
-njtreeGATK <- midpoint(njtreeGATK)
-plot(njtreeGATK)
-njtreeGATK <- drop.tip(njtreeGATK,c(oc1,oc2))
-plot(njtreeGATK)
-rtdistGATK <- diag(vcv.phylo(njtreeGATK)[cl1,cl1])
-TDtabGATK <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=rtdistGATK)
-ctGATK <- cor.test(TDtabGATK$yrs,TDtabGATK$rtdist)
-ctGATK
-ggplot(TDtabGATK,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
-  geom_label(x=8,y=mean(TDtabGATK$rtdist),label=paste("R=",round(ctGATK$estimate,3)," p=",round(ctGATK$p.value,4),sep=""),size=5) +
-  ggtitle("HaplotypeCaller, haplo-accessible genome, midpoint root")
-
-```
-```{r}
-#cols <- brewer.pal((max(netGATK$year)-min(netGATK$year))+1, "Greens")
-
-netGATK <- makeNetSingle(as.dist(sym(gatkDists[cl1,cl1])),meta)
-printGraph(netGATK[],"Greens",title = "HaplotypeCaller - haplo-accessible genome")
+netHap250 <- makeNetSingle(as.dist(sym(hap250Dists)[cl1,cl1]),meta)
+printGraph(netHap250,"Greens",title = "Haplo250 - clade29")
 
 ```
 
-```{r}
-njtreeGATKCore <- nj(as.dist(sym(gatkDistsCore)))
-njtreeGATKCore <- midpoint(njtreeGATKCore)
-plot(njtreeGATKCore)
-njtreeGATKCore <- drop.tip(njtreeGATKCore,c(oc1,oc2))
-plot(njtreeGATKCore)
-rtdistGATKCore <- diag(vcv.phylo(njtreeGATKCore)[cl1,cl1])
-TDtabGATKCore <- data.frame("sample"=cl1,"yrs"=cl1yrs,"rtdist"=rtdistGATKCore)
-ctGATKCore <- cor.test(TDtabGATKCore$yrs,TDtabGATKCore$rtdist)
-ctGATKCore
-ggplot(TDtabGATKCore,aes(x=yrs,y=rtdist,label=sample)) + geom_text(size=4) + geom_smooth(method = lm,se=F,linetype=2) + 
-  geom_label(x=8,y=mean(TDtabGATKCore$rtdist),label=paste("R=",round(ctGATKCore$estimate,3)," p=",round(ctGATKCore$p.value,4),sep=""),size=5) +
-  ggtitle("HaplotypeCaller, core genome, midpoint root")
 
-```
-```{r}
 
-netGATKCore <- makeNetSingle(as.dist(sym(gatkDistsCore[cl1,cl1])),meta)
-printGraph(netGATKCore[],"Greens",title = "HaplotypeCaller - core genome")
-
-```
 ```{r}
-# meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
-# colnames(meta)[1]<-"name"
-# meta <- meta[meta$name %in% cl1,]
-# row.names(meta) <- cl1
-# meta$Date <- as.Date(as.character(meta$Date),"%d/%m/%Y",origin = "2000-01-01")
 
 bootstrapNets <- function(genos,outfolder) {
   genosStatic <- genos
@@ -353,18 +381,23 @@ blinks
 
 ```{r}
 
-discoGenos <- read.table("ThiesDiscoDiscord.alleles.tab",header=T,na.strings = c("."))[,cl1]
+discoGenos <- read.table("thies_disco.FILT.m0.5.alleles.tab",header=T,na.strings = c("."))[,cl1]
 bootstrapNets(discoGenos,"bootstraps_disco")
 discosum <- sumBootstraps("bootstraps_disco")
 
+hap100Genos <- read.table("thies_haplo100.FILT.m0.5.alleles.tab",header=T,na.strings = c("."))
+cnames <- gsub("SM.","SM-",colnames(hap100Genos))
+cnames[cnames %in% names(samples)] <- samples[cnames[cnames %in% names(samples)]]
+colnames(hap100Genos) <- cnames
+hap100Genos <- hap100Genos[,cl1]
+bootstrapNets(hap100Genos,"bootstraps_hap100")
+hap100sum <- sumBootstraps("bootstraps_hap100")
 
-haploGenosCore <- read.table("thies_300100_haplo.CALLBOTH.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
-bootstrapNets(haploGenosCore,"bootstraps_haploCore")
-haploCoresum <- sumBootstraps("bootstraps_haploCore")
 
-haploGenosAccess <- read.table("thies_300100_haplo.CALLHAPLO.RENAME.alleles.tab",header=T,na.strings = c("."))[,cl1]
-bootstrapNets(haploGenosAccess,"bootstraps_haploAccess")
-haplosum <- sumBootstraps("bootstraps_haploAccess")
+
+hap250Genos <- read.table("thies_haplo250.FILT.m0.5.alleles.tab",header=T,na.strings = c("."))[,cl1]
+bootstrapNets(hap250Genos,"bootstraps_hap250")
+hap250sum <- sumBootstraps("bootstraps_hap250")
 
 ```
 
@@ -396,9 +429,12 @@ net
 }
 
 discobootnet <- addBootToNet(netDisco,discosum,discoDists)
-gatkbootnet <- addBootToNet(netGATK,haplosum,gatkDists)
-gatkbootcorenet <- addBootToNet(netGATKCore,haploCoresum,gatkDistsCore)
+hap100bootnet <- addBootToNet(netHap100,hap100sum,hap100Dists)
+hap250bootnet <- addBootToNet(netHap250,hap250sum,hap250Dists)
 discobootnet
-gatkbootnet
-gatkbootcorenet
+hap100bootnet
+hap250bootnet
+
+
+
 ```

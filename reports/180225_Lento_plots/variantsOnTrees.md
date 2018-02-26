@@ -1,4 +1,5 @@
-```{r}
+
+```r
 library(ape)
 library(adegenet)
 library(phangorn)
@@ -17,7 +18,8 @@ opts_chunk$set(dev=c('png'))
 ```
 
 
-```{r}
+
+```r
 sym <- function(M) {
   M[lower.tri(M)] = t(M)[lower.tri(M)]
   M
@@ -40,13 +42,11 @@ makeDist <- function(distance_matrix_file, meta_file, ngroups=3) {
     
   list(dist1,dist2,dist3)
 }
-
 ```
 
 
-```{r}
 
-
+```r
 getSplitSupports <- function(tree,genos) {
     
 #  samps <- c(1:dim(genos)[[1]])
@@ -153,16 +153,13 @@ getSplitPlot <- function(tree) {
 blankTheme <- theme(axis.title=element_blank(),axis.text = element_blank())
 blankThemeLab <- theme(axis.title=element_blank(),axis.text.y = element_blank(),
                     axis.text.x=element_text(angle=90,hjust=1))
-
-
-
-
 ```
 
 
 
 
-```{r}
+
+```r
 meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
 colnames(meta)[1]<-"name"
 meta <- meta[!is.na(meta$Age),]
@@ -185,13 +182,12 @@ snames <- samples[,c("ID")]; samples<- as.character(samples[,c("sample")]) ; nam
 #fix names for hap100 tree
 names(hap100Dists) <- samples[rownames(hap100Dists)]
 rownames(hap100Dists) <- samples[rownames(hap100Dists)]
-
-
 ```
 
 
 
-```{r}
+
+```r
 cl1 <- c("Th086.07", "Th106.09", "Th106.11", "Th117.11", "Th132.11", "Th134.11", "Th162.12", "Th196.12", "Th230.12", "Th074.13")
 cl1yrs <- as.numeric(gsub(".*\\.","",cl1))
 og1<-"Th166.12"
@@ -206,7 +202,8 @@ cog2 <- c(cl1,og2)
 
 
 #MAKE DISCOVAR TREES
-```{r}
+
+```r
 discoAlleles <- read.table("thies_disco.FILT.m0.5.alleles.tab",colClasses="character",header=T,na.strings = c("."))
 genos <- t(data.matrix(discoAlleles[6:dim(discoAlleles)[2]]))
 inds <- row.names(genos)
@@ -218,18 +215,41 @@ genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
 # #plot(njtree1)
 
 discoPTree <- pratchet(genosDat) # ,njtree1)
+```
+
+```
+## [1] "Best pscore so far: 23264"
+## [1] "Best pscore so far: 23264"
+## [1] "Best pscore so far: 23264"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+## [1] "Best pscore so far: 23263"
+```
+
+```r
 discoPTree <- nnls.phylo(discoPTree,dist.hamming(genosDat))
 discoPTree <- midpoint(discoPTree)
 discoPTree <- drop.tip(discoPTree,c(oc1,oc2))
 plot(discoPTree)
+```
 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png)
+
+```r
 #discoLocs <- paste(discoAlleles[,1],discoAlleles[,2])
-
 ```
 
 
 
-```{r}
+
+```r
 #get support for each split, and split dot matrix
 discoPSupp <- getSplitSupports(discoPTree,genos[cl1,])
 discoPSplits <- getSplitPlot(discoPTree)
@@ -241,12 +261,13 @@ discoPSplits$splits <- factor(discoPSplits$splits,levels=splitSort, ordered=T)
 splitP <- ggplot(discoPSplits,aes(x=splits,y=sample,fill=insplit)) + geom_point(shape=21, size=3) + scale_fill_manual(values=c(NA,"black"),guide=F)
 discoPSupP <- ggplot(discoPSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-1750,1750)
 grid.arrange(discoPSupP + blankTheme, splitP+blankTheme, ncol=1)
-
-
 ```
 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
 #MAKE Hap250 TREES
-```{r}
+
+```r
 hap250Alleles <- read.table("thies_haplo250.FILT.m0.5.alleles.tab",colClasses="character",header=T,na.strings = c("."))
 genos <- t(data.matrix(hap250Alleles[6:dim(hap250Alleles)[2]]))
 inds <- row.names(genos)
@@ -258,18 +279,38 @@ genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
 # #plot(njtree1)
 
 hap250PTree <- pratchet(genosDat) # ,njtree1)
+```
+
+```
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+## [1] "Best pscore so far: 13429"
+```
+
+```r
 hap250PTree <- nnls.phylo(hap250PTree,dist.hamming(genosDat))
 hap250PTree <- midpoint(hap250PTree)
 hap250PTree <- drop.tip(hap250PTree,c(oc1,oc2))
 plot(hap250PTree)
+```
 
+![plot of chunk unnamed-chunk-8](figure/unnamed-chunk-8-1.png)
+
+```r
 #hap250Locs <- paste(hap250Alleles[,1],hap250Alleles[,2])
-
 ```
 
 
 
-```{r}
+
+```r
 #get support for each split, and split dot matrix
 hap250PSupp <- getSplitSupports(hap250PTree,genos[cl1,])
 hap250PSplits <- getSplitPlot(hap250PTree)
@@ -283,13 +324,14 @@ splitP <- ggplot(hap250PSplits,aes(x=splits,y=sample,fill=insplit)) + geom_point
 
 hap250PSupP <- ggplot(hap250PSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-1750,1750)
 grid.arrange(hap250PSupP + blankTheme, splitP+blankTheme, ncol=1)
-
-
 ```
+
+![plot of chunk unnamed-chunk-9](figure/unnamed-chunk-9-1.png)
 
 
 #MAKE Hap100 TREES
-```{r}
+
+```r
 hap100Alleles <- read.table("thies_haplo100.FILT.m0.5.alleles.tab",colClasses="character",header=T,na.strings = c("."))
 cnames <- gsub("SM.","SM-",colnames(hap100Alleles))
 cnames[cnames %in% names(samples)] <- samples[cnames[cnames %in% names(samples)]]
@@ -306,17 +348,38 @@ genosDat <- as.phyDat(genos, type="USER", levels = c(0:max(genos,na.rm=T)))
 # #plot(njtree1)
 
 hap100PTree <- pratchet(genosDat) # ,njtree1)
+```
+
+```
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+## [1] "Best pscore so far: 19357"
+```
+
+```r
 hap100PTree <- nnls.phylo(hap100PTree,dist.hamming(genosDat))
 hap100PTree <- midpoint(hap100PTree)
 hap100PTree <- drop.tip(hap100PTree,c(oc1,oc2))
 plot(hap100PTree)
-#hap100Locs <- paste(hap100Alleles[,1],hap100Alleles[,2])
+```
 
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png)
+
+```r
+#hap100Locs <- paste(hap100Alleles[,1],hap100Alleles[,2])
 ```
 
 
 
-```{r}
+
+```r
 #get support for each split, and split dot matrix
 hap100PSupp <- getSplitSupports(hap100PTree,genos[cl1,])
 hap100PSplits <- getSplitPlot(hap100PTree)
@@ -329,28 +392,133 @@ hap100PSupp$splits <- factor(hap100PSupp$splits,levels=splitSort, ordered=T)
 splitP <- ggplot(hap100PSplits,aes(x=splits,y=sample,fill=insplit)) + geom_point(shape=21, size=3) + scale_fill_manual(values=c(NA,"black"),guide=F)
 hap100PSupP <- ggplot(hap100PSupp,aes(x=splits)) + geom_bar(aes(y=pro),stat="identity",fill="blue") + geom_bar(aes(y=(anti*-1)),stat="identity",fill="red") + ylim(-1600,1750)
 grid.arrange(hap100PSupP + blankTheme, splitP+blankTheme, ncol=1)
-
-
 ```
 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png)
 
 
-```{r}
+
+
+```r
 #percent support Discovar:
 write.table(round(discoPSupp[,3:5] / rowSums(discoPSupp[,3:5]),2),sep="\t",quote=F)
-mean(discoPSupp[,4]/rowSums(discoPSupp[,4:5]))
-write.table(discoPSupp[,3:5],quote=F) 
+```
 
+```
+## irrelevant	pro	anti
+## 1	0.69	0.31	0
+## 2	0.7	0.26	0.03
+## 3	0.91	0.05	0.04
+## 4	0.9	0.07	0.03
+## 5	0.94	0.05	0.01
+## 6	0.95	0.04	0.02
+## 7	0.9	0.07	0.02
+## 8	0.94	0.05	0.01
+```
+
+```r
+mean(discoPSupp[,4]/rowSums(discoPSupp[,4:5]))
+```
+
+```
+## [1] 0.7785412
+```
+
+```r
+write.table(discoPSupp[,3:5],quote=F) 
+```
+
+```
+## irrelevant pro anti
+## 1 1053 471 0
+## 2 1155 433 57
+## 3 1493 89 62
+## 4 1482 109 50
+## 5 1450 77 15
+## 6 1463 58 27
+## 7 1460 116 40
+## 8 1475 71 17
+```
+
+```r
 #percent support Hap250:
 write.table(round(hap250PSupp[,3:5] / rowSums(hap250PSupp[,3:5]),2),sep="\t",quote=F)
-mean(hap250PSupp[,4]/rowSums(hap250PSupp[,4:5]))
-write.table(hap250PSupp[,3:5],quote=F)
+```
 
+```
+## irrelevant	pro	anti
+## 1	0.54	0.23	0.23
+## 2	0.75	0.01	0.24
+## 3	0.76	0.01	0.23
+## 4	0.81	0.01	0.18
+## 5	0.87	0.03	0.1
+## 6	0.54	0.23	0.23
+## 7	0.79	0.04	0.17
+## 8	0.86	0.03	0.12
+```
+
+```r
+mean(hap250PSupp[,4]/rowSums(hap250PSupp[,4:5]))
+```
+
+```
+## [1] 0.2099631
+```
+
+```r
+write.table(hap250PSupp[,3:5],quote=F)
+```
+
+```
+## irrelevant pro anti
+## 1 1415 600 602
+## 2 1959 19 639
+## 3 1989 18 610
+## 4 2123 23 471
+## 5 2282 66 267
+## 6 1415 600 602
+## 7 2064 112 437
+## 8 2236 66 311
+```
+
+```r
 #percent support Hap100:
 write.table(round(hap100PSupp[,3:5] / rowSums(hap100PSupp[,3:5]),2),sep="\t",quote=F)
+```
+
+```
+## irrelevant	pro	anti
+## 1	0.53	0.47	0
+## 2	0.65	0.13	0.22
+## 3	0.77	0.01	0.22
+## 4	0.8	0.01	0.2
+## 5	0.88	0.01	0.11
+## 6	0.89	0	0.11
+## 7	0.82	0.03	0.15
+## 8	0.89	0.01	0.11
+```
+
+```r
 mean(hap100PSupp[,4]/rowSums(hap100PSupp[,4:5]))
+```
+
+```
+## [1] 0.2208524
+```
+
+```r
 write.table(hap100PSupp[,3:5],quote=F)
+```
 
-
+```
+## irrelevant pro anti
+## 1 1733 1559 0
+## 2 2294 470 769
+## 3 2734 33 766
+## 4 2813 19 696
+## 5 3112 21 394
+## 6 3128 16 388
+## 7 2908 109 516
+## 8 3132 22 378
 ```
 
