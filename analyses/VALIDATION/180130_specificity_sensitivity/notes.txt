@@ -64,5 +64,8 @@ java -jar $GATK/GenomeAnalysisTK.jar \
    --expression ann.VQSLOD
  
 vcftools --non-ref-ac 1 --gzvcf gatkHaplo_3D7DD2_100.VQSR.DD2-2D4.vcf.gz --recode --recode-INFO-all --out gatkHaplo_3D7DD2_100.VQSR.DD2-2D4.nr
-qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c disco_3D7DD2.VQSR90.DD2-2D4.vcf.gz -o disco_3D7DD2.VQSR90.DD2-2D4_callable_all_FILT_EVAL --bed-regions callable_all.bed -t Pf3D7.sdf --vcf-score-field=QUAL
-qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c disco_3D7DD2.VQSR90.DD2-2D4.vcf.gz -o disco_3D7DD2.VQSR90.DD2-2D4_callable_disco_FILT_EVAL --bed-regions callable_disco.bed -t Pf3D7.sdf --vcf-score-field=QUAL
+qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c disco_3D7DD2.VQSR90.DD2-2D4.vcf.gz -o disco_3D7DD2.VQSR90.DD2-2D4_callable_all_FILT_EVAL --bed-regions callable_all.bed -t Pf3D7.sdf --vcf-score-field=VQSLOD
+qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c disco_3D7DD2.VQSR90.DD2-2D4.vcf.gz -o disco_3D7DD2.VQSR90.DD2-2D4_callable_disco_FILT_EVAL --bed-regions callable_disco.bed -t Pf3D7.sdf --vcf-score-field=VQSLOD
+
+qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c disco_3D7DD2.VQSR90.DD2-2D4.vcf.gz -o disco_3D7DD2.VQSR90.DD2-2D4_callable_all_EVAL --all-records --bed-regions callable_all.bed -t Pf3D7.sdf --vcf-score-field=VQSLOD
+qsubNN rocplot 1 32 rtg RTG_MEM=32g vcfeval -b 3D7_DD2_parents.DD2.CALLBOTH.vcf.gz -c disco_3D7DD2.VQSR90.DD2-2D4.vcf.gz -o disco_3D7DD2.VQSR90.DD2-2D4_callable_disco_EVAL --all-records --bed-regions callable_disco.bed -t Pf3D7.sdf --vcf-score-field=VQSLOD 
