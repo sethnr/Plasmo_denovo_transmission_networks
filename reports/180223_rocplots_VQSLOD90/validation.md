@@ -292,7 +292,9 @@ head(discoFiltType); head(discoCALLFiltType)
 
 
 ```r
-rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_haplo100_LOD_FILT_EVAL"
+#rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_haplo100_LOD_FILT_EVAL"
+rocf<-"gatkHaplo_3D7DD2_100.VQSR90.DD2-2D4.nr_callable_haplo100_LOD_FILT_EVAL"
+
 gatk100 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
 gatk100$caller="gatk100"
 gatk100$region="GENOME"
@@ -308,7 +310,8 @@ gatk100FiltType$region="GENOME"
 # gatk100FiltType <- subset(gatk100FiltType,score %in% posns)
 
 
-rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_all_LOD_FILT_EVAL"
+#rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_all_LOD_FILT_EVAL"
+rocf<-"gatkHaplo_3D7DD2_100.VQSR90.DD2-2D4.nr_callable_all_LOD_FILT_EVAL"
 gatkCALL100 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
 gatkCALL100$caller="gatk100"
 gatkCALL100$region="CALLABLE"
@@ -326,7 +329,9 @@ gatkCALL100FiltType$region="CALLABLE"
 
 
 ```r
-rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_FILT_EVAL"
+#rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_FILT_EVAL"
+rocf<-"gatkHaplo_3D7DD2_250.VQSR90.DD2-2D4.nr_callable_haplo250_LOD_FILT_EVAL"
+
 gatk250 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
 gatk250$caller="gatk250"
 gatk250$region="GENOME"
@@ -341,7 +346,9 @@ gatk250FiltType$region="GENOME"
 # posns <- intersect(gatk250SNPs$score,gatk250INDELs$score)
 # gatk250FiltType <- subset(gatk250FiltType,score %in% posns)
 
-rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_all_LOD_FILT_EVAL"
+#rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_all_LOD_FILT_EVAL"
+rocf<-"gatkHaplo_3D7DD2_250.VQSR90.DD2-2D4.nr_callable_all_LOD_FILT_EVAL"
+
 gatkCALL250 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
 gatkCALL250$caller="gatk250"
 gatkCALL250$region="CALLABLE"
@@ -565,7 +572,7 @@ callsumsCf
 ```r
 ggplot(rocCfALL,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + geom_line() + 
   geom_text(data=callsumsCf,aes(x=2000,y=8000,label=paste("prec:",precision,"\nsens:",sensitivity)),inherit.aes = F,hjust=0)+
-  facet_grid(filtered ~ caller) + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable")
+  facet_grid(filtered ~ caller) + theme(legend.position="bottom") + ggtitle("ROC plots, core/extended genome")
 ```
 
 ![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14-1.png)

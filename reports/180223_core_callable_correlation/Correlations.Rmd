@@ -157,6 +157,9 @@ callCf$related=clades[callCf$from]==clades[callCf$to]
 callCf$extended <- callCf$max-callCf$both
 
 callCf$prog <- factor(callCf$prog,levels=c("disco","haplo250","haplo100"),ordered=T)
+
+
+
 ```
 
 ```{r}
@@ -178,16 +181,16 @@ corrs <- data.frame("prog"=c("disco","haplo100","haplo250"),
           "CE" = c(discoCE$estimate,haplo100CE$estimate,haplo250CE$estimate))
 
 
-discoSI
-ggplot(subset(callCf,prog=="disco"),aes(y=snp,x=indel)) + geom_point() +  
-  geom_label(y=100,x=150,label=paste("r = ",round(discoSI$estimate,2)),size=5) +
-  ggtitle("Discovar calls - SNP:INDEL correlation")
-
-discoCM
-ggplot(subset(callCf,prog=="disco"),aes(y=both,x=max)) + geom_point() +  
-  geom_label(y=100,x=150,label=paste("r = ",round(discoCM$estimate,2)),size=5) +
-  ggtitle("Discovar calls - accessible:inaccessible correlation")
-#ggplot(callCf,aes(x=both,y=haplo)) + geom_point(aes(y=disco),colour="red")
+# discoSI
+# ggplot(subset(callCf,prog=="disco"),aes(y=snp,x=indel)) + geom_point() +  
+#   geom_label(y=100,x=150,label=paste("r = ",round(discoSI$estimate,2)),size=5) +
+#   ggtitle("Discovar calls - SNP:INDEL correlation")
+# 
+# discoCM
+# ggplot(subset(callCf,prog=="disco"),aes(y=both,x=max)) + geom_point() +  
+#   geom_label(y=100,x=150,label=paste("r = ",round(discoCM$estimate,2)),size=5) +
+#   ggtitle("Discovar calls - accessible:inaccessible correlation")
+# #ggplot(callCf,aes(x=both,y=haplo)) + geom_point(aes(y=disco),colour="red")
 
 
 
