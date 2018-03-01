@@ -1,0 +1,373 @@
+```{r setup}
+library(ggplot2)
+library(hexbin)
+library(reshape2)
+library(knitr)
+
+library(gridExtra)
+library(grid)
+library(ggplot2)
+library(lattice)
+#opts_chunk$set(fig.width=12, fig.height=8,dev=c('png','postscript'),warning=F)
+opts_chunk$set(fig.width=12, fig.height=8,dev=c('png'),warning=F)
+
+``` 
+
+```{r}
+
+rocf<-"disco_3D7DD2.FILT.DD2-2D4_callable_disco_LOD_EVAL"
+disco <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+disco$caller="disco"
+disco$region="GENOME"
+
+discoSNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoINDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoSNPs$type="SNP"
+discoINDELs$type="INDEL"
+discoType <- rbind(discoSNPs,discoINDELs)
+discoType$caller="disco"
+discoType$region="GENOME"
+# posns <- intersect(discoSNPs$score,discoINDELs$score)
+# discoType <- subset(discoType,score %in% posns)
+
+
+rocf<-"disco_3D7DD2.FILT.DD2-2D4_callable_all_LOD_EVAL"
+discoCALL <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+discoCALL$caller="disco"
+discoCALL$region="CALLABLE"
+
+discoCALLSNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoCALLINDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoCALLSNPs$type="SNP"
+discoCALLINDELs$type="INDEL"
+discoCALLType <- rbind(discoCALLSNPs,discoCALLINDELs)
+discoCALLType$caller="disco"
+discoCALLType$region="CALLABLE"
+# posns <- intersect(discoCALLSNPs$score,discoCALLINDELs$score)
+# discoCALLType <- subset(discoCALLType,score %in% posns)
+
+
+head(disco); head(discoCALL)
+head(discoType); head(discoCALLType)
+
+
+# disco <- read.table("disco_3D7_0901_weighted_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t")
+# colnames(disco) <-c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure")
+# disco$sample="0901"
+# disco$caller="disco"
+# disco$filter=T
+```
+
+
+```{r}
+rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_haplo100_LOD_EVAL"
+gatk100 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatk100$caller="gatk100"
+gatk100$region="GENOME"
+
+gatk100SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk100INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk100SNPs$type="SNP"
+gatk100INDELs$type="INDEL"
+gatk100Type <- rbind(gatk100SNPs,gatk100INDELs)
+gatk100Type$caller="gatk100"
+gatk100Type$region="GENOME"
+# posns <- intersect(gatk100SNPs$score,gatk100INDELs$score)
+# gatk100Type <- subset(gatk100Type,score %in% posns)
+
+
+rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_all_LOD_EVAL"
+gatkCALL100 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkCALL100$caller="gatk100"
+gatkCALL100$region="CALLABLE"
+
+gatkCALL100SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL100INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL100SNPs$type="SNP"
+gatkCALL100INDELs$type="INDEL"
+gatkCALL100Type <- rbind(gatkCALL100SNPs,gatkCALL100INDELs)
+gatkCALL100Type$caller="gatk100"
+gatkCALL100Type$region="CALLABLE"
+# posns <- intersect(gatkCALL100SNPs$score,gatkCALL100INDELs$score)
+# gatkCALL100Type <- subset(gatkCALL100Type,score %in% posns)
+
+```
+
+```{r}
+rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_EVAL"
+gatk250 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatk250$caller="gatk250"
+gatk250$region="GENOME"
+
+gatk250SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk250INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk250SNPs$type="SNP"
+gatk250INDELs$type="INDEL"
+gatk250Type <- rbind(gatk250SNPs,gatk250INDELs)
+gatk250Type$caller="gatk250"
+gatk250Type$region="GENOME"
+# posns <- intersect(gatk250SNPs$score,gatk250INDELs$score)
+# gatk250Type <- subset(gatk250Type,score %in% posns)
+
+rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_all_LOD_EVAL"
+gatkCALL250 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkCALL250$caller="gatk250"
+gatkCALL250$region="CALLABLE"
+
+gatkCALL250SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL250INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL250SNPs$type="SNP"
+gatkCALL250INDELs$type="INDEL"
+gatkCALL250Type <- rbind(gatkCALL250SNPs,gatkCALL250INDELs)
+gatkCALL250Type$caller="gatk250"
+gatkCALL250Type$region="CALLABLE"
+# posns <- intersect(gatkCALL250SNPs$score,gatkCALL250INDELs$score)
+# gatkCALL250Type <- subset(gatkCALL250Type,score %in% posns)
+
+```
+
+
+
+```{r}
+
+rocf<-"disco_3D7DD2.FILT.DD2-2D4_callable_disco_LOD_FILT_EVAL"
+disco <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+disco$caller="disco"
+disco$region="GENOME"
+
+discoSNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoINDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoSNPs$type="SNP"
+discoINDELs$type="INDEL"
+discoFiltType <- rbind(discoSNPs,discoINDELs)
+discoFiltType$caller="disco"
+discoFiltType$region="GENOME"
+# posns <- intersect(discoSNPs$score,discoINDELs$score)
+# discoFiltType <- subset(discoFiltType,score %in% posns)
+
+
+rocf<-"disco_3D7DD2.FILT.DD2-2D4_callable_all_LOD_FILT_EVAL"
+discoCALL <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+discoCALL$caller="disco"
+discoCALL$region="CALLABLE"
+
+discoCALLSNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoCALLINDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+discoCALLSNPs$type="SNP"
+discoCALLINDELs$type="INDEL"
+discoCALLFiltType <- rbind(discoCALLSNPs,discoCALLINDELs)
+discoCALLFiltType$caller="disco"
+discoCALLFiltType$region="CALLABLE"
+# posns <- intersect(discoCALLSNPs$score,discoCALLINDELs$score)
+# discoCALLFiltType <- subset(discoCALLFiltType,score %in% posns)
+
+
+head(disco); head(discoCALL)
+head(discoFiltType); head(discoCALLFiltType)
+
+
+# disco <- read.table("disco_3D7_0901_weighted_roc.tsv.gz",header=F,skip = 3,stringsAsFactors =F,sep="\t")
+# colnames(disco) <-c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure")
+# disco$sample="0901"
+# disco$caller="disco"
+# disco$filter=T
+```
+
+
+```{r}
+rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_haplo100_LOD_FILT_EVAL"
+gatk100 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatk100$caller="gatk100"
+gatk100$region="GENOME"
+
+gatk100SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk100INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk100SNPs$type="SNP"
+gatk100INDELs$type="INDEL"
+gatk100FiltType <- rbind(gatk100SNPs,gatk100INDELs)
+gatk100FiltType$caller="gatk100"
+gatk100FiltType$region="GENOME"
+# posns <- intersect(gatk100SNPs$score,gatk100INDELs$score)
+# gatk100FiltType <- subset(gatk100FiltType,score %in% posns)
+
+
+rocf<-"gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_all_LOD_FILT_EVAL"
+gatkCALL100 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkCALL100$caller="gatk100"
+gatkCALL100$region="CALLABLE"
+
+gatkCALL100SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL100INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL100SNPs$type="SNP"
+gatkCALL100INDELs$type="INDEL"
+gatkCALL100FiltType <- rbind(gatkCALL100SNPs,gatkCALL100INDELs)
+gatkCALL100FiltType$caller="gatk100"
+gatkCALL100FiltType$region="CALLABLE"
+# posns <- intersect(gatkCALL100SNPs$score,gatkCALL100INDELs$score)
+# gatkCALL100FiltType <- subset(gatkCALL100FiltType,score %in% posns)
+
+```
+
+```{r}
+rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_FILT_EVAL"
+gatk250 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatk250$caller="gatk250"
+gatk250$region="GENOME"
+
+gatk250SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk250INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatk250SNPs$type="SNP"
+gatk250INDELs$type="INDEL"
+gatk250FiltType <- rbind(gatk250SNPs,gatk250INDELs)
+gatk250FiltType$caller="gatk250"
+gatk250FiltType$region="GENOME"
+# posns <- intersect(gatk250SNPs$score,gatk250INDELs$score)
+# gatk250FiltType <- subset(gatk250FiltType,score %in% posns)
+
+rocf<-"gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_all_LOD_FILT_EVAL"
+gatkCALL250 <- read.table(paste(rocf,"weighted_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names=c("score","true_positives","false_positives","false_negatives","precision","sensitivity","f_measure"))
+gatkCALL250$caller="gatk250"
+gatkCALL250$region="CALLABLE"
+
+gatkCALL250SNPs <- read.table(paste(rocf,"snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL250INDELs <- read.table(paste(rocf,"non_snp_roc.tsv.gz",sep="/"),header=F,skip = 3,stringsAsFactors =F,sep="\t",col.names = c("score","true_positives","false_positives"))
+gatkCALL250SNPs$type="SNP"
+gatkCALL250INDELs$type="INDEL"
+gatkCALL250FiltType <- rbind(gatkCALL250SNPs,gatkCALL250INDELs)
+gatkCALL250FiltType$caller="gatk250"
+gatkCALL250FiltType$region="CALLABLE"
+# posns <- intersect(gatkCALL250SNPs$score,gatkCALL250INDELs$score)
+# gatkCALL250FiltType <- subset(gatkCALL250FiltType,score %in% posns)
+
+```
+
+
+
+
+
+```{r}
+
+rocCf <- rbind(discoCALLType,discoType,gatkCALL100Type,gatk100Type,gatkCALL250Type,gatk250Type)
+rocFiltCf <- rbind(discoCALLFiltType,discoFiltType,gatkCALL100FiltType,gatk100FiltType,gatkCALL250FiltType,gatk250FiltType)
+
+rocCf$filtered=F
+rocFiltCf$filtered=T
+
+rocCfALL <- rbind(rocCf,rocFiltCf)
+
+```
+
+
+
+```{r}
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+```
+
+
+```{r}
+
+#ROC PLOT
+
+ggplot(discoCALLType,aes(x=false_positives,y=true_positives,colour=type)) + 
+  geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom") + ggtitle("discovar ROC, all-callable genome")
+
+ggplot(discoType,aes(x=false_positives,y=true_positives,colour=type)) + 
+  geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom") + ggtitle("discovar ROC, discovar-callable genome")
+
+
+ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
+  geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable")
+
+ggplot(rocCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
+  geom_line() + facet_grid(. ~ caller,scales = "free_x") + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable, free-X")
+
+
+
+```
+
+```{r}
+
+#ROC PLOT
+
+ggplot(discoCALLFiltType,aes(x=false_positives,y=true_positives,colour=type)) + 
+  geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom") + ggtitle("discovar ROC, all-callable genome")
+
+
+ggplot(discoFiltType,aes(x=false_positives,y=true_positives,colour=type)) + 
+  geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom") + ggtitle("discovar ROC, discovar-callable genome")
+
+
+ggplot(rocFiltCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
+  geom_line() + facet_grid(. ~ caller) + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable")
+
+ggplot(rocFiltCf,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + 
+  geom_line() + facet_grid(. ~ caller,scales = "free_x") + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable, free-X")
+
+
+
+```
+
+
+
+```{r}
+sumcols <- c("threshold","truepos","falsepos","falseneg","precision","sensitivity","F-measure")
+discosum <- read.table("disco_3D7DD2.FILT.DD2-2D4_callable_disco_LOD_EVAL/summary.txt",skip=2,col.names = sumcols)
+gatk100sum <- read.table("gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_haplo100_LOD_EVAL/summary.txt",skip=2,col.names = sumcols)
+gatk250sum <- read.table("gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_EVAL/summary.txt",skip=2,col.names = sumcols)
+
+discosum$caller<-"disco"
+gatk100sum$caller<-"gatk100"
+gatk250sum$caller<-"gatk250"
+
+callsums <- rbind(discosum,gatk250sum,gatk100sum)
+#write.table(subset(callsums,threshold=="None"),sep="\t",quote=F,row.names = F)
+subset(callsums,threshold=="None")
+subset(callsums,threshold!="None")
+
+
+```
+
+
+```{r}
+sumcols <- c("threshold","truepos","falsepos","falseneg","precision","sensitivity","F-measure")
+discosum <- read.table("disco_3D7DD2.FILT.DD2-2D4_callable_disco_LOD_FILT_EVAL/summary.txt",skip=2,col.names = sumcols)
+gatk100sum <- read.table("gatkHaplo_3D7DD2_100.VQSR.DD2-2D4_callable_haplo100_LOD_FILT_EVAL/summary.txt",skip=2,col.names = sumcols)
+gatk250sum <- read.table("gatkHaplo_3D7DD2_250.VQSR.DD2-2D4_callable_haplo250_LOD_FILT_EVAL/summary.txt",skip=2,col.names = sumcols)
+
+discosum$caller<-"disco"
+gatk100sum$caller<-"gatk100"
+gatk250sum$caller<-"gatk250"
+
+callsumsFilt <- rbind(discosum,gatk250sum,gatk100sum)
+#write.table(subset(callsums,threshold=="None"),sep="\t",quote=F,row.names = F)
+subset(callsumsFilt,threshold=="None")
+subset(callsumsFilt,threshold!="None")
+
+
+```
+
+
+```{r}
+callsums$filtered=F
+callsumsFilt$filtered=T
+
+callsumsCf <- rbind(callsums,callsumsFilt)
+callsumsCf <- subset(callsumsCf,threshold=="None")
+callsumsCf
+```
+
+```{r}
+ggplot(rocCfALL,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + geom_line() + 
+  geom_text(data=callsumsCf,aes(x=2000,y=8000,label=paste("prec:",precision,"\nsens:",sensitivity)),inherit.aes = F,hjust=0)+
+  facet_grid(filtered ~ caller) + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable")
+
+ggplot(rocCfALL,aes(x=false_positives,y=true_positives,colour=type,linetype=region)) + geom_line() + 
+  geom_text(data=callsumsCf,aes(x=2000,y=8000,label=paste("prec:",precision,"\nsens:",sensitivity)),inherit.aes = F,hjust=0)+
+  facet_grid(filtered ~ caller,scales = "free_x") + theme(legend.position="bottom") + ggtitle("ROC plots, core/callable, free-X")
+
+```
+
