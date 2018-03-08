@@ -157,10 +157,11 @@ callCf$related=clades[callCf$from]==clades[callCf$to]
 callCf$extended <- callCf$max-callCf$both
 
 callCf$prog <- factor(callCf$prog,levels=c("disco","haplo250","haplo100"),ordered=T)
+
 ```
 
 ```{r}
-
+callCfAll <- callCf
 callCf <- subset(callCf,related==T)
 discoSI <- cor.test(callCf[callCf$prog=="disco","snp"],callCf[callCf$prog=="disco","indel"])
 haplo100SI <- cor.test(callCf[callCf$prog=="haplo100","snp"],callCf[callCf$prog=="haplo100","indel"])
@@ -275,3 +276,37 @@ ggplot(data=callCfSI,aes(x=from,y=to,fill=value,label=value)) +
 
 ```
 
+```{r}
+
+opts_chunk$set(fig.width=10, fig.height=11,dev=c('png','postscript'),warning=F)
+
+```
+
+```{r}
+iscol <- scale_fill_gradientn(colors = c("black","orange","grey","blue","black"),
+                              values =colscale,na.value = "black",
+                              breaks =c(-500,-250,0,250,500),
+                              labels=c(500,250,0,250,500),
+                              limits=c(-500,500))
+callCfSIAll <- melt(callCfAll[,c("from","to","prog","related","snp","indel")])
+callCfSIAll$from <- factor(callCfSIAll$from,levels=tree_order,ordered=T)
+callCfSIAll$to <- factor(callCfSIAll$to,levels=tree_order,ordered=T)
+callCfSIAll <- callCfSIAll[callCfSIAll$to >= callCfSIAll$from,]
+diags <- data.frame("from"=unique(callCfSIAll$from),"to"=unique(callCfSIAll$from))
+diags$prog="disco"
+diags$related=T
+diags$variable="snp"
+diags$value=0
+callCfSIAll <- rbind(callCfSIAll,diags)
+
+
+ggplot(data=subset(callCfSIAll,prog=="disco"),aes(x=from,y=to,fill=value,label=value)) + 
+  geom_tile(data=subset(callCfSIAll,prog=="disco" & variable=="snp" & related==T),size=1) + 
+  geom_text(data=subset(callCfSIAll,prog=="disco" & variable=="snp" & related==T), size=3,colour="white") + 
+  geom_tile(data=subset(callCfSIAll,prog=="disco" & variable=="indel" & related==T),aes(x=to,y=from,fill=value*-1),size=1) + 
+  geom_text(data=subset(callCfSIAll,prog=="disco" & variable=="indel" & related==T),aes(x=to,y=from,label=value), size=3,colour="white") + 
+  
+  geom_text(data=subset(callCfSIAll,prog=="disco" & variable=="snp" & related==F), size=3,colour="black") + 
+  geom_text(data=subset(callCfSIAll,prog=="disco" & variable=="indel" & related==F),aes(x=to,y=from,label=value), size=3,colour="black") + 
+  iscol + vxlab + vxleg
+```

@@ -1,0 +1,403 @@
+
+```{r}
+library(ape)
+library(adegenet)
+library(knitr)
+library(igraph)
+library(RColorBrewer)
+library(gridExtra)
+library(ggplot2)
+opts_chunk$set(fig.width=9, fig.height=9)
+opts_chunk$set(dev=c('png','postscript'))
+```
+
+
+```{r}
+sym <- function(M) {
+  M[lower.tri(M)] = t(M)[lower.tri(M)]
+  M
+}
+
+makeNet <- function(distance_matrix, meta_file, ngroups=3) {
+  if (class(distance_matrix)=="dist") {
+    D = distance_matrix
+    mat <- as.matrix(D)
+  } else {
+    mat <- read.table(distance_matrix,sep="\t")
+    D <- as.dist(sym(mat))
+    }
+  
+  clust <- gengraph(D,ngrp=3)
+  names <- colnames(mat)
+  mat <- as.matrix(mat)
+
+  meta <- read.table("Thies_metadata_1701.txt",sep="\t",header=T)
+  colnames(meta)[1]<-"name"
+  meta <- meta[!is.na(meta$Age),]
+
+  rownames(meta) <- meta$name
+  meta <- meta[names,]
+  coll <- as.Date(as.character(meta$Date),"%d/%m/%Y",origin = "2000-01-01")
+  #coll <- as.Date(paste("1","jan",meta$year,sep=""),"%d%b%Y")
+  names(coll)<-meta$name
+  meta$year <- as.numeric(format(coll,'%Y'))+2000
+
+  
+#   meta <- read.table("daniels.thies.CA.txt",sep="\t",header=T)
+#   rownames(meta) <- meta$name
+#   meta <- meta[names,]
+#   coll <- as.Date(paste("1","jan",meta$year,sep=""),"%d%b%Y")
+#   names(coll)<-meta$name
+
+  name1 <- names[clust$clust$membership==1]
+  name2 <- names[clust$clust$membership==2]
+  name3 <- names[clust$clust$membership==3]
+  year1 <- meta$year[clust$clust$membership==1]
+  year2 <- meta$year[clust$clust$membership==2]
+  year3 <- meta$year[clust$clust$membership==3]
+  coll1 <- coll[name1]
+  coll2 <- coll[name2]
+  coll3 <- coll[name3]
+  dist1 <- mat[name1,name1]
+  dist2 <- mat[name2,name2]
+  dist3 <- mat[name3,name3]
+  
+  res1 <- seqTrack(dist1, x.names=name1, x.dates=coll1)
+  res2 <- seqTrack(dist2, x.names=name2, x.dates=coll2)
+  res3 <- seqTrack(dist3, x.names=name3, x.dates=coll3)
+
+  res1$year <- year1
+  res2$year <- year2
+  res3$year <- year3
+  res1$name <- name1
+  res2$name <- name2
+  res3$name <- name3
+  
+  list(res1,res2,res3)
+}
+
+
+
+```{r}
+corefile <- "thies_disco.callAll.FILT.m0.5.dist.tab.txt"
+extendedfile <- "thies_disco.FILT.m0.5.dist.tab.txt"
+distmatCore <- as.dist(sym(read.table(corefile,sep="\t")))
+distmatAll <- as.dist(sym(read.table(extendedfile,sep="\t")))
+distmatExt <- distmatAll-distmatCore
+
+varNets <- makeNet(distmatAll)
+```
+
+
+
+```{r}
+
+printGraph <- function(graph,colours,title) {
+  cols <- brewer.pal((max(graph$year)-min(graph$year))+1, colours)
+
+  ts=1 #textsize
+  ig <- as.igraph(graph)
+  tree <- layout_as_tree(ig,flip.y = F)[,c(2,1)]
+  V(ig)$name <- graph$name
+  V(ig)$color <- cols[graph$year-min(graph$year)+1]
+  V(ig)$label.cex <- ts
+ #frame()
+  plot(ig,layout=tree,main=title,vertex.size=25,
+     edge.color="black",edge.label.cex=1.5,edge.label.family="Helvetica",vertex.label.family="Helvetica")
+
+}
+
+#printGraph(indelNets[[1]],"Greens","clade 2, indel graph")
+
+#printGraph(snpNets[[1]],"Greens","clade 2, indel graph")
+
+#printGraph(varNets[[2]],"Blues","clade 29 all vars")
+printGraph(varNets[[1]],"Greens","clade 29 all vars")
+#printGraph(varNets[[3]],"Reds","clade 29 all vars")
+```
+
+
+
+```{r }
+
+net <- varNets[[1]]
+
+extDists <- as.matrix(distmatExt)
+coreDists <- as.matrix(distmatCore)
+allDists <- as.matrix(distmatAll)
+net$direct<-T
+netAll <- net
+getAnces <- function(net, leaf, ids=character()) {
+    id = ids[1]
+    ances = netAll[id,"ances"]
+    date = netAll[id,"date"]
+    ances.date = netAll[id,"ances.date"]
+#    if(is.na(steps)) {steps = netAll[id,"steps"]} else {write(steps,stderr())}
+    #write(paste(leaf,id,ances,sep="\t"),stderr())
+    if (!is.na(ances)) {
+      if (id != leaf) {
+        leaf.date = net[leaf,"date"]
+        leaf.year = net[leaf,"year"]
+        leaf.name = net[leaf,"name"]
+        nextI = dim(net)[[1]]+1
+#        write(paste("  adding",nextI,":",leaf,ances,sep=" "),stderr())
+        net[nextI,1:2] <- c(leaf, ances)
+        net[nextI,4] <- leaf.date
+        net[nextI,5] <- ances.date
+      
+        net[nextI,6] <- leaf.year
+        net[nextI,7] <- leaf.name
+        net[nextI,8] <- F
+        }
+      net <- getAnces(net,leaf,c(ances))
+    }
+    if (length(ids) > 1){
+       ids <- ids[ids != id]
+#       write(paste("proceeding:",ids[1],sep=" "),stderr())
+       net <- getAnces(net,ids[1],ids)
+#       steps <- steps+1
+#       net <- getAnces(net,ids[1],ids,steps)
+  }
+net
+}
+getAnces(net,net$id[1],net$id)
+
+
+getEvolRates <- function(net,mat,ng,ances=TRUE) {
+  if(ances) {netAll <- getAnces(net, net$id[1],net$id)}
+  else {netAll <- net}
+  
+  D <- as.dist(sym(mat))
+  names <- colnames(mat)
+  mat <- as.matrix(sym(mat))
+  outgroups <- setdiff(names,net$name)
+  
+  outtab <- data.frame(from=character(),
+                 to=character(),
+                 out=character(),
+                 time=integer(),
+                 years=integer(),
+                 distance=numeric(),
+                 rate=numeric(),
+             #    direct=logical(),
+                 stringsAsFactors=FALSE)
+  
+  for (i in c(1:dim(netAll)[[1]])) {
+    if(!is.na(netAll$ances[i])) {
+      sample = netAll$name[i]
+      ances = netAll$name[netAll$ances[i]]
+      #isdirect <- netAll$direct[i]
+      dists = c()
+      
+      #time elapsed in years
+      #time <- as.integer(netAll$year[i] - netAll$year[netAll$ances[i]])
+      years <- as.integer(netAll$year[i] - netAll$year[netAll$ances[i]])
+      
+      #time elapsed in months
+      time <- round(as.integer(netAll$date[i]-netAll$ances.date[i])*12/365,2)
+      
+      for (o in outgroups) {
+        dist <- mat[sample,o]-mat[ances,o]
+        dists <- c(dists, dist)
+        outtab[dim(outtab)[1]+1,1:3]=c(ances,sample,o)
+        outtab[dim(outtab)[1],4:7]=c(time,years,dist,round(dist/time,2))  
+        #outtab[dim(outtab)[1],8]=isdirect
+      }
+      dists <- round(dists/time)
+      #paste(dists,collapse = ","),
+      #write(paste(ances,sample,netAll$date[i],netAll$ances.date[i],time,round(mean(dists),2),round(sd(dists),2),sep="\t"),stdout())
+#      write(paste(ances,sample,outgroups,time,dists,sep="\t"),stdout())
+    }
+  }
+  outtab$pair <- paste(outtab$from,outtab$to)
+  outtab
+}
+test <- getEvolRates(varNets[[1]],extDists)
+
+
+g_legend<-function(a.gplot){
+  tmp <- ggplot_gtable(ggplot_build(a.gplot))
+  leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
+  legend <- tmp$grobs[[leg]]
+  return(legend)}
+```
+
+```{r}
+opts_chunk$set(fig.width=18, fig.height=8)
+opts_chunk$set(dev=c('png','postscript'))
+```
+
+```{r}
+extr1 <- getEvolRates(varNets[[1]],extDists,ances=F)  
+corer1 <- getEvolRates(varNets[[1]],coreDists,ances=F) 
+allr1 <- getEvolRates(varNets[[1]],allDists,ances=F) 
+extr1 <- subset(extr1,years>0)
+corer1 <- subset(corer1,years>0)
+allr1 <- subset(allr1,years>0)
+
+
+#CORE ONLY
+coreplot <- ggplot(subset(corer1,years>0),aes(x=years,y=rate)) + 
+  geom_boxplot(aes(group=years),fill=NA) + geom_hline(aes(yintercept=mean(rate,na.rm=T)),linetype=3) + 
+  geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
+  geom_label(aes(label=paste(round(mean(corer1$rate,na.rm=T),2)," (+/- ",round(sd(corer1$rate,na.rm=T),1),")",sep=""),
+                 y=mean(corer1$rate,na.rm=T)+0.2,x=max(years)),size=5,inherit.aes=F)+
+  ggtitle("evol rate, core genome") + ylab("INDELs/mth/gen") + xlab("years")  + ylim(-2,9) + #xlim(0,7.5) +
+  theme(legend.position="none")
+#INACCESSIBLE ONLY
+extplot <- ggplot(subset(extr1,years>0),aes(x=years,y=rate)) + 
+  geom_boxplot(aes(group=years),fill=NA) + geom_hline(aes(yintercept=mean(rate,na.rm=T)),linetype=3) + 
+  geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3)+
+  geom_label(aes(label=paste(round(mean(extr1$rate,na.rm=T),2)," (+/- ",round(sd(extr1$rate,na.rm=T),1),")",sep=""),
+                 y=mean(extr1$rate,na.rm=T)+1.0,x=max(years)),size=5,inherit.aes=F)+
+  ggtitle("evol rate, extended genome") + ylab("SNPs/mth/gen") + xlab("years") + ylim(-2,9) #+ xlim(0,7.5)
+#splot
+legend <- g_legend(extplot)
+grid.arrange(coreplot, extplot + theme(legend.position="none"),legend, nrow=1,widths=c(10,10,1),heights=c(1))
+```
+
+
+```{r}
+opts_chunk$set(fig.width=12, fig.height=8)
+opts_chunk$set(dev=c('png','postscript'))
+```
+```{r}
+#SNPs + INDELs
+ggplot(subset(allr1,years>0),aes(x=years,y=rate)) + 
+  geom_boxplot(aes(group=years),fill=NA) + geom_hline(aes(yintercept=median(rate,na.rm=T)),linetype=3) + 
+  geom_point(aes(colour=to,shape=from),position=position_jitter(width=0.5),size=3) +
+  geom_label(aes(label=paste(round(mean(allr1$rate,na.rm=T),2)," (+/- ",round(sd(allr1$rate,na.rm=T),1),")",sep=""),
+                 y=mean(allr1$rate,na.rm=T)+0.1,x=max(years)),size=5,inherit.aes=F)+
+  ggtitle("evolutionary rate, clade 29") + ylab("mut/mth/gen") + xlab("years")  #+ ylim(-2,9) + xlim(0,7.5)
+
+```
+
+
+```{r}
+
+#get mean rates for > 0 year, in years
+allrate <- round(mean(allr1$rate)*12,3)
+corerate <- round(mean(corer1$rate)*12,3)
+extrate <- round(mean(extr1$rate)*12,3)
+
+```
+
+```{r}
+
+sppsubs <- read.table("subrate_relaxed_otherspp2.txt",sep="\t",header=T,stringsAsFactors = F)
+colnames(sppsubs)[4:6] <- c("gsize","subrate","subrate_genome")
+sppsubs$Group <- factor(sppsubs$Group,levels=c("RNA virus","dsDNA virus","ssDNA virus","Bacteria","Eukaryote"),ordered = T)
+
+pfmingsize <- 15180000
+pfgsize<-18446000
+pfiagsize <- 18446000-15180000
+
+# sppsubs <- rbind(sppsubs,
+#       c("P.falciparum","eukaryote",pfgsize,signif(israte/pfgsize,2),israte,"among",8,"ours")
+#       )
+
+sppsubs$vartype<-"SNP"
+sppsubs$region<-"all"
+sppsubs <- rbind(sppsubs,
+      c("P.falciparum","P.falciparum (all)", "Eukaryote",pfgsize,signif(allrate/pfgsize,2),allrate,"among",8,"ours","SNP+INDEL","all"),
+      c("P.falciparum","P.falciparum (ext)","Eukaryote",pfgsize - pfmingsize,signif(extrate/pfiagsize,2),allrate,"among",8,"ours","SNP+INDEL","extended"),
+      c("P.falciparum","P.falciparum (core)", "Eukaryote",pfmingsize,signif(corerate/pfmingsize,2),corerate,"among",8,"ours","SNP+INDEL","core")
+      )
+
+sppsubs$subrate <- as.numeric(sppsubs$subrate)
+sppsubs$subrate_genome <- as.numeric(sppsubs$subrate_genome)
+sppsubs$gsize <- as.numeric(sppsubs$gsize)
+sppsubs$vartype <- factor(sppsubs$vartype,levels=c("SNP","INDEL","SNP+INDEL"),ordered=T)
+#sppsubs$Label <- factor(sppsubs$Label,levels=sppsubs$Label[order(sppsubs$Group,sppsubs$subrate_genome)],ordered=T)
+
+
+pathOrder <- c("HCV","EBOV", "FMDV",   "HIV-M","HFLUV", "RABV",  
+ "H. pylori", "S. aureus", "S. pneumoniae", "V. cholerae", "M. tuberculosis", 
+"P.falciparum")
+
+sppsubs$Pathogen <- factor(sppsubs$Pathogen,levels=pathOrder,ordered=T)
+
+gsizes <- c(1e3,1e4,1e5,1e6,1e7,1e8)
+rates <- data.frame("gsize"=gsizes,"years"=1/gsizes,"months"=12/gsizes,"weeks"=52/gsizes)
+ratesM <- melt(rates,id.vars = "gsize",value.name ="subrate")
+#ratesM <- ratesM[ratesM$gsize>0,]
+floors <- data.frame("gsize"=c(rep(max(ratesM$gsize),3),rep(min(ratesM$gsize),3)),
+      "variable"=unique(as.character(ratesM$variable)),
+      "subrate"=rep(0,6))
+
+ratesM <- rbind(ratesM,floors)
+ratesM$variable <- factor(ratesM$variable,levels=c("weeks","months","years"),ordered=T)
+
+fcol <- c("#AAAAAA","#CCCCCC","#EEEEEE")
+names(fcol) = c("years","months","weeks")
+
+dotsubs <- c("H. pylori", "M. tuberculosis", "S. aureus (MRSA)", "S. pneumoniae", 
+"V. cholerae", "HCV (Hep C)", "EBOV (Ebola)", "HIV-M", # "HFLUV (H1N1 2009)", 
+"HFLUV (H1N1)", "RABV", "FMDV",    
+"P.falciparum (all)", "P.falciparum (core)")
+
+ggplot(subset(sppsubs, Label %in% dotsubs),aes(x=gsize,y=subrate),) +  
+  geom_polygon(data=ratesM,aes(group=variable,fill=variable)) +
+  scale_fill_manual(values = fcol) + 
+  geom_label(aes(label=Label,colour=Group),nudge_x = -0.2,hjust=1) + 
+  geom_point(aes(label=Pathogen,colour=Group),size=5) + 
+  scale_y_log10() + scale_x_log10(limits=c(1e3,1e8),breaks=c(1e3,1e4,1e5,1e6,1e7,1e8)) +
+  xlab("Genome Size (bp)")+ylab("mutation rate (muts / site / year)")+
+  theme(panel.background = element_rect(fill = F))
+
+#dput(sppsubs$Label)
+
+yearRate <- 1/(sppsubs$subrate*sppsubs$gsize)
+monthRate <- 1/(sppsubs$subrate*sppsubs$gsize/12)
+weekRate <- 1/(sppsubs$subrate*sppsubs$gsize/52)
+
+period <- rep("yrs",length(yearRate))
+newmut <- round(yearRate,1)
+period[yearRate < 1] <- "mths"
+newmut[yearRate < 1] <- round(monthRate,1)[yearRate < 1]
+period[monthRate < 1] <- "wks"
+newmut[monthRate < 1] <- round(weekRate,1)[monthRate < 1]
+sppsubs$newmut <- paste(newmut,period,sep=" ")
+
+barSamps <- c("M. tuberculosis", "S. aureus (MRSA)","H. pylori",  
+"EBOV (Ebola)", "HIV-M", 
+"HFLUV (H1N1)", "P.falciparum (ext)",
+"P.falciparum (core)")
+labelSamps <- c("M. tuberculosis", "S. aureus (MRSA)","H. pylori", 
+"EBOV (Ebola)", "HIV-M", 
+"HFLUV (H1N1)", "P.falciparum (all)")
+midLabelSamps <- c("P.falciparum (core)")
+
+sppsubs$region <- factor(sppsubs$region,levels=c("all","extended","core"))
+sppsubs$fill <- factor(paste(sppsubs$region, sppsubs$Group),levels=c("all Bacteria","all RNA virus","all Eukaryote","extended Eukaryote","core Eukaryote"),ordered=T)
+
+fillscale <- scale_fill_manual(values=c("all Bacteria"="#F6766D","all RNA virus"="#0BB939","all Eukaryote"="#609CFF","core Eukaryote"="#2D81FC","extended Eukaryote"="#85B5F9"))
+
+barlegend <- g_legend(
+  ggplot(subset(sppsubs,Label %in% barSamps),aes(x=Pathogen,y=subrate * gsize),) +
+  geom_bar(aes(fill=Group,alpha=region),stat = "identity",size=3) +
+  geom_label(data=subset(sppsubs,Label %in% labelSamps),aes(label=newmut))+
+  geom_label(data=subset(sppsubs,Label %in% midLabelSamps),aes(label=newmut, y=(subrate * gsize)))+
+  scale_alpha_manual(values=c("all"=1,"core"=1,"extended"=0.7))+
+  ylab("mutation rate (muts / genome / year)")+
+  theme(panel.background = element_rect(fill = F),axis.text.x = element_text(angle = 90, hjust = 1))
+  
+  )
+
+
+barplot <- ggplot(subset(sppsubs,Label %in% barSamps),aes(x=Pathogen,y=subrate * gsize),) +
+#  geom_bar(aes(fill=Group,alpha=region),stat = "identity",size=3) +
+  geom_bar(aes(fill=fill),stat = "identity",size=3) +
+  geom_label(data=subset(sppsubs,Label %in% labelSamps),aes(label=newmut))+
+  geom_label(data=subset(sppsubs,Label %in% midLabelSamps),aes(label=newmut, y=(subrate * gsize)))+
+#  scale_alpha_manual(values=c("all"=1,"accessible"=1,"inaccessible"=0.5))+
+  fillscale+
+  ylab("mutation rate (muts / genome / year)")+
+  theme(panel.background = element_rect(fill = F),axis.text.x = element_text(angle = 90, hjust = 1))+
+  theme(legend.position="none")
+
+grid.arrange(barplot,barlegend,widths=c(10,1))
+
+write.table(sppsubs,stdout(),sep="\t",quote=F)
+```
+

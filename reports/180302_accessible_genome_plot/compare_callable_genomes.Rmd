@@ -1,59 +1,12 @@
+```{r}
 library(ggplot2)
 library(knitr)
 library(reshape2)
 library(hexbin)
-```{r setup}
 opts_chunk$set(fig.width=12, fig.height=7, fig.path="figure/chrs-")
 opts_chunk$set(dev=c('png','postscript'))
 
 ``` 
-
-```{r}
-calcols <- c("chr","st","en","NV","LDfails","LDpass","RSfails","RSpass","df","dn","Dpass","multipass")
-callable1k_disco <- read.table("qDD2vr3D7.callable.blocks1k.tab.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
-callable1k_haplo <- read.table("fakeNGS_haplo_qDD2r3D7_rl100.callable.1k.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
-
-callable1k_disco <- callable1k_disco[,c(1,2,3,12)]
-callable1k_haplo <- callable1k_haplo[,c(1,2,3,12)]
-colnames(callable1k_disco)[[4]] <- "disco"
-colnames(callable1k_haplo)[[4]] <- "haplo"
-callable1k_haplo$haplo = callable1k_haplo$haplo=="True"
-callable1k_disco$disco = callable1k_disco$disco=="True"
-
-callable1k<-merge(callable1k_disco,callable1k_haplo)
-# callable1k$accessible <- NULL
-# callable1k[callable1k$disco=="True" & callable1k$haplo=="False","accessible"] <- "DISCOVAR only"
-# callable1k[callable1k$disco=="False" & callable1k$haplo=="True","accessible"] <- "haplo only"
-# callable1k[callable1k$disco=="False" & callable1k$haplo=="False","accessible"] <- "inacessible"
-
-levels(callable1k$chr) <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
-callable1k <- subset(callable1k,!chr %in% c("MIT","API"))
-```
-
-
-
-```{r}
-calcols <- c("chr","st","en","NV","LDfails","LDpass","RSfails","RSpass","df","dn","Dpass","multipass")
-callable5k_disco <- read.table("qDD2vr3D7.callable.blocks5k.tab.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
-callable5k_haplo <- read.table("fakeNGS_haplo_qDD2r3D7_rl100.callable.5k.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
-
-callable5k_disco <- callable5k_disco[,c(1,2,3,12)]
-callable5k_haplo <- callable5k_haplo[,c(1,2,3,12)]
-
-colnames(callable5k_disco)[[4]] <- "disco"
-colnames(callable5k_haplo)[[4]] <- "haplo"
-callable5k_haplo$haplo = callable5k_haplo$haplo=="True"
-callable5k_disco$disco = callable5k_disco$disco=="True"
-
-callable5k<-merge(callable5k_disco,callable5k_haplo)
-# callable5k$accessible <- NULL
-# callable5k[callable5k$disco=="True" & callable5k$haplo=="False","accessible"] <- "DISCOVAR only"
-# callable5k[callable5k$disco=="False" & callable5k$haplo=="True","accessible"] <- "haplo only"
-# callable5k[callable5k$disco=="False" & callable5k$haplo=="False","accessible"] <- "inacessible"
-
-levels(callable5k$chr) <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
-callable5k <- subset(callable5k,!chr %in% c("MIT","API"))
-```
 
 
 ```{r}
@@ -68,37 +21,71 @@ levels(telos$chr) <- c("01","02","03","04","05","06","07","08","09","10","11","1
 telos <- merge(subset(telos,st < 1000),subset(telos,st > 1000),by="chr")
 colnames(telos) <- c("chr","stL","enL","stR","enR")
 
+```
 
-#callable5k$chr <- as.character(callable5k$chr)
-callable5k$telo=F
-tmp <- merge(callable5k,telos,by="chr",all.x=T)
+
+```{r}
+calcols <- c("chr","st","en","NV","LDfails","LDpass","RSfails","RSpass","df","dn","Dpass","multipass")
+callable_disco <- read.table("callable_blocks_fakeNGS_disco.F100.d34-74.5K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+callable_HC100 <- read.table("callable_blocks_fakeNGS_haplo_rl100.F100.d34-74.5K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+callable_HC250 <- read.table("callable_blocks_fakeNGS_haplo_rl250.F100.d34-74.5K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+
+callable_disco <- callable_disco[,c(1,2,3,12)]
+callable_HC100 <- callable_HC100[,c(1,2,3,12)]
+callable_HC250 <- callable_HC250[,c(1,2,3,12)]
+colnames(callable_disco)[[4]] <- "disco"
+colnames(callable_HC100)[[4]] <- "HC100"
+colnames(callable_HC250)[[4]] <- "HC250"
+callable_HC100$HC100 = callable_HC100$HC100=="True"
+callable_HC250$HC250 = callable_HC250$HC250=="True"
+callable_disco$disco = callable_disco$disco=="True"
+
+callable<-merge(merge(callable_disco,callable_HC100),callable_HC250)
+# callable$accessible <- NULL
+# callable[callable$disco=="True" & callable$haplo=="False","accessible"] <- "DISCOVAR only"
+# callable[callable$disco=="False" & callable$haplo=="True","accessible"] <- "haplo only"
+# callable[callable$disco=="False" & callable$haplo=="False","accessible"] <- "inacessible"
+
+levels(callable$chr) <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
+callable <- subset(callable,!chr %in% c("MIT","API"))
+
+
+callable$telo=F
+tmp <- merge(callable,telos,by="chr",all.x=T)
 
 tmp[is.na(tmp$stL),c("stL","enL","stR","enR")] <- -1
 tmp$telo[tmp$en < tmp$enL] = T # "L"
 tmp$telo[tmp$st > tmp$stR] = T # "R"
-callable5k <- tmp[,colnames(callable5k)]
+callable <- tmp[,colnames(callable)]
 rm(tmp)
+
 ```
 
 ```{r}
-callable5k$accessible=F
-callable5k$accessible[callable5k$disco & !callable5k$haplo] <- "DISCOVAR"
-callable5k$accessible[callable5k$haplo & !callable5k$disco] <- "GATK"
-callable5k$accessible[callable5k$haplo & callable5k$disco] <- NA
+callable$accessible<-NA
+callable$accessible[is.na(callable$accessible) & (callable$disco & callable$HC100 & callable$HC250)] <- "ACCESSIBLE"
+callable$accessible[is.na(callable$accessible) & (callable$HC100 & callable$HC250)] <- "HC100+HC250"
+callable$accessible[is.na(callable$accessible) & (callable$disco & callable$HC250)] <- "DISCO+HC250"
+callable$accessible[is.na(callable$accessible) & (callable$disco & callable$HC100)] <- "DISCO+HC100"
+callable$accessible[is.na(callable$accessible) & (callable$disco)] <- "DISCO"
+callable$accessible[is.na(callable$accessible) & (callable$HC100)] <- "HC100"
+callable$accessible[is.na(callable$accessible) & (callable$HC250)] <- "HC250"
+callable$accessible[is.na(callable$accessible) & callable$telo] <- "INACCESSIBLE (TELOMERE)"
+callable$accessible[is.na(callable$accessible)] <- "INACCESSIBLE"
 
-callable5k$accessible[!callable5k$disco & !callable5k$haplo] <- "INACCESSIBLE"
+cats <- c("DISCO+HC100","DISCO","DISCO+HC250","HC250","HC100+HC250","HC100",
+          "ACCESSIBLE","INACCESSIBLE",
+          "INACCESSIBLE (TELOMERE)")
+callable$accessible <- factor(callable$accessible,levels=cats)
+catcols <- c("purple","blue","green","yellow","orange","red",
+          
+          "white","#BBBBBB","#888888")
+names(catcols)<-cats
 
-callable5k$accessible[!callable5k$disco & !callable5k$haplo & callable5k$telo] <- "INACCESSIBLE (TELOMERE)"
-
-callable5k$accessible <- factor(callable5k$accessible,levels=c("DISCOVAR",
-                                                               "GATK",
-                                                               "INACCESSIBLE",
-                                                               "INACCESSIBLE (TELOMERE)"
-                                                               ))
 ```
 
 ```{r}
-chrlen <- as.data.frame(aggregate(callable5k$en,list(callable5k$chr),FUN=max))
+chrlen <- as.data.frame(aggregate(callable$en,list(callable$chr),FUN=max))
 chrlen$st=1
 colnames(chrlen) <- c("chr","st","en")
 ```
@@ -109,97 +96,163 @@ colnames(chrlen) <- c("chr","st","en")
 blank_theme <-   theme(axis.line.y=element_blank(), axis.ticks.y=element_blank(),axis.text.y=element_blank(),
         panel.background=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         legend.position="bottom")
-ggplot(callable5k,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
+
+ggplot(callable,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
   ggtitle(paste("callable regions (5kb windows)")) +
-  geom_rect(aes(fill=accessible)) + scale_fill_manual(values=c("blue","orange","grey","#888888"))+
+  geom_rect(aes(fill=accessible)) + scale_fill_manual(values=catcols)+
   geom_rect(data=chrlen,fill=NA,colour="black") + 
   facet_grid(chr ~ .)   + theme(axis.text.y = element_blank(),axis.ticks.y=element_blank(),legend.position="bottom") +
   theme(panel.background = element_rect(fill='white'), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 
-ggplot(callable1k,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
-  ggtitle(paste("accessible regions (1kb windows)")) +
-  geom_rect(aes(fill=accessible)) + scale_fill_manual(values=c("blue","orange","grey"))+
-  geom_rect(data=chrlen, fill=NA,colour="black")+
-  facet_grid(ch ~ .)  + blank_theme
+```
+
+
+
+#CALLABLE 1KB WINDOWS
+```{r}
+calcols <- c("chr","st","en","NV","LDfails","LDpass","RSfails","RSpass","df","dn","Dpass","multipass")
+callable_disco <- read.table("callable_blocks_fakeNGS_disco.F100.d34-74.1K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+callable_HC100 <- read.table("callable_blocks_fakeNGS_haplo_rl100.F100.d34-74.1K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+callable_HC250 <- read.table("callable_blocks_fakeNGS_haplo_rl250.F100.d34-74.1K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+
+callable_disco <- callable_disco[,c(1,2,3,12)]
+callable_HC100 <- callable_HC100[,c(1,2,3,12)]
+callable_HC250 <- callable_HC250[,c(1,2,3,12)]
+colnames(callable_disco)[[4]] <- "disco"
+colnames(callable_HC100)[[4]] <- "HC100"
+colnames(callable_HC250)[[4]] <- "HC250"
+callable_HC100$HC100 = callable_HC100$HC100=="True"
+callable_HC250$HC250 = callable_HC250$HC250=="True"
+callable_disco$disco = callable_disco$disco=="True"
+
+callable<-merge(merge(callable_disco,callable_HC100),callable_HC250)
+# callable$accessible <- NULL
+# callable[callable$disco=="True" & callable$haplo=="False","accessible"] <- "DISCOVAR only"
+# callable[callable$disco=="False" & callable$haplo=="True","accessible"] <- "haplo only"
+# callable[callable$disco=="False" & callable$haplo=="False","accessible"] <- "inacessible"
+
+levels(callable$chr) <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
+callable <- subset(callable,!chr %in% c("MIT","API"))
+
+
+callable$telo=F
+tmp <- merge(callable,telos,by="chr",all.x=T)
+
+tmp[is.na(tmp$stL),c("stL","enL","stR","enR")] <- -1
+tmp$telo[tmp$en < tmp$enL] = T # "L"
+tmp$telo[tmp$st > tmp$stR] = T # "R"
+callable <- tmp[,colnames(callable)]
+rm(tmp)
+
+```
+
+```{r}
+callable$accessible<-NA
+callable$accessible[is.na(callable$accessible) & (callable$disco & callable$HC100 & callable$HC250)] <- "ACCESSIBLE"
+callable$accessible[is.na(callable$accessible) & (callable$HC100 & callable$HC250)] <- "HC100+HC250"
+callable$accessible[is.na(callable$accessible) & (callable$disco & callable$HC250)] <- "DISCO+HC250"
+callable$accessible[is.na(callable$accessible) & (callable$disco & callable$HC100)] <- "DISCO+HC100"
+callable$accessible[is.na(callable$accessible) & (callable$disco)] <- "DISCO"
+callable$accessible[is.na(callable$accessible) & (callable$HC100)] <- "HC100"
+callable$accessible[is.na(callable$accessible) & (callable$HC250)] <- "HC250"
+callable$accessible[is.na(callable$accessible) & callable$telo] <- "INACCESSIBLE (TELOMERE)"
+callable$accessible[is.na(callable$accessible)] <- "INACCESSIBLE"
+
+cats <- c("DISCO+HC100","DISCO","DISCO+HC250","HC250","HC100+HC250","HC100",
+          "ACCESSIBLE","INACCESSIBLE",
+          "INACCESSIBLE (TELOMERE)")
+callable$accessible <- factor(callable$accessible,levels=cats)
+catcols <- c("purple","blue","green","yellow","orange","red",
+          
+          "white","#BBBBBB","#888888")
+names(catcols)<-cats
+
+```
+
+```{r}
+chrlen <- as.data.frame(aggregate(callable$en,list(callable$chr),FUN=max))
+chrlen$st=1
+colnames(chrlen) <- c("chr","st","en")
+```
+
+
+```{r}
+
+blank_theme <-   theme(axis.line.y=element_blank(), axis.ticks.y=element_blank(),axis.text.y=element_blank(),
+        panel.background=element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        legend.position="bottom")
+
+ggplot(callable,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
+  ggtitle(paste("callable regions (1kb windows)")) +
+  geom_rect(aes(fill=accessible)) + scale_fill_manual(values=catcols)+
+  geom_rect(data=chrlen,fill=NA,colour="black") + 
+  facet_grid(chr ~ .)   + theme(axis.text.y = element_blank(),axis.ticks.y=element_blank(),legend.position="bottom") +
+  theme(panel.background = element_rect(fill='white'), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
 
 ```
 
 
+
+#bar chart (1kb)
 ```{r}
-dust <- read.table("Pf3D7_v3.dust.bed.gz",col.names=c("chr","st","en"))
-levels(dust$chr) <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
-dust$len = dust$en-dust$st
-callable5k$dustpc <- 0
-#for (i in 1:20) {
-for (i in 1:dim(callable5k)[1]) {
-  mychr <- callable5k[i,1]
-  myst <- callable5k[i,2]
-  myen <- callable5k[i,3]
-  dustset <- subset(dust,chr==mychr & en>=myst & st<myen)
-  if (dim(dustset)[1]>0){
-    dusted <- sum(dustset$len)
-    olmin <- min(dustset$st)
-    olmax <- max(dustset$en)
-    if (olmin<st) {dusted<-dusted-(myst-olmin)}
-    if (olmax>en) {dusted<-dusted-(olmax-myen)}
-    dustpc = dusted/(en-st)
-    callable5k[i,"dustpc"]<-dustpc  
-    }
+callableTab <- as.data.frame(table(callable$accessible))
+colnames(callableTab) <- c("accessible","count")
+callableTab$pc <- round(callableTab$count / sum(callableTab$count),2)
+
+write.table(callableTab,sep="\t",quote=F,row.names = F)
+
+ggplot(callableTab,aes(x="",y=count,fill=accessible)) + 
+  geom_bar(width = 0.4,stat="identity",position="stack",colour="black") + scale_fill_manual(values=catcols)+
+  coord_polar("y")+
+  blank_theme
+
+
+```
+
+#bar chart
+```{r}
+callable_disco <- read.table("callable_blocks_fakeNGS_disco.F100.d34-74.1K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+callable_HC100 <- read.table("callable_blocks_fakeNGS_haplo_rl100.F100.d34-74.1K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+callable_HC250 <- read.table("callable_blocks_fakeNGS_haplo_rl250.F100.d34-74.1K.SI.txt",stringsAsFactors = T,sep='\t',header=F,col.names = calcols)
+
+callable_disco$accessible <- "INACCESSIBLE"
+callable_HC250$accessible <- "INACCESSIBLE"
+callable_HC100$accessible <- "INACCESSIBLE"
+callable_disco$accessible[callable_disco$multipass=="True"] <- "DISCO"
+callable_HC250$accessible[callable_HC250$multipass=="True"] <- "HC250"
+callable_HC100$accessible[callable_HC100$multipass=="True"] <- "HC100"
+
+callable_disco <- callable_disco[,c(1,2,3,13)]
+callable_HC100 <- callable_HC100[,c(1,2,3,13)]
+callable_HC250 <- callable_HC250[,c(1,2,3,13)]
+
+callable_disco$method<-"DISCO"
+callable_HC250$method<-"HC250"
+callable_HC100$method<-"HC100"
+callableSt <- (rbind(callable_disco,callable_HC250,callable_HC100))
+callableSt$method <- factor(callableSt$method,levels=c("DISCO","HC250","HC100"))
+callableSt$accessible <- factor(callableSt$accessible,levels=c("INACCESSIBLE (telomere)","INACCESSIBLE",
+                                                               "DISCO","HC250","HC100"))
+levels(callableSt$chr) <- c("MIT","01","02","03","04","05","06","07","08","09","10","11","12","13","14","API")
+
+#MARK OUT TELOMERES
+for (i in c(0:dim(telos)[[1]]) ) {
+  c <- as.character(telos[i,"chr"])
+  s <- telos[i,"stL"]; e <- telos[i,"enL"];
+  callableSt[callableSt$accessible=="INACCESSIBLE" &
+               (callableSt$chr==c & callableSt$en<e & callableSt$st>s),"accessible"] <- "INACCESSIBLE (telomere)"
+  s <- telos[i,"stR"]; e <- telos[i,"enR"];
+  callableSt[callableSt$accessible=="INACCESSIBLE" &
+               (callableSt$chr==c & callableSt$en<e & callableSt$st>s),"accessible"] <- "INACCESSIBLE (telomere)"
 }
-  
-head(callable5k)
 
-
-
-```
-
-
-
-
-```{r}
-
-ggplot(callable5k,aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
-  ggtitle(paste("callable regions (5kb windows)")) +
-  geom_rect(aes(fill=accessible,colour=accessible)) + scale_fill_manual(values=c("blue","orange","grey","#888888"))+ scale_colour_manual(values=c("blue","orange","grey","#888888"))+
-  geom_rect(data=chrlen,fill=NA,colour="black") + 
-  facet_grid(chr ~ .)   + theme(axis.text.y = element_blank(),axis.ticks.y=element_blank(),legend.position="bottom") +
-  theme(panel.background = element_rect(fill='white'), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
-call5kM <- melt(callable5k,id.vars = c("chr","st","en","accessible","dustpc","telo"))
-
-ggplot(subset(call5kM, value==T),aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
-  geom_rect(aes(fill=variable)) + scale_fill_manual(values=c("blue","orange","grey","#888888"))+
-  geom_rect(data=chrlen,fill=NA,colour="black") + 
-  facet_grid(chr ~ variable)   + theme(axis.text.y = element_blank(),axis.ticks.y=element_blank(),legend.position="bottom") +
-  theme(panel.background = element_rect(fill='white'), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
+ggplot(callableSt,aes(x=method,fill=accessible)) + 
+  geom_bar(position="stack") + scale_fill_manual(values=c("#888888","#BBBBBB","blue","yellow","red")) +
+  scale_y_continuous(breaks=seq(0,25000,5000),labels=seq(0,25,5),name="Mb")
 
 
 ```
 
-```{r}
-mychr="07"
-callable5k$pos<-callable5k$st+(callable5k$en-callable5k$st)
 
-
-accgr <- ggplot(subset(callable5k,chr==mychr),aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
-  geom_rect(aes(fill=accessible,colour=accessible)) + scale_fill_manual(values=c("blue","orange","grey","#888888"))+ scale_colour_manual(values=c("blue","orange","grey","#888888"))+
-  geom_rect(data=subset(chrlen,chr==mychr),fill=NA,colour="black") + 
-  theme(axis.text.y = element_blank(),axis.ticks.y=element_blank(),legend.position="bottom") +
-  theme(panel.background = element_rect(fill='white'), panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
-accgrsep <- ggplot(subset(call5kM, chr==mychr & value==T),aes(xmin=st,xmax=en,ymin=0,ymax=1)) + 
-  geom_rect(aes(fill=variable)) + scale_fill_manual(values=c("blue","orange","grey","#888888"))+
-  geom_rect(data=subset(chrlen,chr==mychr),fill=NA,colour="black") + 
-  facet_grid(variable ~ .)   + theme(axis.text.y = element_blank(),axis.ticks.y=element_blank(),legend.position="none") +
-  theme(panel.background = element_rect(fill='white'), panel.grid.major = element_blank(),strip.text.y = element_blank(), panel.grid.minor = element_blank())
-
-
-dustgr <- ggplot(subset(callable5k,chr==mychr),aes(x=pos,y=dustpc)) + 
-  geom_line()+xlab("")+ylab("repeat content")+xlim(0,1.5e6)+
-  theme(axis.text.x=element_blank())
-
-grid.arrange(dustgr, accgrsep,accgr, ncol=1,widths=c(1),heights=c(3,3,2))
-```
